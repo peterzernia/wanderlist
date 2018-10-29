@@ -11,24 +11,24 @@ class CurrenciesSerializer(serializers.ModelSerializer):
 class LanguagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Language
-        fields = ('iso639_1', 'name', 'nativeName')
+        fields = ('iso639_1', 'name', 'native_name')
 
 
 class RegionalBlocsSerializer(serializers.ModelSerializer):
     class Meta:
         model = RegionalBloc
-        fields = ('acronym', 'name', 'otherAcronyms', 'otherNames')
+        fields = ('acronym', 'name', 'other_acronyms', 'other_names')
 
 
 class CountrySerializer(serializers.ModelSerializer):
     currencies = CurrenciesSerializer(many=True)
     languages = LanguagesSerializer(many=True)
-    regionalBlocs = RegionalBlocsSerializer(many=True)
+    regional_blocs = RegionalBlocsSerializer(many=True)
     class Meta:
         model = Country
-        fields =('name', 'topLevelDomain', 'alpha2Code', 'alpha3Code',
-                 'callingCodes','capital', 'altSpellings', 'region',
+        fields =('name', 'top_level_domain', 'alpha2code', 'alpha3code',
+                 'calling_codes','capital', 'alt_spellings', 'region',
                  'subregion', 'population', 'latlng','demonym', 'area', 'gini',
-                 'timezones', 'borders', 'nativeName', 'numericCode',
+                 'timezones', 'borders', 'native_name', 'numeric_code',
                  'currencies', 'languages', 'flag',
-                 'regionalBlocs', 'cioc')
+                 'regional_blocs', 'cioc')

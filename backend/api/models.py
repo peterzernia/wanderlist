@@ -13,7 +13,7 @@ class Currency(models.Model):
 class Language(models.Model):
     iso639_1 = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
-    nativeName = models.CharField(max_length=255, null=True, blank=True)
+    native_name = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -22,20 +22,20 @@ class Language(models.Model):
 class RegionalBloc(models.Model):
     acronym = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
-    otherAcronyms = JSONField(null=True, blank=True)
-    otherNames = JSONField(null=True, blank=True)
+    other_acronyms = JSONField(null=True, blank=True)
+    other_names = JSONField(null=True, blank=True)
 
     def __str__(self):
         return self.acronym
 
 class Country(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
-    topLevelDomain = JSONField(null=True, blank=True)
-    alpha2Code = models.CharField(max_length=255, null=True, blank=True)
-    alpha3Code = models.CharField(max_length=255, null=True, blank=True)
-    callingCodes = JSONField(null=True, blank=True)
+    top_level_domain = JSONField(null=True, blank=True)
+    alpha2code = models.CharField(max_length=255, null=True, blank=True)
+    alpha3code = models.CharField(max_length=255, null=True, blank=True)
+    calling_codes = JSONField(null=True, blank=True)
     capital = models.CharField(max_length=255, null=True, blank=True)
-    altSpellings = JSONField(null=True, blank=True)
+    alt_spellings = JSONField(null=True, blank=True)
     region = models.CharField(max_length=255, null=True, blank=True)
     subregion = models.CharField(max_length=255, null=True, blank=True)
     population = models.IntegerField(null=True, blank=True)
@@ -45,12 +45,12 @@ class Country(models.Model):
     gini = models.FloatField(null=True, blank=True)
     timezones = JSONField(null=True, blank=True)
     borders = JSONField(null=True, blank=True)
-    nativeName = models.CharField(max_length=255, null=True, blank=True)
-    numericCode= models.CharField(max_length=255, null=True, blank=True)
+    native_name = models.CharField(max_length=255, null=True, blank=True)
+    numeric_code= models.CharField(max_length=255, null=True, blank=True)
     currencies = models.ManyToManyField(Currency)
     languages = models.ManyToManyField(Language)
     flag = models.CharField(max_length=255, null=True, blank=True)
-    regionalBlocs = models.ManyToManyField(RegionalBloc, blank=True)
+    regional_blocs = models.ManyToManyField(RegionalBloc, blank=True)
     cioc = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
