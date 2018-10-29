@@ -12,18 +12,18 @@ class App extends Component {
   }
   getCountry = async (e) => {
     e.preventDefault();
-    const country = e.target.country.value;
-    const url = `http://localhost:8000/api/${country}`;
+    const query = e.target.country.value;
+    const url = `http://localhost:8000/api/v1/?search=${query}`;
     const api_call = await fetch(url);
     const data = await api_call.json();
     this.setState ({
       searched: true,
-      name: data.name,
-      capital: data.capital,
-      flag: data.flag,
-      borders: data.borders
+      name: data[0].name,
+      capital: data[0].capital,
+      flag: data[0].flag,
+      borders: data[0].borders
     });
-  console.log(data.name)
+  console.log(data)
   }
   render() {
     return (

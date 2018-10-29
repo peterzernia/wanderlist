@@ -1,16 +1,12 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework import filters
 from .serializers import CountrySerializer
 from .models import Country
 
 
 class CountryListView(ListAPIView):
-    queryset = Country.objects.all()
+    queryset = Country.objects.all().order_by('pk')
     serializer_class = CountrySerializer
-    #lookup_field = 'name'
-
-
-class CountryDetailView(RetrieveAPIView):
-    queryset = Country.objects.all()
-    serializer_class = CountrySerializer
-    #lookup_field = 'name'
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name',)

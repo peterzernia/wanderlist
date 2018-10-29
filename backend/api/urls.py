@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import CountryListView, CountryDetailView
+from .views import CountryListView
 
 urlpatterns = [
     path('', CountryListView.as_view()),
-    path('<pk>/', CountryDetailView.as_view())
+
 ]
