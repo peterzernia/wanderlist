@@ -1,0 +1,14 @@
+import json
+from api.models import Country
+from api.models import currencies, languages, regionalBlocs
+with open('data.json') as f:
+  data_json = json.load(f)
+
+for data in data_json:
+
+data = Country(name=data['name'], topLevelDomain=data['topLevelDomain'], alpha2Code=data['alpha2Code'], alpha3Code=data['alpha3Code'], callingCodes=data['callingCodes'], capital=data['capital'], altSpellings=data['altSpellings'], region=data['region'], subregion=data['subregion'], population=data['population'],latlng=data['latlng'], demonym=data['demonym'], timezones=data['timezones'], borders=data['borders'], nativeName=data['nativeName'], numericCode=data['numericCode'], flag=data['flag'], cioc=data['cioc'])
+
+data = currencies(name=data['name'], symbol=data['symbol'], code=data['cc'])
+data = languages(name=data['name'], iso639_1=data['code'], nativeName=data['nativeName'])
+
+data.save()
