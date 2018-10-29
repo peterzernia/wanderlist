@@ -17,13 +17,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-__pycache__
-*.pyc
-*~
-data.json
-db.sqlite3
-languages.json
-currencies.json
-countries.json
-load_data_python_cmd.txt
