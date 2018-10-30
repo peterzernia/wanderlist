@@ -3,19 +3,30 @@ import { Link } from 'react-router-dom';
 
 
 class NavBar extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      collapsed: true,
+    }
+  }
+  toggleCollapse() {
+    const collapsed = !this.state.collapsed;
+    this.setState({collapsed});
+  }
   render() {
+    const navClass = this.state.collapsed ? "navbar-collapse collapse" : "navbar-collapse";
     return (
-      <nav className="navbar navbar-expand-lg navbar-transparent bg-transparent">
-      <Link to="/" className="navbar-brand">Countries</Link>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <nav className="navbar navbar-fixed-top navbar-transparent bg-transparent">
+      <Link to="/" className="btn navbar-brand">Countries</Link>
+      <button className="btn" type="button" onClick={this.toggleCollapse.bind(this)}>
         <span className="navbar-toggler-icon"></span>
       </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div className={navClass} id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <Link to="/">Search</Link>
-            <Link to="/discover">Discover</Link>
-            <Link to="/map">My Map</Link>
-            <Link to="/Profile">Profile</Link>
+            <Link onClick={this.toggleCollapse.bind(this)} to="/">Search</Link>
+            <Link onClick={this.toggleCollapse.bind(this)} to="/discover">Discover</Link>
+            <Link onClick={this.toggleCollapse.bind(this)} to="/map">My Map</Link>
+            <Link onClick={this.toggleCollapse.bind(this)} to="/profile">Profile</Link>
           </div>
         </div>
       </nav>
