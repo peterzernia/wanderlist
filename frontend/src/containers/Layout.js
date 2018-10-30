@@ -10,7 +10,7 @@ class Layout extends React.Component {
   render(){
     return(
       <div>
-        <NavBar />
+        <NavBar /><br/>
         <Route exact path={`${this.props.match.url}`} component={Search}/>
         <Route path={`${this.props.match.url}/discover`} component={Discover}/>
         <Route path={`${this.props.match.url}/map`} component={Map}/>
