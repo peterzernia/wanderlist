@@ -6,7 +6,7 @@ class Display extends React.Component {
       <div className="content">
         {this.props.name} <br/>
         {this.props.capital} <br/>
-        <img className="flag" height="150" src={this.props.flag}/>
+        <img className="flag" height="150" src={this.props.flag} alt=""/>
       </div>
     )
   }
