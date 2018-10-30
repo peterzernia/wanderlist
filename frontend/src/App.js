@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Display from './components/Display'
-import Form from './components/Form'
+import SearchBar from './components/SearchBar'
 import './App.css';
 
 class App extends Component {
@@ -28,7 +28,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Form getCountry={this.getCountry} /> <br/>
+        <SearchBar getCountry={this.getCountry} /> <br/>
         <Display name={this.state.name}
                  capital={this.state.capital}
                  flag={this.state.flag} />
