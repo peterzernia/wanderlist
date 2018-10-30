@@ -8,7 +8,7 @@ class SearchBar extends React.Component {
           <form onSubmit={ this.props.getCountry }>
             <h4>Search for a Country</h4><br/>
             <input className="form-control" type='text' name="country" placeholder="Country"/>
-            <button className="btn btn-primary" type="submit">Submit</button>
+            <button className="btn btn-primary" type="submit">Search</button>
           </form>
         </div>
     )
