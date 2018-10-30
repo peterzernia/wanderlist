@@ -4,20 +4,20 @@ import React from 'react';
 class NavBar extends React.Component {
   render() {
     return (
-        <nav class="navbar navbar-expand-lg navbar-white bg-white">
-        <a class="navbar-brand" href="#">Countries</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-item nav-link active" href="#">Search <span class="sr-only">(current)</span></a>
-              <a class="nav-item nav-link" href="#">Discover</a>
-              <a class="nav-item nav-link" href="#">My Map</a>
-              <a class="nav-item nav-link" href="#">Profile</a>
-            </div>
+      <nav className="navbar navbar-expand-lg navbar-transparent bg-transparent">
+      <a className="navbar-brand" href="/">Countries</a>
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
+      </button>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+            <a className="nav-item nav-link active" href="/">Search <span className="sr-only">(current)</span></a>
+            <a className="nav-item nav-link" href="/discover">Discover</a>
+            <a className="nav-item nav-link" href="/map">My Map</a>
+            <a className="nav-item nav-link" href="/profile">Profile</a>
           </div>
-        </nav>
+        </div>
+      </nav>
     )
   }
 }

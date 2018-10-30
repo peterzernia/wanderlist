@@ -1,3 +1,8 @@
+body {
+  font: Helvetica Neue;
+  background-image: url("background.png")
+}
+
 .content {
   align: center;
   text-align: center;
