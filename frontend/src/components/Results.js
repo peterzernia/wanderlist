@@ -6,7 +6,7 @@ class Results extends React.Component {
       return(
         <div className="content">
           <h3>{this.props.name}</h3>
-          <img className="flag" height="250" src={this.props.flag} alt=""/>
+          <img className="flag" height="200px" src={this.props.flag} alt=""/>
           <div>
             Capital City - {this.props.capital} <br/>
             Region - {this.props.region} <br/>

@@ -16,7 +16,7 @@ class NavBar extends React.Component {
   render() {
     const navClass = this.state.collapsed ? "navbar-collapse collapse" : "navbar-collapse";
     return (
-      <nav className="navbar navbar-fixed-top navbar-transparent bg-transparent">
+      <nav className="navbar sticky-top navbar-white bg-white">
       <Link to="/" className="btn navbar-brand">Countries</Link>
       <button className="btn" type="button" onClick={this.toggleCollapse.bind(this)}>
         <span className="navbar-toggler-icon"></span>
