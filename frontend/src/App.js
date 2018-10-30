@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Display from './components/Display'
+import NavBar from './components/NavBar'
 import SearchBar from './components/SearchBar'
 import './App.css';
 
@@ -28,10 +29,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SearchBar getCountry={this.getCountry} /> <br/>
-        <Display name={this.state.name}
-                 capital={this.state.capital}
-                 flag={this.state.flag} />
+        <NavBar />
+        <div className="">
+          <SearchBar getCountry={this.getCountry} /> <br/>
+          <Display name={this.state.name}
+                   capital={this.state.capital}
+                   flag={this.state.flag} />
+         </div>
       </div>
     );
   }

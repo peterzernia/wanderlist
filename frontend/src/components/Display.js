@@ -3,10 +3,10 @@ import React from 'react';
 class Display extends React.Component {
   render(){
     return(
-      <div>
+      <div className="content">
         {this.props.name} <br/>
         {this.props.capital} <br/>
-        <img className='flag' height='150' src={this.props.flag}/>
+        <img className="flag" height="150" src={this.props.flag}/>
       </div>
     )
   }

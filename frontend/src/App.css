@@ -1,11 +1,10 @@
-.App {
-  position: absolute;
-  width: 320px;
-  z-index: 15;
-  top: 25%;
-  left: 50%;
-  margin: -100px 0 0 -150px;
-  background: ;
+.content {
+  align: center;
+  text-align: center;
+}
+
+form {
+  margin: auto;
   text-align: center;
 }
 
