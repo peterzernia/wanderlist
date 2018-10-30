@@ -17,3 +17,8 @@ form {
   border-style: solid;
   border-width: .1px;
 }
+
+.navbar-link {
+  margin-left: auto;
+  margin-right: auto;
+}
