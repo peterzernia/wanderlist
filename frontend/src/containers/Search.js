@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import Results from '../components/Results';
-import SearchBar from '../components/SearchBar';
+import React, { Component } from 'react'
+import Results from '../components/Results'
+import SearchBar from '../components/SearchBar'
 import { connect } from 'react-redux'
 import { fetchCountry } from '../actions/countryActions'
 import store from "../store/index"

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import Discover from './Discover';
-import Map from './Map';
-import NavBar from '../components/NavBar';
+import React, { Component } from 'react'
+import Discover from './Discover'
+import Map from './Map'
+import NavBar from '../components/NavBar'
 import Profile from './Profile'
-import Search from './Search';
-import { Route } from "react-router-dom";
+import Search from './Search'
+import { Route } from "react-router-dom"
 
 class Layout extends Component {
   render(){
