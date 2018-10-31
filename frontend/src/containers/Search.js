@@ -25,14 +25,7 @@ class Search extends Component {
           <div className="">
             <SearchBar getCountry={this.getCountry} /> <br/>
             <Results countryFetched={this.props.countryFetched}
-                     name={this.props.country[0].name}
-                     capital={this.props.country[0].capital}
-                     flag={this.props.country[0].flag}
-                     region={this.props.country[0].region}
-                     subregion={this.props.country[0].subregion}
-                     demonym={this.props.country[0].demonym}
-                     languages={this.props.country[0].languages}
-                     borders={this.props.country[0].borders}/>
+                     country={this.props.country}/>
           </div>
         </div>
       );
