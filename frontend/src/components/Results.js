@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
+
 class Results extends Component {
   render(){
-    if (this.props.searched === true){
+    if (this.props.countryFetched === true){
       return(
         <div className="content">
           <h3>{this.props.name}</h3>

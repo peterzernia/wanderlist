@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import Results from '../components/Results';
 import SearchBar from '../components/SearchBar';
+import { connect } from 'react-redux'
+import { fetchCountry } from '../actions/countryActions'
+import store from "../store/index"
+
 
 class Search extends Component {
   constructor(){
@@ -9,43 +13,54 @@ class Search extends Component {
       searched: false
     };
   }
-  getCountry = async (e) => {
+  getCountry = (e) => {
     e.preventDefault();
     const query = e.target.country.value;
-    const url = `http://localhost:8000/api/v1/countries/?search=${query}`;
-    const api_call = await fetch(url);
-    const data = await api_call.json();
-    this.setState ({
-      searched: true,
-      name: data[0].name,
-      capital: data[0].capital,
-      flag: data[0].flag,
-      region: data[0].region,
-      subregion: data[0].subregion,
-      demonym: data[0].demonym,
-      languages: data[0].languages,
-      borders: data[0].borders
-    });
-  console.log(data[0].languages)
+    fetchCountry(store, query);
   }
   render() {
-    return (
-      <div className="search">
-        <div className="">
-          <SearchBar getCountry={this.getCountry} /> <br/>
-          <Results searched={this.state.searched}
-                   name={this.state.name}
-                   capital={this.state.capital}
-                   flag={this.state.flag}
-                   region={this.state.region}
-                   subregion={this.state.subregion}
-                   demonym={this.state.demonym}
-                   languages={this.state.languages}
-                   borders={this.state.borders}/>
-         </div>
-      </div>
-    );
+    if (this.props.countryFetched === true){
+      return (
+        <div className="search">
+          <div className="">
+            <SearchBar getCountry={this.getCountry} /> <br/>
+            <Results countryFetched={this.props.countryFetched}
+                     name={this.props.country[0].name}
+                     capital={this.props.country[0].capital}
+                     flag={this.props.country[0].flag}
+                     region={this.props.country[0].region}
+                     subregion={this.props.country[0].subregion}
+                     demonym={this.props.country[0].demonym}
+                     languages={this.props.country[0].languages}
+                     borders={this.props.country[0].borders}/>
+          </div>
+        </div>
+      );
+    } else { return (
+        <div className="search">
+          <div className="">
+            <SearchBar getCountry={this.getCountry} /> <br/>
+          </div>
+        </div>
+    )}
   }
 }
 
-export default Search;
+const mapState = state => {
+  return {
+    country: state.country.country,
+    countryFetched: state.country.fetched
+  };
+};
+
+const mapDispatch = (dispatch, ownProps) => {
+  return {
+    fetchCountry(store, query) {
+      dispatch(fetchCountry(store, query));
+    }
+  };
+};
+
+const SearchContainer = connect(mapState, mapDispatch)(Search);
+
+export default SearchContainer;
