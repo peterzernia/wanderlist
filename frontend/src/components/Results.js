@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Results extends React.Component {
+class Results extends Component {
   render(){
     if (this.props.searched === true){
       return(
@@ -12,8 +12,16 @@ class Results extends React.Component {
             Region - {this.props.region} <br/>
             Subregion - {this.props.subregion} <br/>
             Demonym - {this.props.demonym} <br/>
-            Language - {this.props.language} <br/>
-            Borders - {this.props.borders[0]} <br/>
+            Languages - {this.props.languages.map(language =>
+              <li key={language.iso639_1}>
+                {language.name}
+              </li>
+            )}
+            Borders - {this.props.borders.map((border, i) =>
+              <li key={i}>
+                {border}
+              </li>
+            )}
           </div>
         </div>
       )

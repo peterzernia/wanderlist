@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Discover from './Discover';
 import Map from './Map';
 import NavBar from '../components/NavBar';
@@ -6,7 +6,7 @@ import Profile from './Profile'
 import Search from './Search';
 import { Route } from "react-router-dom";
 
-class Layout extends React.Component {
+class Layout extends Component {
   render(){
     return(
       <div>

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 
-class Discover extends React.Component {
+class Discover extends Component {
   render(){
     return(
       <div className="content">

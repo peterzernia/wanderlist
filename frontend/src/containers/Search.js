@@ -23,10 +23,10 @@ class Search extends Component {
       region: data[0].region,
       subregion: data[0].subregion,
       demonym: data[0].demonym,
-      language: data[0].languages[0].name,
+      languages: data[0].languages,
       borders: data[0].borders
     });
-  console.log(data[0].languages[0].name)
+  console.log(data[0].languages)
   }
   render() {
     return (
@@ -40,7 +40,7 @@ class Search extends Component {
                    region={this.state.region}
                    subregion={this.state.subregion}
                    demonym={this.state.demonym}
-                   language={this.state.language}
+                   languages={this.state.languages}
                    borders={this.state.borders}/>
          </div>
       </div>
