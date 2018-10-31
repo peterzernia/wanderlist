@@ -12,7 +12,7 @@ class Search extends Component {
   getCountry = async (e) => {
     e.preventDefault();
     const query = e.target.country.value;
-    const url = `http://localhost:8000/api/v1/?search=${query}`;
+    const url = `http://localhost:8000/api/v1/countries/?search=${query}`;
     const api_call = await fetch(url);
     const data = await api_call.json();
     this.setState ({
