@@ -14,12 +14,12 @@ class Results extends Component {
             Demonym - {this.props.demonym} <br/>
             Languages - {this.props.languages.map(language =>
               <li key={language.iso639_1}>
-                {language.name}
+                {language.name},&nbsp;
               </li>
-            )}
+            )} <br/>
             Borders - {this.props.borders.map((border, i) =>
               <li key={i}>
-                {border}
+                {border},&nbsp;
               </li>
             )}
           </div>
