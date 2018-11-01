@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { fetchCountry } from '../actions/countryActions'
 import store from "../store/index"
 
-
 class Search extends Component {
   constructor(){
     super();

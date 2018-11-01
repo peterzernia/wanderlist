@@ -2,7 +2,6 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import SearchBar from '../SearchBar'
 
-
 describe('<SearchBar />', () =>{
   it('renders a form', () => {
     const wrapper = shallow(<SearchBar />);
