@@ -21,6 +21,10 @@ class RegionalBlocsSerializer(serializers.ModelSerializer):
 
 
 class CountrySerializer(serializers.ModelSerializer):
+    '''
+    The currencies, languages, and regional_bloc fields are made up of the
+    corresponding models. 
+    '''
     currencies = CurrenciesSerializer(many=True)
     languages = LanguagesSerializer(many=True)
     regional_blocs = RegionalBlocsSerializer(many=True)

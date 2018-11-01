@@ -3,6 +3,9 @@ from django.contrib.postgres.fields import JSONField
 
 
 class Currency(models.Model):
+    '''
+    Describes currencies used by countrties around the world.
+    '''
     code = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
     symbol = models.CharField(max_length=255, null=True, blank=True)
@@ -11,6 +14,9 @@ class Currency(models.Model):
         return self.name
 
 class Language(models.Model):
+    '''
+    Describes official languages recognized by countries or other jurisdictions.
+    '''
     iso639_1 = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
     native_name = models.CharField(max_length=255, null=True, blank=True)
@@ -20,6 +26,9 @@ class Language(models.Model):
 
 
 class RegionalBloc(models.Model):
+    '''
+    Describes the trade blocs made of the countries of the world.
+    '''
     acronym = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
     other_acronyms = JSONField(null=True, blank=True)
@@ -29,6 +38,9 @@ class RegionalBloc(models.Model):
         return self.acronym
 
 class Country(models.Model):
+    '''
+    Describes the countries, as well as territories of the world.
+    '''
     name = models.CharField(max_length=255, null=True, blank=True)
     top_level_domain = JSONField(null=True, blank=True)
     alpha2code = models.CharField(max_length=255, null=True, blank=True)
