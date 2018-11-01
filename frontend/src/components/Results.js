@@ -26,16 +26,11 @@ class Results extends Component {
         <br/><br/>
       </div>
     ))
-    if (this.props.countryFetched === true){
-      console.log(this.props.countryTest)
-      return(
-        <div className="content">
-          {listCountries}
-        </div>
-      )
-    } else{
-      return <div/>
-    }
+    return(
+      <div className="content">
+        {listCountries}
+      </div>
+    )
   }
 }
 
