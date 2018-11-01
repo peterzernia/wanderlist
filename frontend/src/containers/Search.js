@@ -6,12 +6,6 @@ import { fetchCountry } from '../actions/countryActions'
 import store from "../store/index"
 
 class Search extends Component {
-  constructor(){
-    super();
-    this.state = {
-      searched: false
-    };
-  }
   getCountry = (e) => {
     e.preventDefault();
     const query = e.target.country.value;
