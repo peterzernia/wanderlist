@@ -2,6 +2,12 @@ from django.db import models
 from django.contrib.postgres.fields import JSONField
 
 
+'''
+Users will only be able to view a read-only API of the following models. Any
+creations, updates, or deletions will be made by the application administrator.
+'''
+
+
 class Currency(models.Model):
     '''
     Describes currencies used by countrties around the world.
@@ -27,7 +33,7 @@ class Language(models.Model):
 
 class RegionalBloc(models.Model):
     '''
-    Describes the trade blocs made of the countries of the world.
+    Describes the regional trade blocs made up of the countries of the world.
     '''
     acronym = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
