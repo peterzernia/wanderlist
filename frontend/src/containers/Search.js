@@ -12,13 +12,12 @@ class Search extends Component {
     fetchCountry(store, query);
   }
   render() {
-    if (this.props.countryFetched === true){
+    if (this.props.fetched === true){
       return (
         <div className="search">
           <div className="">
             <SearchBar getCountry={this.getCountry} /> <br/>
-            <Results countryFetched={this.props.countryFetched}
-                     country={this.props.country}/>
+            <Results country={this.props.country}/>
           </div>
         </div>
       );
@@ -35,7 +34,7 @@ class Search extends Component {
 const mapState = state => {
   return {
     country: state.country.country,
-    countryFetched: state.country.fetched
+    fetched: state.country.fetched
   };
 };
 
