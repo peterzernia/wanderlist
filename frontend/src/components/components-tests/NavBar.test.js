@@ -7,12 +7,9 @@ describe('<NavBar />', () =>{
     const wrapper = shallow(<NavBar />);
     expect(wrapper.find('nav').length).toEqual(1);
   });
-  it('navbar initially collapsed', () => {
+  it('navbar onClick toggles collapse', () => {
     const wrapper = shallow(<NavBar />);
     expect(wrapper.find('div.navbar-collapse.collapse').length).toEqual(1);
-  });
-  it('navbar uncollapsed onClick', () => {
-    const wrapper = shallow(<NavBar />);
     wrapper.find('.navbar-toggler').prop('onClick')();
     expect(wrapper.find('div.navbar-collapse.collapse').length).toEqual(0);
   });
