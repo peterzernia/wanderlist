@@ -12,22 +12,14 @@ class Search extends Component {
     fetchCountry(store, query);
   }
   render() {
-    if (this.props.fetched === true){
       return (
         <div className="search">
           <div className="">
             <SearchBar getCountry={this.getCountry} /> <br/>
-            <Results country={this.props.country}/>
+            {this.props.fetched ? <Results country={this.props.country} /> : null}
           </div>
         </div>
       );
-    } else { return (
-        <div className="search">
-          <div className="">
-            <SearchBar getCountry={this.getCountry} /> <br/>
-          </div>
-        </div>
-    )}
   }
 }
 
