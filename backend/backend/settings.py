@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'countries.apps.CountriesConfig',
+    'users.apps.UsersConfig',
     'rest_framework',
     'corsheaders',
     'django.contrib.admin',
@@ -42,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+AUTH_USER_MODEL = 'users.User'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
