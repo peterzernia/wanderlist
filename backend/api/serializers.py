@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from countries.models import Country, Currency, Language, RegionalBloc
+from users.models import User
+from rest_auth.serializers import UserDetailsSerializer
 
 
 class CurrenciesSerializer(serializers.ModelSerializer):
@@ -28,11 +30,15 @@ class CountrySerializer(serializers.ModelSerializer):
     currencies = CurrenciesSerializer(many=True)
     languages = LanguagesSerializer(many=True)
     regional_blocs = RegionalBlocsSerializer(many=True)
+
     class Meta:
         model = Country
-        fields =('name', 'top_level_domain', 'alpha2code', 'alpha3code',
-                 'calling_codes','capital', 'alt_spellings', 'region',
-                 'subregion', 'population', 'latlng','demonym', 'area', 'gini',
-                 'timezones', 'borders', 'native_name', 'numeric_code',
-                 'currencies', 'languages', 'flag',
-                 'regional_blocs', 'cioc')
+        fields =('__all__')
+
+
+class UserDetailSerializer(UserDetailsSerializer):
+    countries = serializers.StringRelatedField(many=True)
+
+    class Meta:
+        model = User
+        fields = ('pk', 'username', 'email', 'countries')
