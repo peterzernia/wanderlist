@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.generics import ListAPIView
 from rest_framework import filters
 from .serializers import CountrySerializer
-from .models import Country
+from countries.models import Country
 
 
 class CountryListView(ListAPIView):

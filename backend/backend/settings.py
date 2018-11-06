@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'api.apps.ApiConfig',
+    'countries.apps.CountriesConfig',
     'rest_framework',
     'corsheaders',
     'django.contrib.admin',

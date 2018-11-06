@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Country, Currency, Language, RegionalBloc
+from countries.models import Country, Currency, Language, RegionalBloc
 
 
 class CurrenciesSerializer(serializers.ModelSerializer):
