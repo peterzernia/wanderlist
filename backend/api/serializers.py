@@ -37,7 +37,9 @@ class CountrySerializer(serializers.ModelSerializer):
 
 
 class UserDetailSerializer(UserDetailsSerializer):
-    countries = serializers.StringRelatedField(many=True)
+    countries = serializers.SlugRelatedField(
+        many=True, slug_field='name', queryset=Country.objects.all()
+        )
 
     class Meta:
         model = User
