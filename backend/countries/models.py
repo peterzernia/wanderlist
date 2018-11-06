@@ -19,8 +19,6 @@ class Currency(models.Model):
     def __str__(self):
         return self.name
 
-    class Meta:
-        db_table = 'api_currency'
 
 class Language(models.Model):
     '''
@@ -32,9 +30,6 @@ class Language(models.Model):
 
     def __str__(self):
         return self.name
-
-    class Meta:
-        db_table = 'api_language'
 
 
 class RegionalBloc(models.Model):
@@ -49,8 +44,6 @@ class RegionalBloc(models.Model):
     def __str__(self):
         return self.acronym
 
-    class Meta:
-        db_table = 'api_regionalbloc'
 
 class Country(models.Model):
     '''
@@ -82,6 +75,3 @@ class Country(models.Model):
 
     def __str__(self):
         return self.name
-
-    class Meta:
-        db_table = 'api_country'
