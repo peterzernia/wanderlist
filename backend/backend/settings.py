@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'countries.apps.CountriesConfig',
     'users.apps.UsersConfig',
-    'webpack_loader',
     'rest_framework',
     'corsheaders',
     'rest_framework.authtoken',
@@ -160,10 +159,3 @@ REST_FRAMEWORK = {
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SITE_ID = 1
-
-WEBPACK_LOADER = {
-    'DEFAULT': {
-            'BUNDLE_DIR_NAME': 'bundles/',
-            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
-        }
-}
