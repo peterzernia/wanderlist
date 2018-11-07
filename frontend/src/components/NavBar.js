@@ -22,11 +22,14 @@ class NavBar extends Component {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className={navClass} id="navbarNavAltMarkup">
-          <div className="navbar-nav">
+          <div className="navbar-nav mr-auto">
             <Link onClick={this.toggleCollapse.bind(this)} className="btn" to="/">Search</Link>
             <Link onClick={this.toggleCollapse.bind(this)} className="btn" to="/discover">Discover</Link>
             <Link onClick={this.toggleCollapse.bind(this)} className="btn" to="/map">My Map</Link>
             <Link onClick={this.toggleCollapse.bind(this)} className="btn" to="/profile">Profile</Link>
+          </div>
+          <div className="navbar-nav ml-auto">
+            <Link onClick={this.toggleCollapse.bind(this)} className="btn" to="/login">Login</Link>
           </div>
         </div>
       </nav>
