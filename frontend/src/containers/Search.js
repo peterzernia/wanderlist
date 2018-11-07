@@ -32,8 +32,7 @@ const mapState = state => {
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    fetchCountry: (query) => {dispatch(fetchCountry(query))
-    }
+    fetchCountry: (query) => dispatch(fetchCountry(query))
   };
 };
 

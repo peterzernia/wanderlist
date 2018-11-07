@@ -6,10 +6,10 @@ export const fetchUserPending = () => {
   }
 }
 
-export const fetchUserFulfilled = country => {
+export const fetchUserFulfilled = user => {
   return {
     type: "FETCH_USER_FULFILLED",
-    country: country
+    user: user
   }
 }
 
@@ -24,7 +24,7 @@ export const fetchUser = () => {
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch(fetchUserPending());
-    axios.get('http://localhost:8000/api/v1/rest-auth/user/', {headers: { 'authorization': `Bearer ${token}`}})
+    axios.get('http://localhost:8000/api/v1/rest-auth/user/', {headers: { 'authorization': `Token ${token}`}})
       .then(response => {
         const user = response.data;
         dispatch(fetchUserFulfilled(user));

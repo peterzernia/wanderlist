@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { fetchUser } from './userActions'
 
 export const authStart = () => {
   return {
@@ -39,6 +40,7 @@ export const authLogin = (username, password) => {
         const token = response.data.key;
         localStorage.setItem('token', token);
         dispatch(authSucess(token));
+        dispatch(fetchUser());
       })
       .catch(err => {
         dispatch(authFail(err));
@@ -60,6 +62,7 @@ export const authRegister = (username, email, password1, password2) => {
         const token = response.data.key;
         localStorage.setItem('token', token);;
         dispatch(authSucess(token));
+        dispatch(fetchUser());
       })
       .catch(err => {
         dispatch(authFail(err))
