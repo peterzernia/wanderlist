@@ -8,5 +8,7 @@ class User(AbstractUser):
     count = models.IntegerField(blank=True, default=0)
 
     def save(self, *args, **kwargs):
+        # Must save model before Many To Many relationship can be used.
+        super(User, self).save(*args, **kwargs)
         self.count = self.countries.count()
         super(User, self).save(*args, **kwargs)

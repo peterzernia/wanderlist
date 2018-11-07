@@ -1,27 +1,39 @@
 import React, { Component } from 'react'
 import LoginForm from '../components/LoginForm'
 import { connect } from 'react-redux'
+import { authLogin } from '../actions/authActions'
 
 class Login extends Component {
-  onSubmit = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
+    this.props.authLogin(e.target.username.value, e.target.password.value);
+    this.props.history.push('/');
   }
   render(){
     return(
       <div className="content">
-        <LoginForm onSubmit={this.onSubmit} />
+        {
+          !this.props.authenticated ?
+          <LoginForm handleSubmit={this.handleSubmit} {...this.props} /> :
+          <p>You are already logged in</p>
+        }
       </div>
     );
   }
 }
 
-const mapState= state => {
-  return {};
+const mapState = state => {
+  return {
+    authenticating: state.auth.authenticating,
+    authenticated: state.auth.authenticated,
+    error: state.auth.error,
+  };
 }
 
 const mapDispatch = dispatch => {
-  return {};
+  return {
+    authLogin: (username, password) => dispatch(authLogin(username, password))
+  };
 }
 
-const LoginContainer = connect(mapState, mapDispatch)(Login);
-export default LoginContainer;
+export default connect(mapState, mapDispatch)(Login);

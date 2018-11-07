@@ -9,8 +9,8 @@ class RegistrationForm extends Component {
             <h4>Register</h4><br/>
             <input className="form-control user-auth" type='text' name="username" placeholder="username"/>
             <input className="form-control user-auth" type='text' name="email" placeholder="email"/>
-            <input className="form-control user-auth" type='password' name="password" placeholder="password"/>
-            <input className="form-control user-auth" type='password' name="password" placeholder="password"/><br/>
+            <input className="form-control user-auth" type='password' name="password1" placeholder="password"/>
+            <input className="form-control user-auth" type='password' name="password2" placeholder="password again"/><br/>
             <button className="btn btn-primary user-auth-btn" type="submit">Register</button>
             <Link className="btn" to="/login">Cancel</Link>
           </form>

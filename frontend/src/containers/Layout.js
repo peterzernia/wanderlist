@@ -7,12 +7,14 @@ import Profile from './Profile'
 import Register from './Register'
 import Search from './Search'
 import { Route } from "react-router-dom"
+import { connect } from 'react-redux'
+import { authLogout } from '../actions/authActions'
 
 class Layout extends Component {
   render(){
     return(
       <div>
-        <NavBar /><br/>
+        <NavBar {...this.props} /><br/>
         <Route exact path={`${this.props.match.url}`} component={Search}/>
         <Route path={`${this.props.match.url}/discover`} component={Discover}/>
         <Route path={`${this.props.match.url}/map`} component={Map}/>
@@ -24,4 +26,16 @@ class Layout extends Component {
   }
 }
 
-export default Layout;
+const mapState = state => {
+  return {
+    authenticated: state.auth.authenticated,
+  }
+}
+
+const mapDispatch = dispatch => {
+  return {
+    authLogout: () => dispatch(authLogout())
+  }
+}
+
+export default connect(mapState, mapDispatch)(Layout);
