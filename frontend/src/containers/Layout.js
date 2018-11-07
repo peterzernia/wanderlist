@@ -11,10 +11,17 @@ import { connect } from 'react-redux'
 import { authLogout } from '../actions/authActions'
 
 class Layout extends Component {
+
+  handleClick = (e) => {
+    e.preventDefault();
+    this.props.authLogout();
+    this.props.history.push('/');
+  }
+
   render(){
     return(
       <div>
-        <NavBar {...this.props} /><br/>
+        <NavBar {...this.props} handleClick={this.handleClick} /><br/>
         <Route exact path={`${this.props.match.url}`} component={Search}/>
         <Route path={`${this.props.match.url}/discover`} component={Discover}/>
         <Route path={`${this.props.match.url}/map`} component={Map}/>

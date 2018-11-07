@@ -28,10 +28,6 @@ export const authLogout = () => {
   }
 }
 
-/*
-Login user, setting the token recieved from the backend in the browser
-storage with an expiration after 1 hour.
-*/
 export const authLogin = (username, password) => {
   return dispatch => {
     dispatch(authStart());
@@ -39,14 +35,14 @@ export const authLogin = (username, password) => {
       username: username,
       password: password
     })
-    .then(response => {
-      const token = response.data.key;
-      localStorage.setItem('token', token);
-      dispatch(authSucess(token));
-    })
-    .catch(err => {
-      dispatch(authFail(err));
-    })
+      .then(response => {
+        const token = response.data.key;
+        localStorage.setItem('token', token);
+        dispatch(authSucess(token));
+      })
+      .catch(err => {
+        dispatch(authFail(err));
+      })
   }
 }
 
@@ -60,14 +56,14 @@ export const authRegister = (username, email, password1, password2) => {
       password1: password1,
       password2: password2
     })
-    .then(response => {
-      const token = response.data.key;
-      localStorage.setItem('token', token);;
-      dispatch(authSucess(token));
-    })
-    .catch(err => {
-      dispatch(authFail(err))
-    })
+      .then(response => {
+        const token = response.data.key;
+        localStorage.setItem('token', token);;
+        dispatch(authSucess(token));
+      })
+      .catch(err => {
+        dispatch(authFail(err))
+      })
   }
 }
 

@@ -19,7 +19,7 @@ export default function (state = initialState, action) {
         ...state,
         fetching: false,
         fetched: true,
-        country: action.payload
+        country: action.country
       }
     }
     case "FETCH_COUNTRY_REJECTED": {
@@ -27,7 +27,7 @@ export default function (state = initialState, action) {
         ...state,
         fetching: false,
         fetched: false,
-        error: action.payload
+        error: action.error
       }
     }
     default:

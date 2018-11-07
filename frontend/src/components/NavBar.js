@@ -32,7 +32,7 @@ class NavBar extends Component {
             {
               !this.props.authenticated ?
               <Link onClick={this.toggleCollapse.bind(this)} className="btn" to="/login">Login</Link> :
-              <button className="btn logout" type="button" onClick={this.props.authLogout}>Logout</button>
+              <button className="btn logout" type="button" onClick={this.props.handleClick}>Logout</button>
             }
           </div>
         </div>

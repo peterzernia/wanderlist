@@ -20,16 +20,17 @@ export const fetchCountryRejected = error => {
   }
 }
 
-export function fetchCountry(store, query) {
+export const fetchCountry = (query) => {
   const url = `http://localhost:8000/api/v1/countries/?search=${query}`
-  store.dispatch((dispatch) => {
-    dispatch({type: "FETCH_COUNTRY_PENDING"})
+  return dispatch => {
+    dispatch(fetchCountryPending());
     axios.get(url)
-      .then((response) => {
-        dispatch({type: "FETCH_COUNTRY_FULFILLED", payload: response.data})
+      .then(response => {
+        const country = response.data;
+        dispatch(fetchCountryFulfilled(country));
       })
-      .catch((err) => {
-        dispatch({type: "FETCH_USERS_REJECTED", payload: err})
+      .catch(err => {
+        dispatch(fetchCountryRejected(err));
       })
-  })
+  }
 }

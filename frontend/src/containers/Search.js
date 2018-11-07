@@ -3,14 +3,14 @@ import Results from '../components/Results'
 import SearchBar from '../components/SearchBar'
 import { connect } from 'react-redux'
 import { fetchCountry } from '../actions/countryActions'
-import store from "../store/index"
 
 class Search extends Component {
+
   handleSubmit = (e) => {
     e.preventDefault();
-    const query = e.target.country.value;
-    fetchCountry(store, query);
+    this.props.fetchCountry(e.target.country.value);
   }
+
   render() {
       return (
         <div className="search">
@@ -32,8 +32,7 @@ const mapState = state => {
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    fetchCountry(store, query) {
-      dispatch(fetchCountry(store, query));
+    fetchCountry: (query) => {dispatch(fetchCountry(query))
     }
   };
 };
