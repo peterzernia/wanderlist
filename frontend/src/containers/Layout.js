@@ -12,8 +12,7 @@ import { authLogout } from '../actions/authActions'
 
 class Layout extends Component {
 
-  handleClick = (e) => {
-    e.preventDefault();
+  handleClick = () => {
     this.props.authLogout();
     this.props.history.push('/');
   }

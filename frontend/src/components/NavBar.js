@@ -3,16 +3,19 @@ import { Link } from 'react-router-dom'
 
 
 class NavBar extends Component {
+
   constructor() {
     super();
     this.state = {
       collapsed: true,
     }
   }
+
   toggleCollapse() {
     const collapsed = !this.state.collapsed;
     this.setState({collapsed});
   }
+
   render() {
     const navClass = this.state.collapsed ? "navbar-collapse collapse" : "navbar-collapse";
     return (
@@ -32,7 +35,7 @@ class NavBar extends Component {
             {
               !this.props.authenticated ?
               <Link onClick={this.toggleCollapse.bind(this)} className="btn" to="/login">Login</Link> :
-              <button className="btn logout" type="button" onClick={this.props.handleClick}>Logout</button>
+              <button className="btn logout" type="button" onClick={(event) => { this.props.handleClick(); this.toggleCollapse.bind(this)();}}>Logout</button>
             }
           </div>
         </div>
