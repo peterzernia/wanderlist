@@ -2,15 +2,17 @@ import React, { Component } from 'react'
 import LoginForm from '../components/LoginForm'
 import { connect } from 'react-redux'
 import { authLogin } from '../actions/authActions'
+import { fetchUser } from '../actions/userActions'
 
 class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.authLogin(e.target.username.value, e.target.password.value);
+    this.props.fetchUser()
     this.props.history.push('/');
   }
-  
+
   render(){
     return(
       <div className="content">
@@ -34,7 +36,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    authLogin: (username, password) => dispatch(authLogin(username, password))
+    authLogin: (username, password) => dispatch(authLogin(username, password)),
+    fetchUser: () => dispatch(fetchUser())
   };
 }
 

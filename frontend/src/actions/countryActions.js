@@ -21,10 +21,9 @@ export const fetchCountryRejected = error => {
 }
 
 export const fetchCountry = (query) => {
-  const url = `http://localhost:8000/api/v1/countries/?search=${query}`
   return dispatch => {
     dispatch(fetchCountryPending());
-    axios.get(url)
+    axios.get(`http://localhost:8000/api/v1/countries/?search=${query}`)
       .then(response => {
         const country = response.data;
         dispatch(fetchCountryFulfilled(country));

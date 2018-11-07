@@ -4,11 +4,13 @@ import Layout from './containers/Layout'
 import './App.css'
 import { connect } from 'react-redux'
 import { authCheckState } from './actions/authActions'
+import { fetchUser } from './actions/userActions'
 
 class App extends Component {
 
   componentDidMount() {
     this.props.authCheckState();
+    this.props.fetchUser();
   }
 
   render() {
@@ -30,7 +32,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    authCheckState: () => dispatch(authCheckState())
+    authCheckState: () => dispatch(authCheckState()),
+    fetchUser: () => dispatch(fetchUser())
   }
 }
 
