@@ -67,10 +67,14 @@ export const authRegister = (username, email, password1, password2) => {
   }
 }
 
+/*
+Checks to see if a token exists in localStorage. If a token exists, it runs the
+login function. If no token exits it runs the logout function.
+*/
 export const authCheckState = () => {
   return dispatch => {
     const token = localStorage.getItem('token');
-    if (token === undefined) {
+    if (token === null) {
       dispatch(authLogout());
     } else {
       dispatch(authSucess(token));
