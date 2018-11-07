@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 
 class Results extends Component {
   render(){
-    const listCountries = this.props.country.map((country) =>(
+
+    const listCountries = this.props.country.map(country =>(
       <div key={country.alpha2code}>
         <h3>{country.name}</h3>
         <img className="flag" height="200px" src={country.flag} alt=""/>
@@ -25,7 +26,8 @@ class Results extends Component {
         </div>
         <br/><br/>
       </div>
-    ))
+    ));
+
     return(
       <div className="content">
         {listCountries}
