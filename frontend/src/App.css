@@ -1,6 +1,7 @@
 body {
   font: Helvetica Neue;
-  background-image: url("images/background.png")
+  background-image: url("images/background.png");
+  overflow-x: hidden;
 }
 
 form {
@@ -46,6 +47,6 @@ li {
 }
 
 .user-auth {
-  margin-bottom: 3px;
+  margin-bottom: 3px !important;
   width: 100% !important;
 }

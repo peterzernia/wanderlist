@@ -5,11 +5,11 @@ class RegistrationForm extends Component {
   render(){
     return(
         <div className='form-inline'>
-          <form onSubmit={this}>
+          <form onSubmit={this.props.onSubmit}>
             <h4>Register</h4><br/>
             <input className="form-control user-auth" type='text' name="username" placeholder="username"/>
-            <input className="form-control user-auth" type='text' name="email" placeholder="email"/><br/>
-            <input className="form-control user-auth" type='password' name="password" placeholder="password"/><br/>
+            <input className="form-control user-auth" type='text' name="email" placeholder="email"/>
+            <input className="form-control user-auth" type='password' name="password" placeholder="password"/>
             <input className="form-control user-auth" type='password' name="password" placeholder="password"/><br/>
             <button className="btn btn-primary user-auth-btn" type="submit">Register</button>
             <Link className="btn" to="/login">Cancel</Link>

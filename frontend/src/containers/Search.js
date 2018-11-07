@@ -6,7 +6,7 @@ import { fetchCountry } from '../actions/countryActions'
 import store from "../store/index"
 
 class Search extends Component {
-  getCountry = (e) => {
+  onSubmit = (e) => {
     e.preventDefault();
     const query = e.target.country.value;
     fetchCountry(store, query);
@@ -15,7 +15,7 @@ class Search extends Component {
       return (
         <div className="search">
           <div className="">
-            <SearchBar getCountry={this.getCountry} /> <br/>
+            <SearchBar onSubmit={this.onSubmit} /> <br/>
             {this.props.fetched ? <Results country={this.props.country} /> : null}
           </div>
         </div>
@@ -39,5 +39,4 @@ const mapDispatch = (dispatch, ownProps) => {
 };
 
 const SearchContainer = connect(mapState, mapDispatch)(Search);
-
 export default SearchContainer;
