@@ -3,17 +3,26 @@ body {
   background-image: url("images/background.png")
 }
 
+form {
+  margin: auto;
+  text-align: center;
+}
+
+img {
+  height: auto;
+  max-width: 100%
+}
+
+li {
+  display: inline;
+}
+
 .content {
   width: 300px;
   align: center;
   text-align: center;
   margin: auto;
   padding: auto;
-}
-
-form {
-  margin: auto;
-  text-align: center;
 }
 
 .flag {
@@ -36,11 +45,11 @@ form {
   box-shadow: 0px -1.5px 1.5px rgba(50, 50, 50, 0.75);
 }
 
-img {
-  height: auto;
-  max-width: 100%
+.user-auth {
+  margin-bottom: 3px;
+  width: 100% !important;
 }
 
-li {
-  display: inline;
+.user-auth-btn {
+  width: 100%;
 }
