@@ -55,14 +55,17 @@ export const fetchUser = () => {
   }
 }
 
-export const addCountry = (countries) => {
+export const addCountry = (username, countries) => {
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch(addCountryPending());
     axios.put(
       'http://localhost:8000/api/v1/rest-auth/user/',
-      {headers: { 'Authorization': `Token ${token}`}},
-      {countries: countries}
+      {
+        countries: countries,
+        username: username
+      },
+      {headers: { 'Authorization': `Token ${token}`}}
   )
       .then(response => {
         const user = response.data;

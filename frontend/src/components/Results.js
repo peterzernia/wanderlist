@@ -4,11 +4,11 @@ import React, { Component } from 'react'
 class Results extends Component {
   render(){
 
-    const listCountries = this.props.country.map((country, i) =>(
+    const listCountries = this.props.searchedCountry.map((country, i) =>(
       <div key={i}>
         <h3>{country.name}</h3>
         <img className="flag" height="200px" src={country.flag} alt=""/><br/>
-        <button onClick={this.props.handleClick} className="btn btn-primary" type="button">Add</button>
+        <button onClick={this.props.handleClick} name={country.name} className="btn btn-primary" type="button">Add</button>
       </div>
     ));
 

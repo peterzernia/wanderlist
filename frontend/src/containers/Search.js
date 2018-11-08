@@ -15,7 +15,9 @@ class Search extends Component {
 
   handleClick = (e) => {
     e.preventDefault();
-    this.props.addCountry('Albania');
+    var newCountryList = this.props.userCountries.concat([e.target.name]);
+    this.props.addCountry(this.props.username, newCountryList);
+    console.log(newCountryList)
   }
 
   render() {
@@ -33,7 +35,9 @@ class Search extends Component {
 
 const mapState = state => {
   return {
-    country: state.country.country,
+    username: state.user.user.username,
+    userCountries: state.user.user.countries,
+    searchedCountry: state.country.country,
     fetched: state.country.fetched,
     fetching: state.country.fetching
   };
@@ -42,7 +46,7 @@ const mapState = state => {
 const mapDispatch = (dispatch, ownProps) => {
   return {
     fetchCountry: (query) => dispatch(fetchCountry(query)),
-    addCountry: (countries) => dispatch(addCountry(countries))
+    addCountry: (username, countries) => dispatch(addCountry(username, countries))
   };
 };
 
