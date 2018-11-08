@@ -14,7 +14,7 @@ img {
   max-width: 100%
 }
 
-li {
+li.languages {
   display: inline;
 }
 

@@ -3,7 +3,7 @@ import Results from '../components/Results'
 import SearchBar from '../components/SearchBar'
 import { connect } from 'react-redux'
 import { fetchCountry } from '../actions/countryActions'
-import { addCountry } from '../actions/userActions'
+import { putCountry } from '../actions/userActions'
 import { DotLoader } from 'react-spinners';
 
 class Search extends Component {
@@ -13,6 +13,10 @@ class Search extends Component {
     this.props.fetchCountry(e.target.country.value);
   }
 
+  /*
+  This function checks to see if the button was the Add or Remove button, and
+  changes the country list appropriately.
+  */
   handleClick = (e) => {
     e.preventDefault();
     var newCountryList = this.props.userCountries
@@ -21,8 +25,7 @@ class Search extends Component {
     } else {
       newCountryList = this.props.userCountries.filter(country => country !== e.target.name);
     }
-    this.props.addCountry(this.props.username, newCountryList);
-    console.log(newCountryList)
+    this.props.putCountry(this.props.username, newCountryList);
   }
 
   render() {
@@ -51,7 +54,7 @@ const mapState = state => {
 const mapDispatch = (dispatch, ownProps) => {
   return {
     fetchCountry: (query) => dispatch(fetchCountry(query)),
-    addCountry: (username, countries) => dispatch(addCountry(username, countries))
+    putCountry: (username, countries) => dispatch(putCountry(username, countries))
   };
 };
 
