@@ -14,4 +14,4 @@ class CountryListView(ListAPIView):
     queryset = Country.objects.all().order_by('pk')
     serializer_class = CountrySerializer
     filter_backends = (filters.SearchFilter,)
-    search_fields = ('name', 'demonym', 'alpha3code',)
+    search_fields = ('name', 'demonym', 'alpha3code', 'languages__name')
