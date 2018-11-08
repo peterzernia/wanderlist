@@ -64,3 +64,7 @@ This is the class for the DotLoader.
   margin: auto;
   padding: auto;
 }
+
+.active {
+  border: 2px solid #007bff;
+}

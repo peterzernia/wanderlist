@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import LoginForm from '../components/LoginForm'
 import { connect } from 'react-redux'
 import { authLogin } from '../actions/authActions'
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
 
@@ -15,9 +16,9 @@ class Login extends Component {
     return(
       <div className="content">
         {
-          !this.props.authenticated ?
-          <LoginForm handleSubmit={this.handleSubmit} {...this.props} /> :
-          <p>You are already logged in</p>
+          !this.props.authenticated
+          ? <LoginForm handleSubmit={this.handleSubmit} {...this.props} />
+          : <Redirect to={{pathname: "/", }} />
         }
       </div>
     );
