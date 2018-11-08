@@ -1,6 +1,8 @@
 const initialState = {
   fetching: false,
   fetched: false,
+  adding: false,
+  added: false,
   user: {},
   error: null,
 }
@@ -27,6 +29,29 @@ export default function (state = initialState, action) {
         ...state,
         fetching: false,
         fetched: false,
+        error: action.error
+      }
+    }
+    case "ADD_COUNTRY_PENDING": {
+      return {
+        ...state,
+        adding: true,
+        added: false,
+      }
+    }
+    case "ADD_COUNTRY_FULFILLED": {
+      return {
+        ...state,
+        adding: false,
+        added: true,
+        user: action.user
+      }
+    }
+    case "ADD_COUNTRY_REJECTED": {
+      return {
+        ...state,
+        adding: false,
+        added: false,
         error: action.error
       }
     }

@@ -3,6 +3,8 @@ import Results from '../components/Results'
 import SearchBar from '../components/SearchBar'
 import { connect } from 'react-redux'
 import { fetchCountry } from '../actions/countryActions'
+import { addCountry } from '../actions/userActions'
+import { DotLoader } from 'react-spinners';
 
 class Search extends Component {
 
@@ -11,12 +13,18 @@ class Search extends Component {
     this.props.fetchCountry(e.target.country.value);
   }
 
+  handleClick = (e) => {
+    e.preventDefault();
+    this.props.addCountry('Albania');
+  }
+
   render() {
       return (
         <div className="search">
           <div className="">
             <SearchBar handleSubmit={this.handleSubmit} /> <br/>
-            {this.props.fetched ? <Results country={this.props.country} /> : null}
+            {this.props.fetching ? <DotLoader size={50} color={'#007bff'} className="content" /> : null}
+            {this.props.fetched ? <Results handleClick={this.handleClick} {...this.props} /> : null}
           </div>
         </div>
       );
@@ -26,13 +34,15 @@ class Search extends Component {
 const mapState = state => {
   return {
     country: state.country.country,
-    fetched: state.country.fetched
+    fetched: state.country.fetched,
+    fetching: state.country.fetching
   };
 };
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    fetchCountry: (query) => dispatch(fetchCountry(query))
+    fetchCountry: (query) => dispatch(fetchCountry(query)),
+    addCountry: (countries) => dispatch(addCountry(countries))
   };
 };
 

@@ -4,27 +4,11 @@ import React, { Component } from 'react'
 class Results extends Component {
   render(){
 
-    const listCountries = this.props.country.map(country =>(
-      <div key={country.alpha2code}>
+    const listCountries = this.props.country.map((country, i) =>(
+      <div key={i}>
         <h3>{country.name}</h3>
-        <img className="flag" height="200px" src={country.flag} alt=""/>
-        <div>
-          Capital City - {country.capital} <br/>
-          Region - {country.region} <br/>
-          Subregion - {country.subregion} <br/>
-          Demonym - {country.demonym} <br/>
-          Languages - {country.languages.map(language =>
-            <li key={language.iso639_1}>
-              {language.name},&nbsp;
-            </li>
-          )} <br/>
-          Borders - {country.borders.map((border, i) =>
-            <li key={i}>
-              {border},&nbsp;
-            </li>
-          )}
-        </div>
-        <br/><br/>
+        <img className="flag" height="200px" src={country.flag} alt=""/><br/>
+        <button onClick={this.props.handleClick} className="btn btn-primary" type="button">Add</button>
       </div>
     ));
 
