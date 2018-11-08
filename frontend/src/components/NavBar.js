@@ -33,9 +33,9 @@ class NavBar extends Component {
           </div>
           <div className="navbar-nav ml-auto">
             {
-              !this.props.authenticated ?
-              <Link onClick={this.toggleCollapse.bind(this)} className="btn" to="/login">Login</Link> :
-              <button className="btn logout" type="button" onClick={(event) => { this.props.handleClick(); this.toggleCollapse.bind(this)();}}>Logout</button>
+              !this.props.authenticated
+              ? <Link onClick={this.toggleCollapse.bind(this)} className="btn" to="/login">Login</Link>
+              : <Link onClick={(event) => { this.props.handleClick(); this.toggleCollapse.bind(this)();}} className="btn" to="/logout">Logout</Link> 
             }
           </div>
         </div>

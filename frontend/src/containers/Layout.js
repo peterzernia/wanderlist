@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Discover from './Discover'
 import Login from './Login'
+import Logout from './Logout'
 import Map from './Map'
 import NavBar from '../components/NavBar'
 import PrivateRoute from '../components/PrivateRoute'
@@ -27,6 +28,7 @@ class Layout extends Component {
         <PrivateRoute authenticated={this.props.authenticated} path={`${this.props.match.url}/map`} component={Map}/>
         <PrivateRoute authenticated={this.props.authenticated} path={`${this.props.match.url}/profile`} component={Profile}/>
         <Route path={`${this.props.match.url}/login`} component={Login}/>
+        <Route path={`${this.props.match.url}/logout`} component={Logout}/>
         <Route path={`${this.props.match.url}/register`} component={Register}/>
       </div>
     )
