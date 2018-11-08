@@ -8,7 +8,12 @@ class Results extends Component {
       <div key={i}>
         <h3>{country.name}</h3>
         <img className="flag" height="200px" src={country.flag} alt=""/><br/>
-        <button onClick={this.props.handleClick} name={country.name} className="btn btn-primary" type="button">Add</button>
+        {
+          this.props.userCountries.includes(country.name)
+          ? <button onClick={this.props.handleClick} name={country.name} className="btn btn-primary" type="button">Remove</button>
+          : <button onClick={this.props.handleClick} name={country.name} className="btn btn-primary" type="button">Add</button>
+        }
+        <br/>
       </div>
     ));
 

@@ -15,7 +15,12 @@ class Search extends Component {
 
   handleClick = (e) => {
     e.preventDefault();
-    var newCountryList = this.props.userCountries.concat([e.target.name]);
+    var newCountryList = this.props.userCountries
+    if (e.target.innerText === 'Add') {
+      newCountryList = this.props.userCountries.concat([e.target.name]);
+    } else {
+      newCountryList = this.props.userCountries.filter(country => country !== e.target.name);
+    }
     this.props.addCountry(this.props.username, newCountryList);
     console.log(newCountryList)
   }
