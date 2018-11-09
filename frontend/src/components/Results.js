@@ -18,7 +18,7 @@ class Results extends Component {
           ? <button onClick={this.props.handleClick} name={i} className="btn btn-primary" type="button">Remove</button>
           : <button onClick={this.props.handleClick} name={i} className="btn btn-primary" type="button">Add</button>
         }
-        <button onClick={this.props.openModal} className="btn btn-primary">View More</button>
+        <button onClick={() => this.props.openModal(country)} className="btn btn-primary">View More</button>
       </div>
     ));
 

@@ -1,6 +1,6 @@
-export const openModal = () => {
+export const openModal = modalCountry => {
   return dispatch => {
-    dispatch({ type: "OPEN_MODAL" })
+    dispatch({ type: "OPEN_MODAL", modalCountry: modalCountry })
   }
 }
 

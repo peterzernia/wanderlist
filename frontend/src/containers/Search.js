@@ -58,7 +58,8 @@ const mapState = state => {
     searchedCountry: state.country.country,
     fetched: state.country.fetched,
     fetching: state.country.fetching,
-    showModal: state.modal.showModal
+    showModal: state.modal.showModal,
+    modalCountry: state.modal.modalCountry
   };
 };
 
@@ -66,7 +67,7 @@ const mapDispatch = (dispatch, ownProps) => {
   return {
     fetchCountry: (query) => dispatch(fetchCountry(query)),
     putCountry: (username, countries) => dispatch(putCountry(username, countries)),
-    openModal: () => dispatch(openModal()),
+    openModal: (id) => dispatch(openModal(id)),
     closeModal: () => dispatch(closeModal())
   };
 };
