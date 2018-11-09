@@ -18,9 +18,12 @@ class NavBar extends Component {
 
   render() {
 
+    /*
+    If the route url matches the url for specified routes, that route button
+    will recieve the active class, which distinguishes the route the user is on.
+    */
     const { location } = this.props;
-    const homeClass = location.pathname === '/' ? 'btn navbar-brand active' : 'btn navbar-brand'
-    const searchClass = location.pathname === '/search' ? 'btn active' : 'btn'
+    const searchClass = location.pathname === '/' ? 'btn active' : 'btn'
     const discoverClass = location.pathname === '/discover' ? 'btn active' : 'btn'
     const mapClass = location.pathname === '/map' ? 'btn active' : 'btn'
     const profileClass = location.pathname === '/profile' ? 'btn active' : 'btn'
@@ -29,7 +32,7 @@ class NavBar extends Component {
 
     return (
       <nav className="navbar navbar-expand-sm sticky-top navbar-white bg-white">
-        <Link to="/" className={homeClass}>Countries</Link>
+        <Link to="/" className='btn navbar-brand'>Countries</Link>
         <button className="navbar-toggler" type="button" onClick={this.toggleCollapse.bind(this)}>
           <span className="navbar-toggler-icon"></span>
         </button>

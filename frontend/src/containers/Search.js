@@ -19,7 +19,7 @@ class Search extends Component {
   */
   handleClick = (e) => {
     e.preventDefault();
-    var newCountryList = this.props.userCountries
+    var newCountryList = this.props.userCountries.sort()
     if (e.target.innerText === 'Add') {
       newCountryList = this.props.userCountries.concat([e.target.name]);
     } else {

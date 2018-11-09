@@ -66,5 +66,13 @@ This is the class for the DotLoader.
 }
 
 .active {
-  border: 2px solid #007bff;
+  border: 2px solid #99ccff;
+}
+
+.map {
+  width: 300px;
+  align: center;
+  text-align: center;
+  margin: auto;
+  padding: auto;
 }

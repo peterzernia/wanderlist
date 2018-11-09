@@ -1,18 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import MapContainer from '../components/MapContainer'
 
 class Map extends Component {
   render(){
 
-    const listCountries = this.props.userCountries.map((country, i) =>(
-      <li key={i}>{country}</li>
-    ));
-
     return(
       <div className="content">
         <h1>My Map</h1>
-        {this.props.count}<br/>
-        {listCountries}
+        <MapContainer />
       </div>
     );
   }
@@ -20,9 +16,6 @@ class Map extends Component {
 
 const mapState = state => {
   return {
-    count: state.user.user.count,
-    userCountries: state.user.user.countries,
-    fetched: state.user.fetched
   };
 }
 
