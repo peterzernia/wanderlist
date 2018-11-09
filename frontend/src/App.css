@@ -80,7 +80,38 @@ This is the class for the DotLoader.
   text-align: right;
 }
 
-
 .ReactModal__Overlay--after-open {
   top: 50px !important;
+}
+
+.wrap {
+  display: flex;
+}
+
+.left {
+  text-align: center;
+  width: 50%;
+  float: left;
+}
+
+.right {
+  text-align: center;
+  width: 50%;
+  float: left;
+}
+
+@media (max-width: 800px) {
+  .wrap {
+    flex-direction: column;
+  }
+  .left,
+  .right {
+    width: auto;
+    text-align: center;
+  }
+}
+
+.modal-detail {
+  text-align: left;
+  margin-left: 10px;
 }

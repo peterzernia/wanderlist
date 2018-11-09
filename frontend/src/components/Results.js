@@ -8,11 +8,6 @@ class Results extends Component {
       <div key={i}>
         <h3>{country.name}</h3>
         <img className="flag" src={country.flag} alt=""/><br/>
-        Languages - {country.languages.map(language =>
-            <li className="languages" key={language.iso639_1}>
-              {language.name},&nbsp;
-            </li>
-        )}<br/>
         {
           this.props.userCountries.includes(country)
           ? <button onClick={this.props.handleClick} name={i} className="btn btn-primary" type="button">Remove</button>
