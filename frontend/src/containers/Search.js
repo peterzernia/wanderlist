@@ -4,7 +4,11 @@ import SearchBar from '../components/SearchBar'
 import { connect } from 'react-redux'
 import { fetchCountry } from '../actions/countryActions'
 import { putCountry } from '../actions/userActions'
+import { openModal, closeModal } from '../actions/modalActions'
 import { DotLoader } from 'react-spinners';
+import ReactModal from 'react-modal'
+
+ReactModal.setAppElement('#root');
 
 class Search extends Component {
 
@@ -34,20 +38,23 @@ class Search extends Component {
 
   render() {
       return (
-        <div className="search">
-          <div className="">
-            <SearchBar handleSubmit={this.handleSubmit} /> <br/>
-            {
-              this.props.fetching
-              ? <DotLoader size={50} color={'#007bff'} className="content" />
-              : null
-            }
-            {
-              this.props.fetched
-              ? <Results handleClick={this.handleClick} {...this.props} />
-              : null
-            }
-          </div>
+        <div className="content">
+          <SearchBar handleSubmit={this.handleSubmit} /> <br/>
+          {
+            this.props.fetching
+            ? <DotLoader size={50} color={'#007bff'} className="content" />
+            : null
+          }
+          {
+            this.props.fetched
+            ? <Results handleClick={this.handleClick} {...this.props} />
+            : null
+          }
+          <ReactModal
+             isOpen={this.props.showModal}
+             contentLabel="Minimal Modal Example">
+            <button onClick={this.props.closeModal.bind(this)} className="btn btn-primary">Close Modal</button>
+          </ReactModal>
         </div>
       );
   }
@@ -59,14 +66,17 @@ const mapState = state => {
     userCountries: state.user.user.countries,
     searchedCountry: state.country.country,
     fetched: state.country.fetched,
-    fetching: state.country.fetching
+    fetching: state.country.fetching,
+    showModal: state.modal.showModal
   };
 };
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
     fetchCountry: (query) => dispatch(fetchCountry(query)),
-    putCountry: (username, countries) => dispatch(putCountry(username, countries))
+    putCountry: (username, countries) => dispatch(putCountry(username, countries)),
+    openModal: () => dispatch(openModal()),
+    closeModal: () => dispatch(closeModal())
   };
 };
 

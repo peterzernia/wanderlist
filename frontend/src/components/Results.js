@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
-
 class Results extends Component {
+
   render(){
 
     const listCountries = this.props.searchedCountry.map((country, i) =>(
@@ -18,12 +18,12 @@ class Results extends Component {
           ? <button onClick={this.props.handleClick} name={i} className="btn btn-primary" type="button">Remove</button>
           : <button onClick={this.props.handleClick} name={i} className="btn btn-primary" type="button">Add</button>
         }
-        <button className="btn btn-primary">View More</button>
+        <button onClick={this.props.openModal} className="btn btn-primary">View More</button>
       </div>
     ));
 
     return(
-      <div className="content">
+      <div className="">
         {listCountries}
       </div>
     )
