@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Modal from '../components/Modal'
 import Results from '../components/Results'
 import SearchBar from '../components/SearchBar'
 import { connect } from 'react-redux'
@@ -6,9 +7,6 @@ import { fetchCountry } from '../actions/countryActions'
 import { putCountry } from '../actions/userActions'
 import { openModal, closeModal } from '../actions/modalActions'
 import { DotLoader } from 'react-spinners';
-import ReactModal from 'react-modal'
-
-ReactModal.setAppElement('#root');
 
 class Search extends Component {
 
@@ -25,14 +23,11 @@ class Search extends Component {
     e.preventDefault();
     var newCountryList = this.props.userCountries
     var newCountry = this.props.searchedCountry[e.target.name]
-    console.log(this.props.userCountries)
-    console.log(newCountry)
     if (e.target.innerText === 'Add') {
       newCountryList = this.props.userCountries.concat([newCountry]);
     } else {
       newCountryList = this.props.userCountries.filter(country => country !== newCountry);
     }
-    console.log(newCountryList)
     this.props.putCountry(this.props.username, newCountryList);
   }
 
@@ -50,11 +45,7 @@ class Search extends Component {
             ? <Results handleClick={this.handleClick} {...this.props} />
             : null
           }
-          <ReactModal
-             isOpen={this.props.showModal}
-             contentLabel="Minimal Modal Example">
-            <button onClick={this.props.closeModal.bind(this)} className="btn btn-primary">Close Modal</button>
-          </ReactModal>
+          <Modal {...this.props} />
         </div>
       );
   }

@@ -75,3 +75,12 @@ This is the class for the DotLoader.
   width: 700px;
   margin: 0 auto;
 }
+
+.close-modal {
+  text-align: right;
+}
+
+
+.ReactModal__Overlay--after-open {
+  top: 50px !important;
+}
