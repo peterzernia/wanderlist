@@ -36,8 +36,16 @@ class Search extends Component {
         <div className="search">
           <div className="">
             <SearchBar handleSubmit={this.handleSubmit} /> <br/>
-            {this.props.fetching ? <DotLoader size={50} color={'#007bff'} className="content" /> : null}
-            {this.props.fetched ? <Results handleClick={this.handleClick} {...this.props} /> : null}
+            {
+              this.props.fetching
+              ? <DotLoader size={50} color={'#007bff'} className="content" />
+              : null
+            }
+            {
+              this.props.fetched
+              ? <Results handleClick={this.handleClick} {...this.props} />
+              : null
+            }
           </div>
         </div>
       );
