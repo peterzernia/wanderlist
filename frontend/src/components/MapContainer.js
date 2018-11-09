@@ -7,9 +7,9 @@ export class MapContainer extends Component {
   render() {
 
     const style = {
-    width: '600px',
-    height: '400px',
-    position: 'absolute'
+    width: '300px',
+    height: '200px',
+    border: '1px solid black'
     }
 
     const listMarkers = this.props.userCountries.map((country, i) =>(
@@ -21,7 +21,7 @@ export class MapContainer extends Component {
 
 
     return (
-      <Map style={style} google={this.props.google} zoom={1}>
+      <Map style={style} google={this.props.google} zoom={0}>
 
       {listMarkers}
 
