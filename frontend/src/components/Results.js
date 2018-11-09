@@ -7,7 +7,7 @@ class Results extends Component {
     const listCountries = this.props.searchedCountry.map((country, i) =>(
       <div key={i}>
         <h3>{country.name}</h3>
-        <img className="flag" height="200px" src={country.flag} alt=""/><br/>
+        <img className="flag" src={country.flag} alt=""/><br/>
         Languages - {country.languages.map(language =>
             <li className="languages" key={language.iso639_1}>
               {language.name},&nbsp;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -7,9 +7,9 @@ export class MapContainer extends Component {
   render() {
 
     const style = {
-    width: '300px',
-    height: '200px',
-    border: '1px solid black'
+    width: '700px',
+    height: '450px',
+    border: '.5px solid black'
     }
 
     const listMarkers = this.props.userCountries.map((country, i) =>(
@@ -21,16 +21,14 @@ export class MapContainer extends Component {
 
 
     return (
-      <Map style={style} google={this.props.google} zoom={0}>
-
-      {listMarkers}
-
-        <InfoWindow onClose={this.onInfoWindowClose}>
-            <div>
-
-            </div>
-        </InfoWindow>
-      </Map>
+      <div className='map'>
+        <Map options={{ gestureHandling: 'coopertive' }}
+             style={style}
+             google={this.props.google}
+             zoom={2}>
+          {listMarkers}
+        </Map>
+      </div>
     );
   }
 }

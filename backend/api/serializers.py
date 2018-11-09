@@ -43,3 +43,10 @@ class UserDetailSerializer(UserDetailsSerializer):
     class Meta:
         model = User
         fields = ('pk', 'username', 'email', 'count', 'countries')
+
+    # Update the instance upon Put Request from frontend.
+    def update(self, instance, validated_data):
+        print(validated_data['countries'])
+        instance.countries.set(validated_data.get('countries', instance.countries))
+        instance.save()
+        return instance

@@ -28,6 +28,7 @@ class Search extends Component {
     } else {
       newCountryList = this.props.userCountries.filter(country => country !== newCountry);
     }
+    console.log(newCountryList)
     this.props.putCountry(this.props.username, newCountryList);
   }
 

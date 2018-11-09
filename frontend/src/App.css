@@ -19,15 +19,15 @@ li.languages {
 }
 
 .content {
-  width: 300px;
   align: center;
   text-align: center;
   align-items: center;
   margin: auto;
-  padding: auto;
+  padding: 5px;
 }
 
 .flag {
+  width: 400px;
   border-style: solid;
   border-width: .1px;
 }
@@ -71,6 +71,7 @@ This is the class for the DotLoader.
 }
 
 .map {
-  text-align: center;
-  margin: auto;
+  display: 'flex';
+  width: 700px;
+  margin: 0 auto;
 }
