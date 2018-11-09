@@ -37,10 +37,7 @@ class CountrySerializer(serializers.ModelSerializer):
 
 
 class UserDetailSerializer(UserDetailsSerializer):
-    countries = serializers.SlugRelatedField(
-        many=True, slug_field='name',
-        queryset=Country.objects.all().order_by('pk')
-        )
+    countries = CountrySerializer(many=True)
     count = serializers.IntegerField(read_only=True)
 
     class Meta:

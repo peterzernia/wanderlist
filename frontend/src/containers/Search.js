@@ -19,11 +19,14 @@ class Search extends Component {
   */
   handleClick = (e) => {
     e.preventDefault();
-    var newCountryList = this.props.userCountries.sort()
+    var newCountryList = this.props.userCountries
+    var newCountry = this.props.searchedCountry[e.target.name]
+    console.log(this.props.userCountries)
+    console.log(newCountry)
     if (e.target.innerText === 'Add') {
-      newCountryList = this.props.userCountries.concat([e.target.name]);
+      newCountryList = this.props.userCountries.concat([newCountry]);
     } else {
-      newCountryList = this.props.userCountries.filter(country => country !== e.target.name);
+      newCountryList = this.props.userCountries.filter(country => country !== newCountry);
     }
     this.props.putCountry(this.props.username, newCountryList);
   }

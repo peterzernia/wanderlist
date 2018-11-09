@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
-console.log(process.env)
-console.log(API_KEY)
 
 export class MapContainer extends Component {
   render() {
@@ -19,8 +17,13 @@ export class MapContainer extends Component {
 
         <Marker
           title={'The marker`s title will appear as a tooltip.'}
-          name={'SOMA'}
-          position={{lat: 37.778519, lng: -122.405640}} />
+          name={'Afghanistan'}
+          position={{lat: 33.0, lng: 65.0}} />
+
+          <Marker
+            title={'The marker`s title will appear as a tooltip.'}
+            name={'Albania'}
+            position={{lat: 41.0, lng: 20.0}} />
 
           <InfoWindow onClose={this.onInfoWindowClose}>
               <div>

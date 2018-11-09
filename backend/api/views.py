@@ -11,7 +11,7 @@ class CountryListView(ListAPIView):
     the Country model. This model can be filtered with search, using the fields
     listed in search_fields.
     '''
-    queryset = Country.objects.all().order_by('pk')
+    queryset = Country.objects.all().order_by('name')
     serializer_class = CountrySerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name', 'demonym', 'alpha3code', 'languages__name')
