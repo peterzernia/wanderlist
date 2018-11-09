@@ -8,7 +8,7 @@ class Map extends Component {
     return(
       <div className="content">
         <h1>My Map</h1>
-        <MapContainer />
+        <MapContainer userCountries={this.props.userCountries} />
       </div>
     );
   }
@@ -16,6 +16,7 @@ class Map extends Component {
 
 const mapState = state => {
   return {
+    userCountries: state.user.user.countries,
   };
 }
 

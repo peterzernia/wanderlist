@@ -7,31 +7,30 @@ export class MapContainer extends Component {
   render() {
 
     const style = {
-    width: '300px',
-    height: '200px'
+    width: '600px',
+    height: '400px',
+    position: 'absolute'
     }
 
+    const listMarkers = this.props.userCountries.map((country, i) =>(
+      <Marker
+        key={i}
+        name={country.name}
+        position={{lat: country.latlng[0], lng: country.latlng[1]}} />
+    ));
+
+
     return (
-      <div className="content">
-        <Map style={style} google={this.props.google} zoom={2}>
+      <Map style={style} google={this.props.google} zoom={1}>
 
-        <Marker
-          title={'The marker`s title will appear as a tooltip.'}
-          name={'Afghanistan'}
-          position={{lat: 33.0, lng: 65.0}} />
+      {listMarkers}
 
-          <Marker
-            title={'The marker`s title will appear as a tooltip.'}
-            name={'Albania'}
-            position={{lat: 41.0, lng: 20.0}} />
+        <InfoWindow onClose={this.onInfoWindowClose}>
+            <div>
 
-          <InfoWindow onClose={this.onInfoWindowClose}>
-              <div>
-
-              </div>
-          </InfoWindow>
-        </Map>
-      </div>
+            </div>
+        </InfoWindow>
+      </Map>
     );
   }
 }
