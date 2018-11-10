@@ -20,22 +20,22 @@ export const fetchUserRejected = error => {
   }
 }
 
-export const putCountryPending = () => {
+export const putUserDataPending = () => {
   return {
-    type: "PUT_COUNTRY_PENDING"
+    type: "PUT_USER_DATA_PENDING"
   }
 }
 
-export const putCountryFulfilled = user => {
+export const putUserDataFulfilled = user => {
   return {
-    type: "PUT_COUNTRY_FULFILLED",
+    type: "PUT_USER_DATA_FULFILLED",
     user: user
   }
 }
 
-export const putCountryRejected = error => {
+export const putUserDataRejected = error => {
   return {
-    type: "PUT_COUNTRY_REJECTED",
+    type: "PUT_USER_DATA_REJECTED",
     error: error
   }
 }
@@ -55,24 +55,25 @@ export const fetchUser = () => {
   }
 }
 
-export const putCountry = (username, countries) => {
+export const putUserData = (username, countries, home_country) => {
   const token = localStorage.getItem('token');
   return dispatch => {
-    dispatch(putCountryPending());
+    dispatch(putUserDataPending());
     axios.put(
       'http://localhost:8000/api/v1/rest-auth/user/',
       {
         countries: countries,
-        username: username
+        username: username,
+        home_country: home_country
       },
       {headers: { 'Authorization': `Token ${token}`}}
   )
       .then(response => {
         const user = response.data;
-        dispatch(putCountryFulfilled(user));
+        dispatch(putUserDataFulfilled(user));
       })
       .catch(err => {
-        dispatch(putCountryRejected(err));
+        dispatch(putUserDataRejected(err));
       })
   }
 }

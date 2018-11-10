@@ -1,5 +1,5 @@
-import './App.css'
-import './bootstrap.min.css'
+import './static/App.css'
+import './static/bootstrap.min.css'
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import Layout from './containers/Layout'

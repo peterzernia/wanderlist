@@ -32,14 +32,14 @@ export default function (state = initialState, action) {
         error: action.error
       }
     }
-    case "PUT_COUNTRY_PENDING": {
+    case "PUT_USER_DATA_PENDING": {
       return {
         ...state,
         adding: true,
         added: false,
       }
     }
-    case "PUT_COUNTRY_FULFILLED": {
+    case "PUT_USER_DATA_FULFILLED": {
       return {
         ...state,
         adding: false,
@@ -47,7 +47,7 @@ export default function (state = initialState, action) {
         user: action.user
       }
     }
-    case "PUT_COUNTRY_REJECTED": {
+    case "PUT_USER_DATA_REJECTED": {
       return {
         ...state,
         adding: false,

@@ -4,7 +4,7 @@ import Results from '../components/Results'
 import SearchBar from '../components/SearchBar'
 import { connect } from 'react-redux'
 import { fetchCountry } from '../actions/countryActions'
-import { putCountry } from '../actions/userActions'
+import { putUserData } from '../actions/userActions'
 import { openModal, closeModal } from '../actions/modalActions'
 import { DotLoader } from 'react-spinners';
 
@@ -31,7 +31,7 @@ class Search extends Component {
     } else {
       newCountryList = this.props.userCountries.concat([newCountry]);
     }
-    this.props.putCountry(this.props.username, newCountryList);
+    this.props.putCountry(this.props.username, newCountryList, this.props.home_country);
   }
 
   render() {
@@ -58,6 +58,7 @@ const mapState = state => {
   return {
     username: state.user.user.username,
     userCountries: state.user.user.countries,
+    home_country: state.user.user.home_country,
     authenticated: state.auth.authenticated,
     searchedCountry: state.country.country,
     fetched: state.country.fetched,
@@ -70,7 +71,7 @@ const mapState = state => {
 const mapDispatch = (dispatch, ownProps) => {
   return {
     fetchCountry: (query) => dispatch(fetchCountry(query)),
-    putCountry: (username, countries) => dispatch(putCountry(username, countries)),
+    putUserData: (username, countries, home_country) => dispatch(putUserData(username, countries,home_country)),
     openModal: (country) => dispatch(openModal(country)),
     closeModal: () => dispatch(closeModal())
   };
