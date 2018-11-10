@@ -8,7 +8,9 @@ class Modal extends Component {
     return(
       <ReactModal isOpen={this.props.showModal}>
         <div className="close-modal">
-          <button onClick={this.props.closeModal} className="btn btn-dark"> X </button>
+          <button onClick={this.props.closeModal} className="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div className='wrap'>
           <div className="left">
