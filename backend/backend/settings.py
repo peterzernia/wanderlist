@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'countries.apps.CountriesConfig',
     'users.apps.UsersConfig',
+    'trips.apps.TripsConfig',
     'rest_framework',
     'corsheaders',
     'rest_framework.authtoken',
