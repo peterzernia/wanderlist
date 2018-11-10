@@ -3,4 +3,5 @@ from django.contrib.auth.admin import UserAdmin
 from .models import User
 
 admin.site.register(User, UserAdmin)
-UserAdmin.fieldsets += ('Custom fields set', {'fields': ('countries',)}),
+UserAdmin.fieldsets += ('Custom fields set',
+    {'fields': ('countries', 'home_country')}),

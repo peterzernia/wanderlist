@@ -4,7 +4,13 @@ from countries.models import Country
 
 
 class User(AbstractUser):
-    countries = models.ManyToManyField(Country, blank=True)
+    countries = models.ManyToManyField(
+        Country, blank=True, related_name='countries_list'
+        )
+    home_country = models.ForeignKey(
+        Country, on_delete=models.PROTECT, null=True,
+        related_name='home_country'
+        )
     count = models.IntegerField(blank=True, default=0)
 
     def save(self, *args, **kwargs):

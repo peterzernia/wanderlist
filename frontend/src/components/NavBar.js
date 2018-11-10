@@ -24,16 +24,16 @@ class NavBar extends Component {
         </button>
         <div className={navClass} id="navbarNavAltMarkup">
           <div className="navbar-nav mr-auto">
-            <Link onClick={this.props.toggleNavBar} className={searchClass} to="/">Search</Link>
-            <Link onClick={this.props.toggleNavBar}  className={discoverClass} to="/discover">Discover</Link>
-            <Link onClick={this.props.toggleNavBar}  className={mapClass} to="/map">My Map</Link>
-            <Link onClick={this.props.toggleNavBar}  className={profileClass} to="/profile">Profile</Link>
+            <Link className={searchClass} to="/">Search</Link>
+            <Link className={discoverClass} to="/discover">Discover</Link>
+            <Link className={mapClass} to="/map">My Map</Link>
+            <Link className={profileClass} to="/profile">Profile</Link>
           </div>
           <div className="navbar-nav ml-auto">
             {
               !this.props.authenticated
-              ? <Link onClick={this.props.toggleNavBar}  className={loginClass} to="/login">Login</Link>
-              : <Link onClick={(event) => { this.props.handleClick(); this.props.toggleNavBar();}} className="btn" to="/logout">Logout</Link>
+              ? <Link className={loginClass} to="/login">Login</Link>
+              : <Link onClick={this.props.handleClick} className="btn" to="/logout">Logout</Link>
             }
           </div>
         </div>
