@@ -31,7 +31,12 @@ class Search extends Component {
     } else {
       newCountryList = this.props.userCountries.concat([newCountry]);
     }
-    this.props.putCountry(this.props.username, newCountryList, this.props.home_country);
+    this.props.putUserData(
+      this.props.username,
+      this.props.email,
+      newCountryList,
+      this.props.home_country
+    );
   }
 
   render() {
@@ -57,6 +62,7 @@ class Search extends Component {
 const mapState = state => {
   return {
     username: state.user.user.username,
+    email: state.user.user.email,
     userCountries: state.user.user.countries,
     home_country: state.user.user.home_country,
     authenticated: state.auth.authenticated,
@@ -71,7 +77,7 @@ const mapState = state => {
 const mapDispatch = (dispatch, ownProps) => {
   return {
     fetchCountry: (query) => dispatch(fetchCountry(query)),
-    putUserData: (username, countries, home_country) => dispatch(putUserData(username, countries,home_country)),
+    putUserData: (username, email, countries, home_country) => dispatch(putUserData(username, email, countries,home_country)),
     openCountryModal: (country) => dispatch(openCountryModal(country)),
     closeCountryModal: () => dispatch(closeCountryModal())
   };

@@ -14,8 +14,8 @@ class ProfileModal extends Component {
         </div>
         <div className='form-inline'>
           <form onSubmit={this.props.handleSubmit}>
-            <input className="form-control user-auth" type='text' name="username" placeholder="Username"/><br/>
-            <input className="form-control user-auth" type='text' name="email" placeholder="Email"/><br/>
+            <input className="form-control user-auth" type='text' name="username" defaultValue={this.props.user.username}/><br/>
+            <input className="form-control user-auth" type='text' name="email" defaultValue={this.props.user.email}/><br/>
             <select className="form-control user-auth" name="Country">
               <option value="">---------</option>
               <option value="1">Afghanistan</option>
@@ -257,7 +257,7 @@ class ProfileModal extends Component {
               <option value="237">Ukraine</option>
               <option value="238">United Arab Emirates</option>
               <option value="239">United Kingdom of Great Britain and Northern Ireland</option>
-              <option value="240" selected="">United States of America</option>
+              <option value="240">United States of America</option>
               <option value="241">Uruguay</option>
               <option value="242">Uzbekistan</option>
               <option value="243">Vanuatu</option>
@@ -269,7 +269,7 @@ class ProfileModal extends Component {
               <option value="249">Zambia</option>
               <option value="250">Zimbabwe</option>
             </select><br/>
-            <button className="btn btn-primary user-auth-btn" type="submit">Edit Profile</button>
+            <button className="btn btn-primary user-auth-btn" type="submit">Update</button>
           </form>
         </div>
       </ReactModal>

@@ -2,8 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ProfileModal from '../components/ProfileModal'
 import { openProfileModal, closeProfileModal } from '../actions/modalActions'
+import { putUserData } from '../actions/userActions'
 
 class Profile extends Component {
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(
+      e.target.username.value,
+      e.target.email.value,
+      this.props.userCountries,
+    );
+  }
+
   render(){
     return(
       <div className="content">
@@ -14,7 +25,7 @@ class Profile extends Component {
           :null
         }
         <br/>
-        <ProfileModal {...this.props} />
+        <ProfileModal handleSubmit={this.handleSubmit} {...this.props} />
         <button className="btn btn-primary" onClick={() => this.props.openProfileModal(this.props.user)}>EditProfile</button>
       </div>
     );
@@ -24,7 +35,7 @@ class Profile extends Component {
 const mapState = state => {
   return {
     user: state.user.user,
-    fetched: state.user.fetched,
+    userCountries: state.user.user.countries,
     showProfileModal: state.modal.showProfileModal,
     modalProfile: state.modal.modalProfile
   };
@@ -32,6 +43,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
+    putUserData: (username, email, countries, home_country) => dispatch(putUserData(username, email, countries,home_country)),
     openProfileModal: (user) => dispatch(openProfileModal(user)),
     closeProfileModal: () => dispatch(closeProfileModal())
   };
