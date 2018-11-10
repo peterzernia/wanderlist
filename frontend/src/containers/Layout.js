@@ -11,6 +11,7 @@ import Search from './Search'
 import { Route } from "react-router-dom"
 import { connect } from 'react-redux'
 import { authLogout } from '../actions/authActions'
+import { toggleNavBar } from '../actions/navbarActions'
 
 class Layout extends Component {
 
@@ -38,12 +39,14 @@ class Layout extends Component {
 const mapState = state => {
   return {
     authenticated: state.auth.authenticated,
+    collapsed: state.navbar.collapsed
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    authLogout: () => dispatch(authLogout())
+    authLogout: () => dispatch(authLogout()),
+    toggleNavBar: () => dispatch(toggleNavBar())
   }
 }
 

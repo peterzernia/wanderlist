@@ -47,7 +47,8 @@ class UserDetailSerializer(UserDetailsSerializer):
     '''
     Updates the users country list with a put request from the frontend by
     making a list of all of the names of the countries in the validated_data,
-    then building a queryset from the list of names.
+    then building a queryset from the list of names. User.count updates when
+    then instance.save() is called.
     '''
     def update(self, instance, validated_data):
         country_names = [cdata['name'] for cdata in validated_data['countries']]
