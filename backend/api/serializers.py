@@ -38,13 +38,12 @@ class CountrySerializer(serializers.ModelSerializer):
 
 class UserDetailSerializer(UserDetailsSerializer):
     countries = CountrySerializer(many=True)
-    home_country = CountrySerializer()
     count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = User
         fields = ('pk', 'username', 'email', 'count', 'countries',
-                  'home_country')
+                  'profile_img')
 
     '''
     Updates the users country list with a put request from the frontend by
