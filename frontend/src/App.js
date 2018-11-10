@@ -1,7 +1,8 @@
+import './App.css'
+import './bootstrap.min.css'
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import Layout from './containers/Layout'
-import './App.css'
 import { connect } from 'react-redux'
 import { authCheckState } from './actions/authActions'
 import { fetchUser } from './actions/userActions'
