@@ -5,7 +5,7 @@ import SearchBar from '../components/SearchBar'
 import { connect } from 'react-redux'
 import { fetchCountry } from '../actions/countryActions'
 import { putUserData } from '../actions/userActions'
-import { openModal, closeModal } from '../actions/modalActions'
+import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { DotLoader } from 'react-spinners';
 
 class Search extends Component {
@@ -63,7 +63,7 @@ const mapState = state => {
     searchedCountry: state.country.country,
     fetched: state.country.fetched,
     fetching: state.country.fetching,
-    showModal: state.modal.showModal,
+    showCountryModal: state.modal.showCountryModal,
     modalCountry: state.modal.modalCountry
   };
 };
@@ -72,8 +72,8 @@ const mapDispatch = (dispatch, ownProps) => {
   return {
     fetchCountry: (query) => dispatch(fetchCountry(query)),
     putUserData: (username, countries, home_country) => dispatch(putUserData(username, countries,home_country)),
-    openModal: (country) => dispatch(openModal(country)),
-    closeModal: () => dispatch(closeModal())
+    openCountryModal: (country) => dispatch(openCountryModal(country)),
+    closeCountryModal: () => dispatch(closeCountryModal())
   };
 };
 

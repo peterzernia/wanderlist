@@ -6,9 +6,9 @@ ReactModal.setAppElement('#root');
 class CountryModal extends Component {
   render(){
     return(
-      <ReactModal isOpen={this.props.showModal}>
+      <ReactModal isOpen={this.props.showCountryModal}>
         <div className="close-modal">
-          <button onClick={this.props.closeModal} className="close">
+          <button onClick={this.props.closeCountryModal} className="close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>

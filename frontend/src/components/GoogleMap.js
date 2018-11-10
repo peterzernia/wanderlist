@@ -15,7 +15,7 @@ export class GoogleMap extends Component {
     const listMarkers = this.props.userCountries.map((country, i) =>(
       <Marker
         key={i}
-        onClick={() => this.props.openModal(country)}
+        onClick={() => this.props.openCountryModal(country)}
         name={country.name}
         position={{lat: country.latlng[0], lng: country.latlng[1]}} />
     ));

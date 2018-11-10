@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import GoogleMap from '../components/GoogleMap'
 import CountryModal from '../components/CountryModal'
-import { openModal, closeModal} from '../actions/modalActions'
+import { openCountryModal, closeCountryModal} from '../actions/modalActions'
 
 class Map extends Component {
   render(){
@@ -25,15 +25,15 @@ const mapState = state => {
   return {
     userCountries: state.user.user.countries,
     count: state.user.user.count,
-    showModal: state.modal.showModal,
+    showCountryModal: state.modal.showCountryModal,
     modalCountry: state.modal.modalCountry,
   };
 }
 
 const mapDispatch = dispatch => {
   return {
-    openModal: (country) => dispatch(openModal(country)),
-    closeModal: () => dispatch(closeModal())
+    openCountryModal: (country) => dispatch(openCountryModal(country)),
+    closeCountryModal: () => dispatch(closeCountryModal())
   };
 }
 

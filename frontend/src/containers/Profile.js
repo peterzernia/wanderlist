@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import ProfileModal from '../components/ProfileModal'
+import { openProfileModal, closeProfileModal } from '../actions/modalActions'
 
 class Profile extends Component {
   render(){
@@ -11,6 +13,9 @@ class Profile extends Component {
           ?<img className="profile-img" width="150" height="150" src={this.props.user.home_country.flag} alt=""/>
           :null
         }
+        <br/>
+        <ProfileModal {...this.props} />
+        <button className="btn btn-primary" onClick={() => this.props.openProfileModal(this.props.user)}>EditProfile</button>
       </div>
     );
   }
@@ -19,12 +24,16 @@ class Profile extends Component {
 const mapState = state => {
   return {
     user: state.user.user,
-    fetched: state.user.fetched
+    fetched: state.user.fetched,
+    showProfileModal: state.modal.showProfileModal,
+    modalProfile: state.modal.modalProfile
   };
 }
 
 const mapDispatch = dispatch => {
   return {
+    openProfileModal: (user) => dispatch(openProfileModal(user)),
+    closeProfileModal: () => dispatch(closeProfileModal())
   };
 }
 
