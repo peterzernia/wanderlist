@@ -3,7 +3,7 @@ import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-export class MapContainer extends Component {
+export class GoogleMap extends Component {
   render() {
 
     const style = {
@@ -15,6 +15,7 @@ export class MapContainer extends Component {
     const listMarkers = this.props.userCountries.map((country, i) =>(
       <Marker
         key={i}
+        onClick={() => this.props.openModal(country)}
         name={country.name}
         position={{lat: country.latlng[0], lng: country.latlng[1]}} />
     ));
@@ -35,4 +36,4 @@ export class MapContainer extends Component {
 
 export default GoogleApiWrapper({
   apiKey: (API_KEY)
-})(MapContainer)
+})(GoogleMap)

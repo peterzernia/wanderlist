@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import MapContainer from '../components/MapContainer'
+import GoogleMap from '../components/GoogleMap'
+import Modal from '../components/Modal'
+import { openModal, closeModal} from '../actions/modalActions'
 
 class Map extends Component {
   render(){
@@ -13,7 +15,8 @@ class Map extends Component {
           ? <p> It looks like you haven't added any places yet. </p>
           : null
         }
-        <MapContainer {...this.props} />
+        <GoogleMap {...this.props} />
+        <Modal {...this.props} />
       </div>
     );
   }
@@ -22,12 +25,16 @@ class Map extends Component {
 const mapState = state => {
   return {
     userCountries: state.user.user.countries,
-    count: state.user.user.count
+    count: state.user.user.count,
+    showModal: state.modal.showModal,
+    modalCountry: state.modal.modalCountry,
   };
 }
 
 const mapDispatch = dispatch => {
   return {
+    openModal: (country) => dispatch(openModal(country)),
+    closeModal: () => dispatch(closeModal())
   };
 }
 

@@ -67,7 +67,7 @@ const mapDispatch = (dispatch, ownProps) => {
   return {
     fetchCountry: (query) => dispatch(fetchCountry(query)),
     putCountry: (username, countries) => dispatch(putCountry(username, countries)),
-    openModal: (id) => dispatch(openModal(id)),
+    openModal: (country) => dispatch(openModal(country)),
     closeModal: () => dispatch(closeModal())
   };
 };
