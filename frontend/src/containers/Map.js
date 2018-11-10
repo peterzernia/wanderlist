@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import GoogleMap from '../components/GoogleMap'
-import Modal from '../components/Modal'
+import CountryModal from '../components/CountryModal'
 import { openModal, closeModal} from '../actions/modalActions'
 
 class Map extends Component {
@@ -15,7 +15,7 @@ class Map extends Component {
           : null
         }
         <GoogleMap {...this.props} />
-        <Modal {...this.props} />
+        <CountryModal {...this.props} />
       </div>
     );
   }

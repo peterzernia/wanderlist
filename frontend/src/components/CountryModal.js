@@ -3,7 +3,7 @@ import ReactModal from 'react-modal'
 
 ReactModal.setAppElement('#root');
 
-class Modal extends Component {
+class CountryModal extends Component {
   render(){
     return(
       <ReactModal isOpen={this.props.showModal}>
@@ -48,4 +48,4 @@ class Modal extends Component {
   }
 }
 
-export default Modal;
+export default CountryModal;

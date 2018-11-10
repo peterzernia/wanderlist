@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Modal from '../components/Modal'
+import CountryModal from '../components/CountryModal'
 import Results from '../components/Results'
 import SearchBar from '../components/SearchBar'
 import { connect } from 'react-redux'
@@ -48,7 +48,7 @@ class Search extends Component {
             ? <Results handleClick={this.handleClick} {...this.props} />
             : null
           }
-          <Modal {...this.props} />
+          <CountryModal {...this.props} />
         </div>
       );
   }
