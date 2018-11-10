@@ -9,7 +9,6 @@ class Map extends Component {
 
     return(
       <div className="content">
-        <h1>My Map</h1>
         {
           (this.props.count === 0)
           ? <p> It looks like you haven't added any places yet. </p>

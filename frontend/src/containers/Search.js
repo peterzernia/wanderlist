@@ -58,6 +58,7 @@ const mapState = state => {
   return {
     username: state.user.user.username,
     userCountries: state.user.user.countries,
+    authenticated: state.auth.authenticated,
     searchedCountry: state.country.country,
     fetched: state.country.fetched,
     fetching: state.country.fetching,

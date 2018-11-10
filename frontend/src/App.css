@@ -1,5 +1,5 @@
 body {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Roboto', sans-serif;
   background-image: url("images/background.png");
   overflow-x: hidden;
 }
@@ -49,7 +49,10 @@ li.languages {
 
 .user-auth {
   margin-bottom: 3px !important;
-  width: 100% !important;
+  width: 300px !important;
+  border: none !important;
+  border-bottom: 1px solid #9e9e9e !important;
+  background: transparent !important;
 }
 
 .btn.logout {

@@ -9,7 +9,9 @@ class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.authLogin(e.target.username.value, e.target.password.value);
-    this.props.history.push('/');
+    if (this.props.authenticated){
+      this.props.history.push('/');      
+    }
   }
 
   render(){
