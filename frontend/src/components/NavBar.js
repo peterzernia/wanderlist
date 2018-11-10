@@ -9,7 +9,8 @@ class NavBar extends Component {
     will recieve the active class, which distinguishes the route the user is on.
     */
     const { location } = this.props;
-    const searchClass = location.pathname === '/' ? 'btn active' : 'btn'
+    const homeClass = location.pathname === '/' ? 'btn navbar-brand active' : 'btn'
+    const searchClass = location.pathname === '/search' ? 'btn active' : 'btn'
     const discoverClass = location.pathname === '/discover' ? 'btn active' : 'btn'
     const mapClass = location.pathname === '/map' ? 'btn active' : 'btn'
     const profileClass = location.pathname === '/profile' ? 'btn active' : 'btn'
@@ -18,13 +19,13 @@ class NavBar extends Component {
 
     return (
       <nav className="navbar navbar-expand-sm sticky-top navbar-white bg-white">
-        <Link to="/" className='btn navbar-brand'>Countries</Link>
+        <Link to="/" className={homeClass}>Countries</Link>
         <button className="navbar-toggler" type="button" onClick={this.props.toggleNavBar}>
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className={navClass} id="navbarNavAltMarkup">
           <div className="navbar-nav mr-auto">
-            <Link className={searchClass} to="/">Search</Link>
+            <Link className={searchClass} to="/search">Search</Link>
             <Link className={discoverClass} to="/discover">Discover</Link>
             <Link className={mapClass} to="/map">My Map</Link>
             <Link className={profileClass} to="/profile">Profile</Link>

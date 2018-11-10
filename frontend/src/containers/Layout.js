@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Discover from './Discover'
+import Home from './Home'
 import Login from './Login'
 import Logout from './Logout'
 import Map from './Map'
@@ -24,7 +25,8 @@ class Layout extends Component {
     return(
       <div>
         <NavBar {...this.props} handleClick={this.handleClick} /><br/>
-        <Route exact path={`${this.props.match.url}`} component={Search}/>
+        <Route exact path={`${this.props.match.url}`} component={Home}/>
+        <Route path={`${this.props.match.url}/search`} component={Search}/>
         <PrivateRoute authenticated={this.props.authenticated} path={`${this.props.match.url}/discover`} component={Discover}/>
         <PrivateRoute authenticated={this.props.authenticated} path={`${this.props.match.url}/map`} component={Map}/>
         <PrivateRoute authenticated={this.props.authenticated} path={`${this.props.match.url}/profile`} component={Profile}/>
