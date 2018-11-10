@@ -9,9 +9,9 @@ class Results extends Component {
         <h3>{country.name}</h3>
         <img className="flag" src={country.flag} alt=""/><br/>
         {
-          this.props.userCountries.includes(country)
-          ? <button onClick={this.props.handleClick} name={i} className="btn btn-primary" type="button">Remove</button>
-          : <button onClick={this.props.handleClick} name={i} className="btn btn-primary" type="button">Add</button>
+          (this.props.userCountries.findIndex(i => i.name === country.name) === -1)
+          ? <button onClick={this.props.handleClick} name={i} className="btn btn-primary" type="button">Add</button>
+          : <button onClick={this.props.handleClick} name={i} className="btn btn-primary" type="button">Remove</button>
         }
         <button onClick={() => this.props.openModal(country)} className="btn btn-primary">View More</button>
       </div>

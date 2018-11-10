@@ -44,9 +44,13 @@ class UserDetailSerializer(UserDetailsSerializer):
         model = User
         fields = ('pk', 'username', 'email', 'count', 'countries')
 
-    # Update the instance upon Put Request from frontend.
+    '''
+    Updates the users country list with a put request from the frontend by
+    making a list of all of the names of the countries in the validated_data,
+    then building a queryset from the list of names.
+    '''
     def update(self, instance, validated_data):
-        print(validated_data['countries'])
-        instance.countries.set(validated_data.get('countries', instance.countries))
-        instance.save()
+        country_names = [cdata['name'] for cdata in validated_data['countries']]
+        countries = Country.objects.filter(name__in=country_names)
+        instance.countries.set(countries)
         return instance

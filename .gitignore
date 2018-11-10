@@ -30,3 +30,4 @@ countries.json
 load_data_python_cmd.txt
 .coverage
 htmlcov
+/flags

@@ -16,17 +16,20 @@ class Search extends Component {
   }
 
   /*
-  This function checks to see if the button was the Add or Remove button, and
-  changes the country list appropriately.
+  This function checks to see if the country is already in the user list,
+  adds it if it is not, and removes it if it is.
   */
   handleClick = (e) => {
     e.preventDefault();
     var newCountryList = this.props.userCountries
     var newCountry = this.props.searchedCountry[e.target.name]
-    if (e.target.innerText === 'Add') {
-      newCountryList = this.props.userCountries.concat([newCountry]);
+    if (e.target.innerText === 'Remove') {
+      var index = newCountryList.findIndex(i => i.name === newCountry.name)
+      if (index !== -1){
+        newCountryList.splice(index, 1);
+      }
     } else {
-      newCountryList = this.props.userCountries.filter(country => country !== newCountry);
+      newCountryList = this.props.userCountries.concat([newCountry]);
     }
     this.props.putCountry(this.props.username, newCountryList);
   }
