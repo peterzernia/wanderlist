@@ -1,5 +1,5 @@
 body {
-  font: Helvetica Neue;
+  font-family: 'Lato', sans-serif !important;
   background-image: url("images/background.png");
   overflow-x: hidden;
 }
