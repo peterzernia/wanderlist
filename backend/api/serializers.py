@@ -53,4 +53,5 @@ class UserDetailSerializer(UserDetailsSerializer):
         country_names = [cdata['name'] for cdata in validated_data['countries']]
         countries = Country.objects.filter(name__in=country_names)
         instance.countries.set(countries)
+        instance.save()
         return instance
