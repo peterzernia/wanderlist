@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from countries.models import Country, Currency, Language, RegionalBloc
 from users.models import User
+from trips.models import TripReport
 from rest_auth.serializers import UserDetailsSerializer
 
 
@@ -34,6 +35,12 @@ class CountrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Country
         fields =('__all__')
+
+
+class TripReportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TripReport
+        fields = ('__all__')
 
 
 class UserDetailSerializer(UserDetailsSerializer):

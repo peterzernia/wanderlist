@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView
-from rest_framework import filters
-from .serializers import CountrySerializer
+from rest_framework import viewsets, filters
+from .serializers import CountrySerializer, TripReportSerializer
 from countries.models import Country
+from trips.models import TripReport
 
 
 class CountryListView(ListAPIView):
@@ -15,3 +16,8 @@ class CountryListView(ListAPIView):
     serializer_class = CountrySerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name', 'demonym', 'alpha3code', 'languages__name')
+
+
+class TripReportViewSet(viewsets.ModelViewSet):
+    serializer_class = TripReportSerializer
+    queryset = TripReport.objects.all()
