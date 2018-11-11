@@ -1,8 +1,8 @@
 const initialState = {
   showCountryModal: false,
   showProfileModal: false,
-  modalCountry: [],
-  modalProfile: []
+  modalCountry: {},
+  modalProfile: {}
 }
 
 /* Reducer Function*/

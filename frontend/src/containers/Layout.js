@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Discover from './Discover'
 import Home from './Home'
 import Login from './Login'
@@ -53,3 +54,10 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(Layout);
+
+Layout.propTypes = {
+  authenticated: PropTypes.bool,
+  collapsed: PropTypes.bool,
+  authLogout: PropTypes.func,
+  toggleNavBar: PropTypes.func
+};

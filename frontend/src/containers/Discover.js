@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 class Discover extends Component {
   render(){
@@ -10,4 +11,14 @@ class Discover extends Component {
   }
 }
 
-export default Discover;
+const mapState = state => {
+  return {
+  };
+}
+
+const mapDispatch = dispatch => {
+  return {
+  };
+}
+
+export default connect(mapState, mapDispatch)(Discover);

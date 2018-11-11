@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import GoogleMap from '../components/GoogleMap'
 import CountryModal from '../components/CountryModal'
@@ -24,7 +25,6 @@ class Map extends Component {
 const mapState = state => {
   return {
     userCountries: state.user.user.countries,
-    count: state.user.user.count,
     showCountryModal: state.modal.showCountryModal,
     modalCountry: state.modal.modalCountry,
   };
@@ -38,3 +38,11 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(Map);
+
+Map.propTypes = {
+  userCountries: PropTypes.array,
+  showCountryModal: PropTypes.bool,
+  modalCountry: PropTypes.object,
+  openCountryModal: PropTypes.func,
+  closeCountryModal: PropTypes.func
+};

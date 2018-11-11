@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import LoginForm from '../components/LoginForm'
 import { connect } from 'react-redux'
 import { authLogin } from '../actions/authActions'
@@ -45,3 +46,10 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(Login);
+
+Login.propTypes = {
+  authenticating: PropTypes.bool,
+  authenticated: PropTypes.bool,
+  error: PropTypes.object,
+  authLogin: PropTypes.func
+};

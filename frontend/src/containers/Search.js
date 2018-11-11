@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import CountryModal from '../components/CountryModal'
 import Results from '../components/Results'
 import SearchBar from '../components/SearchBar'
@@ -81,4 +82,20 @@ const mapDispatch = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(Search);;
+export default connect(mapState, mapDispatch)(Search);
+
+Search.propTypes = {
+  username: PropTypes.string,
+  email: PropTypes.string,
+  userCountries: PropTypes.array,
+  authenticated: PropTypes.bool,
+  searchedCountry: PropTypes.array,
+  fetched: PropTypes.bool,
+  fetching: PropTypes.bool,
+  showCountryModal: PropTypes.bool,
+  modalCountry: PropTypes.object,
+  fetchCountry: PropTypes.func,
+  putUserData: PropTypes.func,
+  openCountryModal: PropTypes.func,
+  closeCountryModal: PropTypes.func
+};

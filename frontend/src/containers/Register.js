@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import RegistrationForm from '../components/RegistrationForm'
 import { connect } from 'react-redux'
 import { authRegister } from '../actions/authActions'
@@ -44,3 +45,10 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(Register);
+
+Register.propTypes = {
+  authenticating: PropTypes.bool,
+  authenticated: PropTypes.bool,
+  error: PropTypes.object,
+  authRegister: PropTypes.func
+};

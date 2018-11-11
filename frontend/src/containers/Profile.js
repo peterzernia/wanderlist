@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import ProfileModal from '../components/ProfileModal'
 import { openProfileModal, closeProfileModal } from '../actions/modalActions'
@@ -49,3 +50,15 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(Profile);
+
+Profile.propTypes = {
+  user: PropTypes.object,
+  userCountries: PropTypes.array,
+  searchedCountry: PropTypes.array,
+  showProfileModal: PropTypes.bool,
+  modalProfile: PropTypes.object,
+  fetchCountry: PropTypes.func,
+  putUserData: PropTypes.func,
+  openProfileModal: PropTypes.func,
+  closeProfileModal: PropTypes.func
+};
