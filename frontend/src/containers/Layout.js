@@ -27,9 +27,9 @@ class Layout extends Component {
         <NavBar {...this.props} handleClick={this.handleClick} /><br/>
         <Route exact path={`${this.props.match.url}`} component={Home}/>
         <Route path={`${this.props.match.url}/search`} component={Search}/>
-        <PrivateRoute authenticated={this.props.authenticated} path={`${this.props.match.url}/discover`} component={Discover}/>
-        <PrivateRoute authenticated={this.props.authenticated} path={`${this.props.match.url}/map`} component={Map}/>
-        <PrivateRoute authenticated={this.props.authenticated} path={`${this.props.match.url}/profile`} component={Profile}/>
+        <PrivateRoute {...this.props} path={`${this.props.match.url}/discover`} component={Discover}/>
+        <PrivateRoute {...this.props} path={`${this.props.match.url}/map`} component={Map}/>
+        <PrivateRoute {...this.props} path={`${this.props.match.url}/profile`} component={Profile}/>
         <Route path={`${this.props.match.url}/login`} component={Login}/>
         <Route path={`${this.props.match.url}/logout`} component={Logout}/>
         <Route path={`${this.props.match.url}/register`} component={Register}/>
