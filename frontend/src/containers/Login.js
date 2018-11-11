@@ -10,7 +10,7 @@ class Login extends Component {
     e.preventDefault();
     this.props.authLogin(e.target.username.value, e.target.password.value);
     if (this.props.authenticated){
-      this.props.history.push('/');      
+      this.props.history.push('/');
     }
   }
 
@@ -20,7 +20,7 @@ class Login extends Component {
         {
           !this.props.authenticated
           ? <LoginForm handleSubmit={this.handleSubmit} {...this.props} />
-          : <Redirect to={{pathname: "/", }} />
+          : <Redirect to={{pathname: "/",}} />
         }
       </div>
     );
