@@ -41,7 +41,6 @@ class UserDetailSerializer(UserDetailsSerializer):
     Custom serializer for the /rest-auth/user/ User Details Serializer.
     '''
     countries = CountrySerializer(many=True)
-    count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = User
@@ -50,12 +49,10 @@ class UserDetailSerializer(UserDetailsSerializer):
     '''
     Updates the users country list with a put request from the frontend by
     making a list of all of the names of the countries in the validated_data,
-    then building a queryset from the list of names. User.count updates when
-    then instance.save() is called.
+    then building a queryset from the list of names.
     '''
     def update(self, instance, validated_data):
         country_names = [cdata['name'] for cdata in validated_data['countries']]
         countries = Country.objects.filter(name__in=country_names)
         instance.countries.set(countries)
-        instance.save()
         return instance
