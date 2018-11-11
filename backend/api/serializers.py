@@ -42,8 +42,7 @@ class UserDetailSerializer(UserDetailsSerializer):
 
     class Meta:
         model = User
-        fields = ('pk', 'username', 'email', 'count', 'countries',
-                  'profile_img')
+        fields = ('pk', 'username', 'email', 'count', 'countries',)
 
     '''
     Updates the users country list with a put request from the frontend by

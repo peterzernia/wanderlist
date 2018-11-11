@@ -33,9 +33,8 @@ class Search extends Component {
     }
     this.props.putUserData(
       this.props.username,
-      this.props.email,
       newCountryList,
-      this.props.home_country
+      this.props.email
     );
   }
 
@@ -64,7 +63,6 @@ const mapState = state => {
     username: state.user.user.username,
     email: state.user.user.email,
     userCountries: state.user.user.countries,
-    home_country: state.user.user.home_country,
     authenticated: state.auth.authenticated,
     searchedCountry: state.country.country,
     fetched: state.country.fetched,
@@ -77,7 +75,7 @@ const mapState = state => {
 const mapDispatch = (dispatch, ownProps) => {
   return {
     fetchCountry: (query) => dispatch(fetchCountry(query)),
-    putUserData: (username, email, countries, home_country) => dispatch(putUserData(username, email, countries,home_country)),
+    putUserData: (username, countries, email) => dispatch(putUserData(username, countries, email)),
     openCountryModal: (country) => dispatch(openCountryModal(country)),
     closeCountryModal: () => dispatch(closeCountryModal())
   };

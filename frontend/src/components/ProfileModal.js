@@ -16,7 +16,7 @@ class ProfileModal extends Component {
           <form onSubmit={this.props.handleSubmit}>
             <input className="form-control user-auth" type='text' name="username" defaultValue={this.props.user.username}/><br/>
             <input className="form-control user-auth" type='text' name="email" defaultValue={this.props.user.email}/><br/>
-            <select className="form-control user-auth" name="Country">
+            <select className="form-control user-auth" name="country">
               <option value="">---------</option>
               <option value="1">Afghanistan</option>
               <option value="2">Åland Islands</option>

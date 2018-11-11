@@ -55,17 +55,16 @@ export const fetchUser = () => {
   }
 }
 
-export const putUserData = (username, email, countries, home_country) => {
+export const putUserData = (username, countries, email) => {
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch(putUserDataPending());
     axios.put(
       'http://localhost:8000/api/v1/rest-auth/user/',
       {
+        username: username,
         countries: countries,
         email: email,
-        username: username,
-        home_country: home_country
       },
       {headers: { 'Authorization': `Token ${token}`}}
   )
