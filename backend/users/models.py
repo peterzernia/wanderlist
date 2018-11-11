@@ -4,12 +4,9 @@ from countries.models import Country
 
 
 class User(AbstractUser):
+    '''
+    Custom User model. Countries is a list of countries associated with the
+    user.
+    '''
     countries = models.ManyToManyField(
-        Country, blank=True, related_name='countries_list'
-        )
-
-    def save(self, *args, **kwargs):
-        # Must save model before Many To Many relationship can be used.
-        super(User, self).save(*args, **kwargs)
-        self.count = self.countries.count()
-        super(User, self).save(*args, **kwargs)
+        Country, blank=True, related_name='countries_list')

@@ -6,6 +6,9 @@ import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
 
+  /*
+  Authenticates the user, and redirects to homepage.
+  */
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.authLogin(e.target.username.value, e.target.password.value);

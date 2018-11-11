@@ -4,6 +4,10 @@ class Results extends Component {
 
   render(){
 
+    /*
+    Results page displays after search. Users can click "View More" button, to
+    view detail of country returned in search results.
+    */
     const listCountries = this.props.searchedCountry.map((country, i) =>(
       <div key={i}>
         <h3>{country.name}</h3>

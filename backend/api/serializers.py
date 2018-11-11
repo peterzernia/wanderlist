@@ -37,12 +37,15 @@ class CountrySerializer(serializers.ModelSerializer):
 
 
 class UserDetailSerializer(UserDetailsSerializer):
+    '''
+    Custom serializer for the /rest-auth/user/ User Details Serializer.
+    '''
     countries = CountrySerializer(many=True)
     count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = User
-        fields = ('pk', 'username', 'email', 'count', 'countries',)
+        fields = ('pk', 'username', 'email', 'countries',)
 
     '''
     Updates the users country list with a put request from the frontend by

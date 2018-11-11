@@ -20,6 +20,9 @@ export const fetchCountryRejected = error => {
   }
 }
 
+/*
+GET requests the Django REST API which returns country object(s).
+*/
 export const fetchCountry = (query) => {
   return dispatch => {
     dispatch(fetchCountryPending());

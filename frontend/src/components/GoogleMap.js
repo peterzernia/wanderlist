@@ -12,6 +12,10 @@ export class GoogleMap extends Component {
     border: '.5px solid black'
     }
 
+    /*
+    Adds clickable Markers to the map at the coordinates of all of the
+    countries on the users list.
+    */
     const listMarkers = this.props.userCountries.map((country, i) =>(
       <Marker
         key={i}

@@ -21,14 +21,21 @@ export const authFail = error => {
   }
 }
 
+/*
+The token stored in localStorage to authenticate the user is removed, logging
+the user out.
+*/
 export const authLogout = () => {
   localStorage.removeItem('token');
-  localStorage.removeItem('expirationDate');
   return {
     type: "AUTH_LOGOUT"
   }
 }
 
+/*
+Logs user in using axios and recieves a token from the Django API. This token
+is stored in localStorage.
+*/
 export const authLogin = (username, password) => {
   return dispatch => {
     dispatch(authStart());
@@ -48,6 +55,10 @@ export const authLogin = (username, password) => {
   }
 }
 
+/*
+Similar to login, registers a user with the Django REST API which returns a
+token to authenticate the user. This token is stored in localStorage.
+*/
 export const authRegister = (username, email, password1, password2) => {
   return dispatch => {
     localStorage.removeItem('token');
@@ -71,8 +82,9 @@ export const authRegister = (username, email, password1, password2) => {
 }
 
 /*
-Checks to see if a token exists in localStorage. If a token exists, it runs the
-login function. If no token exits it runs the logout function.
+Checks to see if the authentication token exists in localStorage. If a token
+exists, it runs the login function. If no token exits it runs the logout
+function.
 */
 export const authCheckState = () => {
   return dispatch => {

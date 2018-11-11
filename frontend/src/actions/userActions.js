@@ -40,6 +40,9 @@ export const putUserDataRejected = error => {
   }
 }
 
+/*
+GET requests the Django REST API, which returns user object.
+*/
 export const fetchUser = () => {
   const token = localStorage.getItem('token');
   return dispatch => {

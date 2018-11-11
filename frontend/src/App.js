@@ -9,6 +9,10 @@ import { fetchUser } from './actions/userActions'
 
 class App extends Component {
 
+  /*
+  When the App component is mounted, it checks if a user is authenticated and
+  fetches the user data from the Django REST API.
+  */
   componentDidMount() {
     this.props.authCheckState();
     this.props.fetchUser();

@@ -4,6 +4,10 @@ import { connect } from 'react-redux'
 import { authRegister } from '../actions/authActions'
 
 class Register extends Component {
+
+  /*
+  Registers and authenticates the user, and redirects to homepage.
+  */
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.authRegister(
