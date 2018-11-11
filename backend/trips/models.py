@@ -6,7 +6,7 @@ from django.utils import timezone
 
 class TripReport(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    countries = models.ManyToManyField(Country, blank=True, related_name='trip_countries')
+    countries = models.ManyToManyField(Country, blank=False, related_name='trip_countries')
     title = models.CharField(max_length=100)
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
