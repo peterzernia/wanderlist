@@ -13,7 +13,7 @@ class App extends Component {
   When the App component is mounted, it checks if a user is authenticated and
   fetches the user data from the Django REST API.
   */
-  componentDidMount() {
+  componentWillMount() {
     this.props.authCheckState();
     this.props.fetchUser();
   }

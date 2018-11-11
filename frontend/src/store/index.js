@@ -5,10 +5,10 @@ import auth from './auth'
 import country from './country'
 import modal from './modal'
 import navbar from './navbar'
+import tripReport from './tripReport'
 import user from './user'
 
-
-const reducer = combineReducers({auth, country, modal, navbar, user})
+const reducer = combineReducers({auth, country, modal, navbar, tripReport, user})
 const middleware = applyMiddleware(thunk, createLogger())
 const store = createStore(reducer, middleware)
 
