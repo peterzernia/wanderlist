@@ -9,4 +9,4 @@ class User(AbstractUser):
     user.
     '''
     countries = models.ManyToManyField(
-        Country, blank=True, related_name='countries_list')
+        Country, blank=True, related_name='user_countries')
