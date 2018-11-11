@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
     "google-maps-react": "^2.0.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",

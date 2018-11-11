@@ -7,6 +7,11 @@ describe('<NavBar />', () =>{
     const wrapper = shallow(<NavBar />);
     expect(wrapper.find('nav').length).toEqual(1);
   });
+  it('active classNames', () => {
+    const wrapper = shallow(<NavBar />);
+    wrapper.setProps({ pathname: '/' });
+    expect(wrapper.find('btn-navbar-brand-active').length).toEqual(1);
+  });
   it('navbar onClick toggles collapse', () => {
     const wrapper = shallow(<NavBar />);
     expect(wrapper.find('div.navbar-collapse.collapse').length).toEqual(1);

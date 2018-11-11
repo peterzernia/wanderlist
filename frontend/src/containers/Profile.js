@@ -8,19 +8,12 @@ import { fetchCountry } from '../actions/countryActions'
 
 class Profile extends Component {
 
-  componentWillMount() {
-    this.props.fetchCountry('')
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
-    var homeCountry = this.props.searchedCountry.filter(country => country.id === +e.target.country.value);
-    var flag = homeCountry[0].flag
     console.log(
       e.target.username.value,
       this.props.userCountries,
       e.target.email.value,
-      flag
     );
   }
 

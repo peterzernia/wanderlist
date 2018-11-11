@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import ReactModal from 'react-modal'
 
-ReactModal.setAppElement('#root');
+ReactModal.setAppElement('body');
 
 class CountryModal extends Component {
+
   render(){
     return(
       <ReactModal isOpen={this.props.showCountryModal}>

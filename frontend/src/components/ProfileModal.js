@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactModal from 'react-modal'
 
-ReactModal.setAppElement('#root');
+ReactModal.setAppElement('body');
 
 class ProfileModal extends Component {
   render(){

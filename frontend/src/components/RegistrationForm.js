@@ -13,7 +13,7 @@ class RegistrationForm extends Component {
       <div>
         {errorMessage}
         <div className='form-inline'>
-          <form onSubmit={this.props.onSubmit}>
+          <form onSubmit={this.props.handleSubmit}>
             <input className="form-control user-auth" type='text' name="username" placeholder="Username"/><br/>
             <input className="form-control user-auth" type='text' name="email" placeholder="Email"/><br/>
             <input className="form-control user-auth" type='password' name="password1" placeholder="Password"/><br/>

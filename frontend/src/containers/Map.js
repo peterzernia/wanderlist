@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import GoogleMap from '../components/GoogleMap'
 import CountryModal from '../components/CountryModal'
-import { openCountryModal, closeCountryModal} from '../actions/modalActions'
+import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 
 class Map extends Component {
   render(){
