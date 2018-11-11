@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import { fetchTripReports } from '../actions/tripReportActions'
+import TripReport from '../components/TripReport'
 import { DotLoader } from 'react-spinners';
 
 class Home extends Component {
@@ -17,6 +18,11 @@ class Home extends Component {
         {
           this.props.fetching
           ? <DotLoader size={50} color={'#007bff'} className="content" />
+          : null
+        }
+        {
+          this.props.fetched
+          ? <TripReport />
           : null
         }
       </div>
