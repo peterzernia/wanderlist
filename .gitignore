@@ -1,11 +1,11 @@
+
 # dependencies
-frontend/node_modules
+/node_modules
 
 # testing
 /coverage
-
-# production
-/build
+.coverage
+htmlcov
 
 # misc
 .DS_Store
@@ -28,6 +28,4 @@ languages.json
 currencies.json
 countries.json
 load_data_python_cmd.txt
-.coverage
-htmlcov
 /flags
