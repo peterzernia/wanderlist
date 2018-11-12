@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class TripReportForm extends Component {
+class PostTripReportForm extends Component {
   render(){
 
     let errorMessage = null;
@@ -14,7 +14,7 @@ class TripReportForm extends Component {
         <div className='form-inline'>
           <form onSubmit={this.props.handleSubmit}>
             <input className="form-control user-auth" type='text' name="title" placeholder="Title"/><br/><br/>
-            <textarea className="form-control user-auth" name="content" placeholder="Content"/><br/><br/>
+            <textarea className="form-control user-auth" rows="4" cols="100" name="content" placeholder="Content"/><br/><br/>
             <select className="form-control user-auth" name="countries" id="id_countries" multiple="multiple">
               <option value="1">Afghanistan</option>
               <option value="2">Åland Islands</option>
@@ -275,4 +275,4 @@ class TripReportForm extends Component {
   }
 }
 
-export default TripReportForm;
+export default PostTripReportForm;

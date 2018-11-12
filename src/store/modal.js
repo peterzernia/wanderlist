@@ -1,6 +1,7 @@
 const initialState = {
   showCountryModal: false,
   showProfileModal: false,
+  showPostModal: false,
   modalCountry: {},
   modalProfile: {}
 }
@@ -32,6 +33,18 @@ export default function (state = initialState, action) {
       return {
         ...state,
         showProfileModal: false
+      }
+    }
+    case "OPEN_POST_MODAL": {
+      return {
+        ...state,
+        showPostModal: true
+      }
+    }
+    case "CLOSE_POST_MODAL": {
+      return {
+        ...state,
+        showPostModal: false
       }
     }
     default:

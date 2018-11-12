@@ -21,3 +21,15 @@ export const closeProfileModal = () => {
     dispatch({ type: "CLOSE_PROFILE_MODAL" })
   }
 }
+
+export const openPostModal = modalProfile => {
+  return dispatch => {
+    dispatch({ type: "OPEN_POST_MODAL" })
+  }
+}
+
+export const closePostModal = () => {
+  return dispatch => {
+    dispatch({ type: "CLOSE_POST_MODAL" })
+  }
+}
