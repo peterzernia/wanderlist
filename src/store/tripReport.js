@@ -72,8 +72,22 @@ export default function (state = initialState, action) {
     case "POST_TRIP_REPORTS_REJECTED": {
       return {
         ...state,
-        posting: false,
-        posted: false,
+        error: action.error
+        }
+    }
+    case "DELETE_TRIP_REPORTS_PENDING": {
+      return {
+        ...state,
+      }
+    }
+    case "DELETE_TRIP_REPORTS_FULFILLED": {
+      return {
+        ...state,
+      }
+    }
+    case "DELETE_TRIP_REPORTS_REJECTED": {
+      return {
+        ...state,
         error: action.error
       }
     }

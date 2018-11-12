@@ -129,7 +129,10 @@ export const postTripReport = (author, title, content, countries) => {
 export const deleteTripReport = (tripReport) => {
   return dispatch => {
     dispatch(deleteTripReportsPending());
-    axios.delete(`http://localhost:8000/api/v1/reports/${tripReport}`)
+    axios.delete(`http://localhost:8000/api/v1/reports/${tripReport}/`, {headers: {
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRFToken': 'csrftoken',
+    }})
       .then(response => {
         dispatch(deleteTripReportsFulfilled());
       })
