@@ -1,19 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
-import { fetchTripReports } from '../actions/tripReportActions'
 import TripReport from '../components/TripReport'
 import { DotLoader } from 'react-spinners';
 
 class Home extends Component {
 
-  componentWillMount() {
-    this.props.fetchTripReports()
-  }
-
   render(){
 
-    const listTripReports = this.props.tripReports.map((tripReport, i) =>(
+    const listTripReports = this.props.tripReports.reverse().map((tripReport, i) =>(
       <TripReport key={i} {...tripReport} />
     ));
 
@@ -44,7 +39,6 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchTripReports: () => dispatch(fetchTripReports())
   };
 }
 
@@ -54,5 +48,4 @@ Home.propTypes = {
   fetched: PropTypes.bool,
   fetching: PropTypes.bool,
   tripReports: PropTypes.array,
-  fetchTripReports: PropTypes.func
 };

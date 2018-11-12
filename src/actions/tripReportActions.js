@@ -44,8 +44,8 @@ export const fetchTripReports = () => {
     dispatch(fetchTripReportsPending());
     axios.get('http://localhost:8000/api/v1/reports/')
       .then(response => {
-        const user = response.data;
-        dispatch(fetchTripReportsFulfilled(user));
+        const tripReports = response.data;
+        dispatch(fetchTripReportsFulfilled(tripReports));
       })
       .catch(err => {
         dispatch(fetchTripReportsRejected(err));

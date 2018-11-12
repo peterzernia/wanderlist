@@ -6,6 +6,7 @@ import Layout from './containers/Layout'
 import { connect } from 'react-redux'
 import { authCheckState } from './actions/authActions'
 import { fetchUser } from './actions/userActions'
+import { fetchTripReports } from './actions/tripReportActions'
 
 class App extends Component {
 
@@ -16,6 +17,7 @@ class App extends Component {
   componentWillMount() {
     this.props.authCheckState();
     this.props.fetchUser();
+    this.props.fetchTripReports();
   }
 
   render() {
@@ -38,8 +40,13 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     authCheckState: () => dispatch(authCheckState()),
-    fetchUser: () => dispatch(fetchUser())
+    fetchUser: () => dispatch(fetchUser()),
+    fetchTripReports: () => dispatch(fetchTripReports())
   }
 }
 
 export default connect(mapState, mapDispatch)(App);
+
+App.propTypes = {
+
+};

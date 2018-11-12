@@ -21,3 +21,5 @@ class CountryListView(ListAPIView):
 class TripReportViewSet(viewsets.ModelViewSet):
     serializer_class = TripReportSerializer
     queryset = TripReport.objects.all()
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('author__username',)

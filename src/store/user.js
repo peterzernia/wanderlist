@@ -1,9 +1,12 @@
 const initialState = {
   fetching: false,
   fetched: false,
+  fetchingTripReports: false,
+  fetchedTripReports: false,
   adding: false,
   added: false,
   user: {},
+  tripReports: [],
   error: null,
 }
 
@@ -29,6 +32,28 @@ export default function (state = initialState, action) {
         ...state,
         fetching: false,
         fetched: false,
+        error: action.error
+      }
+    }
+    case "FETCH_USER_TRIP_REPORTS_PENDING": {
+      return {
+        ...state,
+        fetchingTripReports: true
+      }
+    }
+    case "FETCH_USER_TRIP_REPORTS_FULFILLED": {
+      return {
+        ...state,
+        fetchingTripReports: false,
+        fetchedTripReports: true,
+        tripReports: action.tripReports
+      }
+    }
+    case "FETCH_USER_TRIP_REPORTS_REJECTED": {
+      return {
+        ...state,
+        fetchingTripReports: false,
+        fetchedTripReports: false,
         error: action.error
       }
     }
