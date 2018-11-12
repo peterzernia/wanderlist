@@ -12,9 +12,13 @@ class Home extends Component {
   }
 
   render(){
+
+    const listTripReports = this.props.tripReports.map((tripReport, i) =>(
+      <TripReport key={i} {...tripReport} />
+    ));
+
     return(
       <div className="content">
-        <h1>Home</h1>
         {
           this.props.fetching
           ? <DotLoader size={50} color={'#007bff'} className="content" />
@@ -22,7 +26,7 @@ class Home extends Component {
         }
         {
           this.props.fetched
-          ? <TripReport {...this.props}/>
+          ? <div>{listTripReports}</div>
           : null
         }
       </div>
@@ -33,7 +37,8 @@ class Home extends Component {
 const mapState = state => {
   return {
     fetched: state.tripReport.fetched,
-    fetching: state.tripReport.fetching
+    fetching: state.tripReport.fetching,
+    tripReports: state.tripReport.tripReports
   };
 }
 
@@ -48,5 +53,6 @@ export default connect(mapState, mapDispatch)(Home);
 Home.propTypes = {
   fetched: PropTypes.bool,
   fetching: PropTypes.bool,
+  tripReports: PropTypes.array,
   fetchTripReports: PropTypes.func
 };

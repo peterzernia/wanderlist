@@ -21,6 +21,7 @@ class Post extends Component {
       e.target.content.value,
       countries
     )
+    this.props.history.push('/');
   }
 
   render(){
