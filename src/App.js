@@ -1,6 +1,7 @@
 import './static/App.css'
 import './static/bootstrap.min.css'
 import React, { Component } from 'react'
+import PropType from 'prop-types'
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import Layout from './containers/Layout'
 import { connect } from 'react-redux'
@@ -48,5 +49,7 @@ const mapDispatch = dispatch => {
 export default connect(mapState, mapDispatch)(App);
 
 App.propTypes = {
-
+  authCheckState: PropType.func,
+  fetchUser: PropType.func,
+  fetchTripReports: PropType.func
 };
