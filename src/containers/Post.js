@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import PostModal from '../components/PostModal'
 import TripReport from '../components/TripReport'
-import { fetchUserTripReports } from '../actions/userActions'
+import { fetchUserTripReports } from '../actions/tripReportActions'
 import { postTripReport } from '../actions/tripReportActions'
 import { openPostModal, closePostModal } from '../actions/modalActions'
 import { DotLoader } from 'react-spinners';
@@ -62,9 +62,9 @@ const mapState = state => {
     error: state.tripReport.error,
     username: state.user.user.username,
     showPostModal: state.modal.showPostModal,
-    fetchingTripReports: state.user.fetchingTripReports,
-    fetchedTripReports: state.user.fetchedTripReports,
-    tripReports: state.user.tripReports
+    fetchingTripReports: state.tripReport.fetchingTripReports,
+    fetchedTripReports: state.tripReport.fetchedTripReports,
+    tripReports: state.tripReport.userTripReports
   };
 }
 

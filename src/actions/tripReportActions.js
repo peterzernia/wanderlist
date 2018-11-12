@@ -20,6 +20,26 @@ export const fetchTripReportsRejected = error => {
   }
 }
 
+export const fetchUserTripReportsPending = () => {
+  return {
+    type: "FETCH_USER_TRIP_REPORTS_PENDING"
+  }
+}
+
+export const fetchUserTripReportsFulfilled = tripReports => {
+  return {
+    type: "FETCH_USER_TRIP_REPORTS_FULFILLED",
+    tripReports: tripReports
+  }
+}
+
+export const fetchUserTripReportsRejected = error => {
+  return {
+    type: "FETCH_USER_TRIP_REPORTS_REJECTED",
+    error: error
+  }
+}
+
 export const postTripReportsPending = () => {
   return {
     type: "POST_TRIP_REPORTS_PENDING"
@@ -49,6 +69,20 @@ export const fetchTripReports = () => {
       })
       .catch(err => {
         dispatch(fetchTripReportsRejected(err));
+      })
+  }
+}
+
+export const fetchUserTripReports = (username) => {
+  return dispatch => {
+    dispatch(fetchUserTripReportsPending());
+    axios.get(`http://localhost:8000/api/v1/reports/?search=${username}`)
+      .then(response => {
+        const tripReports = response.data;
+        dispatch(fetchUserTripReportsFulfilled(tripReports));
+      })
+      .catch(err => {
+        dispatch(fetchUserTripReportsRejected(err));
       })
   }
 }
