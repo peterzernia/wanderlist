@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import PostModal from '../components/PostModal'
 import TripReport from '../components/TripReport'
-import { fetchUserTripReports } from '../actions/tripReportActions'
-import { postTripReport } from '../actions/tripReportActions'
+import { fetchUserTripReports, postTripReport, deleteTripReport } from '../actions/tripReportActions'
 import { openPostModal, closePostModal } from '../actions/modalActions'
 import { DotLoader } from 'react-spinners';
 
@@ -35,7 +34,11 @@ class Post extends Component {
   render(){
 
     const listTripReports = this.props.tripReports.map((tripReport, i) =>(
-      <TripReport key={i} {...tripReport} />
+      <div key={i}>
+        <TripReport {...tripReport} />
+        <button className="btn btn-danger" onClick={() => this.props.deleteTripReport(tripReport.id)}>Delete Post</button>
+        <button className="btn btn-primary" >Update Post</button>
+      </div>
     ));
 
     return(
@@ -72,6 +75,7 @@ const mapDispatch = dispatch => {
   return {
     fetchUserTripReports: (username) => dispatch(fetchUserTripReports(username)),
     postTripReport: (title, content, author, countries) => dispatch(postTripReport(title, content, author, countries)),
+    deleteTripReport: (tripReport) => dispatch(deleteTripReport(tripReport)),
     openPostModal: () => dispatch(openPostModal()),
     closePostModal: () => dispatch(closePostModal())
   };
@@ -88,6 +92,7 @@ Post.propTypes = {
   tripReports: PropTypes.array,
   fetchUserTripReports: PropTypes.func,
   postTripReport: PropTypes.func,
+  deleteTripReport: PropTypes.func,
   openPostModal: PropTypes.func,
   closePostModal: PropTypes.func
 };

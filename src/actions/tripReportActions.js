@@ -1,4 +1,6 @@
 import axios from 'axios'
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 export const fetchTripReportsPending = () => {
   return {
@@ -54,7 +56,26 @@ export const postTripReportsFulfilled = () => {
 
 export const postTripReportsRejected = error => {
   return {
-    type: "FETCH_TRIP_REPORTS_REJECTED",
+    type: "POST_TRIP_REPORTS_REJECTED",
+    error: error
+  }
+}
+
+export const deleteTripReportsPending = () => {
+  return {
+    type: "DELETE_TRIP_REPORTS_PENDING"
+  }
+}
+
+export const deleteTripReportsFulfilled = () => {
+  return {
+    type: "DELETE_TRIP_REPORTS_FULFILLED"
+  }
+}
+
+export const deleteTripReportsRejected = error => {
+  return {
+    type: "DELETE_TRIP_REPORTS_REJECTED",
     error: error
   }
 }
@@ -97,11 +118,23 @@ export const postTripReport = (author, title, content, countries) => {
       countries: countries
     })
       .then(response => {
-        const user = response.data;
-        dispatch(postTripReportsFulfilled(user));
+        dispatch(postTripReportsFulfilled());
       })
       .catch(err => {
         dispatch(postTripReportsRejected(err));
+      })
+  }
+}
+
+export const deleteTripReport = (tripReport) => {
+  return dispatch => {
+    dispatch(deleteTripReportsPending());
+    axios.delete(`http://localhost:8000/api/v1/reports/${tripReport}`)
+      .then(response => {
+        dispatch(deleteTripReportsFulfilled());
+      })
+      .catch(err => {
+        dispatch(deleteTripReportsRejected(err));
       })
   }
 }
