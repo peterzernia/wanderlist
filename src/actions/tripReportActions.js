@@ -111,6 +111,7 @@ export const fetchUserTripReports = (username) => {
 }
 
 export const postTripReport = (author, title, content, countries) => {
+  const token = localStorage.getItem('token');
   return dispatch => {
     dispatch(postTripReportsPending());
     axios.post('http://localhost:8000/api/v1/reports/', {
@@ -118,7 +119,9 @@ export const postTripReport = (author, title, content, countries) => {
       content: content,
       author: author,
       countries: countries
-    })
+    },
+    {headers: { 'Authorization': `Token ${token}`}}
+    )
       .then(response => {
         dispatch(postTripReportsFulfilled(response.data));
       })
@@ -129,11 +132,13 @@ export const postTripReport = (author, title, content, countries) => {
 }
 
 export const deleteTripReport = (tripReport) => {
+  const token = localStorage.getItem('token');
   return dispatch => {
     dispatch(deleteTripReportsPending());
     axios.delete(`http://localhost:8000/api/v1/reports/${tripReport}/`, {headers: {
       'X-Requested-With': 'XMLHttpRequest',
       'X-CSRFToken': 'csrftoken',
+      'Authorization': `Token ${token}`
     }})
       .then(response => {
         dispatch(deleteTripReportsFulfilled(response.data));

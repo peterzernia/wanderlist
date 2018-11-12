@@ -11,7 +11,8 @@ export default function (state = initialState, action) {
     case "FETCH_COUNTRY_PENDING": {
       return {
         ...state,
-        fetching: true
+        fetching: true,
+        fetched: false
       }
     }
     case "FETCH_COUNTRY_FULFILLED": {
