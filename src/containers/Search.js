@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { fetchCountry } from '../actions/countryActions'
 import { putUserData } from '../actions/userActions'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
-import { DotLoader } from 'react-spinners';
+import { DotLoader } from 'react-spinners'
 
 class Search extends Component {
 

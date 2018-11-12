@@ -11,7 +11,7 @@ class NavBar extends Component {
     const { location } = this.props;
     const homeClass = location.pathname === '/' ? 'btn navbar-brand active' : 'btn'
     const searchClass = location.pathname === '/search' ? 'btn active' : 'btn'
-    const discoverClass = location.pathname === '/discover' ? 'btn active' : 'btn'
+    const postClass = location.pathname === '/post' ? 'btn active' : 'btn'
     const mapClass = location.pathname === '/map' ? 'btn active' : 'btn'
     const profileClass = location.pathname === '/profile' ? 'btn active' : 'btn'
     const loginClass = location.pathname === '/login' ? 'btn active' : 'btn'
@@ -26,7 +26,7 @@ class NavBar extends Component {
         <div className={navClass} id="navbarNavAltMarkup">
           <div className="navbar-nav mr-auto">
             <Link className={searchClass} to="/search">Search</Link>
-            <Link className={discoverClass} to="/discover">Discover</Link>
+            <Link className={postClass} to="/post">Post</Link>
             <Link className={mapClass} to="/map">My Map</Link>
             <Link className={profileClass} to="/profile">Profile</Link>
           </div>

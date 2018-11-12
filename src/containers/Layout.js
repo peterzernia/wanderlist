@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Discover from './Discover'
+import Post from './Post'
 import Home from './Home'
 import Login from './Login'
 import Logout from './Logout'
@@ -14,6 +14,7 @@ import { Route } from "react-router-dom"
 import { connect } from 'react-redux'
 import { authLogout } from '../actions/authActions'
 import { toggleNavBar } from '../actions/navbarActions'
+import { DotLoader } from 'react-spinners'
 
 class Layout extends Component {
 
@@ -25,15 +26,21 @@ class Layout extends Component {
   render(){
     return(
       <div>
-        <NavBar {...this.props} handleClick={this.handleClick} /><br/>
-        <Route exact path={`${this.props.match.url}`} component={Home}/>
-        <Route path={`${this.props.match.url}/search`} component={Search}/>
-        <PrivateRoute {...this.props} path={`${this.props.match.url}/discover`} component={Discover}/>
-        <PrivateRoute {...this.props} path={`${this.props.match.url}/map`} component={Map}/>
-        <PrivateRoute {...this.props} path={`${this.props.match.url}/profile`} component={Profile}/>
-        <Route path={`${this.props.match.url}/login`} component={Login}/>
-        <Route path={`${this.props.match.url}/logout`} component={Logout}/>
-        <Route path={`${this.props.match.url}/register`} component={Register}/>
+      {
+        !this.props.fetching
+        ?<div>
+          <NavBar {...this.props} handleClick={this.handleClick} /><br/>
+          <Route exact path={`${this.props.match.url}`} component={Home}/>
+          <Route path={`${this.props.match.url}/search`} component={Search}/>
+          <PrivateRoute {...this.props} path={`${this.props.match.url}/post`} component={Post}/>
+          <PrivateRoute {...this.props} path={`${this.props.match.url}/map`} component={Map}/>
+          <PrivateRoute {...this.props} path={`${this.props.match.url}/profile`} component={Profile}/>
+          <Route path={`${this.props.match.url}/login`} component={Login}/>
+          <Route path={`${this.props.match.url}/logout`} component={Logout}/>
+          <Route path={`${this.props.match.url}/register`} component={Register}/>
+        </div>
+        :<DotLoader size={50} color={'#007bff'} className="content" />
+      }
       </div>
     )
   }
@@ -42,6 +49,7 @@ class Layout extends Component {
 const mapState = state => {
   return {
     authenticated: state.auth.authenticated,
+    fetching: state.user.fetching,
     collapsed: state.navbar.collapsed
   }
 }
@@ -57,6 +65,7 @@ export default connect(mapState, mapDispatch)(Layout);
 
 Layout.propTypes = {
   authenticated: PropTypes.bool,
+  fetching: PropTypes.bool,
   collapsed: PropTypes.bool,
   authLogout: PropTypes.func,
   toggleNavBar: PropTypes.func

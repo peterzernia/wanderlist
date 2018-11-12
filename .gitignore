@@ -8,6 +8,7 @@ htmlcov
 
 # production
 production_settings.py
+/build
 
 # misc
 .DS_Store
@@ -29,5 +30,6 @@ db.sqlite3
 languages.json
 currencies.json
 countries.json
-load_data_python_cmd.txt
+load_data_python.txt
 /flags
+/media
