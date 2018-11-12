@@ -16,9 +16,9 @@ class Post extends Component {
       }
     }
     this.props.postTripReport(
+      this.props.username,
       e.target.title.value,
       e.target.content.value,
-      this.props.pk,
       countries
     )
   }
@@ -36,7 +36,7 @@ class Post extends Component {
 const mapState = state => {
   return {
     error: state.tripReport.error,
-    pk: state.user.user.pk,
+    username: state.user.user.username,
   };
 }
 
@@ -50,5 +50,5 @@ export default connect(mapState, mapDispatch)(Post);
 
 Post.propTypes = {
   error: PropTypes.object,
-  pk: PropTypes.number,
+  pk: PropTypes.string,
 };

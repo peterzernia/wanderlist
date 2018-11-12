@@ -22,7 +22,7 @@ class Home extends Component {
         }
         {
           this.props.fetched
-          ? <TripReport />
+          ? <TripReport {...this.props}/>
           : null
         }
       </div>

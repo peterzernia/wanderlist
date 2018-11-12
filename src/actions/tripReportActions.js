@@ -53,7 +53,7 @@ export const fetchTripReports = () => {
   }
 }
 
-export const postTripReport = (title, content, author, countries) => {
+export const postTripReport = (author, title, content, countries) => {
   return dispatch => {
     dispatch(postTripReportsPending());
     axios.post('http://localhost:8000/api/v1/reports/', {

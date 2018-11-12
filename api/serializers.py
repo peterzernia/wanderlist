@@ -38,6 +38,7 @@ class CountrySerializer(serializers.ModelSerializer):
 
 
 class TripReportSerializer(serializers.ModelSerializer):
+    author = serializers.SlugRelatedField(slug_field='username', queryset=User.objects.all())
     class Meta:
         model = TripReport
         fields = ('__all__')
