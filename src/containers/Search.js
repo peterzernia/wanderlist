@@ -48,11 +48,7 @@ class Search extends Component {
             ? <DotLoader size={50} color={'#007bff'} className="content" />
             : null
           }
-          {
-            this.props.fetched
-            ? <Results handleClick={this.handleClick} {...this.props} />
-            : null
-          }
+          <Results handleClick={this.handleClick} {...this.props} />
           <CountryModal {...this.props} />
         </div>
       );

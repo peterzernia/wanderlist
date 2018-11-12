@@ -48,9 +48,10 @@ export const postTripReportsPending = () => {
   }
 }
 
-export const postTripReportsFulfilled = () => {
+export const postTripReportsFulfilled = response => {
   return {
-    type: "POST_TRIP_REPORTS_FULFILLED"
+    type: "POST_TRIP_REPORTS_FULFILLED",
+    response: response
   }
 }
 
@@ -67,9 +68,10 @@ export const deleteTripReportsPending = () => {
   }
 }
 
-export const deleteTripReportsFulfilled = () => {
+export const deleteTripReportsFulfilled = response => {
   return {
-    type: "DELETE_TRIP_REPORTS_FULFILLED"
+    type: "DELETE_TRIP_REPORTS_FULFILLED",
+    response: response
   }
 }
 
@@ -118,7 +120,7 @@ export const postTripReport = (author, title, content, countries) => {
       countries: countries
     })
       .then(response => {
-        dispatch(postTripReportsFulfilled());
+        dispatch(postTripReportsFulfilled(response.data));
       })
       .catch(err => {
         dispatch(postTripReportsRejected(err));
@@ -134,7 +136,7 @@ export const deleteTripReport = (tripReport) => {
       'X-CSRFToken': 'csrftoken',
     }})
       .then(response => {
-        dispatch(deleteTripReportsFulfilled());
+        dispatch(deleteTripReportsFulfilled(response.data));
       })
       .catch(err => {
         dispatch(deleteTripReportsRejected(err));

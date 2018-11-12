@@ -3,10 +3,9 @@ const initialState = {
   fetched: false,
   fetchingTripReports: false,
   fetchedTripReports: false,
-  posting: false,
-  posted: true,
   tripReports: [],
   userTripReports: [],
+  response: null,
   error: null,
 }
 
@@ -59,14 +58,12 @@ export default function (state = initialState, action) {
     case "POST_TRIP_REPORTS_PENDING": {
       return {
         ...state,
-        posting: true
       }
     }
     case "POST_TRIP_REPORTS_FULFILLED": {
       return {
         ...state,
-        posting: false,
-        posted: true,
+        response: action.response
       }
     }
     case "POST_TRIP_REPORTS_REJECTED": {
@@ -83,6 +80,7 @@ export default function (state = initialState, action) {
     case "DELETE_TRIP_REPORTS_FULFILLED": {
       return {
         ...state,
+        response: action.response
       }
     }
     case "DELETE_TRIP_REPORTS_REJECTED": {
