@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const RegistrationForm = (props) => (
   <div>
     <div className='form-inline'>
-      <form onSubmit={this.props.handleSubmit}>
+      <form onSubmit={props.handleSubmit}>
         <input className="form-control user-auth" type='text' name="username" placeholder="Username"/><br/>
         <input className="form-control user-auth" type='text' name="email" placeholder="Email"/><br/>
         <input className="form-control user-auth" type='password' name="password1" placeholder="Password"/><br/>

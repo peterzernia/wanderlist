@@ -3,41 +3,38 @@ import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-export class GoogleMap extends Component {
-  render() {
+const GoogleMap = (props) => {
 
-    const style = {
-    width: '700px',
-    height: '450px',
-    border: '.5px solid black'
-    }
-
-    /*
-    Adds clickable Markers to the map at the coordinates of all of the
-    countries on the users list.
-    */
-    const listMarkers = this.props.userCountries.map(country =>(
-      <Marker
-        key={country.id}
-        onClick={() => this.props.openCountryModal(country)}
-        name={country.name}
-        position={{lat: country.latlng[0], lng: country.latlng[1]}} />
-    ));
-
-
-    return (
-      <div className='map'>
-        <Map options={{ gestureHandling: 'coopertive' }}
-             style={style}
-             google={this.props.google}
-             zoom={2}>
-          {listMarkers}
-        </Map>
-      </div>
-    );
+  const style = {
+  width: '700px',
+  height: '450px',
+  border: '.5px solid black'
   }
+
+  /*
+  Adds clickable Markers to the map at the coordinates of all of the
+  countries on the users list.
+  */
+  const listMarkers = props.userCountries.map(country =>(
+    <Marker
+      key={country.id}
+      onClick={() => props.openCountryModal(country)}
+      name={country.name}
+      position={{lat: country.latlng[0], lng: country.latlng[1]}} />
+  ));
+
+
+  return (
+    <div className='map'>
+      <Map options={{ gestureHandling: 'coopertive' }}
+           style={style}
+           google={props.google}
+           zoom={2}>
+        {listMarkers}
+      </Map>
+    </div>
+  );
 }
 
-export default GoogleApiWrapper({
-  apiKey: (API_KEY)
-})(GoogleMap)
+
+export default GoogleApiWrapper({ apiKey: (API_KEY) })(GoogleMap)
