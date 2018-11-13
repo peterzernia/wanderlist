@@ -117,3 +117,12 @@ This is the class for the DotLoader.
   text-align: left;
   margin-left: 10px;
 }
+
+.trip-report {
+  max-width: 600px;
+  align: center;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+  padding: 5px;
+}

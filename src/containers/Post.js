@@ -3,7 +3,12 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import PostModal from '../components/PostModal'
 import TripReport from '../components/TripReport'
-import { fetchUserTripReports, postTripReport, deleteTripReport } from '../actions/tripReportActions'
+import {
+  fetchUserTripReports,
+  postTripReport,
+  deleteTripReport,
+  updateTripReport
+} from '../actions/tripReportActions'
 import { openPostModal, closePostModal } from '../actions/modalActions'
 import { DotLoader } from 'react-spinners';
 
@@ -34,10 +39,10 @@ class Post extends Component {
   render(){
 
     const listTripReports = this.props.tripReports.map(tripReport =>(
-      <div key={tripReport.id}>
+      <div key={tripReport.id} className='trip-report'>
         <TripReport {...tripReport} />
         <button className="btn btn-danger" onClick={() => this.props.deleteTripReport(tripReport.id)}>Delete Post</button>
-        <button className="btn btn-primary" >Update Post</button>
+        <button className="btn btn-primary" onClick={() => this.props.updateTripReport(tripReport.id, this.props.username, tripReport.title, tripReport.content, tripReport.countries)}>Update Post</button>
       </div>
     ));
 
@@ -68,6 +73,7 @@ const mapDispatch = dispatch => {
     fetchUserTripReports: (username) => dispatch(fetchUserTripReports(username)),
     postTripReport: (title, content, author, countries) => dispatch(postTripReport(title, content, author, countries)),
     deleteTripReport: (tripReport) => dispatch(deleteTripReport(tripReport)),
+    updateTripReport: (tripReport, author, title, content, countries) => dispatch(updateTripReport(tripReport, author, title, content, countries)),
     openPostModal: () => dispatch(openPostModal()),
     closePostModal: () => dispatch(closePostModal())
   };
@@ -85,6 +91,7 @@ Post.propTypes = {
   fetchUserTripReports: PropTypes.func,
   postTripReport: PropTypes.func,
   deleteTripReport: PropTypes.func,
+  updateTripReport: PropTypes.func,
   openPostModal: PropTypes.func,
   closePostModal: PropTypes.func
 };

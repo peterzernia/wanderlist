@@ -89,6 +89,23 @@ export default function (state = initialState, action) {
         error: action.error
       }
     }
+    case "UPDATE_TRIP_REPORTS_PENDING": {
+      return {
+        ...state,
+      }
+    }
+    case "UPDATE_TRIP_REPORTS_FULFILLED": {
+      return {
+        ...state,
+        response: action.response
+      }
+    }
+    case "UPDATE_TRIP_REPORTS_REJECTED": {
+      return {
+        ...state,
+        error: action.error
+      }
+    }
     default:
       return state
   }

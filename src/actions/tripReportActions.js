@@ -82,6 +82,26 @@ export const deleteTripReportsRejected = error => {
   }
 }
 
+export const updateTripReportsPending = () => {
+  return {
+    type: "UPDATE_TRIP_REPORTS_PENDING"
+  }
+}
+
+export const updateTripReportsFulfilled = response => {
+  return {
+    type: "UPDATE_TRIP_REPORTS_FULFILLED",
+    response: response
+  }
+}
+
+export const updateTripReportsRejected = error => {
+  return {
+    type: "UPDATE_TRIP_REPORTS_REJECTED",
+    error: error
+  }
+}
+
 export const fetchTripReports = () => {
   return dispatch => {
     dispatch(fetchTripReportsPending());
@@ -145,6 +165,32 @@ export const deleteTripReport = (tripReport) => {
       })
       .catch(err => {
         dispatch(deleteTripReportsRejected(err));
+      })
+  }
+}
+
+export const updateTripReport = (tripReport, author, title, content, countries) => {
+  const token = localStorage.getItem('token');
+  return dispatch => {
+    dispatch(updateTripReportsPending());
+    axios.put(`http://localhost:8000/api/v1/reports/${tripReport}/`,
+      {
+        id: tripReport,
+        author: author,
+        title: title,
+        content: content,
+        countries: countries
+      },
+      {headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRFToken': 'csrftoken',
+        'Authorization': `Token ${token}`
+    }})
+      .then(response => {
+        dispatch(updateTripReportsFulfilled(response.data));
+      })
+      .catch(err => {
+        dispatch(updateTripReportsRejected(err));
       })
   }
 }
