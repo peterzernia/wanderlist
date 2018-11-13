@@ -19,19 +19,22 @@ class Search extends Component {
   /*
   This function checks to see if the country is already in the user list,
   adds it if it is not, and removes it if it is, then PUT requests the new list
-  to the Django API.
+  to the Django API. The button in the Results component is given the
+  name = index of the array. Then e.target.name == the index of the clicked
+  country in the array of searchedCountry when clicked. From the array index,
+  the newCountry object is the searchedCountry[e.target.name]. 
   */
   handleClick = (e) => {
     e.preventDefault();
     var newCountryList = this.props.userCountries
     var newCountry = this.props.searchedCountry[e.target.name]
-    if (e.target.innerText === 'Remove') {
-      var index = newCountryList.findIndex(i => i.name === newCountry.name)
+    if (this.props.userCountries.findIndex(i => i.name === newCountry.name) === -1) {
+      newCountryList = this.props.userCountries.concat([newCountry]);
+    } else {
+      var index = newCountryList.findIndex(i => i.name === newCountry.name);
       if (index !== -1){
         newCountryList.splice(index, 1);
       }
-    } else {
-      newCountryList = this.props.userCountries.concat([newCountry]);
     }
     this.props.putUserData(
       this.props.username,
