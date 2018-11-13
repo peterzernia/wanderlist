@@ -27,8 +27,8 @@ class Layout extends Component {
     return(
       <div>
       {
-        this.props.fetched &&
-        <div>
+        !this.props.fetching
+        ?<div>
           <NavBar {...this.props} handleClick={this.handleClick} /><br/>
           <Route exact path={`${this.props.match.url}`} component={Home}/>
           <Route path={`${this.props.match.url}/search`} component={Search}/>
@@ -39,8 +39,8 @@ class Layout extends Component {
           <Route path={`${this.props.match.url}/logout`} component={Logout}/>
           <Route path={`${this.props.match.url}/register`} component={Register}/>
         </div>
+        :<div className='centered'><DotLoader size={50} color={'#007bff'} className="content" /></div>
       }
-      {this.props.fetching && <DotLoader size={50} color={'#007bff'} className="content" />}      
       </div>
     )
   }

@@ -3,12 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import PostModal from '../components/PostModal'
 import TripReport from '../components/TripReport'
-import {
-  fetchUserTripReports,
-  postTripReport,
-  deleteTripReport,
-  updateTripReport
-} from '../actions/tripReportActions'
+import { fetchUserTripReports, postTripReport, deleteTripReport, updateTripReport } from '../actions/tripReportActions'
 import { openPostModal, closePostModal, openUpdatePostModal } from '../actions/modalActions'
 import { DotLoader } from 'react-spinners';
 
@@ -69,15 +64,15 @@ display and the submit button will update the existing trip report.
     const listTripReports = this.props.tripReports.map(tripReport =>(
       <div key={tripReport.id} className='trip-report'>
         <TripReport {...tripReport} />
-        <button className="btn btn-danger" onClick={() => this.props.deleteTripReport(tripReport.id)}>Delete Post</button>
-        <button className="btn btn-primary" onClick={() => this.props.openUpdatePostModal(tripReport)}>Update Post</button>
+        <button className="btn btn-danger" onClick={() => {if(window.confirm('Delete the post?')) {this.props.deleteTripReport(tripReport.id)};}}>Delete Trip Report</button>
+        <button className="btn btn-primary" onClick={() => this.props.openUpdatePostModal(tripReport)}>Update Trip Report</button>
       </div>
     ));
 
     return(
       <div className="content">
         <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} />
-        <button className="btn btn-primary" onClick={this.props.openPostModal}>New Post</button>
+        <button className="btn btn-primary" onClick={this.props.openPostModal}>New Trip Report</button>
         {this.props.fetchingTripReports && <DotLoader size={50} color={'#007bff'} className="content" />}
         {this.props.fetchedTripReports && <div>{listTripReports}</div>}
       </div>

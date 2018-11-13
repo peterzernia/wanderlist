@@ -15,7 +15,7 @@ class NavBar extends Component {
         <div className={navClass} id="navbarNavAltMarkup">
           <div className="navbar-nav mr-auto">
             <NavLink className='btn' to="/search">Search</NavLink>
-            <NavLink className='btn' to="/post">My Posts</NavLink>
+            <NavLink className='btn' to="/post">Trip Reports</NavLink>
             <NavLink className='btn' to="/map">My Map</NavLink>
             <NavLink className='btn' to="/profile">Profile</NavLink>
           </div>
