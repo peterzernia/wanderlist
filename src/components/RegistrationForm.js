@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 const RegistrationForm = (props) => (
   <div>
-    {this.props.errorMessage}
     <div className='form-inline'>
       <form onSubmit={this.props.handleSubmit}>
         <input className="form-control user-auth" type='text' name="username" placeholder="Username"/><br/>

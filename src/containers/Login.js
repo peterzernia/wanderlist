@@ -19,8 +19,16 @@ class Login extends Component {
   }
 
   render(){
+
+    let errorMessage = null;
+    if (this.props.error) {
+      errorMessage = <p>{this.props.error.message}</p>
+    }
+
     return(
+
       <div className="content">
+        {errorMessage}
         {
           !this.props.authenticated
           ? <LoginForm handleSubmit={this.handleSubmit} {...this.props} />

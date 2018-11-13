@@ -2,7 +2,6 @@ import React from 'react'
 
 const PostTripReportForm = (props) => (
   <div className='form-inline'>
-    {props.errorMessage}
     <form onSubmit={props.handleSubmit}>
       <input className="form-control user-auth" type='text' name="title" placeholder="Title"/><br/><br/>
       <textarea className="form-control user-auth" rows="4" cols="100" name="content" placeholder="Content"/><br/><br/>

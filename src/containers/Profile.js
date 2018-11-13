@@ -27,6 +27,7 @@ class Profile extends Component {
 
     return(
       <div className="content">
+        {errorMessage}
         <h1>{this.props.user.username}</h1>
         <br/>
         <ProfileModal handleSubmit={this.handleSubmit} {...this.props} errorMessage={this.errorMessage}/>

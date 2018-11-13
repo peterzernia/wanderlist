@@ -2,7 +2,6 @@ import React from 'react'
 
 const EditProfileForm = (props) => (
   <div className='form-inline'>
-    {props.errorMessage}
     <form onSubmit={props.handleSubmit}>
       <input className="form-control user-auth" type='text' name="username" defaultValue={props.user.username}/><br/>
       <input className="form-control user-auth" type='text' name="email" defaultValue={props.user.email}/><br/>
