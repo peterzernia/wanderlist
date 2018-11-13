@@ -9,7 +9,7 @@ import {
   deleteTripReport,
   updateTripReport
 } from '../actions/tripReportActions'
-import { openPostModal, closePostModal } from '../actions/modalActions'
+import { openPostModal, closePostModal, openUpdatePostModal } from '../actions/modalActions'
 import { DotLoader } from 'react-spinners';
 
 class Post extends Component {
@@ -18,7 +18,16 @@ class Post extends Component {
     this.props.fetchUserTripReports(this.props.username);
   }
 
-  handleSubmit = (e) => {
+/*
+handlPostSubmit will create a new trip report and handleUpdateSubmit will
+update an existing trip report. Both functions are passed into the Post Modal.
+If the Post Modal is opened with openPostModal, this.props.updatePostModal
+remains false and the blank form is displayed, and the submit button will
+create a new post. If the Post Modal is openeed with openUpdatePostModal,
+this.props.updatePostModal will flip to true, and the pre-filled in form will
+display and the submit button will update the existing trip report.
+*/
+  handlePostSubmit = (e) => {
     e.preventDefault();
     var options = e.target.countries.options;
     var countries =[];
@@ -36,19 +45,38 @@ class Post extends Component {
     this.props.closePostModal();
   }
 
+  handleUpdateSubmit = (e) => {
+    e.preventDefault();
+    var options = e.target.countries.options;
+    var countries =[];
+    for (var i = 0, l = options.length; i < l; i++) {
+      if (options[i].selected) {
+        countries.push(options[i].value);
+      }
+    }
+    this.props.updateTripReport(
+      this.props.modalPost.id,
+      this.props.username,
+      e.target.title.value,
+      e.target.content.value,
+      countries
+    );
+    this.props.closePostModal();
+  }
+
   render(){
 
     const listTripReports = this.props.tripReports.map(tripReport =>(
       <div key={tripReport.id} className='trip-report'>
         <TripReport {...tripReport} />
         <button className="btn btn-danger" onClick={() => this.props.deleteTripReport(tripReport.id)}>Delete Post</button>
-        <button className="btn btn-primary" onClick={() => this.props.updateTripReport(tripReport.id, this.props.username, tripReport.title, tripReport.content, tripReport.countries)}>Update Post</button>
+        <button className="btn btn-primary" onClick={() => this.props.openUpdatePostModal(tripReport)}>Update Post</button>
       </div>
     ));
 
     return(
       <div className="content">
-        <PostModal {...this.props} handleSubmit={this.handleSubmit} />
+        <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} />
         <button className="btn btn-primary" onClick={this.props.openPostModal}>New Post</button>
         {this.props.fetchingTripReports && <DotLoader size={50} color={'#007bff'} className="content" />}
         {this.props.fetchedTripReports && <div>{listTripReports}</div>}
@@ -64,7 +92,9 @@ const mapState = state => {
     showPostModal: state.modal.showPostModal,
     fetchingTripReports: state.tripReport.fetchingTripReports,
     fetchedTripReports: state.tripReport.fetchedTripReports,
-    tripReports: state.tripReport.userTripReports
+    tripReports: state.tripReport.userTripReports,
+    updatePostModal: state.modal.updatePostModal,
+    modalPost: state.modal.modalPost,
   };
 }
 
@@ -75,7 +105,8 @@ const mapDispatch = dispatch => {
     deleteTripReport: (tripReport) => dispatch(deleteTripReport(tripReport)),
     updateTripReport: (tripReport, author, title, content, countries) => dispatch(updateTripReport(tripReport, author, title, content, countries)),
     openPostModal: () => dispatch(openPostModal()),
-    closePostModal: () => dispatch(closePostModal())
+    closePostModal: () => dispatch(closePostModal()),
+    openUpdatePostModal: (modalPost) => dispatch(openUpdatePostModal(modalPost))
   };
 }
 
@@ -88,10 +119,15 @@ Post.propTypes = {
   fetchingTripReports: PropTypes.bool,
   fetchedTripReports: PropTypes.bool,
   tripReports: PropTypes.array,
+  updatePostModal: PropTypes.bool,
+  modalPost: PropTypes.object,
   fetchUserTripReports: PropTypes.func,
   postTripReport: PropTypes.func,
   deleteTripReport: PropTypes.func,
   updateTripReport: PropTypes.func,
   openPostModal: PropTypes.func,
-  closePostModal: PropTypes.func
+  closePostModal: PropTypes.func,
+  openUpdatePostModal: PropTypes.func
 };
+
+//this.props.updateTripReport(tripReport.id, this.props.username, tripReport.title, tripReport.content, tripReport.countries)

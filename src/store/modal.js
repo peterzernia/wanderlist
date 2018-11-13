@@ -2,8 +2,10 @@ const initialState = {
   showCountryModal: false,
   showProfileModal: false,
   showPostModal: false,
+  updatePostModal: false,
   modalCountry: {},
-  modalProfile: {}
+  modalProfile: {},
+  modalPost: {}
 }
 
 /* Reducer Function*/
@@ -41,10 +43,19 @@ export default function (state = initialState, action) {
         showPostModal: true
       }
     }
+    case "OPEN_UPDATE_POST_MODAL": {
+      return {
+        ...state,
+        showPostModal: true,
+        updatePostModal: true,
+        modalPost: action.modalPost
+      }
+    }
     case "CLOSE_POST_MODAL": {
       return {
         ...state,
-        showPostModal: false
+        showPostModal: false,
+        updatePostModal: false
       }
     }
     default:

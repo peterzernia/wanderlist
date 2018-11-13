@@ -22,9 +22,22 @@ export const closeProfileModal = () => {
   }
 }
 
-export const openPostModal = modalProfile => {
+/*
+There are two different actions that will open up the Post Modal. The first one
+opens up the Post modal with a blank form and a Post Submit function, and the
+second action passes in a trip report, and opens up the Post Modal with the forms
+autofilled with the trip report's details. The submit function will update the
+trip report.
+*/
+export const openPostModal = () => {
   return dispatch => {
     dispatch({ type: "OPEN_POST_MODAL" })
+  }
+}
+
+export const openUpdatePostModal = modalPost => {
+  return dispatch => {
+    dispatch({ type: "OPEN_UPDATE_POST_MODAL" , modalPost: modalPost })
   }
 }
 
