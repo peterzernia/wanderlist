@@ -6,7 +6,7 @@ from countries.models import Country
 class User(AbstractUser):
     '''
     Custom User model. Countries is a list of countries associated with the
-    user.
+    user. Home country is a single country object
     '''
     countries = models.ManyToManyField(
         Country, blank=True, related_name='user_countries'

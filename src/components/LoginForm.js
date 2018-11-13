@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button'
 
 const LoginForm = (props) => (
   <div>
@@ -7,7 +8,7 @@ const LoginForm = (props) => (
       <form onSubmit={props.handleSubmit}>
         <input className="form-control user-auth" type='text' name="username" placeholder="Username"/><br/>
         <input className="form-control user-auth" type='password' name="password" placeholder="Password"/><br/>
-        <button className="btn btn-primary user-auth-btn" type="submit">Login</button>
+        <Button variant="contained" color="primary" type="submit">Login</Button>
         <Link className="btn" to="/register">Register</Link>
       </form>
     </div>

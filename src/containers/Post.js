@@ -5,7 +5,8 @@ import PostModal from '../components/PostModal'
 import TripReport from '../components/TripReport'
 import { fetchUserTripReports, postTripReport, deleteTripReport, updateTripReport } from '../actions/tripReportActions'
 import { openPostModal, closePostModal, openUpdatePostModal } from '../actions/modalActions'
-import { DotLoader } from 'react-spinners';
+import { DotLoader } from 'react-spinners'
+import Button from '@material-ui/core/Button'
 
 class Post extends Component {
 
@@ -69,8 +70,8 @@ display and the submit button will update the existing trip report.
     const listTripReports = this.props.tripReports.map(tripReport =>(
       <div key={tripReport.id} className='trip-report'>
         <TripReport {...tripReport} />
-        <button className="btn btn-danger" onClick={() => {if(window.confirm('Delete the post?')) {this.props.deleteTripReport(tripReport.id)};}}>Delete Trip Report</button>
-        <button className="btn btn-primary" onClick={() => this.props.openUpdatePostModal(tripReport)}>Update Trip Report</button>
+        <Button variant="contained" color="primary" onClick={() => this.props.openUpdatePostModal(tripReport)}>Update</Button>
+        <Button variant="contained" color="secondary" onClick={() => {if(window.confirm('Delete the post?')) {this.props.deleteTripReport(tripReport.id)};}}>Delete</Button>
       </div>
     ));
 
@@ -78,7 +79,7 @@ display and the submit button will update the existing trip report.
       <div className="content">
         {errorMessage}
         <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} errorMessage={this.errorMessage}/>
-        <button className="btn btn-primary" onClick={this.props.openPostModal}>New Trip Report</button>
+        <Button variant="contained" color="primary" className="btn btn-primary" onClick={this.props.openPostModal}>New Trip Report</Button>
         {this.props.fetchingTripReports && <DotLoader size={50} color={'#007bff'} className="content" />}
         {this.props.fetchedTripReports && <div>{listTripReports}</div>}
       </div>

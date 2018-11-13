@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '@material-ui/core/Button'
 
 const EditProfileForm = (props) => (
   <div className='form-inline'>
@@ -258,7 +259,7 @@ const EditProfileForm = (props) => (
         <option value="249">Zambia</option>
         <option value="250">Zimbabwe</option>
       </select><br/>
-      <button className="btn btn-primary user-auth-btn" type="submit">Update</button>
+      <Button variant="contained" color="primary" type="submit">Update</Button>
     </form>
   </div>
 );

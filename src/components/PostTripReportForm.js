@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '@material-ui/core/Button'
 
 const PostTripReportForm = (props) => (
   <div className='form-inline'>
@@ -257,7 +258,7 @@ const PostTripReportForm = (props) => (
         <option value="249">Zambia</option>
         <option value="250">Zimbabwe</option>
       </select><br/>
-      <button className="btn btn-primary user-auth-btn" type="submit">Post</button>
+      <Button variant="contained" color="primary" type="submit">Post</Button>
     </form>
   </div>
 );

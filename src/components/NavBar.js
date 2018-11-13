@@ -1,22 +1,23 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import AppBar from '@material-ui/core/AppBar'
 
 const NavBar = (props) => {
 
   const navClass = props.collapsed ? "navbar-collapse collapse" : "navbar-collapse";
 
   return (
-    <nav className="navbar navbar-expand-sm sticky-top navbar-white bg-white">
-      <Link to="/" className='btn navbar-brand'>Countries</Link>
+    <AppBar position="static">
+      <Link to="/">Countries</Link>
       <button className="navbar-toggler" type="button" onClick={props.toggleNavBar}>
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className={navClass} id="navbarNavAltMarkup">
         <div className="navbar-nav mr-auto">
-          <NavLink className='btn' to="/search">Search</NavLink>
-          <NavLink className='btn' to="/post">Trip Reports</NavLink>
-          <NavLink className='btn' to="/map">My Map</NavLink>
-          <NavLink className='btn' to="/profile">Profile</NavLink>
+          <NavLink to="/search">Search</NavLink>
+          <NavLink to="/post">Trip Reports</NavLink>
+          <NavLink to="/map">My Map</NavLink>
+          <NavLink to="/profile">Profile</NavLink>
         </div>
         <div className="navbar-nav ml-auto">
           {
@@ -26,7 +27,7 @@ const NavBar = (props) => {
           }
         </div>
       </div>
-    </nav>
+    </AppBar>
 )};
 
 export default NavBar;

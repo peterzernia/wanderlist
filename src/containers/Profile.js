@@ -5,7 +5,7 @@ import ProfileModal from '../components/ProfileModal'
 import { openProfileModal, closeProfileModal } from '../actions/modalActions'
 import { putUserData } from '../actions/userActions'
 import { fetchCountry } from '../actions/countryActions'
-
+import Button from '@material-ui/core/Button'
 
 class Profile extends Component {
 
@@ -33,7 +33,7 @@ class Profile extends Component {
         <h1>{this.props.user.username}</h1>
         <br/>
         <ProfileModal handleSubmit={this.handleSubmit} {...this.props} errorMessage={this.errorMessage}/>
-        <button className="btn btn-primary" onClick={() => this.props.openProfileModal(this.props.user)}>EditProfile</button>
+        <Button variant="contained" color="primary" onClick={() => this.props.openProfileModal(this.props.user)}>Edit Profile</Button>
       </div>
     );
   }
