@@ -19,11 +19,17 @@ class Profile extends Component {
   }
 
   render(){
+
+    let errorMessage = null;
+    if (this.props.error) {
+      errorMessage = <p>{this.props.error.message}</p>
+    }
+
     return(
       <div className="content">
         <h1>{this.props.user.username}</h1>
         <br/>
-        <ProfileModal handleSubmit={this.handleSubmit} {...this.props} />
+        <ProfileModal handleSubmit={this.handleSubmit} {...this.props} errorMessage={this.errorMessage}/>
         <button className="btn btn-primary" onClick={() => this.props.openProfileModal(this.props.user)}>EditProfile</button>
       </div>
     );

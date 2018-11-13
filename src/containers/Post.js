@@ -61,6 +61,11 @@ display and the submit button will update the existing trip report.
 
   render(){
 
+    let errorMessage = null;
+    if (this.props.error) {
+      errorMessage = <p>{this.props.error.message}</p>
+    }
+
     const listTripReports = this.props.tripReports.map(tripReport =>(
       <div key={tripReport.id} className='trip-report'>
         <TripReport {...tripReport} />
@@ -71,7 +76,7 @@ display and the submit button will update the existing trip report.
 
     return(
       <div className="content">
-        <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} />
+        <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} errorMessage={this.errorMessage}/>
         <button className="btn btn-primary" onClick={this.props.openPostModal}>New Trip Report</button>
         {this.props.fetchingTripReports && <DotLoader size={50} color={'#007bff'} className="content" />}
         {this.props.fetchedTripReports && <div>{listTripReports}</div>}

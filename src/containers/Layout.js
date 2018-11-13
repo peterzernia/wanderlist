@@ -24,6 +24,12 @@ class Layout extends Component {
   }
 
   render(){
+
+    let errorMessage = null;
+    if (this.props.error) {
+      errorMessage = <p>{this.props.error.message}</p>
+    }
+
     return(
       <div>
       {
@@ -35,9 +41,9 @@ class Layout extends Component {
           <PrivateRoute {...this.props} path={`${this.props.match.url}/post`} component={Post}/>
           <PrivateRoute {...this.props} path={`${this.props.match.url}/map`} component={Map}/>
           <PrivateRoute {...this.props} path={`${this.props.match.url}/profile`} component={Profile}/>
-          <Route path={`${this.props.match.url}/login`} component={Login}/>
+          <Route path={`${this.props.match.url}/login`} errorMessage={this.errorMessage} component={Login}/>
           <Route path={`${this.props.match.url}/logout`} component={Logout}/>
-          <Route path={`${this.props.match.url}/register`} component={Register}/>
+          <Route path={`${this.props.match.url}/register`} errorMessage={this.errorMessage} component={Register}/>
         </div>
         :<div className='centered'><DotLoader size={50} color={'#007bff'} className="content" /></div>
       }

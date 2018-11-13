@@ -1,13 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Logout extends Component {
-  render(){
-    return(
-      <div className="content">
-        You have been logged out.
-      </div>
-    );
-  }
-}
+const Logout = () => (
+  <div className="content">
+    You have been logged out.
+  </div>
+);
 
 export default Logout;
