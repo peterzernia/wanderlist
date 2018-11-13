@@ -10,11 +10,7 @@ class Map extends Component {
 
     return(
       <div className="content">
-        {
-          (this.props.count === 0)
-          ? <p> It looks like you haven't added any places yet. </p>
-          : null
-        }
+        {(this.props.userCountries.length === 0) && <p> It looks like you haven't added any places yet. </p>}
         <GoogleMap {...this.props} />
         <CountryModal {...this.props} />
       </div>

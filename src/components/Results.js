@@ -9,7 +9,7 @@ class Results extends Component {
     view detail of country returned in search results.
     */
     const listCountries = this.props.searchedCountry.map((country, i) =>(
-      <div key={i}>
+      <div key={country.id}>
         <h3>{country.name}</h3>
         <img className="flag" src={country.flag} alt=""/><br/>
           {

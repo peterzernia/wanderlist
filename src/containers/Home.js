@@ -8,22 +8,14 @@ class Home extends Component {
 
   render(){
 
-    const listTripReports = this.props.tripReports.reverse().map((tripReport, i) =>(
-      <TripReport key={i} {...tripReport} />
+    const listTripReports = this.props.tripReports.reverse().map(tripReport =>(
+      <TripReport key={tripReport.id} {...tripReport} />
     ));
 
     return(
       <div className="content">
-        {
-          this.props.fetching
-          ? <DotLoader size={50} color={'#007bff'} className="content" />
-          : null
-        }
-        {
-          this.props.fetched
-          ? <div>{listTripReports}</div>
-          : null
-        }
+        {this.props.fetching && <DotLoader size={50} color={'#007bff'} className="content" />}
+        {this.props.fetched && <div>{listTripReports}</div>}
       </div>
     );
   }

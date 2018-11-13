@@ -33,8 +33,8 @@ class Post extends Component {
 
   render(){
 
-    const listTripReports = this.props.tripReports.map((tripReport, i) =>(
-      <div key={i}>
+    const listTripReports = this.props.tripReports.map(tripReport =>(
+      <div key={tripReport.id}>
         <TripReport {...tripReport} />
         <button className="btn btn-danger" onClick={() => this.props.deleteTripReport(tripReport.id)}>Delete Post</button>
         <button className="btn btn-primary" >Update Post</button>
@@ -45,16 +45,8 @@ class Post extends Component {
       <div className="content">
         <PostModal {...this.props} handleSubmit={this.handleSubmit} />
         <button className="btn btn-primary" onClick={this.props.openPostModal}>New Post</button>
-        {
-          this.props.fetchingTripReports
-          ? <DotLoader size={50} color={'#007bff'} className="content" />
-          : null
-        }
-        {
-          this.props.fetchedTripReports
-          ? <div>{listTripReports}</div>
-          : null
-        }
+        {this.props.fetchingTripReports && <DotLoader size={50} color={'#007bff'} className="content" />}
+        {this.props.fetchedTripReports && <div>{listTripReports}</div>}
       </div>
     );
   }

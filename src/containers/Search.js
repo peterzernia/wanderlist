@@ -18,7 +18,8 @@ class Search extends Component {
 
   /*
   This function checks to see if the country is already in the user list,
-  adds it if it is not, and removes it if it is.
+  adds it if it is not, and removes it if it is, then PUT requests the new list
+  to the Django API.
   */
   handleClick = (e) => {
     e.preventDefault();
@@ -43,16 +44,8 @@ class Search extends Component {
       return (
         <div className="content">
           <SearchBar handleSubmit={this.handleSubmit} /> <br/>
-          {
-            this.props.fetching
-            ? <DotLoader size={50} color={'#007bff'} className="content" />
-            : null
-          }
-          {
-            this.props.fetched
-            ? <Results handleClick={this.handleClick} {...this.props} />
-            : null
-          }
+          {this.props.fetching && <DotLoader size={50} color={'#007bff'} className="content" />}
+          {this.props.fetched &&<Results handleClick={this.handleClick} {...this.props} />}
           <CountryModal {...this.props} />
         </div>
       );

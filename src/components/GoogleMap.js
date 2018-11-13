@@ -16,9 +16,9 @@ export class GoogleMap extends Component {
     Adds clickable Markers to the map at the coordinates of all of the
     countries on the users list.
     */
-    const listMarkers = this.props.userCountries.map((country, i) =>(
+    const listMarkers = this.props.userCountries.map(country =>(
       <Marker
-        key={i}
+        key={country.id}
         onClick={() => this.props.openCountryModal(country)}
         name={country.name}
         position={{lat: country.latlng[0], lng: country.latlng[1]}} />
