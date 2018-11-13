@@ -134,13 +134,15 @@ export const postTripReport = (author, title, content, countries) => {
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch(postTripReportsPending());
-    axios.post('http://localhost:8000/api/v1/reports/', {
-      title: title,
-      content: content,
-      author: author,
-      countries: countries
-    },
-    {headers: { 'Authorization': `Token ${token}`}}
+    axios.post(
+      'http://localhost:8000/api/v1/reports/',
+      {
+        title: title,
+        content: content,
+        author: author,
+        countries: countries
+      },
+      {headers: { 'Authorization': `Token ${token}`}}
     )
       .then(response => {
         dispatch(postTripReportsFulfilled(response.data));

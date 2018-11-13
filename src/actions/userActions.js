@@ -58,7 +58,7 @@ export const fetchUser = () => {
   }
 }
 
-export const putUserData = (username, countries, email) => {
+export const putUserData = (username, email, countries, home) => {
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch(putUserDataPending());
@@ -66,8 +66,9 @@ export const putUserData = (username, countries, email) => {
       'http://localhost:8000/api/v1/rest-auth/user/',
       {
         username: username,
-        countries: countries,
         email: email,
+        countries: countries,
+        home: home
       },
       {headers: { 'Authorization': `Token ${token}`}}
   )

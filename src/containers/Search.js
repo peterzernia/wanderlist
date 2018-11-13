@@ -22,7 +22,7 @@ class Search extends Component {
   to the Django API. The button in the Results component is given the
   name = index of the array. Then e.target.name == the index of the clicked
   country in the array of searchedCountry when clicked. From the array index,
-  the newCountry object is the searchedCountry[e.target.name]. 
+  the newCountry object is the searchedCountry[e.target.name].
   */
   handleClick = (e) => {
     e.preventDefault();
@@ -38,8 +38,9 @@ class Search extends Component {
     }
     this.props.putUserData(
       this.props.username,
+      this.props.email,
       newCountryList,
-      this.props.email
+      this.props.home
     );
   }
 
@@ -48,7 +49,7 @@ class Search extends Component {
         <div className="content">
           <SearchBar handleSubmit={this.handleSubmit} /> <br/>
           {this.props.fetching && <DotLoader size={50} color={'#007bff'} className="content" />}
-          {this.props.fetched &&<Results handleClick={this.handleClick} {...this.props} />}
+          {this.props.fetched && <Results handleClick={this.handleClick} {...this.props} />}
           <CountryModal {...this.props} />
         </div>
       );
@@ -59,6 +60,7 @@ const mapState = state => {
   return {
     username: state.user.user.username,
     email: state.user.user.email,
+    home: state.user.user.home,
     userCountries: state.user.user.countries,
     authenticated: state.auth.authenticated,
     searchedCountry: state.country.country,
@@ -72,7 +74,7 @@ const mapState = state => {
 const mapDispatch = (dispatch, ownProps) => {
   return {
     fetchCountry: (query) => dispatch(fetchCountry(query)),
-    putUserData: (username, countries, email) => dispatch(putUserData(username, countries, email)),
+    putUserData: (username, email, countries, home) => dispatch(putUserData(username, email, countries, home)),
     openCountryModal: (country) => dispatch(openCountryModal(country)),
     closeCountryModal: () => dispatch(closeCountryModal())
   };
@@ -83,6 +85,7 @@ export default connect(mapState, mapDispatch)(Search);
 Search.propTypes = {
   username: PropTypes.string,
   email: PropTypes.string,
+  home: PropTypes.number,
   userCountries: PropTypes.array,
   authenticated: PropTypes.bool,
   searchedCountry: PropTypes.array,

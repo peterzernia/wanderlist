@@ -9,4 +9,9 @@ class User(AbstractUser):
     user.
     '''
     countries = models.ManyToManyField(
-        Country, blank=True, related_name='user_countries')
+        Country, blank=True, related_name='user_countries'
+        )
+    home = models.ForeignKey(
+        Country, on_delete=models.PROTECT, null=True,
+        related_name='home_country',
+        )

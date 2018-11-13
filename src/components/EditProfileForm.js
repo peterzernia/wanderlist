@@ -5,7 +5,7 @@ const EditProfileForm = (props) => (
     <form onSubmit={props.handleSubmit}>
       <input className="form-control user-auth" type='text' name="username" defaultValue={props.user.username}/><br/>
       <input className="form-control user-auth" type='text' name="email" defaultValue={props.user.email}/><br/>
-      <select className="form-control user-auth" name="country">
+      <select className="form-control user-auth" name="country" defaultValue={props.user.home}>
         <option value="">---------</option>
         <option value="1">Afghanistan</option>
         <option value="2">Åland Islands</option>

@@ -49,18 +49,23 @@ class UserDetailSerializer(UserDetailsSerializer):
     Custom serializer for the /rest-auth/user/ User Details Serializer.
     '''
     countries = CountrySerializer(many=True)
+    home = serializers.SlugRelatedField(slug_field='pk', queryset=Country.objects.all())
 
     class Meta:
         model = User
-        fields = ('pk', 'username', 'email', 'countries',)
+        fields = ('pk', 'username', 'email', 'countries', 'home',)
 
     '''
-    Updates the users country list with a put request from the frontend by
-    making a list of all of the names of the countries in the validated_data,
-    then building a queryset from the list of names.
+    Updates the users object in the database. The username, email, countries(a
+    list of country objects) and home (country object), are set by a PUT
+    request from the frontend.
     '''
     def update(self, instance, validated_data):
         country_names = [cdata['name'] for cdata in validated_data['countries']]
         countries = Country.objects.filter(name__in=country_names)
+        instance.username = validated_data['username']
+        instance.email = validated_data['email']
         instance.countries.set(countries)
+        instance.home = validated_data['home']
+        instance.save()
         return instance

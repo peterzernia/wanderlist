@@ -11,11 +11,13 @@ class Profile extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(
+    this.props.putUserData(
       e.target.username.value,
-      this.props.userCountries,
       e.target.email.value,
+      this.props.userCountries,
+      Number(e.target.country.value)
     );
+    this.props.closeProfileModal();
   }
 
   render(){
@@ -50,7 +52,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     fetchCountry: (query) => dispatch(fetchCountry(query)),
-    putUserData: (username, email, countries, home_country) => dispatch(putUserData(username, email, countries,home_country)),
+    putUserData: (username, email, countries, home) => dispatch(putUserData(username, email, countries, home)),
     openProfileModal: (user) => dispatch(openProfileModal(user)),
     closeProfileModal: () => dispatch(closeProfileModal())
   };
