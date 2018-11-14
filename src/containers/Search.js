@@ -50,7 +50,7 @@ class Search extends Component {
       return (
         <div className="content">
           <SearchBar handleSubmit={this.handleSubmit} /> <br/>
-          {this.props.fetching && <DotLoader size={50} color={'#007bff'} className="content" />}
+          {this.props.fetching && <DotLoader size={50} color={'#66bb6a'} className="content" />}
           {this.props.fetched && <Results handleClick={this.handleClick} {...this.props} />}
           <CountryModal {...this.props} />
         </div>

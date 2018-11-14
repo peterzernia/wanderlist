@@ -40,7 +40,7 @@ class Layout extends Component {
           <Route path={`${this.props.match.url}/logout`} component={Logout}/>
           <Route path={`${this.props.match.url}/register`} errorMessage={this.errorMessage} component={Register}/>
         </div>
-        :<div className='centered'><DotLoader size={50} color={'#007bff'} className="content" /></div>
+        :<div className='centered'><DotLoader size={50} color={'#66bb6a'} className="content" /></div>
       }
       </div>
     )

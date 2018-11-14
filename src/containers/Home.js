@@ -16,7 +16,7 @@ class Home extends Component {
 
     return(
       <div className="content">
-        {this.props.fetching && <DotLoader size={50} color={'#007bff'} className="content" />}
+        {this.props.fetching && <DotLoader size={50} color={'#66bb6a'} className="content" />}
         {this.props.fetched && <div>{listTripReports}</div>}
       </div>
     );

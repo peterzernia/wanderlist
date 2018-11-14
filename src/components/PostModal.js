@@ -18,7 +18,7 @@ const PostModal = (props) => (
       <button onClick={props.closePostModal} className="close">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div>
+    </div><br/>
     {
       props.updatePostModal
       ? <UpdateTripReportForm modalPost={props.modalPost} handleSubmit={props.handleUpdateSubmit} />

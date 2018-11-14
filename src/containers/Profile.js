@@ -6,7 +6,6 @@ import { openProfileModal, closeProfileModal } from '../actions/modalActions'
 import { putUserData } from '../actions/userActions'
 import { fetchCountry } from '../actions/countryActions'
 import Button from '@material-ui/core/Button'
-import Avatar from '@material-ui/core/Avatar'
 
 class Profile extends Component {
 
@@ -33,8 +32,8 @@ class Profile extends Component {
       <div className="content">
         {errorMessage}
         <h1>{this.props.user.username}</h1>
-        {this.props.user.home && <Avatar style={{width: 150, height: 150}} sizes='150px' src={this.props.user.home.flag} alt=""/>}
-        <br/>
+        {this.props.user.home && <img className='flag' style={{width: 300}} sizes='150px' src={this.props.user.home.flag} alt=""/>}
+        <br/><br/>
         <ProfileModal handleSubmit={this.handleSubmit} {...this.props} errorMessage={this.errorMessage}/>
         <Button variant="contained" color="primary" onClick={() => this.props.openProfileModal(this.props.user)}>Edit Profile</Button>
       </div>
