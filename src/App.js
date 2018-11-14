@@ -24,12 +24,15 @@ class App extends Component {
   render() {
 
     const theme = createMuiTheme({
+      typography: {
+        useNextVariants: true,
+      },
       palette: {
         primary: {
-          main: '#66bb6a',
+          main: '#cBe6c9',
         },
         secondary: {
-            main: '#cBe6c9',
+          main: '#66bb6a',
         }
       }
     });
