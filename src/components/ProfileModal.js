@@ -10,7 +10,7 @@ const ProfileModal = (props) => (
       <button onClick={props.closeProfileModal} className="close">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div>
+    </div><br/>
     <EditProfileForm {...props}/>
   </ReactModal>
 );

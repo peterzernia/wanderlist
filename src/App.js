@@ -8,9 +8,9 @@ import { connect } from 'react-redux'
 import { authCheckState } from './actions/authActions'
 import { fetchUser } from './actions/userActions'
 import { fetchTripReports } from './actions/tripReportActions'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 class App extends Component {
-
   /*
   When the App component is mounted, it checks if a user is authenticated and
   fetches the user data from the Django REST API.
@@ -22,13 +22,25 @@ class App extends Component {
   }
 
   render() {
+
+    const theme = createMuiTheme({
+      palette: {
+        primary: {
+          main: '#66bb6a',
+        },
+        secondary: {
+            main: '#cBe6c9',
+        }
+      }
+    });
+
     return (
-      <div className="App">
+      <MuiThemeProvider theme={theme}>
         <Router>
           <Route path="" component={Layout} {...this.props}>
           </Route>
         </Router>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
