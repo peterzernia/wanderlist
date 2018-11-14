@@ -18,6 +18,10 @@ li.languages {
   display: inline;
 }
 
+p {
+  white-space: pre-line;
+}
+
 .content {
   align: center;
   text-align: center;

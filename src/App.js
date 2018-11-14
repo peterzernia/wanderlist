@@ -27,6 +27,13 @@ class App extends Component {
       typography: {
         useNextVariants: true,
       },
+      overides: {
+        CardActions: {
+          root: {
+            overflow: 'scroll'
+          }
+        }
+      },
       palette: {
         primary: {
           main: '#cBe6c9',
