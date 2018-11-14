@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import Post from './Post'
 import Home from './Home'
@@ -57,10 +58,10 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
-  return {
-    authLogout: () => dispatch(authLogout()),
-    toggleNavBar: () => dispatch(toggleNavBar())
-  }
+  return bindActionCreators({
+    authLogout,
+    toggleNavBar
+  }, dispatch)
 }
 
 export default connect(mapState, mapDispatch)(Layout);

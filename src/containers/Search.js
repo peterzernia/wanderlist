@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import CountryModal from '../components/CountryModal'
 import Results from '../components/Results'
@@ -73,13 +74,13 @@ const mapState = state => {
   };
 };
 
-const mapDispatch = (dispatch, ownProps) => {
-  return {
-    fetchCountry: (query) => dispatch(fetchCountry(query)),
-    putUserData: (username, email, countries, home) => dispatch(putUserData(username, email, countries, home)),
-    openCountryModal: (country) => dispatch(openCountryModal(country)),
-    closeCountryModal: () => dispatch(closeCountryModal())
-  };
+const mapDispatch = dispatch => {
+  return bindActionCreators({
+    fetchCountry,
+    putUserData,
+    openCountryModal,
+    closeCountryModal
+  }, dispatch);
 };
 
 export default connect(mapState, mapDispatch)(Search);

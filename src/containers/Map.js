@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import GoogleMap from '../components/GoogleMap'
@@ -27,10 +28,10 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
-  return {
-    openCountryModal: (country) => dispatch(openCountryModal(country)),
-    closeCountryModal: () => dispatch(closeCountryModal())
-  };
+  return bindActionCreators({
+    openCountryModal,
+    closeCountryModal
+  }, dispatch);
 }
 
 export default connect(mapState, mapDispatch)(Map);

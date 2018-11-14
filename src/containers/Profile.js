@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import ProfileModal from '../components/ProfileModal'
@@ -52,12 +53,12 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
-  return {
-    fetchCountry: (query) => dispatch(fetchCountry(query)),
-    putUserData: (username, email, countries, home) => dispatch(putUserData(username, email, countries, home)),
-    openProfileModal: (user) => dispatch(openProfileModal(user)),
-    closeProfileModal: () => dispatch(closeProfileModal())
-  };
+  return bindActionCreators({
+    fetchCountry,
+    putUserData,
+    openProfileModal,
+    closeProfileModal
+  }, dispatch);
 }
 
 export default connect(mapState, mapDispatch)(Profile);

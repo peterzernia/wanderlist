@@ -79,7 +79,7 @@ display and the submit button will update the existing trip report.
       <div className="content">
         {errorMessage}
         <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} errorMessage={this.errorMessage}/>
-        <Button variant="contained" color="primary" className="btn btn-primary" onClick={this.props.openPostModal}>New Trip Report</Button>
+        <Button variant="contained" color="primary" className="btn btn-primary" onClick={this.props.openPostModal}>New Trip Report</Button><br/>
         {this.props.fetchingTripReports && <DotLoader size={50} color={'#007bff'} className="content" />}
         {this.props.fetchedTripReports && <div>{listTripReports}</div>}
       </div>
