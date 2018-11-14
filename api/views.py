@@ -20,6 +20,6 @@ class CountryListView(ListAPIView):
 
 class TripReportViewSet(viewsets.ModelViewSet):
     serializer_class = TripReportSerializer
-    queryset = TripReport.objects.all().order_by('-date_posted')
+    queryset = TripReport.objects.all().order_by('-pk')
     filter_backends = (filters.SearchFilter,)
     search_fields = ('author__username',)

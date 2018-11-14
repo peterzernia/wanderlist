@@ -16,6 +16,9 @@ class Currency(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     symbol = models.CharField(max_length=255, null=True, blank=True)
 
+    class Meta:
+        verbose_name_plural = "Currencies"
+
     def __str__(self):
         return self.name
 
@@ -69,9 +72,12 @@ class Country(models.Model):
     numeric_code= models.CharField(max_length=255, null=True, blank=True)
     currencies = models.ManyToManyField(Currency)
     languages = models.ManyToManyField(Language)
-    flag = models.CharField(max_length=255, null=True, blank=True)
+    flag = models.URLField(null=True)
     regional_blocs = models.ManyToManyField(RegionalBloc, blank=True)
     cioc = models.CharField(max_length=255, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Countries"
 
     def __str__(self):
         return self.name

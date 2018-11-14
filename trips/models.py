@@ -9,7 +9,8 @@ class TripReport(models.Model):
     countries = models.ManyToManyField(Country, blank=False, related_name='trip_countries')
     title = models.CharField(max_length=100)
     content = models.TextField()
-    date_posted = models.DateTimeField(default=timezone.now)
+    date_posted = models.DateField(default=timezone.now)
+    date_updated = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.title
