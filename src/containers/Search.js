@@ -26,21 +26,23 @@ class Search extends Component {
   */
   handleClick = (e) => {
     e.preventDefault();
-    var newCountryList = this.props.userCountries
-    var newCountry = this.props.searchedCountry[e.target.name]
+    let newCountryList = this.props.userCountries
+    let newCountry = this.props.searchedCountry[e.target.name]
     if (this.props.userCountries.findIndex(i => i.name === newCountry.name) === -1) {
       newCountryList = this.props.userCountries.concat([newCountry]);
+      newCountryList = newCountryList.map(country => country.id);  // Convert array of objects into array of object.id
     } else {
-      var index = newCountryList.findIndex(i => i.name === newCountry.name);
+      let index = newCountryList.findIndex(i => i.name === newCountry.name);
       if (index !== -1){
         newCountryList.splice(index, 1);
+        newCountryList = newCountryList.map(country => country.id); // Convert array of objects into array of object.id
       }
     }
     this.props.putUserData(
       this.props.username,
       this.props.email,
       newCountryList,
-      this.props.home
+      this.props.home.id
     );
   }
 
@@ -85,7 +87,7 @@ export default connect(mapState, mapDispatch)(Search);
 Search.propTypes = {
   username: PropTypes.string,
   email: PropTypes.string,
-  home: PropTypes.number,
+  home: PropTypes.object,
   userCountries: PropTypes.array,
   authenticated: PropTypes.bool,
   searchedCountry: PropTypes.array,

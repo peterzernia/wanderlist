@@ -8,7 +8,7 @@ class Home extends Component {
 
   render(){
 
-    const listTripReports = this.props.tripReports.reverse().map(tripReport =>(
+    const listTripReports = this.props.tripReports.map(tripReport =>(
       <div key={tripReport.id} className='trip-report'>
         <TripReport {...tripReport} />
       </div>

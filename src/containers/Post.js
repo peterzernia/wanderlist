@@ -33,7 +33,7 @@ display and the submit button will update the existing trip report.
       }
     }
     this.props.postTripReport(
-      this.props.username,
+      this.props.pk,
       e.target.title.value,
       e.target.content.value,
       countries
@@ -52,7 +52,7 @@ display and the submit button will update the existing trip report.
     }
     this.props.updateTripReport(
       this.props.modalPost.id,
-      this.props.username,
+      this.props.pk,
       e.target.title.value,
       e.target.content.value,
       countries
@@ -91,6 +91,7 @@ const mapState = state => {
   return {
     error: state.tripReport.error,
     username: state.user.user.username,
+    pk: state.user.user.pk,
     showPostModal: state.modal.showPostModal,
     fetchingTripReports: state.tripReport.fetchingTripReports,
     fetchedTripReports: state.tripReport.fetchedTripReports,
@@ -117,6 +118,7 @@ export default connect(mapState, mapDispatch)(Post);
 Post.propTypes = {
   error: PropTypes.object,
   username: PropTypes.string,
+  pk: PropTypes.number,
   showPostModal: PropTypes.bool,
   fetchingTripReports: PropTypes.bool,
   fetchedTripReports: PropTypes.bool,

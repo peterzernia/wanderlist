@@ -37,8 +37,53 @@ class CountrySerializer(serializers.ModelSerializer):
         fields =('__all__')
 
 
+class CountryField(serializers.PrimaryKeyRelatedField):
+    '''
+    This serializer allows GET requests to return the full nested Country
+    object, but use the pk for POST/PUT/PATCH requests. This serializer is used
+    with the Trip Report and User Detail serializers to simplify handling
+    requests from the frontend.
+    '''
+    def to_representation(self, value):
+        pk = super(CountryField, self).to_representation(value)
+        try:
+            item = Country.objects.get(pk=pk)
+            serializer = CountrySerializer(item)
+            return serializer.data
+        except Country.DoesNotExist:
+            return None
+
+    def get_choices(self, cutoff=None):
+        queryset = self.get_queryset()
+        if queryset is None:
+            return {}
+
+        return OrderedDict([(item.id, str(item)) for item in queryset])
+
+
+class AuthorField(serializers.PrimaryKeyRelatedField):
+    '''
+    '''
+    def to_representation(self, value):
+        pk = super(AuthorField, self).to_representation(value)
+        try:
+            item = User.objects.get(pk=pk)
+            serializer = UserDetailSerializer(item)
+            return serializer.data
+        except User.DoesNotExist:
+            return None
+
+    def get_choices(self, cutoff=None):
+        queryset = self.get_queryset()
+        if queryset is None:
+            return {}
+
+        return OrderedDict([(item.id, str(item)) for item in queryset])
+
+
 class TripReportSerializer(serializers.ModelSerializer):
-    author = serializers.SlugRelatedField(slug_field='username', queryset=User.objects.all())
+    author = AuthorField(queryset=User.objects.all())
+    countries = CountryField(queryset=Country.objects.all(), many=True)
     class Meta:
         model = TripReport
         fields = ('__all__')
@@ -48,24 +93,21 @@ class UserDetailSerializer(UserDetailsSerializer):
     '''
     Custom serializer for the /rest-auth/user/ User Details Serializer.
     '''
-    countries = CountrySerializer(many=True)
-    home = serializers.SlugRelatedField(slug_field='pk', queryset=Country.objects.all())
+    countries = CountryField(queryset=Country.objects.all(), many=True)
+    home = CountryField(queryset=Country.objects.all())
 
     class Meta:
         model = User
         fields = ('pk', 'username', 'email', 'countries', 'home',)
 
     '''
-    Updates the users object in the database. The username, email, countries(a
-    list of country objects) and home (country object), are set by a PUT
-    request from the frontend.
+    Updates the users object in the database. The username, email, countries,
+    and home are set by a PUT request from the frontend.
     '''
     def update(self, instance, validated_data):
-        country_names = [cdata['name'] for cdata in validated_data['countries']]
-        countries = Country.objects.filter(name__in=country_names)
         instance.username = validated_data['username']
         instance.email = validated_data['email']
-        instance.countries.set(countries)
+        instance.countries.set(validated_data['countries']) # Direct assignment of ManyToMany objects prohibited, use .set()
         instance.home = validated_data['home']
         instance.save()
         return instance
