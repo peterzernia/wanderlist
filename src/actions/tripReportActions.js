@@ -157,13 +157,13 @@ export const deleteTripReport = (tripReport) => {
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch(deleteTripReportsPending());
-    axios.delete(`http://localhost:8000/api/v1/reports/${tripReport}/`, {headers: {
+    axios.delete(`http://localhost:8000/api/v1/reports/${tripReport.id}/`, {headers: {
       'X-Requested-With': 'XMLHttpRequest',
       'X-CSRFToken': 'csrftoken',
       'Authorization': `Token ${token}`
     }})
       .then(response => {
-        dispatch(deleteTripReportsFulfilled(response.data));
+        dispatch(deleteTripReportsFulfilled(tripReport));
       })
       .catch(err => {
         dispatch(deleteTripReportsRejected(err));

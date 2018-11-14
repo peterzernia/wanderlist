@@ -73,7 +73,7 @@ display and the submit button will update the existing trip report.
       <div key={tripReport.id} className='trip-report'>
         <TripReport {...tripReport} openCountryModal={this.props.openCountryModal} />
         <Button variant="contained" color="primary" onClick={() => this.props.openUpdatePostModal(tripReport)}>Update</Button>
-        <Button variant="contained" color="secondary" onClick={() => {if(window.confirm('Delete the post?')) {this.props.deleteTripReport(tripReport.id)};}}>Delete</Button>
+        <Button variant="contained" color="secondary" onClick={() => {if(window.confirm('Delete the post?')) {this.props.deleteTripReport(tripReport)};}}>Delete</Button>
       </div>
     ));
 
