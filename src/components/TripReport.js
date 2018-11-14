@@ -13,7 +13,7 @@ import Button from '@material-ui/core/Button'
 const TripReport = (props) => {
 
   const listCountries = props.countries.map(country =>(
-    <Button size='small' key={country.id}>
+    <Button onClick={() => props.openCountryModal(country)} size='small' key={country.id}>
       {country.name}
     </Button>
   ));
