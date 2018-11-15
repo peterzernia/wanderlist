@@ -17,14 +17,12 @@ class Register extends Component {
       e.target.password1.value,
       e.target.password2.value
     );
-    if (this.props.authenticated){
-      this.props.history.push('/');
-    }
+    this.props.history.push('/login');
   }
   render(){
     return(
       <div className="content">
-        <RegistrationForm onSubmit={this.handleSubmit} {...this.props}/>
+        <RegistrationForm handleSubmit={this.handleSubmit} {...this.props}/>
       </div>
     );
   }
