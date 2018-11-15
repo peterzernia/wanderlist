@@ -28,7 +28,7 @@ class Search extends Component {
   handleClick = (e) => {
     e.preventDefault();
     let newCountryList = this.props.userCountries
-    let newCountry = this.props.searchedCountry.filter(country => country.id === Number(e.target.name))[0] // Filter object out into new array of length 1, then take the first object.
+    let newCountry = this.props.searchedCountry.filter(country => country.id === Number(e.target.id))[0] // Filter object out into new array of length 1, then take the first object.
     if (this.props.userCountries.findIndex(i => i.name === newCountry.name) === -1) {
       newCountryList = this.props.userCountries.concat([newCountry]);
       newCountryList = newCountryList.map(country => country.id);  // Convert array of objects into array of object.id
@@ -50,7 +50,7 @@ class Search extends Component {
   render() {
 
     const listCountries = this.props.searchedCountry.map(country =>(
-      <Results key={country.id} {...this.props} country={country} handleClick={this.handleClick}/>
+      <div key={country.id}><Results {...this.props} country={country} handleClick={this.handleClick}/><br/></div>
     ));
 
       return (
