@@ -22,4 +22,4 @@ class TripReportViewSet(viewsets.ModelViewSet):
     serializer_class = TripReportSerializer
     queryset = TripReport.objects.all().order_by('-pk')
     filter_backends = (filters.SearchFilter,)
-    search_fields = ('author__username',)
+    search_fields = ('=author__username',)
