@@ -28,7 +28,7 @@ class Search extends Component {
   handleClick = (e) => {
     e.preventDefault();
     let newCountryList = this.props.userCountries
-    let newCountry = this.props.searchedCountry[e.target.name]
+    let newCountry = this.props.searchedCountry.filter(country => country.id === Number(e.target.name))[0] // Filter object out into new array of length 1, then take the first object.
     if (this.props.userCountries.findIndex(i => i.name === newCountry.name) === -1) {
       newCountryList = this.props.userCountries.concat([newCountry]);
       newCountryList = newCountryList.map(country => country.id);  // Convert array of objects into array of object.id
@@ -48,11 +48,16 @@ class Search extends Component {
   }
 
   render() {
+
+    const listCountries = this.props.searchedCountry.map(country =>(
+      <Results key={country.id} {...this.props} country={country} handleClick={this.handleClick}/>
+    ));
+
       return (
         <div className="content">
           <SearchBar handleSubmit={this.handleSubmit} /> <br/>
           {this.props.fetching && <DotLoader size={50} color={'#66bb6a'} className="content" />}
-          {this.props.fetched && <Results handleClick={this.handleClick} {...this.props} />}
+          {this.props.fetched && <div>{listCountries}</div>}
           <CountryModal {...this.props} />
         </div>
       );
