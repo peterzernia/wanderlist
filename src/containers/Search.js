@@ -17,28 +17,34 @@ class Search extends Component {
     this.props.fetchCountry(e.target.country.value);
   }
 
-  /*
-  This function checks to see if the country is already in the user list,
-  adds it if it is not, and removes it if it is, then PUT requests the new list
-  to the Django API. The button in the Results component is given the
-  name = index of the array. Then e.target.name == the index of the clicked
-  country in the array of searchedCountry when clicked. From the array index,
-  the newCountry object is the searchedCountry[e.target.name].
-  */
+  // This function handles making the new userCountries array and PUT requesting
+  // the array to the Django backend.
   handleClick = (e) => {
     e.preventDefault();
-    let newCountryList = this.props.userCountries
-    let newCountry = this.props.searchedCountry.filter(country => country.id === Number(e.target.id))[0] // Filter object out into new array of length 1, then take the first object.
-    if (this.props.userCountries.findIndex(i => i.name === newCountry.name) === -1) {
-      newCountryList = this.props.userCountries.concat([newCountry]);
-      newCountryList = newCountryList.map(country => country.id);  // Convert array of objects into array of object.id
+    // Resets newCountry to null at the beginning of every function call.
+    let newCountry = null;
+    let newCountryList
+    newCountry =  Number(e.target.id)
+    // If the userCountries array is empty, the new array just becomes the newCountry.
+    if (this.props.userCountries.length === 0) {
+      newCountryList = [newCountry]
     } else {
-      let index = newCountryList.findIndex(i => i.name === newCountry.name);
-      if (index !== -1){
-        newCountryList.splice(index, 1);
-        newCountryList = newCountryList.map(country => country.id); // Convert array of objects into array of object.id
+      // The newCountryList becomes the userCountries converted from object to just id.
+      newCountryList = this.props.userCountries;
+      newCountryList = newCountryList.map(country => country.id);
+      // If country is not in the userCountries, it gets added.
+      if (newCountryList.findIndex(country => country === newCountry) === -1) {
+      newCountryList = newCountryList.concat([newCountry]);
+      // If country is in the userCountries, it gets deleted.
+      } else {
+        let index = newCountryList.findIndex(country => country === newCountry);
+        // If the index === -1, it means the country is not in the array.
+        if (index !== -1){
+          newCountryList.splice(index, 1);
+        }
       }
     }
+    // Makes the PUT request.
     this.props.putUserData(
       this.props.username,
       this.props.email,
