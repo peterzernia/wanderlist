@@ -24,7 +24,7 @@ class Search extends Component {
     // Resets newCountry to null at the beginning of every function call.
     let newCountry = null;
     let newCountryList
-    newCountry =  Number(e.target.id)
+    newCountry =  Number(e.currentTarget.id)
     // If the userCountries array is empty, the new array just becomes the newCountry.
     if (this.props.userCountries.length === 0) {
       newCountryList = [newCountry]
