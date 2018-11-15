@@ -4,6 +4,7 @@ from rest_framework import viewsets, filters
 from .serializers import CountrySerializer, TripReportSerializer
 from countries.models import Country
 from trips.models import TripReport
+from rest_framework import permissions
 
 
 class CountryListView(ListAPIView):
@@ -19,6 +20,7 @@ class CountryListView(ListAPIView):
 
 
 class TripReportViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     serializer_class = TripReportSerializer
     queryset = TripReport.objects.all().order_by('-pk')
     filter_backends = (filters.SearchFilter,)
