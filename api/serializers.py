@@ -3,6 +3,10 @@ from countries.models import Country, Currency, Language, RegionalBloc
 from users.models import User
 from trips.models import TripReport
 from rest_auth.serializers import UserDetailsSerializer
+from rest_auth.registration.serializers import RegisterSerializer
+from allauth.account.adapter import get_adapter
+from allauth.account.utils import setup_user_email
+from collections import OrderedDict
 
 
 class CurrenciesSerializer(serializers.ModelSerializer):
@@ -21,6 +25,12 @@ class RegionalBlocsSerializer(serializers.ModelSerializer):
     class Meta:
         model = RegionalBloc
         fields = ('acronym', 'name', 'other_acronyms', 'other_names')
+
+
+class CountryRegistrationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = ('pk',)
 
 
 class CountrySerializer(serializers.ModelSerializer):
@@ -63,6 +73,8 @@ class CountryField(serializers.PrimaryKeyRelatedField):
 
 class AuthorField(serializers.PrimaryKeyRelatedField):
     '''
+    Same as the Country Field serializer, GET requests return User object, but
+    POST/PUT/PATCH requests only require the pk of the user.
     '''
     def to_representation(self, value):
         pk = super(AuthorField, self).to_representation(value)
@@ -111,3 +123,30 @@ class UserDetailSerializer(UserDetailsSerializer):
         instance.home = validated_data['home']
         instance.save()
         return instance
+
+
+class RegistrationSerializer(RegisterSerializer):
+    username = serializers.CharField(required=True, write_only=True)
+    email = serializers.EmailField(required=True, write_only=True)
+    password1 = serializers.CharField(required=True, write_only=True)
+    password2 = serializers.CharField(required=True, write_only=True)
+    home = CountryField(queryset=Country.objects.all(),required=True, write_only=True)
+
+    def get_cleaned_data(self):
+        return {
+            'username': self.validated_data.get('username', ''),
+            'password1': self.validated_data.get('password1', ''),
+            'password2': self.validated_data.get('password2', ''),
+            'email': self.validated_data.get('email', ''),
+            'home': self.validated_data.get('home', ''),
+        }
+
+    def save(self, request):
+        adapter = get_adapter()
+        user = adapter.new_user(request)
+        self.cleaned_data = self.get_cleaned_data()
+        adapter.save_user(request, user, self)
+        setup_user_email(request, user, [])
+        user.home = self.cleaned_data.get('home')
+        user.save()
+        return user

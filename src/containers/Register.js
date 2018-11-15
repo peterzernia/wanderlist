@@ -15,7 +15,8 @@ class Register extends Component {
       e.target.username.value,
       e.target.email.value,
       e.target.password1.value,
-      e.target.password2.value
+      e.target.password2.value,
+      1
     );
     this.props.history.push('/login');
   }
@@ -38,7 +39,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    authRegister: (username, email, password1, password2) => dispatch(authRegister(username, email, password1, password2))
+    authRegister: (username, email, password1, password2, home) => dispatch(authRegister(username, email, password1, password2, home))
   };
 }
 

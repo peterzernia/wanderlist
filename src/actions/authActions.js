@@ -61,7 +61,7 @@ export const authLogin = (username, password) => {
 Similar to login, registers a user with the Django REST API which returns a
 token to authenticate the user. This token is stored in localStorage.
 */
-export const authRegister = (username, email, password1, password2) => {
+export const authRegister = (username, email, password1, password2, home) => {
   return dispatch => {
     localStorage.removeItem('token');
     dispatch(authStart());
@@ -69,7 +69,8 @@ export const authRegister = (username, email, password1, password2) => {
       username: username,
       email: email,
       password1: password1,
-      password2: password2
+      password2: password2,
+      home: home
     })
       .then(response => {
         const token = response.data.key;
