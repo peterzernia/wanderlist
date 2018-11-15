@@ -1,13 +1,14 @@
 import './static/App.css'
 import './static/bootstrap.min.css'
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
 import PropType from 'prop-types'
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import Layout from './containers/Layout'
 import { connect } from 'react-redux'
 import { authCheckState } from './actions/authActions'
 import { fetchUser } from './actions/userActions'
-import { fetchTripReports } from './actions/tripReportActions'
+import { fetchTripReports, fetchUserTripReports } from './actions/tripReportActions'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
     this.props.authCheckState();
     this.props.fetchUser();
     this.props.fetchTripReports();
+    this.props.fetchUserTripReports(localStorage.getItem('username'));
   }
 
   render() {
@@ -61,11 +63,12 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
-  return {
-    authCheckState: () => dispatch(authCheckState()),
-    fetchUser: () => dispatch(fetchUser()),
-    fetchTripReports: () => dispatch(fetchTripReports())
-  }
+  return bindActionCreators({
+    authCheckState,
+    fetchUser,
+    fetchTripReports,
+    fetchUserTripReports
+  }, dispatch);
 }
 
 export default connect(mapState, mapDispatch)(App);
@@ -73,5 +76,6 @@ export default connect(mapState, mapDispatch)(App);
 App.propTypes = {
   authCheckState: PropType.func,
   fetchUser: PropType.func,
-  fetchTripReports: PropType.func
+  fetchTripReports: PropType.func,
+  fetchUserTripReports: PropType.func
 };

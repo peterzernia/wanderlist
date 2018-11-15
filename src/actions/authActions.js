@@ -27,6 +27,7 @@ the user out.
 */
 export const authLogout = () => {
   localStorage.removeItem('token');
+  localStorage.removeItem('username');
   return {
     type: "AUTH_LOGOUT"
   }
@@ -46,6 +47,7 @@ export const authLogin = (username, password) => {
       .then(response => {
         const token = response.data.key;
         localStorage.setItem('token', token);
+        localStorage.setItem('username', username);
         dispatch(authSucess(token));
         dispatch(fetchUser());
       })
@@ -71,7 +73,8 @@ export const authRegister = (username, email, password1, password2) => {
     })
       .then(response => {
         const token = response.data.key;
-        localStorage.setItem('token', token);;
+        localStorage.setItem('token', token);
+        localStorage.setItem('username', username);
         dispatch(authSucess(token));
         dispatch(fetchUser());
       })

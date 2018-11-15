@@ -12,9 +12,9 @@ import Button from '@material-ui/core/Button'
 
 class Post extends Component {
 
-  componentDidMount() {
-    this.props.fetchUserTripReports(this.props.username);
-  }
+  // componentDidMount() {
+  //   this.props.fetchUserTripReports(this.props.username);
+  // }
 
 /*
 handlPostSubmit will create a new trip report and handleUpdateSubmit will
