@@ -24,6 +24,7 @@ GET requests the Django REST API which returns country object(s).
 */
 export const fetchCountry = (query) => {
   return dispatch => {
+    dispatch({type: "REMOVE_ERROR"});
     dispatch(fetchCountryPending());
     axios.get(`http://localhost:8000/api/v1/countries/?search=${query}`)
       .then(response => {

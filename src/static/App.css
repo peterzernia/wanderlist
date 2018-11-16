@@ -132,7 +132,7 @@ This is the class for the DotLoader.
 }
 
 .error-message {
-  height: 50px;
+  min-height: 50px;
   background-color: #ff7272;
   color: white;
   padding: 1em;

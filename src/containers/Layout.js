@@ -16,9 +16,9 @@ import { Route } from "react-router-dom"
 import { connect } from 'react-redux'
 import { authLogout } from '../actions/authActions'
 import { toggleNavBar } from '../actions/navbarActions'
-import { DotLoader } from 'react-spinners'
 import { fetchUser } from '../actions/userActions'
 import { fetchUserTripReports } from '../actions/tripReportActions'
+import { DotLoader } from 'react-spinners'
 
 class Layout extends Component {
 
@@ -37,9 +37,9 @@ class Layout extends Component {
   render(){
 
     let showError = false;
-    // if (this.props.error) {
-    //   showError = true;
-    // }
+    if (this.props.error) {
+      showError = true;
+    }
 
     return(
       <div>
@@ -47,7 +47,7 @@ class Layout extends Component {
         !this.props.fetching
         ?<div>
           <NavBar {...this.props} handleClick={this.handleClick} />
-          <Error showError={showError} />
+          {this.props.error && <Error showError={showError} error={this.props.error} />}
           <Route exact path={`${this.props.match.url}`} component={Home}/>
           <Route path={`${this.props.match.url}/search`} component={Search}/>
           <PrivateRoute {...this.props} path={`${this.props.match.url}/post`} component={Post}/>
