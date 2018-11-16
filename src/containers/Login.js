@@ -16,7 +16,6 @@ class Login extends Component {
     if (this.props.authenticated){
       this.props.history.push('/');
     }
-    this.forceUpdate();
   }
 
   render(){

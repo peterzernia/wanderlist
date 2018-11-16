@@ -11,12 +11,19 @@ class Register extends Component {
   */
   handleSubmit = (e) => {
     e.preventDefault();
+    let country;
+    // Js tries to convert empty string to 0 with Number, this prevents that,
+    // which POSTs an empty string instead of 0 to return the correct error
+    // if the Home Country field is left blank on registration.
+    if (e.target.country.value !== '') {
+      country = Number(e.target.country.value)
+    }
     this.props.authRegister(
       e.target.username.value,
       e.target.email.value,
       e.target.password1.value,
       e.target.password2.value,
-      Number(e.target.country.value)
+      country
     );
     this.props.history.push('/login');
   }
