@@ -1,18 +1,14 @@
 import React from 'react'
-import ReactModal from 'react-modal'
 import EditProfileForm from './EditProfileForm'
-
-ReactModal.setAppElement('body');
+import Dialog from '@material-ui/core/Dialog'
+import DialogContent from '@material-ui/core/DialogContent'
 
 const ProfileModal = (props) => (
-  <ReactModal isOpen={props.showProfileModal}>
-    <div className="close-modal">
-      <button onClick={props.closeProfileModal} className="close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div><br/>
-    <EditProfileForm {...props}/>
-  </ReactModal>
+  <Dialog onClose={props.closeProfileModal} open={props.showProfileModal}>
+    <DialogContent>
+      <EditProfileForm {...props}/>
+    </DialogContent>
+  </Dialog>
 );
 
 export default ProfileModal;

@@ -275,6 +275,7 @@ class EditProfileForm extends React.Component {
           <MenuItem value="250">Zimbabwe</MenuItem>
         </Select><br/><br/>
         <Button variant="contained" color="primary" type="submit">Update</Button>
+        <Button onClick={() => this.props.closeProfileModal()} color="primary">Cancel</Button>
       </form>
     )
   }
