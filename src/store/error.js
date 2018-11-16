@@ -1,5 +1,5 @@
 const initialState = {
-  errors: []
+  error: null
 }
 
 export default function (state = initialState, action) {
@@ -7,13 +7,13 @@ export default function (state = initialState, action) {
     case "ADD_ERROR": {
       return {
         ...state,
-        errors: state.errors.concat([action.error])
+        error: action.error
       }
     }
     case "REMOVE_ERROR":{
       return {
         ...state,
-        errors: [...state.errors].filter((error, i) => i !== action.index)
+        error: null
       }
     }
     default:

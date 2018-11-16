@@ -54,7 +54,7 @@ class Layout extends Component {
 
 const mapState = state => {
   return {
-    errors: state.error.errors,
+    error: state.error.error,
     authenticated: state.auth.authenticated,
     fetching: state.user.fetching,
     fetched: state.user.fetched,
@@ -72,7 +72,7 @@ const mapDispatch = dispatch => {
 export default connect(mapState, mapDispatch)(Layout);
 
 Layout.propTypes = {
-  errors: PropTypes.array,
+  error: PropTypes.object,
   authenticated: PropTypes.bool,
   fetching: PropTypes.bool,
   collapsed: PropTypes.bool,
