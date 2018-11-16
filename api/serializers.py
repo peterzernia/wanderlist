@@ -119,13 +119,17 @@ class UserDetailSerializer(UserDetailsSerializer):
     def update(self, instance, validated_data):
         instance.username = validated_data['username']
         instance.email = validated_data['email']
-        instance.countries.set(validated_data['countries']) # Direct assignment of ManyToMany objects prohibited, use .set()
+        # Direct assignment of ManyToMany objects prohibited, use .set()
+        instance.countries.set(validated_data['countries'])
         instance.home = validated_data['home']
         instance.save()
         return instance
 
 
 class RegistrationSerializer(RegisterSerializer):
+    '''
+    Custom Registration Serializer used to include home country field.
+    '''
     username = serializers.CharField(required=True, write_only=True)
     email = serializers.EmailField(required=True, write_only=True)
     password1 = serializers.CharField(required=True, write_only=True)
@@ -141,6 +145,8 @@ class RegistrationSerializer(RegisterSerializer):
             'home': self.validated_data.get('home', ''),
         }
 
+    # As per the Allauth documents, Registration Serializer must include save
+    # function that returns user instance.
     def save(self, request):
         adapter = get_adapter()
         user = adapter.new_user(request)

@@ -16,7 +16,7 @@ class Register extends Component {
       e.target.email.value,
       e.target.password1.value,
       e.target.password2.value,
-      1
+      Number(e.target.country.value)
     );
     this.props.history.push('/login');
   }
