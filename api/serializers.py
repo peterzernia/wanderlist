@@ -110,7 +110,7 @@ class UserDetailSerializer(UserDetailsSerializer):
 
     class Meta:
         model = User
-        fields = ('pk', 'username', 'email', 'countries', 'home',)
+        fields = ('pk', 'username', 'email', 'countries', 'home', 'biography')
 
     '''
     Updates the users object in the database. The username, email, countries,
@@ -122,6 +122,7 @@ class UserDetailSerializer(UserDetailsSerializer):
         # Direct assignment of ManyToMany objects prohibited, use .set()
         instance.countries.set(validated_data['countries'])
         instance.home = validated_data['home']
+        instance.biography = validated_data['biography']
         instance.save()
         return instance
 

@@ -17,7 +17,8 @@ class Profile extends Component {
       e.target.username.value,
       e.target.email.value,
       userCountryList,
-      Number(e.target.country.value)
+      Number(e.target.country.value),
+      e.target.biography.value
     );
     this.props.closeProfileModal();
   }
@@ -27,7 +28,7 @@ class Profile extends Component {
       <div className="content">
         <h1>{this.props.user.username}</h1>
         {this.props.user.home && <img className='flag' style={{width: 300}} sizes='150px' src={this.props.user.home.flag} alt=""/>}
-        <br/><br/>
+        <br/>{this.props.biography}<br/>
         <ProfileModal handleSubmit={this.handleSubmit} {...this.props} errorMessage={this.errorMessage}/>
         <Button variant="contained" color="primary" onClick={() => this.props.openProfileModal(this.props.user)}>Edit Profile</Button>
       </div>
@@ -38,6 +39,7 @@ class Profile extends Component {
 const mapState = state => {
   return {
     user: state.user.user,
+    biography: state.user.user.biography,
     userCountries: state.user.user.countries,
     searchedCountry: state.country.country,
     showProfileModal: state.modal.showProfileModal,
@@ -58,6 +60,7 @@ export default connect(mapState, mapDispatch)(Profile);
 
 Profile.propTypes = {
   user: PropTypes.object,
+  biography: PropTypes.string,
   userCountries: PropTypes.array,
   searchedCountry: PropTypes.array,
   showProfileModal: PropTypes.bool,

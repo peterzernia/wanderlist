@@ -49,7 +49,8 @@ class Search extends Component {
       this.props.username,
       this.props.email,
       newCountryList,
-      this.props.home.id
+      this.props.home.id,
+      this.props.biography
     );
   }
 
@@ -75,6 +76,7 @@ const mapState = state => {
     username: state.user.user.username,
     email: state.user.user.email,
     home: state.user.user.home,
+    biography: state.user.user.biography,
     userCountries: state.user.user.countries,
     authenticated: state.auth.authenticated,
     searchedCountry: state.country.country,
@@ -100,6 +102,7 @@ Search.propTypes = {
   username: PropTypes.string,
   email: PropTypes.string,
   home: PropTypes.object,
+  biography: PropTypes.string,
   userCountries: PropTypes.array,
   authenticated: PropTypes.bool,
   searchedCountry: PropTypes.array,

@@ -58,7 +58,7 @@ export const fetchUser = () => {
   }
 }
 
-export const putUserData = (username, email, countries, home) => {
+export const putUserData = (username, email, countries, home, biography) => {
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch({type: "REMOVE_ERROR"});
@@ -69,7 +69,8 @@ export const putUserData = (username, email, countries, home) => {
         username: username,
         email: email,
         countries: countries,
-        home: home
+        home: home,
+        biography: biography
       },
       {headers: { 'Authorization': `Token ${token}`}}
   )

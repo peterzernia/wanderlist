@@ -23,6 +23,7 @@ class EditProfileForm extends React.Component {
       <form onSubmit={this.props.handleSubmit}>
         <TextField className="user-auth" type='text' label='Username' name="username" defaultValue={this.props.user.username}/><br/>
         <TextField className="user-auth" type='text' label='Email' name="email" defaultValue={this.props.user.email}/><br/>
+        <TextField multiline className="user-auth" type='text' label='Biography' name="biography" defaultValue={this.props.user.biography}/><br/>
         <InputLabel style={{ textAlign: 'left'}} shrink htmlFor="countries">Home Country</InputLabel><br/>
         <Select style={{ textAlign: 'left'}} className="user-auth" name="country" onChange={this.handleChange} value={this.state.country}>
           <MenuItem value="1">Afghanistan</MenuItem>
