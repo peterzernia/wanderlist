@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Redirect } from 'react-router-dom';
 import RegistrationForm from '../components/RegistrationForm'
 import { connect } from 'react-redux'
 import { authRegister } from '../actions/authActions'
 
 class Register extends Component {
 
-  /*
-  Registers and authenticates the user, and redirects to homepage.
-  */
+  // Registers the user.
   handleSubmit = (e) => {
     e.preventDefault();
     let country;
@@ -25,12 +24,17 @@ class Register extends Component {
       e.target.password2.value,
       country
     );
-    this.props.history.push('/login');
   }
   render(){
     return(
+      // If the user is authenticated on the Register page, it will redirect to
+      // the home page.
       <div className="content">
-        <RegistrationForm handleSubmit={this.handleSubmit} {...this.props}/>
+      {
+        !this.props.authenticated
+        ? <RegistrationForm handleSubmit={this.handleSubmit} {...this.props}/>
+        : <Redirect to={{pathname: "/",}} />
+      }
       </div>
     );
   }
