@@ -4,13 +4,13 @@ const Errors = (props) => {
 
   const errorDetails = Object.keys(props.error.response.data).map(error => (
     <div key={error}>
-      {error} cannot be blank
+      {error.charAt(0).toUpperCase() + error.slice(1)} - {props.error.response.data[error]}
     </div>
   ));
 
   return (
-    <div>
-      {props.showError && <div className="error-message">Oops! {errorDetails}</div>}
+    <div className="error-message">
+      Oops! {errorDetails}
     </div>
   )
 }
