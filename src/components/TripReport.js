@@ -20,25 +20,11 @@ const TripReport = (props) => {
 
   return(
     <Card>
-      {
-        props.author.home
-        ? <CardHeader action={
-              <IconButton>
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={props.title}
-            subheader={props.author.username}
-            avatar={<Avatar src={props.author.home.flag}/>} />
-        : <CardHeader action={
-              <IconButton>
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={props.title}
-            subheader={props.author.username}
-            avatar={<Avatar>{props.author.username.charAt(0)}</Avatar>} />
-      }
+      <CardHeader
+        action={<IconButton><MoreVertIcon /></IconButton>}
+        title={props.title}
+        subheader={props.author.username}
+        avatar={<Avatar src={props.author.home.flag}/>} />
       <CardContent>
         <Typography component="p">
           {props.content}
