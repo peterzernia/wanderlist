@@ -17,8 +17,17 @@ import { connect } from 'react-redux'
 import { authLogout } from '../actions/authActions'
 import { toggleNavBar } from '../actions/navbarActions'
 import { DotLoader } from 'react-spinners'
+import { fetchUser } from '../actions/userActions'
+import { fetchUserTripReports } from '../actions/tripReportActions'
 
 class Layout extends Component {
+
+  componentWillMount() {
+    if (this.props.authenticated) {
+      this.props.fetchUser();
+      this.props.fetchUserTripReports(localStorage.getItem('username'));
+    }
+  }
 
   handleClick = () => {
     this.props.authLogout();
@@ -28,6 +37,9 @@ class Layout extends Component {
   render(){
 
     let showError = false;
+    // if (this.props.error) {
+    //   showError = true;
+    // }
 
     return(
       <div>
@@ -65,7 +77,9 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return bindActionCreators({
     authLogout,
-    toggleNavBar
+    toggleNavBar,
+    fetchUser,
+    fetchUserTripReports
   }, dispatch)
 }
 
@@ -77,5 +91,7 @@ Layout.propTypes = {
   fetching: PropTypes.bool,
   collapsed: PropTypes.bool,
   authLogout: PropTypes.func,
-  toggleNavBar: PropTypes.func
+  toggleNavBar: PropTypes.func,
+  fetchUser: PropTypes.func,
+  fetchUserTripReports: PropTypes.func
 };
