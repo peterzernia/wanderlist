@@ -7,6 +7,7 @@ import Select from '@material-ui/core/Select'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
+import InputLabel from '@material-ui/core/InputLabel'
 
 class RegistrationForm extends Component {
 
@@ -31,6 +32,7 @@ class RegistrationForm extends Component {
             <TextField className="user-auth" type='text' name="email" label="Email"/><br/>
             <TextField className="user-auth" type='password' name="password1" label="Password"/><br/>
             <TextField className="user-auth" type='password' name="password2" label="Confirm Password"/><br/>
+            <InputLabel shrink htmlFor="country">Home Country</InputLabel><br/>
             <Select style={{ textAlign: 'left'}} className="user-auth" name="country" onChange={this.handleChange} value={this.state.country}>
               <MenuItem value="1">Afghanistan</MenuItem>
               <MenuItem value="2">Åland Islands</MenuItem>

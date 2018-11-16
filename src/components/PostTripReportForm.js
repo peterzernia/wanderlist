@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
+import InputLabel from '@material-ui/core/InputLabel'
 
 class PostTripReportForm extends Component {
 
@@ -22,6 +23,7 @@ class PostTripReportForm extends Component {
       <form onSubmit={this.props.handleSubmit}>
         <TextField className="user-auth" type='text' name="title" label="Title"/><br/>
         <TextField multiline fullWidth className="user-auth" type='text' name="content" label="Content"/><br/>
+        <InputLabel shrink htmlFor="countries">Countries</InputLabel><br/>
         <Select style={{ textAlign: 'left'}} multiple className="user-auth" name="countries" onChange={this.handleChange} value={this.state.countries}>
           <MenuItem value="1">Afghanistan</MenuItem>
           <MenuItem value="2">Åland Islands</MenuItem>

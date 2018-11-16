@@ -15,6 +15,7 @@ class Login extends Component {
     this.props.authLogin(e.target.username.value, e.target.password.value);
     if (this.props.authenticated){
       this.props.history.push('/');
+      this.forceUpdate()
     }
   }
 

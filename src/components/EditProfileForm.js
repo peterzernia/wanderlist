@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
+import InputLabel from '@material-ui/core/InputLabel'
 
 class EditProfileForm extends React.Component {
 
@@ -22,7 +23,8 @@ class EditProfileForm extends React.Component {
       <form onSubmit={this.props.handleSubmit}>
         <TextField className="user-auth" type='text' label='Username' name="username" defaultValue={this.props.user.username}/><br/>
         <TextField className="user-auth" type='text' label='Email' name="email" defaultValue={this.props.user.email}/><br/>
-        <Select style={{ textAlign: 'left'}} className="user-auth" label='Home Country' name="country" onChange={this.handleChange} value={this.state.country}>
+        <InputLabel style={{ textAlign: 'left'}} shrink htmlFor="countries">Home Country</InputLabel><br/>
+        <Select style={{ textAlign: 'left'}} className="user-auth" name="country" onChange={this.handleChange} value={this.state.country}>
           <MenuItem value="1">Afghanistan</MenuItem>
           <MenuItem value="2">Åland Islands</MenuItem>
           <MenuItem value="3">Albania</MenuItem>
