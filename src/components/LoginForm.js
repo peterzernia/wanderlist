@@ -13,7 +13,7 @@ const LoginForm = (props) => (
       <form onSubmit={props.handleSubmit}>
         <TextField className="user-auth" type='text' name="username" label="Username"/><br/>
         <TextField className="user-auth" type='password' name="password" label="Password"/><br/><br/>
-        <Button variant="contained" color="primary" type="submit">Login</Button>
+        <Button variant="contained" color="secondary" type="submit">Login</Button>
         <Link to="/register"><Button>Register</Button></Link>
       </form>
     </CardContent>

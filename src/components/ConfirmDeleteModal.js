@@ -15,7 +15,7 @@ const ConfirmDeleteModal = (props) => (
       <Button onClick={() => {props.closeConfirmDeleteModal(); props.deleteTripReport(props.modalPost);}} color="secondary" variant="contained">
         Delete
       </Button>
-      <Button onClick={() => props.closeConfirmDeleteModal()} color="primary">
+      <Button onClick={() => props.closeConfirmDeleteModal()} color="secondary">
         Cancel
       </Button>
     </DialogActions>

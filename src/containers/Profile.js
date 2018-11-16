@@ -7,6 +7,7 @@ import { openProfileModal, closeProfileModal } from '../actions/modalActions'
 import { putUserData } from '../actions/userActions'
 import { fetchCountry } from '../actions/countryActions'
 import Button from '@material-ui/core/Button'
+import Avatar from '@material-ui/core/Avatar'
 
 class Profile extends Component {
 
@@ -25,12 +26,26 @@ class Profile extends Component {
 
   render(){
     return(
-      <div className="content">
-        <h1>{this.props.user.username}</h1>
-        {this.props.user.home && <img className='flag' style={{width: 300}} sizes='150px' src={this.props.user.home.flag} alt=""/>}
-        <br/>{this.props.biography}<br/>
+      <div className='content'>
         <ProfileModal handleSubmit={this.handleSubmit} {...this.props} errorMessage={this.errorMessage}/>
-        <Button variant="contained" color="primary" onClick={() => this.props.openProfileModal(this.props.user)}>Edit Profile</Button>
+        <div>
+          <div className='left' style={{ width: '37%' }}>
+            {this.props.user.home && <Avatar style={{ width: 150, height: 150, margin: '0 auto' }} src={this.props.user.home.flag}/>}
+          </div>
+          <div className='right' style={{textAlign: 'left', width: '63%' }}>
+            <div style={{ height: 30 }}>
+              <h2>{this.props.user.username}</h2>
+            </div><br/>
+            <div style={{ height: 30 }}>
+              <Button size='small' onClick={() => this.props.openProfileModal(this.props.user)}>
+                Edit Profile
+              </Button>
+            </div><br/>
+            <div style={{ height: 30 }}>
+              <strong>{this.props.biography}</strong>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
