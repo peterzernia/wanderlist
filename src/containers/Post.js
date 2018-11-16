@@ -27,11 +27,12 @@ display and the submit button will update the existing trip report.
 */
   handlePostSubmit = (e) => {
     e.preventDefault();
-    var options = e.target.countries.options;
-    var countries =[];
-    for (var i = 0, l = options.length; i < l; i++) {
-      if (options[i].selected) {
-        countries.push(options[i].value);
+    let countries =[];
+    // e.target.value must be converted into an array of numbers.
+    for (let i = 0, l = e.target.countries.value.length; i < l; i++) {
+      // It contains commas, which must be removed.
+      if (!isNaN(Number(e.target.countries.value[i]))){
+        countries.push(Number(e.target.countries.value[i]));
       }
     }
     this.props.postTripReport(
@@ -45,11 +46,12 @@ display and the submit button will update the existing trip report.
 
   handleUpdateSubmit = (e) => {
     e.preventDefault();
-    var options = e.target.countries.options;
-    var countries =[];
-    for (var i = 0, l = options.length; i < l; i++) {
-      if (options[i].selected) {
-        countries.push(options[i].value);
+    let countries =[];
+    // e.target.value must be converted into an array of numbers.
+    for (let i = 0, l = e.target.countries.value.length; i < l; i++) {
+      // It contains commas, which must be removed.
+      if (!isNaN(Number(e.target.countries.value[i]))){
+        countries.push(Number(e.target.countries.value[i]));
       }
     }
     this.props.updateTripReport(

@@ -4,16 +4,12 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 
 const LoginForm = (props) => (
-  <div>
-    <div className='form-inline'>
-      <form onSubmit={props.handleSubmit}>
-        <TextField className="user-auth" type='text' name="username" placeholder="Username"/><br/>
-        <TextField className="user-auth" type='password' name="password" placeholder="Password"/><br/>
-        <Button variant="contained" color="primary" type="submit">Login</Button>
-        <Link className="btn" to="/register">Register</Link>
-      </form>
-    </div>
-  </div>
+  <form onSubmit={props.handleSubmit}>
+    <TextField className="user-auth" type='text' name="username" label="Username"/><br/>
+    <TextField className="user-auth" type='password' name="password" label="Password"/><br/><br/>
+    <Button variant="contained" color="primary" type="submit">Login</Button>
+    <Link to="/register"><Button>Register</Button></Link>
+  </form>
 );
 
 export default LoginForm;
