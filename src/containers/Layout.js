@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
+import Error from '../components/Error'
 import Post from './Post'
 import Home from './Home'
 import Login from './Login'
@@ -26,20 +27,23 @@ class Layout extends Component {
 
   render(){
 
+    let showError = false;
+
     return(
       <div>
       {
         !this.props.fetching
         ?<div>
-          <NavBar {...this.props} handleClick={this.handleClick} /><br/>
+          <NavBar {...this.props} handleClick={this.handleClick} />
+          <Error showError={showError} />
           <Route exact path={`${this.props.match.url}`} component={Home}/>
           <Route path={`${this.props.match.url}/search`} component={Search}/>
           <PrivateRoute {...this.props} path={`${this.props.match.url}/post`} component={Post}/>
           <PrivateRoute {...this.props} path={`${this.props.match.url}/map`} component={Map}/>
           <PrivateRoute {...this.props} path={`${this.props.match.url}/profile`} component={Profile}/>
-          <Route path={`${this.props.match.url}/login`} errorMessage={this.errorMessage} component={Login}/>
+          <Route path={`${this.props.match.url}/login`} component={Login}/>
           <Route path={`${this.props.match.url}/logout`} component={Logout}/>
-          <Route path={`${this.props.match.url}/register`} errorMessage={this.errorMessage} component={Register}/>
+          <Route path={`${this.props.match.url}/register`} component={Register}/>
         </div>
         :<div className='centered'><DotLoader size={50} color={'#66bb6a'} className="content" /></div>
       }
@@ -50,6 +54,7 @@ class Layout extends Component {
 
 const mapState = state => {
   return {
+    errors: state.error.errors,
     authenticated: state.auth.authenticated,
     fetching: state.user.fetching,
     fetched: state.user.fetched,
@@ -67,6 +72,7 @@ const mapDispatch = dispatch => {
 export default connect(mapState, mapDispatch)(Layout);
 
 Layout.propTypes = {
+  errors: PropTypes.array,
   authenticated: PropTypes.bool,
   fetching: PropTypes.bool,
   collapsed: PropTypes.bool,

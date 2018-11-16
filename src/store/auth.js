@@ -2,7 +2,6 @@ const initialState = {
   token: null,
   authenticating: false,
   authenticated: false,
-  error: null
 }
 
 /* Reducer Function*/
@@ -11,7 +10,7 @@ export default function (state = initialState, action) {
     case "AUTH_START": {
       return {
         ...state,
-        authenticating: true
+        authenticating: true,
       }
     }
     case "AUTH_SUCESS": {
@@ -19,7 +18,7 @@ export default function (state = initialState, action) {
         ...state,
         authenticating: false,
         authenticated: true,
-        token: action.token
+        token: action.token,
       }
     }
     case "AUTH_FAIL": {
@@ -27,7 +26,6 @@ export default function (state = initialState, action) {
         ...state,
         authenticating: false,
         authenticated: false,
-        error: action.error
       }
     }
     case "AUTH_LOGOUT": {
@@ -35,7 +33,7 @@ export default function (state = initialState, action) {
         ...state,
         authenticating: false,
         authenticated: false,
-        token: null
+        token: null,
       }
     }
     default:

@@ -15,10 +15,9 @@ export const fetchTripReportsFulfilled = tripReports => {
   }
 }
 
-export const fetchTripReportsRejected = error => {
+export const fetchTripReportsRejected = () => {
   return {
-    type: "FETCH_TRIP_REPORTS_REJECTED",
-    error: error
+    type: "FETCH_TRIP_REPORTS_REJECTED"
   }
 }
 
@@ -35,10 +34,9 @@ export const fetchUserTripReportsFulfilled = tripReports => {
   }
 }
 
-export const fetchUserTripReportsRejected = error => {
+export const fetchUserTripReportsRejected = () => {
   return {
     type: "FETCH_USER_TRIP_REPORTS_REJECTED",
-    error: error
   }
 }
 
@@ -55,10 +53,9 @@ export const postTripReportsFulfilled = response => {
   }
 }
 
-export const postTripReportsRejected = error => {
+export const postTripReportsRejected = () => {
   return {
     type: "POST_TRIP_REPORTS_REJECTED",
-    error: error
   }
 }
 
@@ -75,10 +72,9 @@ export const deleteTripReportsFulfilled = response => {
   }
 }
 
-export const deleteTripReportsRejected = error => {
+export const deleteTripReportsRejected = () => {
   return {
     type: "DELETE_TRIP_REPORTS_REJECTED",
-    error: error
   }
 }
 
@@ -95,10 +91,9 @@ export const updateTripReportsFulfilled = response => {
   }
 }
 
-export const updateTripReportsRejected = error => {
+export const updateTripReportsRejected = () => {
   return {
     type: "UPDATE_TRIP_REPORTS_REJECTED",
-    error: error
   }
 }
 
@@ -111,7 +106,8 @@ export const fetchTripReports = () => {
         dispatch(fetchTripReportsFulfilled(tripReports));
       })
       .catch(err => {
-        dispatch(fetchTripReportsRejected(err));
+        dispatch(fetchTripReportsRejected());
+        dispatch({type: "ADD_ERROR", error: err});
       })
   }
 }
@@ -125,7 +121,8 @@ export const fetchUserTripReports = (username) => {
         dispatch(fetchUserTripReportsFulfilled(tripReports));
       })
       .catch(err => {
-        dispatch(fetchUserTripReportsRejected(err));
+        dispatch(fetchUserTripReportsRejected());
+        dispatch({type: "ADD_ERROR", error: err});
       })
   }
 }
@@ -148,7 +145,8 @@ export const postTripReport = (author, title, content, countries) => {
         dispatch(postTripReportsFulfilled(response.data));
       })
       .catch(err => {
-        dispatch(postTripReportsRejected(err));
+        dispatch(postTripReportsRejected());
+        dispatch({type: "ADD_ERROR", error: err});
       })
   }
 }
@@ -166,7 +164,8 @@ export const deleteTripReport = (tripReport) => {
         dispatch(deleteTripReportsFulfilled(tripReport));
       })
       .catch(err => {
-        dispatch(deleteTripReportsRejected(err));
+        dispatch(deleteTripReportsRejected());
+        dispatch({type: "ADD_ERROR", error: err});
       })
   }
 }
@@ -192,7 +191,8 @@ export const updateTripReport = (tripReport, author, title, content, countries) 
         dispatch(updateTripReportsFulfilled(response.data));
       })
       .catch(err => {
-        dispatch(updateTripReportsRejected(err));
+        dispatch(updateTripReportsRejected());
+        dispatch({type: "ADD_ERROR", error: err});
       })
   }
 }

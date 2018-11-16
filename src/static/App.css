@@ -130,3 +130,11 @@ This is the class for the DotLoader.
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.error-message {
+  height: 50px;
+  background-color: #ff7272;
+  color: white;
+  padding: 1em;
+  text-align: center;
+}

@@ -14,10 +14,9 @@ export const authSucess = token => {
   }
 }
 
-export const authFail = error => {
+export const authFail = () => {
   return {
-    type: "AUTH_FAIL",
-    error: error
+    type: "AUTH_FAIL"
   }
 }
 
@@ -52,7 +51,8 @@ export const authLogin = (username, password) => {
         dispatch(fetchUser());
       })
       .catch(err => {
-        dispatch(authFail(err));
+        dispatch(authFail());
+        dispatch({type: "ADD_ERROR", error: err});
       })
   }
 }
@@ -80,7 +80,8 @@ export const authRegister = (username, email, password1, password2, home) => {
         dispatch(fetchUser());
       })
       .catch(err => {
-        dispatch(authFail(err))
+        dispatch(authFail());
+        dispatch({type: "ADD_ERROR", error: err});
       })
   }
 }

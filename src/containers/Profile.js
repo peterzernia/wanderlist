@@ -23,15 +23,8 @@ class Profile extends Component {
   }
 
   render(){
-
-    let errorMessage = null;
-    if (this.props.error) {
-      errorMessage = <p>{this.props.error.message}</p>
-    }
-
     return(
       <div className="content">
-        {errorMessage}
         <h1>{this.props.user.username}</h1>
         {this.props.user.home && <img className='flag' style={{width: 300}} sizes='150px' src={this.props.user.home.flag} alt=""/>}
         <br/><br/>

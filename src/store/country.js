@@ -2,7 +2,6 @@ const initialState = {
   fetching: false,
   fetched: false,
   country: [],
-  error: null,
 }
 
 /* Reducer Function*/
@@ -12,7 +11,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         fetching: true,
-        fetched: false
+        fetched: false,
       }
     }
     case "FETCH_COUNTRY_FULFILLED": {
@@ -20,7 +19,7 @@ export default function (state = initialState, action) {
         ...state,
         fetching: false,
         fetched: true,
-        country: action.country
+        country: action.country,
       }
     }
     case "FETCH_COUNTRY_REJECTED": {
@@ -28,7 +27,6 @@ export default function (state = initialState, action) {
         ...state,
         fetching: false,
         fetched: false,
-        error: action.error
       }
     }
     default:

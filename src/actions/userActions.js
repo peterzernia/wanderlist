@@ -13,10 +13,9 @@ export const fetchUserFulfilled = user => {
   }
 }
 
-export const fetchUserRejected = error => {
+export const fetchUserRejected = () => {
   return {
     type: "FETCH_USER_REJECTED",
-    error: error
   }
 }
 
@@ -33,10 +32,9 @@ export const putUserDataFulfilled = user => {
   }
 }
 
-export const putUserDataRejected = error => {
+export const putUserDataRejected = () => {
   return {
     type: "PUT_USER_DATA_REJECTED",
-    error: error
   }
 }
 
@@ -53,7 +51,8 @@ export const fetchUser = () => {
         dispatch(fetchUserFulfilled(user));
       })
       .catch(err => {
-        dispatch(fetchUserRejected(err));
+        dispatch(fetchUserRejected());
+        dispatch({type: "ADD_ERROR", error: err});
       })
   }
 }
@@ -77,7 +76,8 @@ export const putUserData = (username, email, countries, home) => {
         dispatch(putUserDataFulfilled(user));
       })
       .catch(err => {
-        dispatch(putUserDataRejected(err));
+        dispatch(putUserDataRejected());
+        dispatch({type: "ADD_ERROR", error: err});
       })
   }
 }

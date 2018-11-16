@@ -13,10 +13,9 @@ export const fetchCountryFulfilled = country => {
   }
 }
 
-export const fetchCountryRejected = error => {
+export const fetchCountryRejected = () => {
   return {
-    type: "FETCH_COUNTRY_REJECTED",
-    error: error
+    type: "FETCH_COUNTRY_REJECTED"
   }
 }
 
@@ -32,7 +31,8 @@ export const fetchCountry = (query) => {
         dispatch(fetchCountryFulfilled(country));
       })
       .catch(err => {
-        dispatch(fetchCountryRejected(err));
+        dispatch(fetchCountryRejected());
+        dispatch({type: "ADD_ERROR", error: err});
       })
   }
 }

@@ -5,7 +5,6 @@ const initialState = {
   fetchedTripReports: false,
   tripReports: [],
   userTripReports: [],
-  error: null,
 }
 
 export default function (state = initialState, action) {
@@ -13,7 +12,7 @@ export default function (state = initialState, action) {
     case "FETCH_TRIP_REPORTS_PENDING": {
       return {
         ...state,
-        fetching: true
+        fetching: true,
       }
     }
     case "FETCH_TRIP_REPORTS_FULFILLED": {
@@ -21,7 +20,7 @@ export default function (state = initialState, action) {
         ...state,
         fetching: false,
         fetched: true,
-        tripReports: action.tripReports
+        tripReports: action.tripReports,
       }
     }
     case "FETCH_TRIP_REPORTS_REJECTED": {
@@ -29,13 +28,12 @@ export default function (state = initialState, action) {
         ...state,
         fetching: false,
         fetched: false,
-        error: action.error
       }
     }
     case "FETCH_USER_TRIP_REPORTS_PENDING": {
       return {
         ...state,
-        fetchingTripReports: true
+        fetchingTripReports: true,
       }
     }
     case "FETCH_USER_TRIP_REPORTS_FULFILLED": {
@@ -43,7 +41,7 @@ export default function (state = initialState, action) {
         ...state,
         fetchingTripReports: false,
         fetchedTripReports: true,
-        userTripReports: action.tripReports
+        userTripReports: action.tripReports,
       }
     }
     case "FETCH_USER_TRIP_REPORTS_REJECTED": {
@@ -51,7 +49,6 @@ export default function (state = initialState, action) {
         ...state,
         fetchingTripReports: false,
         fetchedTripReports: false,
-        error: action.error
       }
     }
     case "POST_TRIP_REPORTS_PENDING": {
@@ -64,13 +61,12 @@ export default function (state = initialState, action) {
         ...state,
         // The new trip report must be added onto the array, then the array must be sorted by id.
         userTripReports: [...state.userTripReports].concat(action.response).sort((a, b) => a.id < b.id),
-        tripReports: [...state.tripReports].concat(action.response).sort((a, b) => a.id < b.id)
+        tripReports: [...state.tripReports].concat(action.response).sort((a, b) => a.id < b.id),
       }
     }
     case "POST_TRIP_REPORTS_REJECTED": {
       return {
         ...state,
-        error: action.error
         }
     }
     case "DELETE_TRIP_REPORTS_PENDING": {
@@ -83,13 +79,12 @@ export default function (state = initialState, action) {
         ...state,
         // The deleted post must be filtered out of the lists.
         userTripReports: state.userTripReports.filter(tripReport => tripReport.id !== action.response.id),
-        tripReports: state.tripReports.filter(tripReport => tripReport.id !== action.response.id)
+        tripReports: state.tripReports.filter(tripReport => tripReport.id !== action.response.id),
       }
     }
     case "DELETE_TRIP_REPORTS_REJECTED": {
       return {
         ...state,
-        error: action.error
       }
     }
     case "UPDATE_TRIP_REPORTS_PENDING": {
@@ -103,13 +98,11 @@ export default function (state = initialState, action) {
         // The old post must be filtered out, the updated post must be added, then the array must be sorted.
         userTripReports: [...state.userTripReports].filter(tripReport => tripReport.id !== action.response.id).concat(action.response).sort((a, b) => a.id < b.id),
         tripReports: [...state.tripReports].filter(tripReport => tripReport.id !== action.response.id).concat(action.response).sort((a, b) => a.id < b.id),
-        response: action.response
       }
     }
     case "UPDATE_TRIP_REPORTS_REJECTED": {
       return {
         ...state,
-        error: action.error
       }
     }
     default:

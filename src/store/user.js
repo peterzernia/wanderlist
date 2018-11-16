@@ -4,7 +4,6 @@ const initialState = {
   adding: false,
   added: false,
   user: {},
-  error: null,
 }
 
 /* Reducer Function*/
@@ -29,7 +28,6 @@ export default function (state = initialState, action) {
         ...state,
         fetching: false,
         fetched: false,
-        error: action.error
       }
     }
     case "PUT_USER_DATA_PENDING": {
@@ -52,7 +50,6 @@ export default function (state = initialState, action) {
         ...state,
         adding: false,
         added: false,
-        error: action.error
       }
     }
     default:

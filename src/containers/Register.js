@@ -33,7 +33,6 @@ const mapState = state => {
   return {
     authenticating: state.auth.authenticating,
     authenticated: state.auth.authenticated,
-    error: state.auth.error,
   };
 }
 

@@ -15,21 +15,13 @@ class Login extends Component {
     this.props.authLogin(e.target.username.value, e.target.password.value);
     if (this.props.authenticated){
       this.props.history.push('/');
-      this.forceUpdate()
     }
+    this.forceUpdate();
   }
 
   render(){
-
-    let errorMessage = null;
-    if (this.props.error) {
-      errorMessage = <p>{this.props.error.message}</p>
-    }
-
     return(
-
       <div className="content">
-        {errorMessage}
         {
           !this.props.authenticated
           ? <LoginForm handleSubmit={this.handleSubmit} {...this.props} />
@@ -44,7 +36,6 @@ const mapState = state => {
   return {
     authenticating: state.auth.authenticating,
     authenticated: state.auth.authenticated,
-    error: state.auth.error,
   };
 }
 
@@ -59,6 +50,5 @@ export default connect(mapState, mapDispatch)(Login);
 Login.propTypes = {
   authenticating: PropTypes.bool,
   authenticated: PropTypes.bool,
-  error: PropTypes.object,
   authLogin: PropTypes.func
 };
