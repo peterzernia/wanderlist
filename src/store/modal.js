@@ -3,6 +3,7 @@ const initialState = {
   showProfileModal: false,
   showPostModal: false,
   updatePostModal: false,
+  showConfirmDeleteModal: false,
   modalCountry: {},
   modalProfile: {},
   modalPost: {}
@@ -56,6 +57,19 @@ export default function (state = initialState, action) {
         ...state,
         showPostModal: false,
         updatePostModal: false
+      }
+    }
+    case "OPEN_CONFIRM_DELETE_MODAL": {
+      return {
+        ...state,
+        showConfirmDeleteModal: true,
+        modalPost: action.modalPost
+      }
+    }
+    case "CLOSE_CONFIRM_DELETE_MODAL": {
+      return {
+        ...state,
+        showConfirmDeleteModal: false,
       }
     }
     default:

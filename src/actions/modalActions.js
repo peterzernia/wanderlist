@@ -46,3 +46,15 @@ export const closePostModal = () => {
     dispatch({ type: "CLOSE_POST_MODAL" })
   }
 }
+
+export const openConfirmDeleteModal = modalPost => {
+  return dispatch => {
+    dispatch({ type: "OPEN_CONFIRM_DELETE_MODAL" , modalPost: modalPost })
+  }
+}
+
+export const closeConfirmDeleteModal = () => {
+  return dispatch => {
+    dispatch({ type: "CLOSE_CONFIRM_DELETE_MODAL" })
+  }
+}
