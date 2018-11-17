@@ -2,6 +2,8 @@ import React from 'react'
 import ReactModal from 'react-modal'
 import PostTripReportForm from './PostTripReportForm'
 import UpdateTripReportForm from './UpdateTripReportForm'
+import IconButton from '@material-ui/core/IconButton'
+import Close from '@material-ui/icons/Close'
 
 ReactModal.setAppElement('body');
 
@@ -15,9 +17,9 @@ one is POSTed to the Django REST API.
 const PostModal = (props) => (
   <ReactModal isOpen={props.showPostModal}>
     <div className="close-modal">
-      <button onClick={props.closePostModal} className="close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+      <IconButton style={{ float: 'right' }} onClick={props.closePostModal}>
+        <Close />
+      </IconButton><br/>
     </div><br/>
     {
       props.updatePostModal

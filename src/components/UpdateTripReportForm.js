@@ -279,7 +279,7 @@ class UpdateTripReportForm extends Component {
           <MenuItem value="249">Zambia</MenuItem>
           <MenuItem value="250">Zimbabwe</MenuItem>
         </Select><br/><br/>
-        <Button variant="contained" color="secondary" type="submit">Post</Button>
+        <Button variant="contained" color="primary" type="submit">Post</Button>
       </form>
     )
   }

@@ -1,4 +1,6 @@
 import React from 'react'
+import IconButton from '@material-ui/core/IconButton'
+import Close from '@material-ui/icons/Close'
 
 const Errors = (props) => {
 
@@ -10,9 +12,9 @@ const Errors = (props) => {
 
   return (
     <div className="error-message">
-      <button onClick={props.removeError} className="close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+      <IconButton style={{ float: 'right' }} onClick={props.removeError}>
+        <Close />
+      </IconButton>
       Oops! {errorDetails}
     </div>
   )

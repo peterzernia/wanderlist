@@ -12,7 +12,7 @@ const ConfirmDeleteModal = (props) => (
         Are you sure you want to delete this Trip Report?
       </DialogContentText>
       <DialogActions>
-      <Button onClick={() => {props.closeConfirmDeleteModal(); props.deleteTripReport(props.modalPost);}} color="secondary" variant="contained">
+      <Button onClick={() => {props.closeConfirmDeleteModal(); props.deleteTripReport(props.modalPost);}} color="primary" variant="contained">
         Delete
       </Button>
       <Button onClick={() => props.closeConfirmDeleteModal()} color="secondary">

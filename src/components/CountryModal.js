@@ -1,16 +1,16 @@
 import React from 'react'
 import ReactModal from 'react-modal'
+import IconButton from '@material-ui/core/IconButton'
+import Close from '@material-ui/icons/Close'
 
 ReactModal.setAppElement('body');
 
 const CountryModal = (props) => {
   return (
     <ReactModal isOpen={props.showCountryModal}>
-      <div className="close-modal">
-        <button onClick={props.closeCountryModal} className="close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+        <IconButton style={{ float: 'right' }} onClick={props.closeCountryModal}>
+          <Close />
+        </IconButton><br/>
       <div className='wrap'>
         <div className="left">
           <h3>{props.modalCountry.name}</h3>
