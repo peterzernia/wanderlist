@@ -28,7 +28,7 @@ class Profile extends Component {
     return(
       <div className='content'>
         <ProfileModal handleSubmit={this.handleSubmit} {...this.props} errorMessage={this.errorMessage}/>
-        <div>
+        <div className='wrap'>
           <div className='left' style={{ width: '37%' }}>
             {this.props.user.home && <Avatar style={{ width: 150, height: 150, margin: '0 auto' }} src={this.props.user.home.flag}/>}
           </div>
@@ -41,7 +41,7 @@ class Profile extends Component {
                 Edit Profile
               </Button>
             </div><br/>
-            <div style={{ height: 30 }}>
+            <div style={{ height: 30, maxWidth: '75%' }}>
               <strong>{this.props.biography}</strong>
             </div>
           </div>

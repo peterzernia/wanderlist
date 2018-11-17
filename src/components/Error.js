@@ -10,6 +10,9 @@ const Errors = (props) => {
 
   return (
     <div className="error-message">
+      <button onClick={props.removeError} className="close">
+        <span aria-hidden="true">&times;</span>
+      </button>
       Oops! {errorDetails}
     </div>
   )

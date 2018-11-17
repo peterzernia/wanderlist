@@ -285,7 +285,7 @@ class RegistrationForm extends Component {
               <MenuItem value="249">Zambia</MenuItem>
               <MenuItem value="250">Zimbabwe</MenuItem>
             </Select><br/><br/>
-            <Button variant="contained" color="secondary" type="submit">Register</Button>
+            <Button variant="contained" color="primary" type="submit">Register</Button>
             <Link to="/login"><Button>Cancel</Button></Link>
           </form>
         </CardContent>
