@@ -71,8 +71,8 @@ class Post extends Component {
     const listTripReports = this.props.tripReports.map(tripReport =>(
       <div key={tripReport.id} className='trip-report'>
         <TripReport {...tripReport} openCountryModal={this.props.openCountryModal} />
-        <Button variant="contained" color="secondary" onClick={() => this.props.openUpdatePostModal(tripReport)}>Update</Button>
-        <Button variant="contained" color="secondary" onClick={() => this.props.openConfirmDeleteModal(tripReport)}>Delete</Button>
+        <Button variant="contained" color="primary" onClick={() => this.props.openUpdatePostModal(tripReport)}>Update</Button>
+        <Button variant='outlined' color="secondary" onClick={() => this.props.openConfirmDeleteModal(tripReport)}>Delete</Button>
       </div>
     ));
 
@@ -82,8 +82,8 @@ class Post extends Component {
         <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} errorMessage={this.errorMessage}/>
         <CountryModal {...this.props} />
         <ConfirmDeleteModal {...this.props} />
-        <Button variant="contained" color="secondary" className="btn btn-secondary" onClick={this.props.openPostModal}>New Trip Report</Button><br/>
-        {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#66bb6a'} className="content" /></div>}
+        <Button variant="contained" color="primary" className="btn btn-primary" onClick={this.props.openPostModal}>New Trip Report</Button><br/>
+        {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
         {this.props.fetchedTripReports && <div>{listTripReports}</div>}
       </div>
     );

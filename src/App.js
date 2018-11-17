@@ -35,7 +35,7 @@ class App extends Component {
       },
       palette: {
         primary: {
-          main: '#cBe6c9',
+          main: '#2196f3',
         },
         secondary: {
           main: '#000000',

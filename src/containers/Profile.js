@@ -37,7 +37,7 @@ class Profile extends Component {
               <h2>{this.props.user.username}</h2>
             </div><br/>
             <div style={{ height: 30 }}>
-              <Button size='small' onClick={() => this.props.openProfileModal(this.props.user)}>
+              <Button size='small' variant='outlined' onClick={() => this.props.openProfileModal(this.props.user)}>
                 Edit Profile
               </Button>
             </div><br/>
@@ -46,6 +46,7 @@ class Profile extends Component {
             </div>
           </div>
         </div>
+        <hr/>
       </div>
     );
   }

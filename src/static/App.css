@@ -1,5 +1,5 @@
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif !important;
   background-color: #f9f9f9 !important;
   overflow-x: hidden;
 }
@@ -68,7 +68,7 @@ This is the class for the DotLoader.
 }
 
 .active {
-  border: 2px solid #cBe6c9 !important;
+  border: 2px solid #2196f3 !important;
 }
 
 .map {
