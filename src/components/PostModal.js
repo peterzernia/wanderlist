@@ -23,8 +23,8 @@ const PostModal = (props) => (
     </div><br/>
     {
       props.updatePostModal
-      ? <UpdateTripReportForm modalPost={props.modalPost} handleSubmit={props.handleUpdateSubmit} />
-      : <PostTripReportForm handleSubmit={props.handlePostSubmit} />
+      ? <UpdateTripReportForm {...props} modalPost={props.modalPost} handleSubmit={props.handleUpdateSubmit} />
+      : <PostTripReportForm {...props} handleSubmit={props.handlePostSubmit} />
     }
   </ReactModal>
 );
