@@ -17,7 +17,6 @@ const NavBar = (props) => {
         <Button style={{ flex: 1, justifyContent: 'left', minWidth: 90 }} component={Link} to='/' color="inherit">Countries</Button>
         <Button component={NavLink} to='/search' color="inherit"><Search /></Button>
         <Button component={NavLink} to='/post' color="inherit"><Message /></Button>
-        <Button component={NavLink} to='/map' color="inherit"><Place /></Button>
         <Button component={NavLink} to='/profile' color="inherit"><AccountCircle /></Button>
         {
           props.authenticated

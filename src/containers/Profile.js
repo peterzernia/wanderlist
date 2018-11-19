@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import Map from './Map'
 import ProfileModal from '../components/ProfileModal'
 import { openProfileModal, closeProfileModal } from '../actions/modalActions'
 import { putUserData } from '../actions/userActions'
@@ -28,7 +29,7 @@ class Profile extends Component {
     return(
       <div className='content'>
         <ProfileModal handleSubmit={this.handleSubmit} {...this.props} errorMessage={this.errorMessage}/>
-        <div className='wrap'>
+        <div className='wrap' style={{ marginBottom: 60 }} >
           <div className='left' style={{ width: '37%' }}>
             {this.props.user.home && <Avatar style={{ width: 150, height: 150, margin: '0 auto' }} src={this.props.user.home.flag}/>}
           </div>
@@ -46,7 +47,8 @@ class Profile extends Component {
             </div>
           </div>
         </div>
-        <hr/>
+        <hr style={{width: '85%', size: 1}}/>
+        <Map/>
       </div>
     );
   }

@@ -6,7 +6,6 @@ import Post from './Post'
 import Home from './Home'
 import Login from './Login'
 import Logout from './Logout'
-import Map from './Map'
 import NavBar from '../components/NavBar'
 import PrivateRoute from '../components/PrivateRoute'
 import Profile from './Profile'
@@ -46,7 +45,6 @@ class Layout extends Component {
           <Route exact path={`${this.props.match.url}`} component={Home}/>
           <Route path={`${this.props.match.url}/search`} component={Search}/>
           <PrivateRoute {...this.props} path={`${this.props.match.url}/post`} component={Post}/>
-          <PrivateRoute {...this.props} path={`${this.props.match.url}/map`} component={Map}/>
           <PrivateRoute {...this.props} path={`${this.props.match.url}/profile`} component={Profile}/>
           <Route path={`${this.props.match.url}/login`} component={Login}/>
           <Route path={`${this.props.match.url}/logout`} component={Logout}/>

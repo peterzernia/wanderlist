@@ -6,9 +6,10 @@ const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 const GoogleMap = (props) => {
 
   const style = {
-  width: '700px',
-  height: '450px',
-  border: '.5px solid black'
+  maxWidth: '95%',
+  height: '85%',
+  border: '.5px solid black',
+  padding: '1 auto'
   }
 
   /*
@@ -30,6 +31,7 @@ const GoogleMap = (props) => {
            style={style}
            google={props.google}
            zoom={2}>
+
         {listMarkers}
       </Map>
     </div>
