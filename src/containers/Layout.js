@@ -16,7 +16,6 @@ import { Route } from "react-router-dom"
 import { connect } from 'react-redux'
 import { authLogout } from '../actions/authActions'
 import { removeError } from '../actions/errorActions'
-import { toggleNavBar } from '../actions/navbarActions'
 import { fetchUser } from '../actions/userActions'
 import { fetchUserTripReports } from '../actions/tripReportActions'
 import { DotLoader } from 'react-spinners'
@@ -42,7 +41,7 @@ class Layout extends Component {
       {
         !this.props.fetching
         ?<div>
-          <NavBar {...this.props} handleClick={this.handleClick} />
+          <NavBar {...this.props} />
           {this.props.error && <Error {...this.props} error={this.props.error} />}
           <Route exact path={`${this.props.match.url}`} component={Home}/>
           <Route path={`${this.props.match.url}/search`} component={Search}/>
@@ -66,14 +65,12 @@ const mapState = state => {
     authenticated: state.auth.authenticated,
     fetching: state.user.fetching,
     fetched: state.user.fetched,
-    collapsed: state.navbar.collapsed
   }
 }
 
 const mapDispatch = dispatch => {
   return bindActionCreators({
     authLogout,
-    toggleNavBar,
     fetchUser,
     fetchUserTripReports,
     removeError
@@ -86,9 +83,7 @@ Layout.propTypes = {
   error: PropTypes.object,
   authenticated: PropTypes.bool,
   fetching: PropTypes.bool,
-  collapsed: PropTypes.bool,
   authLogout: PropTypes.func,
-  toggleNavBar: PropTypes.func,
   fetchUser: PropTypes.func,
   fetchUserTripReports: PropTypes.func,
   removeError: PropTypes.func
