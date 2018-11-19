@@ -19,7 +19,7 @@ const PostModal = (props) => (
     <div className="close-modal">
       <IconButton style={{ float: 'right' }} onClick={props.closePostModal}>
         <Close />
-      </IconButton><br/>
+      </IconButton><br/><br/>
     </div><br/>
     {
       props.updatePostModal

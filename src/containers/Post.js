@@ -4,12 +4,13 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import CountryModal from '../components/CountryModal'
 import PostModal from '../components/PostModal'
-import TripReport from '../components/TripReport'
+import TripReportThumbnail from '../components/TripReportThumbnail'
 import ConfirmDeleteModal from '../components/ConfirmDeleteModal'
 import { fetchUserTripReports, postTripReport, deleteTripReport, updateTripReport } from '../actions/tripReportActions'
 import { openPostModal, closePostModal, openUpdatePostModal, openCountryModal, closeCountryModal, openConfirmDeleteModal, closeConfirmDeleteModal } from '../actions/modalActions'
 import { DotLoader } from 'react-spinners'
 import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
 
 class Post extends Component {
 
@@ -64,11 +65,9 @@ class Post extends Component {
   render(){
 
     const listTripReports = this.props.tripReports.map(tripReport =>(
-      <div key={tripReport.id} className='trip-report'>
-        <TripReport {...tripReport} openCountryModal={this.props.openCountryModal} />
-        <Button variant="contained" color="primary" onClick={() => this.props.openUpdatePostModal(tripReport)}>Update</Button>
-        <Button variant='outlined' color="secondary" onClick={() => this.props.openConfirmDeleteModal(tripReport)}>Delete</Button>
-      </div>
+      <Grid item key={tripReport.id}>
+        <TripReportThumbnail tripReport={tripReport} {...this.props} />
+      </Grid>
     ));
 
     return(
@@ -78,7 +77,7 @@ class Post extends Component {
         <ConfirmDeleteModal {...this.props} />
         <Button variant="contained" color="primary" className="btn btn-primary" onClick={this.props.openPostModal}>New Trip Report</Button><br/>
         {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
-        {this.props.fetchedTripReports && <div>{listTripReports}</div>}
+        {this.props.fetchedTripReports && <Grid container spacing={24} justify='center' >{listTripReports}</Grid>}
       </div>
     );
   }
@@ -145,4 +144,10 @@ Post.propTypes = {
   closeConfirmDeleteModal: PropTypes.func
 };
 
-//this.props.updateTripReport(tripReport.id, this.props.username, tripReport.title, tripReport.content, tripReport.countries)
+// const listTripReports = this.props.tripReports.map(tripReport =>(
+//   <div key={tripReport.id} className='trip-report'>
+//     <TripReport {...tripReport} openCountryModal={this.props.openCountryModal} />
+//     <Button variant="contained" color="primary" onClick={() => this.props.openUpdatePostModal(tripReport)}>Update</Button>
+//     <Button variant='outlined' color="secondary" onClick={() => this.props.openConfirmDeleteModal(tripReport)}>Delete</Button>
+//   </div>
+// ));

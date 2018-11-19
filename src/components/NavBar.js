@@ -1,12 +1,10 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Search from '@material-ui/icons/Search'
 import AccountCircle from '@material-ui/icons/AccountCircle'
-import Place from '@material-ui/icons/Place'
 import Message from '@material-ui/icons/Message'
 
 const NavBar = (props) => {
