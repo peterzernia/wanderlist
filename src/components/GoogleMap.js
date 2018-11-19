@@ -7,8 +7,9 @@ const GoogleMap = (props) => {
 
   const style = {
   maxWidth: '95%',
-  height: '85%',
+  height: '95%',
   border: '1px solid black',
+  margin: '0 auto'
   }
 
   /*
