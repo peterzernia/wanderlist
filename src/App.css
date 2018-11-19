@@ -1,0 +1,129 @@
+body {
+  font-family: 'Roboto', sans-serif !important;
+  background-color: #f9f9f9 !important;
+  overflow-x: hidden;
+}
+
+form {
+  margin: auto;
+  text-align: center;
+}
+
+img {
+  height: auto;
+  max-width: 100%
+}
+
+li.languages {
+  display: inline;
+}
+
+p {
+  white-space: pre-line;
+}
+
+.content {
+  align: center;
+  text-align: center;
+  align-items: center;
+  margin-top: 90px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  padding: 5px;
+}
+
+.flag {
+  width: 400px;
+  border-style: solid;
+  border-width: .1px;
+}
+
+.user-auth {
+  margin-bottom: 3px !important;
+  width: 300px !important;
+}
+
+/*
+This is the class for the DotLoader.
+*/
+.css-4zbxhv {
+  align: center;
+  margin: auto;
+  padding: auto;
+}
+
+.active {
+  border: 2px solid #2196f3 !important;
+}
+
+.map {
+  width: 95%;
+  height: 85%;
+  border: .5px solid black;
+  text-align: center;
+}
+
+.close-modal {
+  text-align: right;
+}
+
+.ReactModal__Overlay--after-open {
+  top: 50px !important;
+}
+
+.wrap {
+  display: flex;
+}
+
+.left {
+  text-align: center;
+  width: 50%;
+  float: left;
+}
+
+.right {
+  text-align: center;
+  width: 50%;
+  float: left;
+}
+
+@media (max-width: 700px) {
+  .wrap {
+    flex-direction: column;
+  }
+  .left,
+  .right {
+    width: auto;
+    text-align: center;
+  }
+}
+
+.modal-detail {
+  text-align: left;
+  margin-left: 10px;
+}
+
+.trip-report {
+  max-width: 600px;
+  align: center;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+  padding: 5px;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.error-message {
+  min-height: 50px;
+  background-color: #ff7272;
+  color: white;
+  padding: 1em;
+  text-align: center;
+}
