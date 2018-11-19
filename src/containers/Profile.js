@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Map from './Map'
+import GoogleMap from '../components/GoogleMap'
 import ProfileModal from '../components/ProfileModal'
 import { openProfileModal, closeProfileModal } from '../actions/modalActions'
 import { putUserData } from '../actions/userActions'
@@ -10,6 +10,8 @@ import { fetchCountry } from '../actions/countryActions'
 import Button from '@material-ui/core/Button'
 import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
+import CountryModal from '../components/CountryModal'
+import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 
 class Profile extends Component {
 
@@ -29,6 +31,7 @@ class Profile extends Component {
   render(){
     return(
       <div className='content'>
+        <CountryModal {...this.props} />
         <ProfileModal handleSubmit={this.handleSubmit} {...this.props} />
         <div className='wrap' style={{ marginBottom: 60 }} >
           <div className='left' style={{ width: '37%' }}>
@@ -51,7 +54,7 @@ class Profile extends Component {
           </div>
         </div>
         <hr style={{width: '85%', size: 1}}/>
-        <Map/>
+        <GoogleMap {...this.props}/>
       </div>
     );
   }
@@ -61,10 +64,12 @@ const mapState = state => {
   return {
     user: state.user.user,
     biography: state.user.user.biography,
-    userCountries: state.user.user.countries,
     searchedCountry: state.country.country,
     showProfileModal: state.modal.showProfileModal,
-    modalProfile: state.modal.modalProfile
+    modalProfile: state.modal.modalProfile,
+    userCountries: state.user.user.countries,
+    showCountryModal: state.modal.showCountryModal,
+    modalCountry: state.modal.modalCountry,
   };
 }
 
@@ -73,7 +78,9 @@ const mapDispatch = dispatch => {
     fetchCountry,
     putUserData,
     openProfileModal,
-    closeProfileModal
+    closeProfileModal,
+    openCountryModal,
+    closeCountryModal
   }, dispatch);
 }
 
@@ -82,12 +89,16 @@ export default connect(mapState, mapDispatch)(Profile);
 Profile.propTypes = {
   user: PropTypes.object,
   biography: PropTypes.string,
-  userCountries: PropTypes.array,
   searchedCountry: PropTypes.array,
   showProfileModal: PropTypes.bool,
   modalProfile: PropTypes.object,
+  userCountries: PropTypes.array,
+  showCountryModal: PropTypes.bool,
+  modalCountry: PropTypes.object,
   fetchCountry: PropTypes.func,
   putUserData: PropTypes.func,
   openProfileModal: PropTypes.func,
-  closeProfileModal: PropTypes.func
+  closeProfileModal: PropTypes.func,
+  openCountryModal: PropTypes.func,
+  closeCountryModal: PropTypes.func
 };

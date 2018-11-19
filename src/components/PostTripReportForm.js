@@ -23,7 +23,7 @@ class PostTripReportForm extends Component {
     // This copies the array to avoid mutation, sorts alphabetically by name,
     // then maps to a Material UI MenuItem.
     const menuItems = [...this.props.user.countries].sort((a, b) => a.name > b.name).map(country => (
-      <MenuItem value={country.id}>{country.name}</MenuItem>
+      <MenuItem key={country.id} value={country.id}>{country.name}</MenuItem>
     ))
 
     return(
