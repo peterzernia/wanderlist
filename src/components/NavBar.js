@@ -20,7 +20,7 @@ const NavBar = (props) => {
         <Button component={NavLink} to='/profile' color="inherit"><AccountCircle /></Button>
         {
           props.authenticated
-          ? <Button component={NavLink} onClick={props.handleClick} to='/logout' color="inherit">Logout</Button>
+          ? <Button component={NavLink} to='/logout' color="inherit">Logout</Button>
           : <Button component={NavLink} to='/login' color="inherit">Login</Button>
         }
       </Toolbar>

@@ -13,7 +13,6 @@ import Register from './Register'
 import Search from './Search'
 import { Route } from "react-router-dom"
 import { connect } from 'react-redux'
-import { authLogout } from '../actions/authActions'
 import { removeError } from '../actions/errorActions'
 import { fetchUser } from '../actions/userActions'
 import { fetchUserTripReports } from '../actions/tripReportActions'
@@ -68,7 +67,6 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return bindActionCreators({
-    authLogout,
     fetchUser,
     fetchUserTripReports,
     removeError
@@ -81,7 +79,6 @@ Layout.propTypes = {
   error: PropTypes.object,
   authenticated: PropTypes.bool,
   fetching: PropTypes.bool,
-  authLogout: PropTypes.func,
   fetchUser: PropTypes.func,
   fetchUserTripReports: PropTypes.func,
   removeError: PropTypes.func
