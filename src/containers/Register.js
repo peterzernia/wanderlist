@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom';
 import RegistrationForm from '../components/RegistrationForm'
 import { connect } from 'react-redux'
 import { authRegister } from '../actions/authActions'
+import { removeError } from '../actions/errorActions'
 
 class Register extends Component {
+
+  componentWillUnmount() {
+    this.props.removeError();
+  }
 
   // Registers the user.
   handleSubmit = (e) => {
@@ -48,9 +54,10 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
-  return {
-    authRegister: (username, email, password1, password2, home) => dispatch(authRegister(username, email, password1, password2, home))
-  };
+  return bindActionCreators({
+    authRegister,
+    removeError
+  }, dispatch);
 }
 
 export default connect(mapState, mapDispatch)(Register);

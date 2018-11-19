@@ -99,7 +99,6 @@ export const updateTripReportsRejected = () => {
 
 export const fetchTripReports = () => {
   return dispatch => {
-    dispatch({type: "REMOVE_ERROR"});
     dispatch(fetchTripReportsPending());
     axios.get('http://localhost:8000/api/v1/reports/')
       .then(response => {
@@ -115,7 +114,6 @@ export const fetchTripReports = () => {
 
 export const fetchUserTripReports = (username) => {
   return dispatch => {
-    dispatch({type: "REMOVE_ERROR"});
     dispatch(fetchUserTripReportsPending());
     axios.get(`http://localhost:8000/api/v1/reports/?search=${username}`)
       .then(response => {
@@ -132,7 +130,6 @@ export const fetchUserTripReports = (username) => {
 export const postTripReport = (author, title, content, countries) => {
   const token = localStorage.getItem('token');
   return dispatch => {
-    dispatch({type: "REMOVE_ERROR"});
     dispatch(postTripReportsPending());
     axios.post(
       'http://localhost:8000/api/v1/reports/',
@@ -157,7 +154,6 @@ export const postTripReport = (author, title, content, countries) => {
 export const deleteTripReport = (tripReport) => {
   const token = localStorage.getItem('token');
   return dispatch => {
-    dispatch({type: "REMOVE_ERROR"});
     dispatch(deleteTripReportsPending());
     axios.delete(`http://localhost:8000/api/v1/reports/${tripReport.id}/`, {headers: {
       'X-Requested-With': 'XMLHttpRequest',
@@ -177,7 +173,6 @@ export const deleteTripReport = (tripReport) => {
 export const updateTripReport = (tripReport, author, title, content, countries) => {
   const token = localStorage.getItem('token');
   return dispatch => {
-    dispatch({type: "REMOVE_ERROR"});
     dispatch(updateTripReportsPending());
     axios.put(`http://localhost:8000/api/v1/reports/${tripReport}/`,
       {

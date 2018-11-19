@@ -38,7 +38,6 @@ is stored in localStorage.
 */
 export const authLogin = (username, password) => {
   return dispatch => {
-    dispatch({type: "REMOVE_ERROR"});
     dispatch(authStart());
     axios.post('http://localhost:8000/api/v1/rest-auth/login/', {
       username: username,
@@ -64,7 +63,6 @@ token to authenticate the user. This token is stored in localStorage.
 */
 export const authRegister = (username, email, password1, password2, home) => {
   return dispatch => {
-    dispatch({type: "REMOVE_ERROR"});
     localStorage.removeItem('token');
     dispatch(authStart());
     axios.post('http://localhost:8000/api/v1/rest-auth/registration/', {
@@ -96,7 +94,6 @@ function.
 export const authCheckState = () => {
   const token = localStorage.getItem('token');
   return dispatch => {
-    dispatch({type: "REMOVE_ERROR"});
     if (token === null) {
       dispatch(authLogout());
     } else {

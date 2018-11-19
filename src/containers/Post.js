@@ -10,12 +10,17 @@ import { fetchUserTripReports, postTripReport, deleteTripReport, updateTripRepor
 import { openPostModal, closePostModal, openUpdatePostModal, openCountryModal,
          closeCountryModal, openConfirmDeleteModal, closeConfirmDeleteModal,
          openTripReportModal, closeTripReportModal } from '../actions/modalActions'
+import { removeError } from '../actions/errorActions'
 import { DotLoader } from 'react-spinners'
 import IconButton from '@material-ui/core/IconButton'
 import Grid from '@material-ui/core/Grid'
 import Add from '@material-ui/icons/Add'
 
 class Post extends Component {
+
+  componentWillUnmount() {
+    this.props.removeError();
+  }
 
   /*
   handlPostSubmit will create a new trip report and handleUpdateSubmit will
@@ -106,7 +111,8 @@ const mapDispatch = dispatch => {
     openConfirmDeleteModal,
     closeConfirmDeleteModal,
     openTripReportModal,
-    closeTripReportModal
+    closeTripReportModal,
+    removeError
   }, dispatch);
 }
 

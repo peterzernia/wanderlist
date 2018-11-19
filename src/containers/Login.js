@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import LoginForm from '../components/LoginForm'
 import { connect } from 'react-redux'
 import { authLogin } from '../actions/authActions'
-import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
+import { removeError } from '../actions/errorActions'
 
 class Login extends Component {
+
+  componentWillUnmount() {
+    this.props.removeError();
+  }
 
   // Authenticates the user.
   handleSubmit = (e) => {
@@ -34,9 +40,10 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
-  return {
-    authLogin: (username, password) => dispatch(authLogin(username, password))
-  };
+  return bindActionCreators({
+    authLogin,
+    removeError
+  }, dispatch);
 }
 
 export default connect(mapState, mapDispatch)(Login);

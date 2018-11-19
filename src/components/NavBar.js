@@ -10,19 +10,26 @@ import Message from '@material-ui/icons/Message'
 const NavBar = (props) => {
 
   return (
-    <AppBar color="#ffffff" position="static">
-      <Toolbar>
-        <Button style={{ flex: 1, justifyContent: 'left', minWidth: 90 }} component={Link} to='/' color="inherit">Countries</Button>
-        <Button component={Link} to='/search' color="inherit"><Search /></Button>
-        <Button component={Link} to='/post' color="inherit"><Message /></Button>
-        <Button component={Link} to='/profile' color="inherit"><AccountCircle /></Button>
-        {
-          props.authenticated
-          ? <Button component={Link} to='/logout' color="inherit">Logout</Button>
-          : <Button component={Link} to='/login' color="inherit">Login</Button>
-        }
-      </Toolbar>
-    </AppBar>
+    <div style={{ backgroundColor: '#ffffff'}} >
+      <AppBar color='inherit' position="static">
+        <Toolbar>
+          <Button
+            style={{ flex: 1, justifyContent: 'left', minWidth: 90, backgroundColor: 'transparent' }}
+            component={Link} to='/'
+            color="inherit">
+            Countries
+          </Button>
+          <Button component={Link} to='/search' color="inherit"><Search /></Button>
+          <Button component={Link} to='/post' color="inherit"><Message /></Button>
+          <Button component={Link} to='/profile' color="inherit"><AccountCircle /></Button>
+          {
+            props.authenticated
+            ? <Button component={Link} to='/logout' color="inherit">Logout</Button>
+            : <Button component={Link} to='/login' color="inherit">Login</Button>
+          }
+        </Toolbar>
+      </AppBar>
+    </div>
   )
 };
 
