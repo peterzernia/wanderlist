@@ -1,5 +1,4 @@
 import './static/App.css'
-import './static/bootstrap.min.css'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import PropType from 'prop-types'
