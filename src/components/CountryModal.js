@@ -2,10 +2,21 @@ import React from 'react'
 import ReactModal from 'react-modal'
 import IconButton from '@material-ui/core/IconButton'
 import Close from '@material-ui/icons/Close'
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 ReactModal.setAppElement('body');
+const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const CountryModal = (props) => {
+
+  const style = {
+    width: '100%',
+    height: '75%',
+    border: '1px solid black',
+    margin: '0 auto',
+    position: 'relative'
+  }
+
   return (
     <ReactModal isOpen={props.showCountryModal}>
         <IconButton style={{ float: 'right' }} onClick={props.closeCountryModal}>
@@ -14,7 +25,25 @@ const CountryModal = (props) => {
       <div className='wrap'>
         <div className="left">
           <h3>{props.modalCountry.name}</h3>
+          <div>
           <img className="flag" src={props.modalCountry.flag} alt=""/><br/>
+            <div style={{ maxWidth: 400, height: 300, position: 'relative', margin: 'auto' }}>
+              { props.modalCountry.latlng &&
+                <Map
+                  options={{ gestureHandling: 'coopertive' }}
+                  style={style}
+                  google={props.google}
+                  zoom={2}
+                  initialCenter={{lat: props.modalCountry.latlng[0], lng: props.modalCountry.latlng[1]}}
+                >
+                  <Marker
+                    name={props.modalCountry.name}
+                    position={{lat: props.modalCountry.latlng[0], lng: props.modalCountry.latlng[1]}}
+                  />
+                </Map>
+              }
+            </div>
+          </div>
         </div>
         <div className="right">
           <h3>Geographic & Political Info</h3>
@@ -46,4 +75,4 @@ const CountryModal = (props) => {
   )
 };
 
-export default CountryModal;
+export default GoogleApiWrapper({ apiKey: (API_KEY) })(CountryModal);
