@@ -28,7 +28,7 @@ class Profile extends Component {
   render(){
     return(
       <div className='content'>
-        <ProfileModal handleSubmit={this.handleSubmit} {...this.props} errorMessage={this.errorMessage}/>
+        <ProfileModal handleSubmit={this.handleSubmit} {...this.props} />
         <div className='wrap' style={{ marginBottom: 60 }} >
           <div className='left' style={{ width: '37%' }}>
             {this.props.user.home && <Avatar style={{ width: 150, height: 150, margin: '0 auto' }} src={this.props.user.home.flag}/>}

@@ -12,7 +12,7 @@ import Message from '@material-ui/icons/Message'
 const NavBar = (props) => {
 
   return (
-    <AppBar color="default" position="static">
+    <AppBar color="default" position="fixed">
       <Toolbar>
         <Button style={{ flex: 1, justifyContent: 'left', minWidth: 90 }} component={Link} to='/' color="inherit">Countries</Button>
         <Button component={NavLink} to='/search' color="inherit"><Search /></Button>

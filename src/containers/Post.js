@@ -63,11 +63,6 @@ class Post extends Component {
 
   render(){
 
-    let errorMessage = null;
-    if (this.props.error) {
-      errorMessage = <p>{this.props.error.message}</p>
-    }
-
     const listTripReports = this.props.tripReports.map(tripReport =>(
       <div key={tripReport.id} className='trip-report'>
         <TripReport {...tripReport} openCountryModal={this.props.openCountryModal} />
@@ -78,8 +73,7 @@ class Post extends Component {
 
     return(
       <div className="content">
-        {errorMessage}
-        <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} errorMessage={this.errorMessage}/>
+        <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} />
         <CountryModal {...this.props} />
         <ConfirmDeleteModal {...this.props} />
         <Button variant="contained" color="primary" className="btn btn-primary" onClick={this.props.openPostModal}>New Trip Report</Button><br/>

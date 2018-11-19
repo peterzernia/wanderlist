@@ -58,6 +58,5 @@ export default connect(mapState, mapDispatch)(Register);
 Register.propTypes = {
   authenticating: PropTypes.bool,
   authenticated: PropTypes.bool,
-  error: PropTypes.object,
   authRegister: PropTypes.func
 };
