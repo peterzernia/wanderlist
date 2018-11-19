@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { fetchUser } from './userActions'
+import { fetchUserTripReports } from './tripReportActions'
 
 export const authStart = () => {
   return {
@@ -49,6 +50,7 @@ export const authLogin = (username, password) => {
         localStorage.setItem('username', username);
         dispatch(authSucess(token));
         dispatch(fetchUser());
+        dispatch(fetchUserTripReports(username));
       })
       .catch(err => {
         dispatch(authFail());
