@@ -2,7 +2,8 @@ import React from 'react'
 import ReactModal from 'react-modal'
 import IconButton from '@material-ui/core/IconButton'
 import Close from '@material-ui/icons/Close'
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
+import Typography from '@material-ui/core/Typography'
 
 ReactModal.setAppElement('body');
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
@@ -24,7 +25,9 @@ const CountryModal = (props) => {
         </IconButton><br/>
       <div className='wrap'>
         <div className="left">
-          <h3>{props.modalCountry.name}</h3>
+          <Typography variant="h4" gutterBottom>
+            {props.modalCountry.name}
+          </Typography>
           <div>
           <img className="flag" src={props.modalCountry.flag} alt=""/><br/>
             <div style={{ maxWidth: 400, height: 300, position: 'relative', margin: 'auto' }}>
@@ -33,7 +36,7 @@ const CountryModal = (props) => {
                   options={{ gestureHandling: 'coopertive' }}
                   style={style}
                   google={props.google}
-                  zoom={2}
+                  zoom={4}
                   initialCenter={{lat: props.modalCountry.latlng[0], lng: props.modalCountry.latlng[1]}}
                 >
                   <Marker
@@ -46,7 +49,9 @@ const CountryModal = (props) => {
           </div>
         </div>
         <div className="right">
-          <h3>Geographic & Political Info</h3>
+          <Typography variant="h4" gutterBottom>
+            Geographic & Political Info
+          </Typography>
           <div className="modal-detail">
             <strong>Native Name</strong> - {props.modalCountry.native_name}<br/>
             <strong>Alternate Spellings</strong> - {props.modalCountry.alt_spellings && props.modalCountry.alt_spellings.join(', ')}<br/>
