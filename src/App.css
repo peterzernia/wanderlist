@@ -1,5 +1,8 @@
+html {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+}
+
 body {
-  font-family: 'Roboto', sans-serif !important;
   background-color: #f9f9f9 !important;
   overflow-x: hidden;
 }

@@ -8,8 +8,7 @@ const GoogleMap = (props) => {
   const style = {
   maxWidth: '95%',
   height: '85%',
-  border: '.5px solid black',
-  padding: '1 auto'
+  border: '1px solid black',
   }
 
   /*

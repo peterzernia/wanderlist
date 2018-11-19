@@ -10,7 +10,7 @@ class Map extends Component {
   render(){
 
     return(
-      <div className="content">
+      <div style={{ marginTop: 60}}>
         <GoogleMap {...this.props} />
         <CountryModal {...this.props} />
       </div>
