@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -10,16 +10,16 @@ import Message from '@material-ui/icons/Message'
 const NavBar = (props) => {
 
   return (
-    <AppBar color="default" position="fixed">
+    <AppBar color="#ffffff" position="static">
       <Toolbar>
         <Button style={{ flex: 1, justifyContent: 'left', minWidth: 90 }} component={Link} to='/' color="inherit">Countries</Button>
-        <Button component={NavLink} to='/search' color="inherit"><Search /></Button>
-        <Button component={NavLink} to='/post' color="inherit"><Message /></Button>
-        <Button component={NavLink} to='/profile' color="inherit"><AccountCircle /></Button>
+        <Button component={Link} to='/search' color="inherit"><Search /></Button>
+        <Button component={Link} to='/post' color="inherit"><Message /></Button>
+        <Button component={Link} to='/profile' color="inherit"><AccountCircle /></Button>
         {
           props.authenticated
-          ? <Button component={NavLink} to='/logout' color="inherit">Logout</Button>
-          : <Button component={NavLink} to='/login' color="inherit">Login</Button>
+          ? <Button component={Link} to='/logout' color="inherit">Logout</Button>
+          : <Button component={Link} to='/login' color="inherit">Login</Button>
         }
       </Toolbar>
     </AppBar>

@@ -29,7 +29,7 @@ p {
   align: center;
   text-align: center;
   align-items: center;
-  margin-top: 90px;
+  margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: auto;
@@ -54,10 +54,6 @@ This is the class for the DotLoader.
   align: center;
   margin: auto;
   padding: auto;
-}
-
-.active {
-  border: 2px solid #2196f3 !important;
 }
 
 .map {

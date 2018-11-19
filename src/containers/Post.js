@@ -11,8 +11,9 @@ import { openPostModal, closePostModal, openUpdatePostModal, openCountryModal,
          closeCountryModal, openConfirmDeleteModal, closeConfirmDeleteModal,
          openTripReportModal, closeTripReportModal } from '../actions/modalActions'
 import { DotLoader } from 'react-spinners'
-import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
 import Grid from '@material-ui/core/Grid'
+import Add from '@material-ui/icons/Add'
 
 class Post extends Component {
 
@@ -27,14 +28,9 @@ class Post extends Component {
   */
   handlePostSubmit = (e) => {
     e.preventDefault();
-    let countries =[];
-    // e.target.value must be converted into an array of numbers.
-    for (let i = 0, l = e.target.countries.value.length; i < l; i++) {
-      // It contains commas, which must be removed.
-      if (!isNaN(Number(e.target.countries.value[i]))){
-        countries.push(Number(e.target.countries.value[i]));
-      }
-    }
+    // e.target.countries.value must be split at the comma and then strings
+    // must be converted into numbers.
+    let countries = e.target.countries.value.split(',').map(Number);
     this.props.postTripReport(
       this.props.pk,
       e.target.title.value,
@@ -46,14 +42,7 @@ class Post extends Component {
 
   handleUpdateSubmit = (e) => {
     e.preventDefault();
-    let countries =[];
-    // e.target.value must be converted into an array of numbers.
-    for (let i = 0, l = e.target.countries.value.length; i < l; i++) {
-      // It contains commas, which must be removed.
-      if (!isNaN(Number(e.target.countries.value[i]))){
-        countries.push(Number(e.target.countries.value[i]));
-      }
-    }
+    let countries = e.target.countries.value.split(',').map(Number);
     this.props.updateTripReport(
       this.props.modalPost.id,
       this.props.pk,
@@ -74,10 +63,10 @@ class Post extends Component {
 
     return(
       <div className="content">
+        <IconButton variant="contained" onClick={this.props.openPostModal}><Add /></IconButton><br/><br/>
         <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} />
         <ConfirmDeleteModal {...this.props} />
         {this.props.modalPost.author && <TripReportModal {...this.props} />}
-        <Button variant="contained" color="primary" className="btn btn-primary" onClick={this.props.openPostModal}>New Trip Report</Button><br/>
         {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
         {this.props.fetchedTripReports && <Grid container spacing={24} justify='center' >{listTripReports}</Grid>}
       </div>
