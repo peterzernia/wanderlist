@@ -27,29 +27,29 @@ class Results extends React.Component {
     const { anchorEl } = this.state;
 
     return(
-        <Card style={{maxWidth: 400, margin: '0 auto'}}>
-          <CardHeader action={
-              <IconButton
-                onClick={this.handleClick}
-                aria-owns={anchorEl ? 'simple-menu' : undefined}
-                aria-haspopup="true"
-              >
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={this.props.country.name} />
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={this.handleClose}
-          >
-            {this.props.authenticated && <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} id={this.props.country.id}><AddLocationIcon style={{margin: '0 auto'}}/></MenuItem>}
-            <MenuItem onClick={() => {this.handleClose(); this.props.openCountryModal(this.props.country);}}>More Info</MenuItem>
-          </Menu>
-          <CardMedia component='img' src={this.props.country.flag} alt="" width="400"/>
-        </Card>
-      )};
+      <Card style={{maxWidth: 400, margin: '0 auto'}}>
+        <CardHeader action={
+            <IconButton
+              onClick={this.handleClick}
+              aria-owns={anchorEl ? 'simple-menu' : undefined}
+              aria-haspopup="true"
+            >
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title={this.props.country.name} />
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={this.handleClose}
+        >
+          {this.props.authenticated && <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} id={this.props.country.id}><AddLocationIcon style={{margin: '0 auto'}}/></MenuItem>}
+          <MenuItem onClick={() => {this.handleClose(); this.props.openCountryModal(this.props.country);}}>More Info</MenuItem>
+        </Menu>
+        <CardMedia component='img' src={this.props.country.flag} alt="" width="400"/>
+      </Card>
+    )};
 }
 
 export default Results;

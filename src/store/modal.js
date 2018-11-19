@@ -4,6 +4,7 @@ const initialState = {
   showPostModal: false,
   updatePostModal: false,
   showConfirmDeleteModal: false,
+  showTripReportModal: false,
   modalCountry: {},
   modalProfile: {},
   modalPost: {}
@@ -70,6 +71,19 @@ export default function (state = initialState, action) {
       return {
         ...state,
         showConfirmDeleteModal: false,
+      }
+    }
+    case "OPEN_TRIP_REPORT_MODAL": {
+      return {
+        ...state,
+        showTripReportModal: true,
+        modalPost: action.modalPost
+      }
+    }
+    case "CLOSE_TRIP_REPORT_MODAL": {
+      return {
+        ...state,
+        showTripReportModal: false,
       }
     }
     default:

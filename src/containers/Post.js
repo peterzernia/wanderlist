@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import CountryModal from '../components/CountryModal'
 import PostModal from '../components/PostModal'
 import TripReportThumbnail from '../components/TripReportThumbnail'
+import TripReportModal from '../components/TripReportModal'
 import ConfirmDeleteModal from '../components/ConfirmDeleteModal'
 import { fetchUserTripReports, postTripReport, deleteTripReport, updateTripReport } from '../actions/tripReportActions'
-import { openPostModal, closePostModal, openUpdatePostModal, openCountryModal, closeCountryModal, openConfirmDeleteModal, closeConfirmDeleteModal } from '../actions/modalActions'
+import { openPostModal, closePostModal, openUpdatePostModal, openCountryModal,
+         closeCountryModal, openConfirmDeleteModal, closeConfirmDeleteModal,
+         openTripReportModal, closeTripReportModal } from '../actions/modalActions'
 import { DotLoader } from 'react-spinners'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
@@ -73,8 +75,8 @@ class Post extends Component {
     return(
       <div className="content">
         <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} />
-        <CountryModal {...this.props} />
         <ConfirmDeleteModal {...this.props} />
+        {this.props.modalPost.author && <TripReportModal {...this.props} />}
         <Button variant="contained" color="primary" className="btn btn-primary" onClick={this.props.openPostModal}>New Trip Report</Button><br/>
         {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
         {this.props.fetchedTripReports && <Grid container spacing={24} justify='center' >{listTripReports}</Grid>}
@@ -96,7 +98,8 @@ const mapState = state => {
     modalPost: state.modal.modalPost,
     showCountryModal: state.modal.showCountryModal,
     modalCountry: state.modal.modalCountry,
-    showConfirmDeleteModal: state.modal.showConfirmDeleteModal
+    showConfirmDeleteModal: state.modal.showConfirmDeleteModal,
+    showTripReportModal: state.modal.showTripReportModal
   };
 }
 
@@ -112,7 +115,9 @@ const mapDispatch = dispatch => {
     openCountryModal,
     closeCountryModal,
     openConfirmDeleteModal,
-    closeConfirmDeleteModal
+    closeConfirmDeleteModal,
+    openTripReportModal,
+    closeTripReportModal
   }, dispatch);
 }
 
@@ -131,6 +136,7 @@ Post.propTypes = {
   showCountryModal: PropTypes.bool,
   modalCountry: PropTypes.object,
   showConfirmDeleteModal: PropTypes.bool,
+  showTripReportModal: PropTypes.bool,
   fetchUserTripReports: PropTypes.func,
   postTripReport: PropTypes.func,
   deleteTripReport: PropTypes.func,
@@ -141,7 +147,9 @@ Post.propTypes = {
   openCountryModal: PropTypes.func,
   closeCountryModal: PropTypes.func,
   openConfirmDeleteModal: PropTypes.func,
-  closeConfirmDeleteModal: PropTypes.func
+  closeConfirmDeleteModal: PropTypes.func,
+  openTripReportModal: PropTypes.func,
+  closeTripReportModal: PropTypes.func
 };
 
 // const listTripReports = this.props.tripReports.map(tripReport =>(

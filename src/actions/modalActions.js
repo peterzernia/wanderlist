@@ -58,3 +58,15 @@ export const closeConfirmDeleteModal = () => {
     dispatch({ type: "CLOSE_CONFIRM_DELETE_MODAL" })
   }
 }
+
+export const openTripReportModal = modalPost => {
+  return dispatch => {
+    dispatch({ type: "OPEN_TRIP_REPORT_MODAL" , modalPost: modalPost })
+  }
+}
+
+export const closeTripReportModal = () => {
+  return dispatch => {
+    dispatch({ type: "CLOSE_TRIP_REPORT_MODAL" })
+  }
+}

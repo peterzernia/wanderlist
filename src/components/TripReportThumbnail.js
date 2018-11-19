@@ -43,7 +43,7 @@ class TripReportThumbnail extends Component {
             open={Boolean(anchorEl)}
             onClose={this.handleClose}
           >
-            <MenuItem onClick={() => {this.handleClose(); }}>Open</MenuItem>
+            <MenuItem onClick={() => {this.handleClose(); this.props.openTripReportModal(this.props.tripReport);}}>Open</MenuItem>
             <MenuItem onClick={() => {this.handleClose(); this.props.openUpdatePostModal(this.props.tripReport);}}>Update</MenuItem>
             <MenuItem onClick={() => {this.handleClose(); this.props.openConfirmDeleteModal(this.props.tripReport);}}>Delete</MenuItem>
           </Menu>
