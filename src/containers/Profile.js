@@ -54,7 +54,7 @@ class Profile extends Component {
           </div>
         </div>
         <hr style={{width: '85%', size: 1}}/>
-        <GoogleMap {...this.props}/>
+        {this.props.fetched && <GoogleMap {...this.props}/>}
       </div>
     );
   }
@@ -63,6 +63,7 @@ class Profile extends Component {
 const mapState = state => {
   return {
     user: state.user.user,
+    fetched: state.user.fetched,
     biography: state.user.user.biography,
     searchedCountry: state.country.country,
     showProfileModal: state.modal.showProfileModal,
@@ -88,6 +89,7 @@ export default connect(mapState, mapDispatch)(Profile);
 
 Profile.propTypes = {
   user: PropTypes.object,
+  fetched: PropTypes.bool,
   biography: PropTypes.string,
   searchedCountry: PropTypes.array,
   showProfileModal: PropTypes.bool,

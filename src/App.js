@@ -21,6 +21,7 @@ class App extends Component {
 
   render() {
 
+    // Google Material UI Theme
     const theme = createMuiTheme({
       typography: {
         useNextVariants: true,
