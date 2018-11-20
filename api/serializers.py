@@ -93,9 +93,19 @@ class AuthorField(serializers.PrimaryKeyRelatedField):
         return OrderedDict([(item.id, str(item)) for item in queryset])
 
 
+class UserSerializer(serializers.ModelSerializer):
+    countries = CountryField(queryset=Country.objects.all(), many=True)
+    home = CountryField(queryset=Country.objects.all())
+
+    class Meta:
+        model = User
+        fields = ('pk', 'username', 'email', 'countries', 'home', 'biography')
+
+
 class TripReportSerializer(serializers.ModelSerializer):
     author = AuthorField(queryset=User.objects.all())
     countries = CountryField(queryset=Country.objects.all(), many=True)
+    
     class Meta:
         model = TripReport
         fields = ('__all__')

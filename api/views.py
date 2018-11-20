@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView
 from rest_framework import viewsets, filters
-from .serializers import CountrySerializer, TripReportSerializer
+from .serializers import CountrySerializer, TripReportSerializer, UserSerializer
 from countries.models import Country
 from trips.models import TripReport
+from users.models import User
 from rest_framework import permissions
 
 
@@ -25,3 +26,10 @@ class TripReportViewSet(viewsets.ModelViewSet):
     queryset = TripReport.objects.all().order_by('-pk')
     filter_backends = (filters.SearchFilter,)
     search_fields = ('=author__username',)
+
+
+class UserListView(ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('=username', )
