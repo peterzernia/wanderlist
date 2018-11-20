@@ -1,5 +1,6 @@
 import React from 'react'
-import CountryModal from '../components/CountryModal'
+import CountryModal from './CountryModal'
+import TripReport from './TripReport'
 import ReactModal from 'react-modal'
 import Close from '@material-ui/icons/Close'
 import Card from '@material-ui/core/Card'
@@ -29,25 +30,10 @@ const TripReportModal = (props) => {
       <CountryModal {...props} />
       <IconButton style={{ float: 'right' }} onClick={props.closeTripReportModal}>
         <Close />
-      </IconButton><br/><br/><br/>
-      <Card style={{margin: '0 auto'}}>
-        <CardHeader
-          action={<IconButton><MoreVertIcon /></IconButton>}
-          title={props.modalPost.title}
-          subheader={props.modalPost.author.username}
-          avatar={<Avatar src={props.modalPost.author.home.flag}/>} />
-        <CardContent>
-          <Typography component="p">
-            {props.modalPost.content}
-          </Typography><br/>
-          <hr/>
-          {listCountries}
-        </CardContent>
-        <CardActions>
-          <IconButton><FavoriteIcon /></IconButton>
-          <IconButton><ShareIcon /></IconButton>
-        </CardActions>
-      </Card>
+      </IconButton><br/>
+      <div className='content'>
+        <TripReport {...props.modalPost} {...props} />
+      </div>
     </ReactModal>
   )
 };
