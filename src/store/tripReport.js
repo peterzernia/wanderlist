@@ -34,6 +34,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         fetchingTripReports: true,
+        fetchedTripReports: false
       }
     }
     case "FETCH_USER_TRIP_REPORTS_FULFILLED": {

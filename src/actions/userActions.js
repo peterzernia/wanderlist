@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { fetchTripReports, fetchUserTripReports } from './tripReportActions'
 
 export const fetchUserPending = () => {
   return {
@@ -75,6 +76,8 @@ export const putUserData = (username, email, countries, home, biography) => {
       .then(response => {
         const user = response.data;
         dispatch(putUserDataFulfilled(user));
+        dispatch(fetchTripReports());
+        dispatch(fetchUserTripReports(username));
         dispatch({type: "ADD_SUCCESS", success: 'Your profile has been updated.'});
       })
       .catch(err => {
