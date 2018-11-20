@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import GoogleMap from '../components/GoogleMap'
 import EditProfileModal from '../components/EditProfileModal'
-import Post from './Post'
 import { openEditProfileModal, closeEditProfileModal } from '../actions/modalActions'
 import { putUserData } from '../actions/userActions'
 import { fetchCountry } from '../actions/countryActions'
@@ -12,8 +11,20 @@ import Button from '@material-ui/core/Button'
 import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
 import CountryModal from '../components/CountryModal'
-import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import PostModal from '../components/PostModal'
+import TripReportThumbnail from '../components/TripReportThumbnail'
+import TripReportModal from '../components/TripReportModal'
+import ConfirmDeleteModal from '../components/ConfirmDeleteModal'
+import { fetchUserTripReports, postTripReport, deleteTripReport, updateTripReport } from '../actions/tripReportActions'
+import { openPostModal, closePostModal, openUpdatePostModal, openCountryModal,
+         closeCountryModal, openConfirmDeleteModal, closeConfirmDeleteModal,
+         openTripReportModal, closeTripReportModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
+import { DotLoader } from 'react-spinners'
+import IconButton from '@material-ui/core/IconButton'
+import Grid from '@material-ui/core/Grid'
+import Add from '@material-ui/icons/Add'
+import Tooltip from '@material-ui/core/Tooltip';
 
 class Profile extends Component {
 
@@ -21,6 +32,51 @@ class Profile extends Component {
     this.props.removeError();
   }
 
+  /*
+  handlPostSubmit will create a new trip report and handleUpdateSubmit will
+  update an existing trip report. Both functions are passed into the Post Modal.
+  If the Post Modal is opened with openPostModal, this.props.updatePostModal
+  remains false and the blank form is displayed, and the submit button will
+  create a new post. If the Post Modal is openeed with openUpdatePostModal,
+  this.props.updatePostModal will flip to true, and the pre-filled in form will
+  display and the submit button will update the existing trip report.
+  */
+  handlePostSubmit = (e) => {
+    e.preventDefault();
+    // e.target.countries.value must be split at the comma and then strings
+    // must be converted into numbers.
+    let countries;
+    if (e.target.countries.value !== '') {
+      countries = e.target.countries.value.split(',').map(Number);
+    }
+    this.props.postTripReport(
+      this.props.user.pk,
+      e.target.title.value,
+      e.target.content.value,
+      countries
+    );
+    this.props.closePostModal();
+  }
+
+  handleUpdateSubmit = (e) => {
+    e.preventDefault();
+    let countries;
+    if (e.target.countries.value !== '') {
+      countries = e.target.countries.value.split(',').map(Number);
+    }
+    this.props.updateTripReport(
+      this.props.modalPost.id,
+      this.props.user.pk,
+      e.target.title.value,
+      e.target.content.value,
+      countries
+    );
+    this.props.closePostModal();
+  }
+
+  /*
+  This handle submit works with the edit profile modal.
+  */
   handleSubmit = (e) => {
     e.preventDefault();
     let userCountryList = this.props.userCountries.map(country => country.id);
@@ -35,6 +91,13 @@ class Profile extends Component {
   }
 
   render(){
+
+    const listTripReports = this.props.tripReports.map(tripReport =>(
+      <Grid item key={tripReport.id}>
+        <TripReportThumbnail tripReport={tripReport} {...this.props} />
+      </Grid>
+    ));
+
     return(
       <div className='content'>
         {this.props.fetched && <CountryModal {...this.props} />}
@@ -62,7 +125,18 @@ class Profile extends Component {
         <hr style={{width: '85%', size: 1}}/>
         {this.props.fetched && <GoogleMap {...this.props}/>}
         <hr style={{width: '85%', size: 1}}/>
-        <Post />
+        <div className="content">
+          <Tooltip title="New Trip Report">
+            <IconButton variant="contained" aria-label="New Trip Report" onClick={this.props.openPostModal}>
+              <Add />
+            </IconButton>
+          </Tooltip>
+          <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} />
+          <ConfirmDeleteModal {...this.props} />
+          {this.props.modalPost.author && <TripReportModal {...this.props} />}
+          {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
+          {this.props.fetchedTripReports && <Grid container spacing={24} justify='center' >{listTripReports}</Grid>}
+        </div>
       </div>
     );
   }
@@ -79,6 +153,14 @@ const mapState = state => {
     userCountries: state.user.user.countries,
     showCountryModal: state.modal.showCountryModal,
     modalCountry: state.modal.modalCountry,
+    showPostModal: state.modal.showPostModal,
+    fetchingTripReports: state.tripReport.fetchingTripReports,
+    fetchedTripReports: state.tripReport.fetchedTripReports,
+    tripReports: state.tripReport.userTripReports,
+    updatePostModal: state.modal.updatePostModal,
+    modalPost: state.modal.modalPost,
+    showConfirmDeleteModal: state.modal.showConfirmDeleteModal,
+    showTripReportModal: state.modal.showTripReportModal
   };
 }
 
@@ -90,7 +172,18 @@ const mapDispatch = dispatch => {
     closeEditProfileModal,
     openCountryModal,
     closeCountryModal,
-    removeError
+    removeError,
+    fetchUserTripReports,
+    postTripReport,
+    deleteTripReport,
+    updateTripReport,
+    openPostModal,
+    closePostModal,
+    openUpdatePostModal,
+    openConfirmDeleteModal,
+    closeConfirmDeleteModal,
+    openTripReportModal,
+    closeTripReportModal,
   }, dispatch);
 }
 
