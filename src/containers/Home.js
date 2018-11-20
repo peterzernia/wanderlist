@@ -7,6 +7,7 @@ import TripReport from '../components/TripReport'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
 import { DotLoader } from 'react-spinners';
+import Typography from '@material-ui/core/Typography'
 
 class Home extends Component {
 
@@ -23,7 +24,15 @@ class Home extends Component {
     ));
 
     return(
-      <div className="content">
+      <div className="">
+        <div className='header-img'>
+          <Typography variant="h3" gutterBottom style={{ color: 'white', paddingTop: 200 }}>
+            Connect and find
+          </Typography>
+          <Typography variant="h3" gutterBottom style={{ color: 'white' }}>
+            inspiration
+          </Typography>
+        </div>
         {this.props.fetched && <CountryModal {...this.props} />}
         {this.props.fetching && <DotLoader size={50} color={'#2196f3'} className="content" />}
         {this.props.fetched && <div>{listTripReports}</div>}

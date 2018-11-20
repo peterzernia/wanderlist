@@ -135,3 +135,12 @@ This is the class for the DotLoader.
   text-align: center;
   padding: auto;
 }
+
+.header-img {
+  background-image: url('header.jpeg');
+  background-size: cover;
+  background-position: top;
+  height: 550px;
+  text-align: center;
+  opacity: 0.7;
+}
