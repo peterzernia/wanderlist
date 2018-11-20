@@ -24,7 +24,7 @@ class Home extends Component {
 
     return(
       <div className="content">
-        <CountryModal {...this.props} />
+        {this.props.fetched && <CountryModal {...this.props} />}
         {this.props.fetching && <DotLoader size={50} color={'#2196f3'} className="content" />}
         {this.props.fetched && <div>{listTripReports}</div>}
       </div>

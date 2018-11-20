@@ -36,7 +36,7 @@ class Profile extends Component {
   render(){
     return(
       <div className='content'>
-        <CountryModal {...this.props} />
+        {this.props.fetched && <CountryModal {...this.props} />}
         <ProfileModal handleSubmit={this.handleSubmit} {...this.props} />
         <div className='wrap' style={{ marginBottom: 60 }} >
           <div className='left' style={{ width: '37%' }}>
