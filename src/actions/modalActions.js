@@ -10,15 +10,15 @@ export const closeCountryModal = () => {
   }
 }
 
-export const openProfileModal = modalProfile => {
+export const openEditProfileModal = modalProfile => {
   return dispatch => {
-    dispatch({ type: "OPEN_PROFILE_MODAL", modalProfile: modalProfile })
+    dispatch({ type: "OPEN_EDIT_PROFILE_MODAL", modalProfile: modalProfile })
   }
 }
 
-export const closeProfileModal = () => {
+export const closeEditProfileModal = () => {
   return dispatch => {
-    dispatch({ type: "CLOSE_PROFILE_MODAL" })
+    dispatch({ type: "CLOSE_EDIT_PROFILE_MODAL" })
   }
 }
 

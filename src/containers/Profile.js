@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import GoogleMap from '../components/GoogleMap'
-import ProfileModal from '../components/ProfileModal'
-import { openProfileModal, closeProfileModal } from '../actions/modalActions'
+import EditProfileModal from '../components/EditProfileModal'
+import { openEditProfileModal, closeEditProfileModal } from '../actions/modalActions'
 import { putUserData } from '../actions/userActions'
 import { fetchCountry } from '../actions/countryActions'
 import Button from '@material-ui/core/Button'
@@ -30,14 +30,14 @@ class Profile extends Component {
       Number(e.target.country.value),
       e.target.biography.value
     );
-    this.props.closeProfileModal();
+    this.props.closeEditProfileModal();
   }
 
   render(){
     return(
       <div className='content'>
         {this.props.fetched && <CountryModal {...this.props} />}
-        <ProfileModal handleSubmit={this.handleSubmit} {...this.props} />
+        <EditProfileModal handleSubmit={this.handleSubmit} {...this.props} />
         <div className='wrap' style={{ marginBottom: 60 }} >
           <div className='left' style={{ width: '37%' }}>
             {this.props.user.home && <Avatar style={{ width: 150, height: 150, margin: '0 auto' }} src={this.props.user.home.flag}/>}
@@ -49,7 +49,7 @@ class Profile extends Component {
             </Typography>
             </div><br/>
             <div style={{ height: 30 }}>
-              <Button size='small' variant='outlined' onClick={() => this.props.openProfileModal(this.props.user)}>
+              <Button size='small' variant='outlined' onClick={() => this.props.openEditProfileModal(this.props.user)}>
                 Edit Profile
               </Button>
             </div><br/>
@@ -71,7 +71,7 @@ const mapState = state => {
     fetched: state.user.fetched,
     biography: state.user.user.biography,
     searchedCountry: state.country.country,
-    showProfileModal: state.modal.showProfileModal,
+    showEditProfileModal: state.modal.showEditProfileModal,
     modalProfile: state.modal.modalProfile,
     userCountries: state.user.user.countries,
     showCountryModal: state.modal.showCountryModal,
@@ -83,8 +83,8 @@ const mapDispatch = dispatch => {
   return bindActionCreators({
     fetchCountry,
     putUserData,
-    openProfileModal,
-    closeProfileModal,
+    openEditProfileModal,
+    closeEditProfileModal,
     openCountryModal,
     closeCountryModal,
     removeError
@@ -98,15 +98,15 @@ Profile.propTypes = {
   fetched: PropTypes.bool,
   biography: PropTypes.string,
   searchedCountry: PropTypes.array,
-  showProfileModal: PropTypes.bool,
+  showEditProfileModal: PropTypes.bool,
   modalProfile: PropTypes.object,
   userCountries: PropTypes.array,
   showCountryModal: PropTypes.bool,
   modalCountry: PropTypes.object,
   fetchCountry: PropTypes.func,
   putUserData: PropTypes.func,
-  openProfileModal: PropTypes.func,
-  closeProfileModal: PropTypes.func,
+  openEditProfileModal: PropTypes.func,
+  closeEditProfileModal: PropTypes.func,
   openCountryModal: PropTypes.func,
   closeCountryModal: PropTypes.func,
   removeError: PropTypes.func

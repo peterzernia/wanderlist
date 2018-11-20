@@ -1,6 +1,6 @@
 const initialState = {
   showCountryModal: false,
-  showProfileModal: false,
+  showEditProfileModal: false,
   showPostModal: false,
   updatePostModal: false,
   showConfirmDeleteModal: false,
@@ -26,17 +26,17 @@ export default function (state = initialState, action) {
         showCountryModal: false
       }
     }
-    case "OPEN_PROFILE_MODAL": {
+    case "OPEN_EDIT_PROFILE_MODAL": {
       return {
         ...state,
-        showProfileModal: true,
+        showEditProfileModal: true,
         modalProfile: action.modalProfile
       }
     }
-    case "CLOSE_PROFILE_MODAL": {
+    case "CLOSE_EDIT_PROFILE_MODAL": {
       return {
         ...state,
-        showProfileModal: false
+        showEditProfileModal: false
       }
     }
     case "OPEN_POST_MODAL": {

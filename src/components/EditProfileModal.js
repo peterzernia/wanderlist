@@ -3,12 +3,12 @@ import EditProfileForm from './EditProfileForm'
 import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 
-const ProfileModal = (props) => (
-  <Dialog onClose={props.closeProfileModal} open={props.showProfileModal}>
+const EditProfileModal = (props) => (
+  <Dialog onClose={props.closeEditProfileModal} open={props.showEditProfileModal}>
     <DialogContent>
       <EditProfileForm {...props}/>
     </DialogContent>
   </Dialog>
 );
 
-export default ProfileModal;
+export default EditProfileModal;
