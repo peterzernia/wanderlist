@@ -162,6 +162,7 @@ export const deleteTripReport = (tripReport) => {
     }})
       .then(response => {
         dispatch(deleteTripReportsFulfilled(tripReport));
+        dispatch({type: "ADD_SUCCESS", success: 'The post has been deleted.'});
       })
       .catch(err => {
         dispatch(deleteTripReportsRejected());

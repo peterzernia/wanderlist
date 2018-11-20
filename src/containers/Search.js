@@ -7,10 +7,15 @@ import SearchBar from '../components/SearchBar'
 import { connect } from 'react-redux'
 import { fetchCountry } from '../actions/countryActions'
 import { putUserData } from '../actions/userActions'
+import { removeError } from '../actions/errorActions'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { DotLoader } from 'react-spinners'
 
 class Search extends Component {
+
+  componentWillUnmount() {
+    this.props.removeError();
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -92,7 +97,8 @@ const mapDispatch = dispatch => {
     fetchCountry,
     putUserData,
     openCountryModal,
-    closeCountryModal
+    closeCountryModal,
+    removeError
   }, dispatch);
 };
 
@@ -113,5 +119,6 @@ Search.propTypes = {
   fetchCountry: PropTypes.func,
   putUserData: PropTypes.func,
   openCountryModal: PropTypes.func,
-  closeCountryModal: PropTypes.func
+  closeCountryModal: PropTypes.func,
+  removeError: PropTypes.func
 };

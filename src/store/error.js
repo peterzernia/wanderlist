@@ -1,5 +1,6 @@
 const initialState = {
-  error: null
+  error: null,
+  success: null,
 }
 
 export default function (state = initialState, action) {
@@ -13,7 +14,14 @@ export default function (state = initialState, action) {
     case "REMOVE_ERROR":{
       return {
         ...state,
-        error: null
+        error: null,
+        success: null
+      }
+    }
+    case "ADD_SUCCESS":{
+      return {
+        ...state,
+        success: action.success
       }
     }
     default:

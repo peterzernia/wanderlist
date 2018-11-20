@@ -75,6 +75,7 @@ export const putUserData = (username, email, countries, home, biography) => {
       .then(response => {
         const user = response.data;
         dispatch(putUserDataFulfilled(user));
+        dispatch({type: "ADD_SUCCESS", success: 'Your profile has been updated.'});
       })
       .catch(err => {
         dispatch(putUserDataRejected());

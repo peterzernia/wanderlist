@@ -5,9 +5,14 @@ import { PropTypes } from 'prop-types'
 import CountryModal from '../components/CountryModal'
 import TripReport from '../components/TripReport'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import { removeError } from '../actions/errorActions'
 import { DotLoader } from 'react-spinners';
 
 class Home extends Component {
+
+  componentWillUnmount() {
+    this.props.removeError();
+  }
 
   render(){
 
@@ -40,7 +45,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return bindActionCreators({
     openCountryModal,
-    closeCountryModal
+    closeCountryModal,
+    removeError
   }, dispatch);
 }
 
@@ -53,5 +59,6 @@ Home.propTypes = {
   showCountryModal: PropTypes.bool,
   modalCountry: PropTypes.object,
   openCountryModal: PropTypes.func,
-  closeCountryModal: PropTypes.func
+  closeCountryModal: PropTypes.func,
+  removeError: PropTypes.func
 };

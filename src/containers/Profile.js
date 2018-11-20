@@ -12,8 +12,13 @@ import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
 import CountryModal from '../components/CountryModal'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import { removeError } from '../actions/errorActions'
 
 class Profile extends Component {
+
+  componentWillUnmount() {
+    this.props.removeError();
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -81,7 +86,8 @@ const mapDispatch = dispatch => {
     openProfileModal,
     closeProfileModal,
     openCountryModal,
-    closeCountryModal
+    closeCountryModal,
+    removeError
   }, dispatch);
 }
 
@@ -102,5 +108,6 @@ Profile.propTypes = {
   openProfileModal: PropTypes.func,
   closeProfileModal: PropTypes.func,
   openCountryModal: PropTypes.func,
-  closeCountryModal: PropTypes.func
+  closeCountryModal: PropTypes.func,
+  removeError: PropTypes.func
 };

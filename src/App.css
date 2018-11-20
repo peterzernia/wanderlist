@@ -126,3 +126,12 @@ This is the class for the DotLoader.
   padding: 1em;
   text-align: center;
 }
+
+.success-message {
+  min-height: 50px;
+  background-color: #ccffcc;
+  color: black;
+  padding: 1em;
+  text-align: center;
+  padding: auto;
+}

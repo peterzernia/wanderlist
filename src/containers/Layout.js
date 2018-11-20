@@ -11,6 +11,7 @@ import PrivateRoute from '../components/PrivateRoute'
 import Profile from './Profile'
 import Register from './Register'
 import Search from './Search'
+import Success from '../components/Success'
 import { Route } from "react-router-dom"
 import { connect } from 'react-redux'
 import { removeError } from '../actions/errorActions'
@@ -41,6 +42,7 @@ class Layout extends Component {
         ?<div>
           <NavBar {...this.props} />
           {this.props.error && <Error {...this.props} error={this.props.error} />}
+          {this.props.success && <Success {...this.props} />}
           <Route exact path={`${this.props.match.url}`} component={Home}/>
           <Route path={`${this.props.match.url}/search`} component={Search}/>
           <PrivateRoute {...this.props} path={`${this.props.match.url}/post`} component={Post}/>
@@ -59,6 +61,7 @@ class Layout extends Component {
 const mapState = state => {
   return {
     error: state.error.error,
+    success: state.error.success,
     authenticated: state.auth.authenticated,
     fetching: state.user.fetching,
     fetched: state.user.fetched,
@@ -77,6 +80,7 @@ export default connect(mapState, mapDispatch)(Layout);
 
 Layout.propTypes = {
   error: PropTypes.object,
+  success: PropTypes.string,
   authenticated: PropTypes.bool,
   fetching: PropTypes.bool,
   fetchUser: PropTypes.func,

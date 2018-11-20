@@ -80,6 +80,7 @@ export const authRegister = (username, email, password1, password2, home) => {
         localStorage.setItem('username', username);
         dispatch(authSucess(token));
         dispatch(fetchUser());
+        dispatch({type: "ADD_SUCCESS", success: 'You have successfully registered.'});
       })
       .catch(err => {
         dispatch(authFail());
