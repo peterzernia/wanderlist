@@ -20,7 +20,7 @@ const NavBar = (props) => {
             Countries
           </Button>
           <Button component={Link} to='/search' color="inherit"><Search /></Button>
-          <Button component={Link} to='/post' color="inherit"><EditLocation /></Button>
+          <Button component={Link} to='/feed' color="inherit"><EditLocation /></Button>
           <Button component={Link} to='/profile' color="inherit"><AccountCircle /></Button>
           {
             props.authenticated

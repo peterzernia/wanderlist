@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import GoogleMap from '../components/GoogleMap'
 import EditProfileModal from '../components/EditProfileModal'
+import Post from './Post'
 import { openEditProfileModal, closeEditProfileModal } from '../actions/modalActions'
 import { putUserData } from '../actions/userActions'
 import { fetchCountry } from '../actions/countryActions'
@@ -60,6 +61,8 @@ class Profile extends Component {
         </div>
         <hr style={{width: '85%', size: 1}}/>
         {this.props.fetched && <GoogleMap {...this.props}/>}
+        <hr style={{width: '85%', size: 1}}/>
+        <Post />
       </div>
     );
   }

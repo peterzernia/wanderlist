@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import Error from '../components/Error'
 import Post from './Post'
+import Feed from './Feed'
 import Home from './Home'
 import Login from './Login'
 import Logout from './Logout'
@@ -45,7 +46,7 @@ class Layout extends Component {
           {this.props.success && <Success {...this.props} />}
           <Route exact path={`${this.props.match.url}`} component={Home}/>
           <Route path={`${this.props.match.url}/search`} component={Search}/>
-          <PrivateRoute {...this.props} path={`${this.props.match.url}/post`} component={Post}/>
+          <PrivateRoute {...this.props} path={`${this.props.match.url}/feed`} component={Feed}/>
           <PrivateRoute {...this.props} path={`${this.props.match.url}/profile`} component={Profile}/>
           <Route path={`${this.props.match.url}/login`} component={Login}/>
           <Route path={`${this.props.match.url}/logout`} component={Logout}/>

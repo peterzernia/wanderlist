@@ -17,15 +17,17 @@ class Home extends Component {
 
   render(){
 
+    const listTripReports = this.props.tripReports.map(tripReport =>(
+      <div key={tripReport.id} className='trip-report'>
+        <TripReport {...tripReport} openCountryModal={this.props.openCountryModal}/>
+      </div>
+    ));
+
     return(
       <div className="">
-        <div className='header-img'>
-          <Typography variant="h3" gutterBottom style={{ color: 'white', paddingTop: 200 }}>
-            Connect, learn and share
-          </Typography>
-        </div>
-        <div style={{ height: 400 }}>
-        </div>
+        {this.props.fetched && <CountryModal {...this.props} />}
+        {this.props.fetching && <DotLoader size={50} color={'#2196f3'} className="content" />}
+        {this.props.fetched && <div>{listTripReports}</div>}
       </div>
     );
   }
