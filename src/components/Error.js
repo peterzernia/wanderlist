@@ -4,11 +4,18 @@ import Close from '@material-ui/icons/Close'
 
 const Errors = (props) => {
 
-  const errorDetails = Object.keys(props.error.response.data).map(error => (
-    <p key={error}>
-      {error.charAt(0).toUpperCase() + error.slice(1)} - {props.error.response.data[error]}
-    </p>
-  ));
+  // If there are details on the error, they are in the response of the error
+  // object, but if there are no details, the error is just the message.
+  let errorDetails = null;
+  if (props.error.response) {
+    errorDetails = Object.keys(props.error.response.data).map(error => (
+      <p key={error}>
+        {error.charAt(0).toUpperCase() + error.slice(1)} - {props.error.response.data[error]}
+      </p>
+    ));
+  } else {
+    errorDetails = props.error.message;
+  }
 
   return (
     <div className="error-message">

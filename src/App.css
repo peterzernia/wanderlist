@@ -68,10 +68,6 @@ This is the class for the DotLoader.
   text-align: right;
 }
 
-.ReactModal__Overlay--after-open {
-  top: 50px !important;
-}
-
 .wrap {
   display: flex;
 }
