@@ -23,9 +23,10 @@ const CountryModal = (props) => {
   // or borders.
   return (
     <ReactModal isOpen={props.showCountryModal}>
-        <IconButton style={{ float: 'right' }} onClick={props.closeCountryModal}>
-          <Close />
-        </IconButton><br/>
+      <IconButton style={{ float: 'right' }} onClick={props.closeCountryModal}>
+        <Close />
+      </IconButton>
+      <div style={{ width: 48, height: 48, float: 'left' }}/>
       <div className='wrap'>
         <div className="left">
           <Typography variant="h4" gutterBottom>

@@ -16,11 +16,10 @@ one is POSTed to the Django REST API.
 */
 const PostModal = (props) => (
   <ReactModal isOpen={props.showPostModal}>
-    <div className="close-modal">
-      <IconButton style={{ float: 'right' }} onClick={props.closePostModal}>
-        <Close />
-      </IconButton><br/><br/>
-    </div><br/>
+    <IconButton style={{ float: 'right' }} onClick={props.closePostModal}>
+      <Close />
+    </IconButton>
+    <div style={{ width: 48, height: 48, float: 'left' }}/>
     {
       props.updatePostModal
       ? <UpdateTripReportForm {...props} modalPost={props.modalPost} handleSubmit={props.handleUpdateSubmit} />
