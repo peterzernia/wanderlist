@@ -15,6 +15,7 @@ import { DotLoader } from 'react-spinners'
 import IconButton from '@material-ui/core/IconButton'
 import Grid from '@material-ui/core/Grid'
 import Add from '@material-ui/icons/Add'
+import Tooltip from '@material-ui/core/Tooltip';
 
 class Post extends Component {
 
@@ -74,7 +75,11 @@ class Post extends Component {
 
     return(
       <div className="content">
-        <IconButton variant="contained" onClick={this.props.openPostModal}><Add /></IconButton><br/><br/>
+        <Tooltip title="New Trip Report">
+          <IconButton variant="contained" aria-label="New Trip Report" onClick={this.props.openPostModal}>
+            <Add />
+          </IconButton>
+        </Tooltip>
         <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} />
         <ConfirmDeleteModal {...this.props} />
         {this.props.modalPost.author && <TripReportModal {...this.props} />}

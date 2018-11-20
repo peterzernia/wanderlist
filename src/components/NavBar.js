@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Search from '@material-ui/icons/Search'
 import AccountCircle from '@material-ui/icons/AccountCircle'
-import Message from '@material-ui/icons/Message'
+import EditLocation from '@material-ui/icons/EditLocation'
 
 const NavBar = (props) => {
 
@@ -20,7 +20,7 @@ const NavBar = (props) => {
             Countries
           </Button>
           <Button component={Link} to='/search' color="inherit"><Search /></Button>
-          <Button component={Link} to='/post' color="inherit"><Message /></Button>
+          <Button component={Link} to='/post' color="inherit"><EditLocation /></Button>
           <Button component={Link} to='/profile' color="inherit"><AccountCircle /></Button>
           {
             props.authenticated
