@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import Error from '../components/Error'
 import Feed from './Feed'
+import ForgotPassword from './ForgotPassword'
 import Home from './Home'
 import Login from './Login'
 import Logout from './Logout'
@@ -50,6 +51,7 @@ class Layout extends Component {
           <Route path={`${this.props.match.url}/login`} component={Login}/>
           <Route path={`${this.props.match.url}/logout`} component={Logout}/>
           <Route path={`${this.props.match.url}/register`} component={Register}/>
+          <Route path={`${this.props.match.url}/password_reset`} component={ForgotPassword}/>
         </div>
         :<div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>
       }

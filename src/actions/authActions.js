@@ -104,3 +104,23 @@ export const authCheckState = () => {
     }
   }
 }
+
+/*
+The users email is posted to the Django url, which then sends an email with a
+link where the user can reset their password. Since the state is not changing,
+there is no need to dispatch any actions other than those related to success
+and errors.
+*/
+export const requestPasswordReset = (email) => {
+  return dispatch => {
+    axios.post('http://localhost:8000/api/v1/rest-auth/password/reset/', {
+      email: email,
+    })
+      .then(response => {
+        dispatch({type: "ADD_SUCCESS", success: 'An email has been sent with instructions.'});
+      })
+      .catch(err => {
+        dispatch({type: "ADD_ERROR", error: err});
+      })
+  }
+}
