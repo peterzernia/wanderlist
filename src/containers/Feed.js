@@ -7,7 +7,6 @@ import TripReport from '../components/TripReport'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
 import { DotLoader } from 'react-spinners';
-import Typography from '@material-ui/core/Typography'
 
 class Home extends Component {
 

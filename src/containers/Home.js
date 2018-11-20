@@ -2,11 +2,8 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
-import CountryModal from '../components/CountryModal'
-import TripReport from '../components/TripReport'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
-import { DotLoader } from 'react-spinners';
 import Typography from '@material-ui/core/Typography'
 
 class Home extends Component {
