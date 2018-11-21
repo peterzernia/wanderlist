@@ -19,7 +19,7 @@ class Search extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.fetchCountry(e.target.country.value);
+    this.props.fetchCountry(e.target[0].value);
   }
 
   // This function handles making the new userCountries array and PUT requesting
