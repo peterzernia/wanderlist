@@ -13,3 +13,6 @@ class User(AbstractUser):
     home = models.ForeignKey(Country, on_delete=models.PROTECT, null=True,
         related_name='home_country',)
     biography = models.CharField(max_length=150, null=True, blank=True)
+
+    def __str__(self):
+        return self.username

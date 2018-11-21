@@ -1,5 +1,5 @@
 from django.test import TestCase
-from countries.models import Currency, Language, RegionalBloc, Country
+from .models import Currency, Language, RegionalBloc, Country
 
 
 class CurrencyTest(TestCase):

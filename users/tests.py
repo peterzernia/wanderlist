@@ -1,3 +1,8 @@
 from django.test import TestCase
+from .models import User
 
-# Create your tests here.
+
+class UserTest(TestCase):
+    def test_str(self):
+        user = User(username='TestUser')
+        self.assertEqual(user.__str__(), user.username)
