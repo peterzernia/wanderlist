@@ -6,6 +6,9 @@ import IconButton from '@material-ui/core/IconButton'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import EditIcon from '@material-ui/icons/Edit'
+import DeleteIcon from '@material-ui/icons/Delete'
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
 
 class TripReportThumbnail extends Component {
 
@@ -43,9 +46,9 @@ class TripReportThumbnail extends Component {
             open={Boolean(anchorEl)}
             onClose={this.handleClose}
           >
-            <MenuItem onClick={() => {this.handleClose(); this.props.openTripReportModal(this.props.tripReport);}}>Open</MenuItem>
-            <MenuItem onClick={() => {this.handleClose(); this.props.openUpdatePostModal(this.props.tripReport);}}>Update</MenuItem>
-            <MenuItem onClick={() => {this.handleClose(); this.props.openConfirmDeleteModal(this.props.tripReport);}}>Delete</MenuItem>
+            <MenuItem onClick={() => {this.handleClose(); this.props.openTripReportModal(this.props.tripReport);}}><LibraryBooksIcon /></MenuItem>
+            <MenuItem onClick={() => {this.handleClose(); this.props.openUpdatePostModal(this.props.tripReport);}}><EditIcon /></MenuItem>
+            <MenuItem onClick={() => {this.handleClose(); this.props.openConfirmDeleteModal(this.props.tripReport);}}><DeleteIcon /></MenuItem>
           </Menu>
         <CardMedia component='img' src={[...this.props.tripReport.countries].sort((a, b) => a.name > b.name)[0].flag} alt="" height="300"/>
       </Card>

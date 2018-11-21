@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import Search from '@material-ui/icons/Search'
-import AccountCircle from '@material-ui/icons/AccountCircle'
-import EditLocation from '@material-ui/icons/EditLocation'
+import SearchIcon from '@material-ui/icons/Search'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import ListIcon from '@material-ui/icons/FormatListBulleted'
 
 const NavBar = (props) => {
 
@@ -19,9 +19,9 @@ const NavBar = (props) => {
             color="inherit">
             Countries
           </Button>
-          <Button component={Link} to='/search' color="inherit"><Search /></Button>
-          <Button component={Link} to='/feed' color="inherit"><EditLocation /></Button>
-          <Button component={Link} to='/profile' color="inherit"><AccountCircle /></Button>
+          <Button component={Link} to='/search' color="inherit"><SearchIcon /></Button>
+          <Button component={Link} to='/feed' color="inherit"><ListIcon /></Button>
+          <Button component={Link} to='/profile' color="inherit"><AccountCircleIcon /></Button>
           {
             props.authenticated
             ? <Button component={Link} to='/logout' color="inherit">Logout</Button>
