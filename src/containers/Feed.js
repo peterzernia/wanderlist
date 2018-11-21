@@ -7,14 +7,36 @@ import TripReport from '../components/TripReport'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { fetchNextTripReports } from '../actions/tripReportActions'
 import { removeError } from '../actions/errorActions'
-import { DotLoader } from 'react-spinners';
-import Button from '@material-ui/core/Button'
+import { DotLoader } from 'react-spinners'
 
 class Home extends Component {
 
+  // Returns True if the user has scrolled past the bottom.
+  isBottom(el) {
+    return el.getBoundingClientRect().bottom <= window.innerHeight;
+  }
+
+  // Adds event listener that checks for scrolling.
+  componentDidMount() {
+    document.addEventListener('scroll', this.onScroll);
+  }
+
   componentWillUnmount() {
     this.props.removeError();
+    document.removeEventListener('scroll', this.onScroll);
   }
+
+  /*
+  If the user has scrolled to the bottom, AND there is next URL to load more
+  Trip Reports, AND the next Trip Reports are not already being fetched, the
+  next Trip Reports will be fetched.
+  */
+  onScroll = () => {
+    const element = document.getElementById('scroll');
+    if (this.isBottom(element) && this.props.next && !this.props.fetchingNext) {
+      this.props.fetchNextTripReports(this.props.next);
+    }
+  };
 
   render(){
 
@@ -28,12 +50,11 @@ class Home extends Component {
     }
 
     return(
-      <div className="content">
+      <div id='scroll' className="content">
         {this.props.fetching && <div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
         {this.props.fetched && <CountryModal {...this.props} />}
         {this.props.fetched && <div>{listTripReports}</div>}
         {this.props.fetchingNext && <DotLoader size={50} color={'#2196f3'} className="content" />}
-        {this.props.next && <Button onClick={() => this.props.fetchNextTripReports(this.props.next)}>Load More</Button>}
       </div>
     );
   }
