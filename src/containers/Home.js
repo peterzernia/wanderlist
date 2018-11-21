@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
-import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
 import Typography from '@material-ui/core/Typography'
 
@@ -30,18 +29,11 @@ class Home extends Component {
 
 const mapState = state => {
   return {
-    fetched: state.tripReport.fetched,
-    fetching: state.tripReport.fetching,
-    tripReports: state.tripReport.tripReports,
-    showCountryModal: state.modal.showCountryModal,
-    modalCountry: state.modal.modalCountry
   };
 }
 
 const mapDispatch = dispatch => {
   return bindActionCreators({
-    openCountryModal,
-    closeCountryModal,
     removeError
   }, dispatch);
 }

@@ -92,11 +92,14 @@ class Profile extends Component {
 
   render(){
 
-    const listTripReports = this.props.tripReports.map(tripReport =>(
-      <Grid item key={tripReport.id}>
-        <TripReportThumbnail tripReport={tripReport} {...this.props} />
-      </Grid>
-    ));
+    let listTripReports = null;
+    if (this.props.tripReports){
+      listTripReports = this.props.tripReports.map(tripReport =>(
+        <Grid item key={tripReport.id}>
+          <TripReportThumbnail tripReport={tripReport} {...this.props} />
+        </Grid>
+      ));
+    }
 
     return(
       <div className='content'>
@@ -155,7 +158,7 @@ const mapState = state => {
     showPostModal: state.modal.showPostModal,
     fetchingTripReports: state.tripReport.fetchingTripReports,
     fetchedTripReports: state.tripReport.fetchedTripReports,
-    tripReports: state.tripReport.userTripReports,
+    tripReports: state.tripReport.userTripReports.results,
     updatePostModal: state.modal.updatePostModal,
     modalPost: state.modal.modalPost,
     showConfirmDeleteModal: state.modal.showConfirmDeleteModal,

@@ -105,7 +105,7 @@ class UserSerializer(serializers.ModelSerializer):
 class TripReportSerializer(serializers.ModelSerializer):
     author = AuthorField(queryset=User.objects.all())
     countries = CountryField(queryset=Country.objects.all(), many=True)
-    
+
     class Meta:
         model = TripReport
         fields = ('__all__')

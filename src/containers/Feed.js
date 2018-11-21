@@ -16,17 +16,20 @@ class Home extends Component {
 
   render(){
 
-    const listTripReports = this.props.tripReports.map(tripReport =>(
-      <div key={tripReport.id} className='trip-report'>
-        <TripReport {...tripReport} openCountryModal={this.props.openCountryModal}/>
-      </div>
-    ));
+    let listTripReports = null;
+    if (this.props.tripReports){
+      listTripReports = this.props.tripReports.map(tripReport =>(
+        <div key={tripReport.id} className='trip-report'>
+          <TripReport {...tripReport} openCountryModal={this.props.openCountryModal}/>
+        </div>
+      ));
+    }
 
     return(
       <div className="">
         {this.props.fetched && <CountryModal {...this.props} />}
-        {this.props.fetching && <DotLoader size={50} color={'#2196f3'} className="content" />}
         {this.props.fetched && <div>{listTripReports}</div>}
+        {this.props.fetching && <div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
       </div>
     );
   }
@@ -36,7 +39,7 @@ const mapState = state => {
   return {
     fetched: state.tripReport.fetched,
     fetching: state.tripReport.fetching,
-    tripReports: state.tripReport.tripReports,
+    tripReports: state.tripReport.tripReports.results,
     showCountryModal: state.modal.showCountryModal,
     modalCountry: state.modal.modalCountry
   };
