@@ -14,13 +14,13 @@ const NavBar = (props) => {
       <AppBar color='inherit' position="static">
         <Toolbar>
           <Button
-            style={{ flex: 1, justifyContent: 'left', minWidth: 90, backgroundColor: 'transparent' }}
+            style={{ flex: 1, justifyContent: 'left', width: 90, backgroundColor: 'transparent' }}
             component={Link} to='/'
             color="inherit">
             Countries
           </Button>
-          <Button component={Link} to='/search' color="inherit"><SearchIcon /></Button>
           <Button component={Link} to='/feed' color="inherit"><ListIcon /></Button>
+          <Button component={Link} to='/search' color="inherit"><SearchIcon /></Button>
           <Button component={Link} to='/profile' color="inherit"><AccountCircleIcon /></Button>
           {
             props.authenticated

@@ -50,7 +50,7 @@ class TripReportThumbnail extends Component {
             <MenuItem onClick={() => {this.handleClose(); this.props.openUpdatePostModal(this.props.tripReport);}}><EditIcon /></MenuItem>
             <MenuItem onClick={() => {this.handleClose(); this.props.openConfirmDeleteModal(this.props.tripReport);}}><DeleteIcon /></MenuItem>
           </Menu>
-        <CardMedia component='img' src={[...this.props.tripReport.countries].sort((a, b) => a.name > b.name)[0].flag} alt="" height="300"/>
+        <CardMedia component='img' src={[...this.props.tripReport.countries].sort((a, b) => a.name > b.name)[0].flag} alt="" />
       </Card>
     )
   }

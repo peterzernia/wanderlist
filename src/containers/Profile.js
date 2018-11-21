@@ -126,7 +126,7 @@ class Profile extends Component {
     }
 
     return(
-      <div id='scroll' className='content' style={{ marginBottom: 50 }}>
+      <div id='scroll' className='content'>
         {this.props.fetched && <CountryModal {...this.props} />}
         <EditProfileModal handleSubmit={this.handleSubmit} {...this.props} />
         <div className='wrap' style={{ marginBottom: 60 }} >
@@ -152,7 +152,7 @@ class Profile extends Component {
         <hr style={{width: '85%', size: 1}}/>
         {this.props.fetched && <GoogleMap {...this.props}/>}
         <hr style={{width: '85%', size: 1}}/>
-        <div className="content">
+        <div className="">
           <Tooltip title="New Trip Report">
             <IconButton variant="contained" aria-label="New Trip Report" onClick={this.props.openPostModal}>
               <Add />
@@ -163,6 +163,7 @@ class Profile extends Component {
           {this.props.modalPost.author && <TripReportModal {...this.props} />}
           {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
           {this.props.fetchedTripReports && <Grid container spacing={24} justify='center' >{listTripReports}</Grid>}
+          <div style={{ height: 15 }}/>
           {this.props.fetchingNext && <DotLoader size={50} color={'#2196f3'} className="content" />}
         </div>
       </div>

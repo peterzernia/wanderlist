@@ -43,17 +43,18 @@ class Home extends Component {
     let listTripReports = null;
     if (this.props.tripReports){
       listTripReports = this.props.tripReports.map(tripReport =>(
-        <div key={tripReport.id} className='trip-report'>
+        <div key={tripReport.id} style={{ marginBottom: 20 }}>
           <TripReport {...tripReport} openCountryModal={this.props.openCountryModal}/>
         </div>
       ));
     }
 
     return(
-      <div id='scroll' className="content" style={{ marginBottom: 50 }}>
+      <div id='scroll' className="content">
         {this.props.fetching && <div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
         {this.props.fetched && <CountryModal {...this.props} />}
         {this.props.fetched && <div>{listTripReports}</div>}
+        <div style={{ height: 15 }}/>
         {this.props.fetchingNext && <DotLoader size={50} color={'#2196f3'} className="content" />}
       </div>
     );

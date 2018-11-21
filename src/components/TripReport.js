@@ -20,7 +20,7 @@ const TripReport = (props) => {
   ));
 
   return(
-    <Card>
+    <Card style={{ margin: '0 auto', width: '90%' }}>
       <CardHeader
         action={<IconButton><MoreVertIcon /></IconButton>}
         title={props.title}
