@@ -109,7 +109,7 @@ export default function (state = initialState, action) {
           count: action.tripReports.count,
           next: action.tripReports.next,
           previous: action.tripReports.previous,
-          results: [...state.tripReports.results].concat(action.tripReports.results),
+          results: [...state.userTripReports.results].concat(action.tripReports.results),
         }
       }
     }

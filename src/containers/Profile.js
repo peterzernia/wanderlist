@@ -126,7 +126,7 @@ class Profile extends Component {
     }
 
     return(
-      <div id='scroll' className='content'>
+      <div id='scroll' className='content' style={{ marginBottom: 50 }}>
         {this.props.fetched && <CountryModal {...this.props} />}
         <EditProfileModal handleSubmit={this.handleSubmit} {...this.props} />
         <div className='wrap' style={{ marginBottom: 60 }} >

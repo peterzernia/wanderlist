@@ -50,7 +50,7 @@ class Home extends Component {
     }
 
     return(
-      <div id='scroll' className="content">
+      <div id='scroll' className="content" style={{ marginBottom: 50 }}>
         {this.props.fetching && <div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
         {this.props.fetched && <CountryModal {...this.props} />}
         {this.props.fetched && <div>{listTripReports}</div>}
