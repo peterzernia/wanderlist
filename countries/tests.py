@@ -7,7 +7,7 @@ class CurrencyTest(TestCase):
         currency = Currency(
             code='USD', name='United States dollar', symbol = 'US$'
         )
-        self.assertEqual(currency.__str__(), currency.name)
+        self.assertEqual(currency.__str__(), 'United States dollar')
 
 
 class LanguageTest(TestCase):
@@ -15,7 +15,7 @@ class LanguageTest(TestCase):
         language = Language(
             iso639_1='en', name='english', native_name='english'
         )
-        self.assertEqual(language.__str__(), language.name)
+        self.assertEqual(language.__str__(), 'english')
 
 
 class RegionalBlocTest(TestCase):
@@ -25,7 +25,7 @@ class RegionalBlocTest(TestCase):
             other_names=["Tratado de Libre Comercio de Am\u00e9rica del Norte",
                          "Accord de Libre-\u00e9change Nord-Am\u00e9ricain"]
         )
-        self.assertEqual(regional_bloc.__str__(), regional_bloc.acronym)
+        self.assertEqual(regional_bloc.__str__(), 'NAFTA')
 
 
 class CountryTest(TestCase):
@@ -44,4 +44,4 @@ class CountryTest(TestCase):
             numeric_code=840, flag='https://restcountries.eu/data/usa.svg',
             cioc='USA'
         )
-        self.assertEqual(country.__str__(), country.name)
+        self.assertEqual(country.__str__(), 'United States of America')

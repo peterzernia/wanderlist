@@ -7,4 +7,4 @@ class TripReportTest(TestCase):
         trip_report = TripReport(
             title='Test'
         )
-        self.assertEqual(trip_report.__str__(), trip_report.title)
+        self.assertEqual(trip_report.__str__(), 'Test')
