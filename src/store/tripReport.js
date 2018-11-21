@@ -1,6 +1,8 @@
 const initialState = {
   fetching: false,
   fetched: false,
+  fetchingNext: false,
+  fetchedNext: false,
   fetchingTripReports: false,
   fetchedTripReports: false,
   tripReports: [],
@@ -28,6 +30,35 @@ export default function (state = initialState, action) {
         ...state,
         fetching: false,
         fetched: false,
+      }
+    }
+    // In the case of fetching the next page of trip reports, the trip reports
+    // need to be added to the original list, not overwnite the original list.
+    case "FETCH_NEXT_TRIP_REPORTS_PENDING": {
+      return {
+        ...state,
+        fetchingNext: true,
+        fetchedNext: false
+      }
+    }
+    case "FETCH_NEXT_TRIP_REPORTS_FULFILLED": {
+      return {
+        ...state,
+        fetchingNext: false,
+        fetchedNext: true,
+        tripReports: {
+          count: action.tripReports.count,
+          next: action.tripReports.next,
+          previous: action.tripReports.previous,
+          results: [...state.tripReports.results].concat(action.tripReports.results),
+        }
+      }
+    }
+    case "FETCH_NEXT_TRIP_REPORTS_REJECTED": {
+      return {
+        ...state,
+        fetchingNext: false,
+        fetchedNext: false,
       }
     }
     case "FETCH_USER_TRIP_REPORTS_PENDING": {

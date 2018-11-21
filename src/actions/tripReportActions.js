@@ -21,6 +21,25 @@ export const fetchTripReportsRejected = () => {
   }
 }
 
+export const fetchNextTripReportsPending = () => {
+  return {
+    type: "FETCH_NEXT_TRIP_REPORTS_PENDING"
+  }
+}
+
+export const fetchNextTripReportsFulfilled = tripReports => {
+  return {
+    type: "FETCH_NEXT_TRIP_REPORTS_FULFILLED",
+    tripReports: tripReports
+  }
+}
+
+export const fetchNextTripReportsRejected = () => {
+  return {
+    type: "FETCH_NEXT_TRIP_REPORTS_REJECTED"
+  }
+}
+
 export const fetchUserTripReportsPending = () => {
   return {
     type: "FETCH_USER_TRIP_REPORTS_PENDING"
@@ -107,6 +126,25 @@ export const fetchTripReports = () => {
       })
       .catch(err => {
         dispatch(fetchTripReportsRejected());
+        dispatch({type: "ADD_ERROR", error: err});
+      })
+  }
+}
+
+/*
+Since the Trip Reports are paginated, the original axios call returns an object
+with a Next variable that contains the link API of the the next page 
+*/
+export const fetchNextTripReports = (url) => {
+  return dispatch => {
+    dispatch(fetchNextTripReportsPending());
+    axios.get(url)
+      .then(response => {
+        const tripReports = response.data;
+        dispatch(fetchNextTripReportsFulfilled(tripReports));
+      })
+      .catch(err => {
+        dispatch(fetchNextTripReportsRejected());
         dispatch({type: "ADD_ERROR", error: err});
       })
   }
