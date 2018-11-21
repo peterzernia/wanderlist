@@ -2,6 +2,7 @@ import axios from 'axios'
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
+// For fetching the first page of all of the users Trip Reports
 export const fetchTripReportsPending = () => {
   return {
     type: "FETCH_TRIP_REPORTS_PENDING"
@@ -21,6 +22,7 @@ export const fetchTripReportsRejected = () => {
   }
 }
 
+// For fetching the next page of all of the users Trip Reports
 export const fetchNextTripReportsPending = () => {
   return {
     type: "FETCH_NEXT_TRIP_REPORTS_PENDING"
@@ -40,6 +42,7 @@ export const fetchNextTripReportsRejected = () => {
   }
 }
 
+// For fetching the first page of Trip Reports of the authenticated user
 export const fetchUserTripReportsPending = () => {
   return {
     type: "FETCH_USER_TRIP_REPORTS_PENDING"
@@ -59,6 +62,27 @@ export const fetchUserTripReportsRejected = () => {
   }
 }
 
+// For fetching the next page of the authenticated users Trip Reports
+export const fetchNextUserTripReportsPending = () => {
+  return {
+    type: "FETCH_NEXT_USER_TRIP_REPORTS_PENDING"
+  }
+}
+
+export const fetchNextUserTripReportsFulfilled = tripReports => {
+  return {
+    type: "FETCH_NEXT_USER_TRIP_REPORTS_FULFILLED",
+    tripReports: tripReports
+  }
+}
+
+export const fetchNextUserTripReportsRejected = () => {
+  return {
+    type: "FETCH_NEXT_USER_TRIP_REPORTS_REJECTED"
+  }
+}
+
+// For the authenticated user to POST request a new trip report
 export const postTripReportsPending = () => {
   return {
     type: "POST_TRIP_REPORTS_PENDING"
@@ -78,6 +102,7 @@ export const postTripReportsRejected = () => {
   }
 }
 
+// For the authenticated user to delete a Trip Report of theirs
 export const deleteTripReportsPending = () => {
   return {
     type: "DELETE_TRIP_REPORTS_PENDING"
@@ -97,6 +122,7 @@ export const deleteTripReportsRejected = () => {
   }
 }
 
+// For the authenticated user to update a Trip Report of theirs
 export const updateTripReportsPending = () => {
   return {
     type: "UPDATE_TRIP_REPORTS_PENDING"
@@ -133,7 +159,7 @@ export const fetchTripReports = () => {
 
 /*
 Since the Trip Reports are paginated, the original axios call returns an object
-with a Next variable that contains the link API of the the next page 
+with a Next variable that contains the link API of the the next page
 */
 export const fetchNextTripReports = (url) => {
   return dispatch => {
@@ -160,6 +186,21 @@ export const fetchUserTripReports = (username) => {
       })
       .catch(err => {
         dispatch(fetchUserTripReportsRejected());
+        dispatch({type: "ADD_ERROR", error: err});
+      })
+  }
+}
+
+export const fetchNextUserTripReports = (url) => {
+  return dispatch => {
+    dispatch(fetchNextUserTripReportsPending());
+    axios.get(url)
+      .then(response => {
+        const tripReports = response.data;
+        dispatch(fetchNextUserTripReportsFulfilled(tripReports));
+      })
+      .catch(err => {
+        dispatch(fetchNextUserTripReportsRejected());
         dispatch({type: "ADD_ERROR", error: err});
       })
   }

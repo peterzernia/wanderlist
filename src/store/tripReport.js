@@ -83,6 +83,33 @@ export default function (state = initialState, action) {
         fetchedTripReports: false,
       }
     }
+    case "FETCH_NEXT_USER_TRIP_REPORTS_PENDING": {
+      return {
+        ...state,
+        fetchingNext: true,
+        fetchedNext: false
+      }
+    }
+    case "FETCH_NEXT_USER_TRIP_REPORTS_FULFILLED": {
+      return {
+        ...state,
+        fetchingNext: false,
+        fetchedNext: true,
+        userTripReports: {
+          count: action.tripReports.count,
+          next: action.tripReports.next,
+          previous: action.tripReports.previous,
+          results: [...state.tripReports.results].concat(action.tripReports.results),
+        }
+      }
+    }
+    case "FETCH_NEXT_USER_TRIP_REPORTS_REJECTED": {
+      return {
+        ...state,
+        fetchingNext: false,
+        fetchedNext: false,
+      }
+    }
     case "POST_TRIP_REPORTS_PENDING": {
       return {
         ...state,

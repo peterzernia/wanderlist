@@ -7,6 +7,7 @@ import EditProfileModal from '../components/EditProfileModal'
 import { openEditProfileModal, closeEditProfileModal } from '../actions/modalActions'
 import { putUserData } from '../actions/userActions'
 import { fetchCountry } from '../actions/countryActions'
+import { fetchNextUserTripReports } from '../actions/tripReportActions'
 import Button from '@material-ui/core/Button'
 import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
@@ -139,6 +140,8 @@ class Profile extends Component {
           {this.props.modalPost.author && <TripReportModal {...this.props} />}
           {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
           {this.props.fetchedTripReports && <Grid container spacing={24} justify='center' >{listTripReports}</Grid>}
+          {this.props.fetchingNext && <DotLoader size={50} color={'#2196f3'} className="content" />}
+          {this.props.next && <Button onClick={() => this.props.fetchNextUserTripReports(this.props.next)}>Load More</Button>}
         </div>
       </div>
     );
@@ -148,7 +151,9 @@ class Profile extends Component {
 const mapState = state => {
   return {
     user: state.user.user,
+    next: state.tripReport.userTripReports.next,
     fetched: state.user.fetched,
+    fetchingNext: state.tripReport.fetchingNext,
     searchedCountry: state.country.country,
     showEditProfileModal: state.modal.showEditProfileModal,
     modalProfile: state.modal.modalProfile,
@@ -186,6 +191,7 @@ const mapDispatch = dispatch => {
     closeConfirmDeleteModal,
     openTripReportModal,
     closeTripReportModal,
+    fetchNextUserTripReports,
   }, dispatch);
 }
 
@@ -193,7 +199,9 @@ export default connect(mapState, mapDispatch)(Profile);
 
 Profile.propTypes = {
   user: PropTypes.object,
+  next: PropTypes.string,
   fetched: PropTypes.bool,
+  fetchingNext: PropTypes.bool,
   searchedCountry: PropTypes.array,
   showEditProfileModal: PropTypes.bool,
   modalProfile: PropTypes.object,
@@ -226,4 +234,5 @@ Profile.propTypes = {
   closeConfirmDeleteModal: PropTypes.func,
   openTripReportModal: PropTypes.func,
   closeTripReportModal: PropTypes.func,
+  fetchNextUserTripReports: PropTypes.func
 };
