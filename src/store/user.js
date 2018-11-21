@@ -30,6 +30,7 @@ export default function (state = initialState, action) {
         fetched: false,
       }
     }
+    // Axios put
     case "PUT_USER_DATA_PENDING": {
       return {
         ...state,

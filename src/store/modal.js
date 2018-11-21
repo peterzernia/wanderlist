@@ -13,6 +13,7 @@ const initialState = {
 /* Reducer Function*/
 export default function (state = initialState, action) {
   switch (action.type) {
+    // Country modal
     case "OPEN_COUNTRY_MODAL": {
       return {
         ...state,
@@ -26,6 +27,7 @@ export default function (state = initialState, action) {
         showCountryModal: false
       }
     }
+    // Edit Profile modal
     case "OPEN_EDIT_PROFILE_MODAL": {
       return {
         ...state,
@@ -39,6 +41,7 @@ export default function (state = initialState, action) {
         showEditProfileModal: false
       }
     }
+    // Post modal
     case "OPEN_POST_MODAL": {
       return {
         ...state,
@@ -60,6 +63,7 @@ export default function (state = initialState, action) {
         updatePostModal: false
       }
     }
+    // Confirm Delete modal
     case "OPEN_CONFIRM_DELETE_MODAL": {
       return {
         ...state,
@@ -73,6 +77,7 @@ export default function (state = initialState, action) {
         showConfirmDeleteModal: false,
       }
     }
+    // Trip Report modal
     case "OPEN_TRIP_REPORT_MODAL": {
       return {
         ...state,

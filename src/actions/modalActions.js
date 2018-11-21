@@ -1,3 +1,4 @@
+// Country modal actions
 export const openCountryModal = modalCountry => {
   return dispatch => {
     dispatch({ type: "OPEN_COUNTRY_MODAL", modalCountry: modalCountry })
@@ -10,6 +11,7 @@ export const closeCountryModal = () => {
   }
 }
 
+// Edit Profile modal actions
 export const openEditProfileModal = modalProfile => {
   return dispatch => {
     dispatch({ type: "OPEN_EDIT_PROFILE_MODAL", modalProfile: modalProfile })
@@ -47,6 +49,7 @@ export const closePostModal = () => {
   }
 }
 
+// Confirm Delete modal actions
 export const openConfirmDeleteModal = modalPost => {
   return dispatch => {
     dispatch({ type: "OPEN_CONFIRM_DELETE_MODAL" , modalPost: modalPost })
@@ -59,6 +62,7 @@ export const closeConfirmDeleteModal = () => {
   }
 }
 
+// Trip Report modal actions
 export const openTripReportModal = modalPost => {
   return dispatch => {
     dispatch({ type: "OPEN_TRIP_REPORT_MODAL" , modalPost: modalPost })

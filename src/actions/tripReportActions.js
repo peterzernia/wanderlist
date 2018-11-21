@@ -142,6 +142,10 @@ export const updateTripReportsRejected = () => {
   }
 }
 
+/*
+GET requests the Django REST API and returns the first page of a list of Trip
+Reports.
+*/
 export const fetchTripReports = () => {
   return dispatch => {
     dispatch(fetchTripReportsPending());
@@ -159,7 +163,8 @@ export const fetchTripReports = () => {
 
 /*
 Since the Trip Reports are paginated, the original axios call returns an object
-with a Next variable that contains the link API of the the next page
+with a Next variable that contains the link API of the the next page, which is
+passed into this function to GET the next Trip Reports.
 */
 export const fetchNextTripReports = (url) => {
   return dispatch => {
@@ -176,6 +181,10 @@ export const fetchNextTripReports = (url) => {
   }
 }
 
+/*
+GET requests the Django REST API with the parameter of username to return the
+first page of the list of the Users TripReports.
+*/
 export const fetchUserTripReports = (username) => {
   return dispatch => {
     dispatch(fetchUserTripReportsPending());
@@ -191,6 +200,11 @@ export const fetchUserTripReports = (username) => {
   }
 }
 
+/*
+Again, the paginated API returns a next variable that is the url to the next
+page, which is passed into this function to retrieve the next page of the user's
+Trip Reports.
+*/
 export const fetchNextUserTripReports = (url) => {
   return dispatch => {
     dispatch(fetchNextUserTripReportsPending());
@@ -206,6 +220,10 @@ export const fetchNextUserTripReports = (url) => {
   }
 }
 
+/*
+POST requests a new trip report to the Django REST API by the authenticated
+user.
+*/
 export const postTripReport = (author, title, content, countries) => {
   const token = localStorage.getItem('token');
   return dispatch => {
@@ -230,6 +248,7 @@ export const postTripReport = (author, title, content, countries) => {
   }
 }
 
+// DELETES a post of the authenticated user on the API.
 export const deleteTripReport = (tripReport) => {
   const token = localStorage.getItem('token');
   return dispatch => {
@@ -250,6 +269,7 @@ export const deleteTripReport = (tripReport) => {
   }
 }
 
+// UPDATEs a post of the authenticated user on the API.
 export const updateTripReport = (tripReport, author, title, content, countries) => {
   const token = localStorage.getItem('token');
   return dispatch => {

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { fetchTripReports, fetchUserTripReports } from './tripReportActions'
 
+// Fetch user axios actions
 export const fetchUserPending = () => {
   return {
     type: "FETCH_USER_PENDING"
@@ -20,6 +21,7 @@ export const fetchUserRejected = () => {
   }
 }
 
+// PUT user axios actions for updating user information
 export const putUserDataPending = () => {
   return {
     type: "PUT_USER_DATA_PENDING"
@@ -39,9 +41,8 @@ export const putUserDataRejected = () => {
   }
 }
 
-/*
-GET requests the Django REST API, which returns user object.
-*/
+
+// GET requests the Django REST API, which returns user object.
 export const fetchUser = () => {
   const token = localStorage.getItem('token');
   return dispatch => {
@@ -58,6 +59,7 @@ export const fetchUser = () => {
   }
 }
 
+// PUT requests the Django REST API to update user object.
 export const putUserData = (username, email, countries, home, biography) => {
   const token = localStorage.getItem('token');
   return dispatch => {

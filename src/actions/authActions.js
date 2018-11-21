@@ -2,6 +2,7 @@ import axios from 'axios'
 import { fetchUser } from './userActions'
 import { fetchUserTripReports } from './tripReportActions'
 
+// Authentication actions
 export const authStart = () => {
   return {
     type: "AUTH_START"

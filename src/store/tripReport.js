@@ -11,6 +11,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    // Basic axios request returns a response, and the state must be updated.
     case "FETCH_TRIP_REPORTS_PENDING": {
       return {
         ...state,
@@ -32,8 +33,11 @@ export default function (state = initialState, action) {
         fetched: false,
       }
     }
-    // In the case of fetching the next page of trip reports, the trip reports
-    // need to be added to the original list, not overwnite the original list.
+    /*
+    In the case of fetching the next page of trip reports, the new trip reports
+    need to be added to the list of existing, fetched trip reports. They must
+    not overwnite the original list.
+    */
     case "FETCH_NEXT_TRIP_REPORTS_PENDING": {
       return {
         ...state,
@@ -61,6 +65,7 @@ export default function (state = initialState, action) {
         fetchedNext: false,
       }
     }
+    // Basic axios request for fetching a user's Trip Reports
     case "FETCH_USER_TRIP_REPORTS_PENDING": {
       return {
         ...state,
@@ -83,6 +88,11 @@ export default function (state = initialState, action) {
         fetchedTripReports: false,
       }
     }
+    /*
+    In the case of fetching the next page of the user's trip reports, the new
+    trip reports need to be added to the list of existing, fetched trip reports.
+    They must not overwnite the original list.
+    */
     case "FETCH_NEXT_USER_TRIP_REPORTS_PENDING": {
       return {
         ...state,
@@ -110,6 +120,7 @@ export default function (state = initialState, action) {
         fetchedNext: false,
       }
     }
+    // Axios post
     case "POST_TRIP_REPORTS_PENDING": {
       return {
         ...state,
@@ -118,7 +129,11 @@ export default function (state = initialState, action) {
     case "POST_TRIP_REPORTS_FULFILLED": {
       return {
         ...state,
-        // The new trip report must be added onto the array, then the array must be sorted by id.
+        /*
+        The axios response is a single trip report. The new trip report must be
+        added onto the array, then the array must be sorted by id for both the
+        Trip Reports and User Trip Reports lists.
+        */
         userTripReports: {
           results: [...state.userTripReports.results].concat(action.response).sort((a, b) => a.id < b.id)
         },
@@ -132,6 +147,7 @@ export default function (state = initialState, action) {
         ...state,
         }
     }
+    // Axios deleet
     case "DELETE_TRIP_REPORTS_PENDING": {
       return {
         ...state,
@@ -140,7 +156,10 @@ export default function (state = initialState, action) {
     case "DELETE_TRIP_REPORTS_FULFILLED": {
       return {
         ...state,
-        // The deleted post must be filtered out of the lists.
+        /*
+        The response is the deleted post that must be filtered out of both
+        lists.
+        */
         userTripReports: {
           results: [...state.userTripReports.results].filter(tripReport => tripReport.id !== action.response.id)
         },
@@ -162,7 +181,11 @@ export default function (state = initialState, action) {
     case "UPDATE_TRIP_REPORTS_FULFILLED": {
       return {
         ...state,
-        // The old post must be filtered out, the updated post must be added, then the array must be sorted.
+        /*
+        The axios response is the updated post. The old, unupdated post must be
+        filtered out of both lists, the updated post must be added, then
+        the array must be sorted.
+        */
         userTripReports: {
           results: [...state.userTripReports.results].filter(tripReport => tripReport.id !== action.response.id).concat(action.response).sort((a, b) => a.id < b.id)
         },
