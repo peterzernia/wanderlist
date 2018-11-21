@@ -3,6 +3,48 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import countries from '../country_data'
 import Autosuggest from 'react-autosuggest'
+import TextField from '@material-ui/core/TextField'
+import MenuItem from '@material-ui/core/MenuItem'
+
+const theme = {
+  container: {
+    position: 'relative'
+  },
+  input: {
+    width: 300,
+    height: 30,
+    marginBottom: 10
+  },
+  inputFocused: {
+    outline: 'none'
+  },
+  inputOpen: {
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0
+  },
+  suggestionsContainer: {
+    display: 'none'
+  },
+  suggestionsContainerOpen: {
+    display: 'block',
+    position: 'relative',
+    width: 300,
+    maxHeight: 200,
+    zIndex: 2,
+    overflowY: 'auto'
+  },
+  suggestionsList: {
+    margin: 0,
+    padding: 0,
+    listStyleType: 'none',
+  },
+  suggestion: {
+    display: 'block'
+  },
+  suggestionHighlighted: {
+    backgroundColor: '#ddd'
+  }
+};
 
 const getSuggestions = value => {
   const inputValue = value.trim().toLowerCase();
@@ -14,11 +56,30 @@ const getSuggestions = value => {
 
 const getSuggestionValue = suggestion => suggestion.name;
 
-const renderSuggestion = suggestion => (
-  <div>
-    {suggestion.name}
-  </div>
-);
+function renderSuggestion(suggestion) {
+  return (
+    <MenuItem component="div">
+      <div>
+        {suggestion.name}
+      </div>
+    </MenuItem>
+  );
+}
+
+function renderInputComponent(inputProps) {
+  const { inputRef = () => {}, ref, ...other } = inputProps;
+  return (
+    <TextField
+      InputProps={{
+        inputRef: node => {
+          ref(node);
+          inputRef(node);
+        },
+      }}
+      {...other}
+    />
+  );
+}
 
 class SearchBar extends Component {
   constructor() {
@@ -62,15 +123,19 @@ class SearchBar extends Component {
           <Typography variant="h4" gutterBottom>
             Search for a Country
           </Typography><br/>
-          <Autosuggest
-            suggestions={suggestions}
-            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-            getSuggestionValue={getSuggestionValue}
-            renderSuggestion={renderSuggestion}
-            inputProps={inputProps}
-          />
-          <Button variant="contained" color="primary" type='submit'>Search</Button>
+          <div style={{ maxWidth: 300, margin: '0 auto' }}>
+            <Autosuggest
+              suggestions={suggestions}
+              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+              getSuggestionValue={getSuggestionValue}
+              renderSuggestion={renderSuggestion}
+              renderInputComponent={renderInputComponent}
+              inputProps={inputProps}
+              theme = {theme}
+            />
+            <Button variant="contained" color="primary" type='submit'>Search</Button>
+          </div>
         </form>
       </div>
     )
