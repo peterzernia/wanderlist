@@ -14,8 +14,8 @@ const LoginForm = (props) => (
         <TextField className="user-auth" type='text' name="username" label="Username"/><br/>
         <TextField className="user-auth" type='password' name="password" label="Password"/><br/><br/>
         <Button variant="contained" color="primary" type="submit">Login</Button>
-        <Link to="/register"><Button>Register</Button></Link>
-        <Link to="/password_reset"><Button>Forgot Password?</Button></Link>
+        <Link to="/register"><Button>Register</Button></Link><br/><br/>
+        <Link to="/password_reset">Forgot Password?</Link>
       </form>
     </CardContent>
   </Card>

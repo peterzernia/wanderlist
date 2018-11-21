@@ -118,7 +118,7 @@ class Profile extends Component {
               </Button>
             </div><br/>
             <div style={{ height: 30, maxWidth: '75%' }}>
-              {this.props.biography}
+              {this.props.user.biography}
             </div>
           </div>
         </div>
@@ -146,7 +146,6 @@ const mapState = state => {
   return {
     user: state.user.user,
     fetched: state.user.fetched,
-    biography: state.user.user.biography,
     searchedCountry: state.country.country,
     showEditProfileModal: state.modal.showEditProfileModal,
     modalProfile: state.modal.modalProfile,
@@ -192,18 +191,36 @@ export default connect(mapState, mapDispatch)(Profile);
 Profile.propTypes = {
   user: PropTypes.object,
   fetched: PropTypes.bool,
-  biography: PropTypes.string,
   searchedCountry: PropTypes.array,
   showEditProfileModal: PropTypes.bool,
   modalProfile: PropTypes.object,
   userCountries: PropTypes.array,
   showCountryModal: PropTypes.bool,
   modalCountry: PropTypes.object,
+  showPostModal: PropTypes.bool,
+  fetchingTripReports: PropTypes.bool,
+  fetchedTripReports: PropTypes.bool,
+  tripReports: PropTypes.array,
+  updatePostModal: PropTypes.bool,
+  modalPost: PropTypes.object,
+  showConfirmDeleteModal: PropTypes.bool,
+  showTripReportModal: PropTypes.bool,
   fetchCountry: PropTypes.func,
   putUserData: PropTypes.func,
   openEditProfileModal: PropTypes.func,
   closeEditProfileModal: PropTypes.func,
   openCountryModal: PropTypes.func,
   closeCountryModal: PropTypes.func,
-  removeError: PropTypes.func
+  removeError: PropTypes.func,
+  fetchUserTripReports: PropTypes.func,
+  postTripReport: PropTypes.func,
+  deleteTripReport: PropTypes.func,
+  updateTripReport: PropTypes.func,
+  openPostModal: PropTypes.func,
+  closePostModal: PropTypes.func,
+  openUpdatePostModal: PropTypes.func,
+  openConfirmDeleteModal: PropTypes.func,
+  closeConfirmDeleteModal: PropTypes.func,
+  openTripReportModal: PropTypes.func,
+  closeTripReportModal: PropTypes.func,
 };
