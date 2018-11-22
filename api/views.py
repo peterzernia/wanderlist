@@ -35,7 +35,7 @@ class TripReportViewSet(viewsets.ModelViewSet):
     pagination_class = TripReportSetPagination
     queryset = TripReport.objects.all().order_by('-pk')
     filter_backends = (filters.SearchFilter,)
-    search_fields = ('=author__username',)
+    search_fields = ('=author__username', '=slug')
 
 
 class UserListView(ListAPIView):

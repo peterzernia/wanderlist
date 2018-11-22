@@ -35,7 +35,7 @@ const TripReport = (props) => {
       </CardContent>
       <CardActions >
         <IconButton><FavoriteIcon /></IconButton>
-        <IconButton><ShareIcon /></IconButton>
+        <IconButton onClick={() => {alert(`localhost:3000/p/${props.slug}/`);}}><ShareIcon /></IconButton>
       </CardActions>
     </Card>
   )

@@ -8,6 +8,7 @@ import Home from './Home'
 import Login from './Login'
 import Logout from './Logout'
 import NavBar from '../components/NavBar'
+import Post from './Post'
 import PrivateRoute from '../components/PrivateRoute'
 import Profile from './Profile'
 import Register from './Register'
@@ -52,6 +53,7 @@ class Layout extends Component {
           <Route path={`${this.props.match.url}/logout`} component={Logout}/>
           <Route path={`${this.props.match.url}/register`} component={Register}/>
           <Route path={`${this.props.match.url}/password_reset`} component={ForgotPassword}/>
+          <Route path={`${this.props.match.url}/p/:slug`} component={Post}/>
         </div>
         :<div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>
       }

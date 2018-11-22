@@ -5,8 +5,11 @@ const initialState = {
   fetchedNext: false,
   fetchingTripReports: false,
   fetchedTripReports: false,
-  tripReports: [],
-  userTripReports: [],
+  fetchingSlugTripReports: false,
+  fetchedSlugTripReports: false,
+  tripReports: {},
+  userTripReports: {},
+  slugTripReports: {},
 }
 
 export default function (state = initialState, action) {
@@ -197,6 +200,28 @@ export default function (state = initialState, action) {
     case "UPDATE_TRIP_REPORTS_REJECTED": {
       return {
         ...state,
+      }
+    }
+    case "FETCH_SLUG_TRIP_REPORTS_PENDING": {
+      return {
+        ...state,
+        fetchingSlugTripReports: true,
+        fetchedSlugTripReports: false
+      }
+    }
+    case "FETCH_SLUG_TRIP_REPORTS_FULFILLED": {
+      return {
+        ...state,
+        fetchingSlugTripReports: false,
+        fetchedSlugTripReports: true,
+        slugTripReports: action.tripReports,
+      }
+    }
+    case "FETCH_SLUG_TRIP_REPORTS_REJECTED": {
+      return {
+        ...state,
+        fetchingSlugTripReports: false,
+        fetchedSlugTripReports: false,
       }
     }
     default:

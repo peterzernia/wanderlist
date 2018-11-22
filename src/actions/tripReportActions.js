@@ -142,6 +142,26 @@ export const updateTripReportsRejected = () => {
   }
 }
 
+// For fetching the post based off slug
+export const fetchSlugTripReportsPending = () => {
+  return {
+    type: "FETCH_SLUG_TRIP_REPORTS_PENDING"
+  }
+}
+
+export const fetchSlugTripReportsFulfilled = tripReports => {
+  return {
+    type: "FETCH_SLUG_TRIP_REPORTS_FULFILLED",
+    tripReports: tripReports
+  }
+}
+
+export const fetchSlugTripReportsRejected = () => {
+  return {
+    type: "FETCH_SLUG_TRIP_REPORTS_REJECTED",
+  }
+}
+
 /*
 GET requests the Django REST API and returns the first page of a list of Trip
 Reports.
@@ -292,6 +312,25 @@ export const updateTripReport = (tripReport, author, title, content, countries) 
       })
       .catch(err => {
         dispatch(updateTripReportsRejected());
+        dispatch({type: "ADD_ERROR", error: err});
+      })
+  }
+}
+
+/*
+Fetches a single Trip Report based on slug to display on the posts /p/${slug}/
+page.
+*/
+export const fetchSlugTripReports = (slug) => {
+  return dispatch => {
+    dispatch(fetchSlugTripReportsPending());
+    axios.get(`http://localhost:8000/api/v1/reports/?search=${slug}`)
+      .then(response => {
+        const tripReports = response.data;
+        dispatch(fetchSlugTripReportsFulfilled(tripReports));
+      })
+      .catch(err => {
+        dispatch(fetchSlugTripReportsRejected());
         dispatch({type: "ADD_ERROR", error: err});
       })
   }
