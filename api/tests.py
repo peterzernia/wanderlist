@@ -2,11 +2,14 @@ from django.test import TestCase
 from users.models import User
 from countries.models import Country
 from api.serializers import UserDetailSerializer
-
+from django.urls import reverse
+from rest_framework.test import force_authenticate, APIRequestFactory
+from rest_framework.authtoken.models import Token
+from rest_auth.views import UserDetailsView
 
 class UserDetailSerializerTest(TestCase):
     def setUp(self):
-        # Create 2 country objects to use later.
+        # Create two country objects.
         self.country_one = Country.objects.create(
             name="Bouvet Island",
             top_level_domain=[
@@ -89,6 +92,7 @@ class UserDetailSerializerTest(TestCase):
             flag="https://restcountries.eu/data/cod.svg",
             cioc="COD",
         )
+        # Create a user object.
         self.user = User.objects.create(
             username='TestUser',
             email='test@test.com',
@@ -113,3 +117,40 @@ class UserDetailSerializerTest(TestCase):
         self.assertEqual(list(self.user.countries.all()), [self.country_one, self.country_two])
         self.assertEqual(self.user.home, self.country_two)
         self.assertEqual(self.user.biography, 'Hi World!')
+
+    # Test you are able to PUT countries/home with pk.
+    def test_put_request(self):
+        factory = APIRequestFactory()
+        view = UserDetailsView.as_view()
+        token, created = Token.objects.get_or_create(user=self.user)
+        data = {
+            'username': 'Test',
+            'email': 'new_email@test.com',
+            'countries': (1, 2),
+            'home': 2,
+            'biography': 'Hi World!'
+        }
+        url = reverse('rest_user_details')
+        request = factory.put(url, data)
+        force_authenticate(request, user=self.user, token=self.user.auth_token)
+        response = view(request)
+        self.assertEqual(response.status_code, 200)
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.username, 'Test')
+        self.assertEqual(self.user.email, 'new_email@test.com')
+        self.assertEqual(list(self.user.countries.all()), [self.country_one, self.country_two])
+        self.assertEqual(self.user.home, self.country_two)
+
+        # Country with pk=3 does not equal 
+        data = {
+            'username': 'Test',
+            'email': 'new_email@test.com',
+            'countries': (1, 2, 3),
+            'home': 3,
+            'biography': 'Hi World!'
+        }
+        url = reverse('rest_user_details')
+        request = factory.put(url, data)
+        force_authenticate(request, user=self.user, token=self.user.auth_token)
+        response = view(request)
+        self.assertEqual(response.status_code, 400)
