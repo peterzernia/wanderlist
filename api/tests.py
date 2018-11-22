@@ -116,6 +116,7 @@ class UserDetailSerializerTest(TestCase):
             'home': self.country_two,
             'biography': 'Hi World!'
         }
+        # After updating, the object should have the new values.
         serializer.update(self.user, data)
         self.user.refresh_from_db()
         self.assertEqual(self.user.username, 'Test')
@@ -124,7 +125,7 @@ class UserDetailSerializerTest(TestCase):
         self.assertEqual(self.user.home, self.country_two)
         self.assertEqual(self.user.biography, 'Hi World!')
 
-    # Test you are able to PUT countries/home with pk.
+    # Test that PUT request uses countries/home pk and not the entire object.
     def test_put_request(self):
         factory = APIRequestFactory()
         view = UserDetailsView.as_view()
