@@ -63,13 +63,12 @@ class CountryField(serializers.PrimaryKeyRelatedField):
         except Country.DoesNotExist:
             return None
 
-    # Not sure if this is needed
-    # def get_choices(self, cutoff=None):
-    #     queryset = self.get_queryset()
-    #     if queryset is None:
-    #         return {}
-    #
-    #     return OrderedDict([(item.id, str(item)) for item in queryset])
+    def get_choices(self, cutoff=None):
+        queryset = self.get_queryset()
+        if queryset is None:
+            return {}
+
+        return OrderedDict([(item.id, str(item)) for item in queryset])
 
 
 class AuthorField(serializers.PrimaryKeyRelatedField):
@@ -86,13 +85,12 @@ class AuthorField(serializers.PrimaryKeyRelatedField):
         except User.DoesNotExist:
             return None
 
-    # Not sure if this is needed
-    # def get_choices(self, cutoff=None):
-    #     queryset = self.get_queryset()
-    #     if queryset is None:
-    #         return {}
-    #
-    #     return OrderedDict([(item.id, str(item)) for item in queryset])
+    def get_choices(self, cutoff=None):
+        queryset = self.get_queryset()
+        if queryset is None:
+            return {}
+
+        return OrderedDict([(item.id, str(item)) for item in queryset])
 
 
 class UserSerializer(serializers.ModelSerializer):

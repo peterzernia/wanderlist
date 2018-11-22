@@ -2,9 +2,10 @@ from django.test import TestCase
 from users.models import User
 from countries.models import Country
 from trips.models import TripReport
-from api.serializers import UserDetailSerializer, AuthorField
+from api.serializers import UserDetailSerializer, RegistrationSerializer
 from django.urls import reverse
 from rest_framework.test import force_authenticate, APIRequestFactory, APIClient
+from django.contrib.sessions.middleware import SessionMiddleware
 from rest_framework.authtoken.models import Token
 from rest_auth.views import UserDetailsView
 
@@ -302,3 +303,62 @@ class TestTripReportViewSet(TestCase):
         }
         response = client.post('/api/v1/reports/', data)
         self.assertEqual(response.status_code, 400)
+
+
+class RegistrationSerializerTest(TestCase):
+    def setUp(self):
+        self.country = Country.objects.create(
+            name="Bouvet Island",
+            top_level_domain=[
+              ".bv"
+            ],
+            alpha2code="BV",
+            alpha3code="BVT",
+            calling_codes=[
+              ""
+            ],
+            capital=None,
+            alt_spellings=[
+              "BV",
+              "Bouvet\u00f8ya",
+              "Bouvet-\u00f8ya"
+            ],
+            region=None,
+            subregion=None,
+            population=0,
+            latlng=[
+              -54.43333333,
+              3.4
+            ],
+            demonym=None,
+            area=49.0,
+            gini=None,
+            timezones=[
+              "UTC+01:00"
+            ],
+            borders=[],
+            native_name="Bouvet\u00f8ya",
+            numeric_code="074",
+            flag="https://restcountries.eu/data/bvt.svg",
+            cioc=None,
+        )
+
+    def test_save(self):
+        factory = APIRequestFactory()
+        data = {
+            'username': 'TestUser',
+            'email': 'test@test.com',
+            'password1': 'testing1234',
+            'password2': 'testing1234',
+            'home': self.country.pk,
+        }
+        request = factory.post('/api/v1/rest-auth/registration/', data)
+        
+        # Middlemare must be added to run setup_user_email() method.
+        middleware = SessionMiddleware()
+        middleware.process_request(request)
+        request.session.save()
+
+        serializer = RegistrationSerializer(data=data)
+        serializer.is_valid()
+        self.assertEqual(serializer.save(request), User.objects.get(username='TestUser'))
