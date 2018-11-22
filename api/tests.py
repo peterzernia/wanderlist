@@ -2,12 +2,15 @@ from django.test import TestCase
 from users.models import User
 from countries.models import Country
 from trips.models import TripReport
-from api.serializers import UserDetailSerializer, RegistrationSerializer
+from api.serializers import (
+    UserDetailSerializer, RegistrationSerializer, AuthorField, CountryField
+)
 from django.urls import reverse
 from rest_framework.test import force_authenticate, APIRequestFactory, APIClient
 from django.contrib.sessions.middleware import SessionMiddleware
 from rest_framework.authtoken.models import Token
 from rest_auth.views import UserDetailsView
+from collections import OrderedDict
 
 
 class UserDetailSerializerTest(TestCase):
@@ -117,7 +120,7 @@ class UserDetailSerializerTest(TestCase):
         self.user.refresh_from_db()
         self.assertEqual(self.user.username, 'Test')
         self.assertEqual(self.user.email, 'new_email@test.com')
-        self.assertEqual(list(self.user.countries.all()), [self.country_one, self.country_two])
+        self.assertEqual(list(self.user.countries.all().order_by('pk')), [self.country_one, self.country_two])
         self.assertEqual(self.user.home, self.country_two)
         self.assertEqual(self.user.biography, 'Hi World!')
 
@@ -353,7 +356,7 @@ class RegistrationSerializerTest(TestCase):
             'home': self.country.pk,
         }
         request = factory.post('/api/v1/rest-auth/registration/', data)
-        
+
         # Middlemare must be added to run setup_user_email() method.
         middleware = SessionMiddleware()
         middleware.process_request(request)
@@ -362,3 +365,61 @@ class RegistrationSerializerTest(TestCase):
         serializer = RegistrationSerializer(data=data)
         serializer.is_valid()
         self.assertEqual(serializer.save(request), User.objects.get(username='TestUser'))
+
+
+class AuthorFieldTest(TestCase):
+    def test_get_choices(self):
+        serializer = AuthorField(queryset=User.objects.all())
+        self.assertEqual(serializer.get_choices(), {})
+
+        self.user = User.objects.create(
+            username='TestUser',
+            email='test@test.com',
+            biography='Hello World!'
+        )
+        serializer = AuthorField(queryset=User.objects.all())
+        self.assertEqual(serializer.get_choices(), OrderedDict([(1, 'TestUser')]))
+
+
+class CountryFieldTest(TestCase):
+    def test_get_choices(self):
+        serializer = CountryField(queryset=Country.objects.all())
+        self.assertEqual(serializer.get_choices(), {})
+
+        self.country = Country.objects.create(
+            name="Bouvet Island",
+            top_level_domain=[
+              ".bv"
+            ],
+            alpha2code="BV",
+            alpha3code="BVT",
+            calling_codes=[
+              ""
+            ],
+            capital=None,
+            alt_spellings=[
+              "BV",
+              "Bouvet\u00f8ya",
+              "Bouvet-\u00f8ya"
+            ],
+            region=None,
+            subregion=None,
+            population=0,
+            latlng=[
+              -54.43333333,
+              3.4
+            ],
+            demonym=None,
+            area=49.0,
+            gini=None,
+            timezones=[
+              "UTC+01:00"
+            ],
+            borders=[],
+            native_name="Bouvet\u00f8ya",
+            numeric_code="074",
+            flag="https://restcountries.eu/data/bvt.svg",
+            cioc=None,
+        )
+        serializer = CountryField(queryset=Country.objects.all())
+        self.assertEqual(serializer.get_choices(), OrderedDict([(1, 'Bouvet Island')]))
