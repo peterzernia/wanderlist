@@ -128,8 +128,8 @@ class UserDetailSerializerTest(TestCase):
         data = {
             'username': 'Test',
             'email': 'new_email@test.com',
-            'countries': (1, 2),
-            'home': 2,
+            'countries': (self.country_one.pk, self.country_two.pk), # Pk not object
+            'home': self.country_two.pk, # Pk not object
             'biography': 'Hi World!'
         }
         url = reverse('rest_user_details')
@@ -273,18 +273,18 @@ class TestTripReportViewSet(TestCase):
         data = {
             'title': 'Test',
             'content': 'Test Content',
-            'countries': (1,),
-            'author': 1,
+            'countries': (self.country_one.pk,), # Pk not object
+            'author': self.user.pk, # Pk not object
         }
         response = client.post('/api/v1/reports/', data)
         self.assertEqual(response.status_code, 201)
 
-        # Test PUT request with pk works.
+        # Test PUT request with pk (not object) works.
         data = {
             'title': 'Test Updated',
             'content': 'Test Content Updated',
-            'countries': (2,),
-            'author': 1,
+            'countries': (self.country_two.pk,), # Pk not object
+            'author': self.user.pk, # Pk not object
         }
         response = client.put('/api/v1/reports/1/', data)
         self.assertEqual(response.status_code, 200)
@@ -293,7 +293,7 @@ class TestTripReportViewSet(TestCase):
         self.assertEqual(report.content, 'Test Content Updated')
         self.assertEqual(list(report.countries.all()), [self.country_two])
 
-        # POSTing with objects instead of pk returns 400 bad response.
+        # POSTing with object instead of pk returns 400 bad response.
         data = {
             'title': 'Test',
             'content': 'Test Content',
