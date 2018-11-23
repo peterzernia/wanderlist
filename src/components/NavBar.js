@@ -21,7 +21,7 @@ const NavBar = (props) => {
           </Button>
           <Button component={Link} to='/feed' color="inherit"><ListIcon /></Button>
           <Button component={Link} to='/search' color="inherit"><SearchIcon /></Button>
-          <Button component={Link} to='/profile' color="inherit"><AccountCircleIcon /></Button>
+          <Button component={Link} to='/edit_profile' color="inherit"><AccountCircleIcon /></Button>
           {
             props.authenticated
             ? <Button component={Link} to='/logout' color="inherit">Logout</Button>

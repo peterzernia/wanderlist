@@ -42,18 +42,27 @@ class Layout extends Component {
         !this.props.fetching
         ?<div>
           <NavBar {...this.props} />
+          {/*
+            Errors are added if there are server errors, authentication errors,
+            errors while posting content, etc. Succeses are added to give users
+            feedback when they have successfully added a country to their map,
+            deleted a post, etc. The removeError function is run on every
+            components Unmount, so that errors and sucesses do not persist
+            through navigation. Users can also remove these by clicking the 'x'.
+          */}
           {this.props.error && <Error {...this.props} error={this.props.error} />}
           {this.props.success && <Success {...this.props} />}
+
           <Route exact path='/' component={Home} />
           <Route path='/search'component={Search} />
           <Route path='/feed'component={Feed} />
-          <PrivateRoute {...this.props} path='/profile' component={EditProfile} />
+          <PrivateRoute {...this.props} path='/edit_profile' component={EditProfile} />
+          <Route path='/u/:username' component={ViewProfile} />
           <Route path='/login' component={Login} />
           <Route path='/logout' component={Logout} />
           <Route path='/register' component={Register} />
           <Route path='/password_reset' component={ForgotPassword} />
           <Route path='/p/:slug' component={Post} />
-          <Route path='/u/:username' component={ViewProfile} />
         </div>
         :<div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>
       }

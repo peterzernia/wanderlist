@@ -36,7 +36,8 @@ class CountryRegistrationSerializer(serializers.ModelSerializer):
 class CountrySerializer(serializers.ModelSerializer):
     '''
     The currencies, languages, and regional_bloc fields are made up of the
-    corresponding models. In the API, their data will also be available.
+    corresponding models. In the API, their data will also be available. This
+    serializer is used on the Country API View.
     '''
     currencies = CurrenciesSerializer(many=True)
     languages = LanguagesSerializer(many=True)
@@ -52,7 +53,10 @@ class CountryField(serializers.PrimaryKeyRelatedField):
     This serializer allows GET requests to return the full nested Country
     object, but use the pk for POST/PUT/PATCH requests. This serializer is used
     with the Trip Report and User Detail serializers to simplify handling
-    requests from the frontend.
+    requests from the frontend. This serializer is used on the User & Trip
+    Report Views. This makes POST & PUT requests from the frontend easy to
+    maintain, e.g. the pk can be stored as the value of an option on a select
+    form, instead of having to store the entire country object.
     '''
     def to_representation(self, value):
         pk = super(CountryField, self).to_representation(value)
@@ -94,6 +98,10 @@ class AuthorField(serializers.PrimaryKeyRelatedField):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    '''
+    This is a serializer used to list all of the Users. Users will be filtered
+    in the View, and the frontend can make GET requests to view user profiles.
+    '''
     countries = CountryField(queryset=Country.objects.all(), many=True)
     home = CountryField(queryset=Country.objects.all())
 

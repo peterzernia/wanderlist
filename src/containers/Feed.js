@@ -29,7 +29,7 @@ class Home extends Component {
   /*
   If the user has scrolled to the bottom, AND there is next URL to load more
   Trip Reports, AND the next Trip Reports are not already being fetched, the
-  next Trip Reports will be fetched.
+  next Trip Reports will be fetched i.e. infinite scrolling.
   */
   onScroll = () => {
     const element = document.getElementById('scroll');

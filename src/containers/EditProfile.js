@@ -27,6 +27,12 @@ import Grid from '@material-ui/core/Grid'
 import Add from '@material-ui/icons/Add'
 import Tooltip from '@material-ui/core/Tooltip';
 
+/*
+This container displays the same information as ViewProfile, but is used for
+authenticated users to edit their profile information, and post new Trip
+Reports. This is a protected route, so only authenticated users will have
+access to editing their profile.
+*/
 class EditProfile extends Component {
 
   // Returns True if the user has scrolled past the bottom.
@@ -48,7 +54,7 @@ class EditProfile extends Component {
   /*
   If the user has scrolled to the bottom, AND there is next URL to load more
   Trip Reports, AND the next Trip Reports are not already being fetched, the
-  next Trip Reports will be fetched.
+  next Trip Reports will be fetched i.e. infinite scrolling.
   */
   onScroll = () => {
     const element = document.getElementById('scroll');
@@ -117,6 +123,9 @@ class EditProfile extends Component {
 
   render(){
 
+    /*
+    List out Trip Reports to display in Material UI grid component.
+    */
     let listTripReports = null;
     if (this.props.tripReports){
       listTripReports = this.props.tripReports.map(tripReport =>(
@@ -128,6 +137,7 @@ class EditProfile extends Component {
 
     return(
       <div id='scroll' className='content'>
+        {/* This section is the user avatar, username, biography, etc. */}
         {this.props.fetched && <CountryModal {...this.props} />}
         <EditProfileModal handleSubmit={this.handleSubmit} {...this.props} />
         <div className='wrap' style={{ marginBottom: 60 }} >
@@ -151,8 +161,12 @@ class EditProfile extends Component {
           </div>
         </div>
         <hr style={{width: '85%', size: 1}}/>
+
+        {/* This section is the user map */}
         {this.props.fetched && <GoogleMap {...this.props}/>}
         <hr style={{width: '85%', size: 1}}/>
+
+        {/* This section is the user posts */}
         <div className="">
           <Tooltip title="New Trip Report">
             <IconButton variant="contained" aria-label="New Trip Report" onClick={this.props.openPostModal}>

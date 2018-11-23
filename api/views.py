@@ -9,9 +9,13 @@ from rest_framework import permissions
 from rest_framework.pagination import PageNumberPagination
 
 
-# Sets pagination only for the Trip Reports. The max return for countries will
-# only be 250 objects, but Trip Reports will continue to grow.
 class TripReportSetPagination(PageNumberPagination):
+    '''
+    This sets pagination for the Trip Reports api view. No pagination is used
+    for the Country API view because the max array size return from a GET
+    request will be 250 Country objects, but the Trip Reports API will continue
+    to grow.
+    '''
     page_size = 3
     page_size_query_param = 'page_size'
     max_page_size = 3

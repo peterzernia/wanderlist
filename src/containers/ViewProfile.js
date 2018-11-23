@@ -19,6 +19,12 @@ import { DotLoader } from 'react-spinners'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
+/*
+This container displays the same information as EditProfile, but does not allow
+the person visiting this page to edit or post new content. Since this route is
+not a private route, it allows users to have a link to their profile to share
+outside of this website.
+*/
 class ViewProfile extends Component {
 
   // Returns True if the user has scrolled past the bottom.
@@ -42,7 +48,7 @@ class ViewProfile extends Component {
   /*
   If the user has scrolled to the bottom, AND there is next URL to load more
   Trip Reports, AND the next Trip Reports are not already being fetched, the
-  next Trip Reports will be fetched.
+  next Trip Reports will be fetched i.e. infinite scrolling.
   */
   onScroll = () => {
     const element = document.getElementById('scroll');
@@ -64,6 +70,7 @@ class ViewProfile extends Component {
 
     return (
       <div id='scroll' className='content'>
+        {/* This section is the user avatar, username, biography, etc. */}
         {this.props.fetched && <CountryModal {...this.props} />}
         <div className='wrap' style={{ marginBottom: 60 }} >
           <div className='left' style={{ width: '37%' }}>
@@ -84,8 +91,12 @@ class ViewProfile extends Component {
           </div>
         </div>
         {this.props.fetched && <hr style={{width: '85%', size: 1}}/>}
+
+        {/* This section is the user map */}
         {this.props.fetched && <GoogleMap {...this.props}/>}
         {this.props.fetched && <hr style={{width: '85%', size: 1}}/>}
+
+        {/* This section is the user posts */}
         <div style={{marginTop: 50}}>
           {this.props.modalPost.author && <TripReportModal {...this.props} />}
           {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}

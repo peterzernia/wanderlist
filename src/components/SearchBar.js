@@ -6,6 +6,10 @@ import Autosuggest from 'react-autosuggest'
 import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
 
+/*
+This component contains all of the logic for react-autosuggest to auto complete
+users searches for countries. 
+*/
 const theme = {
   container: {
     position: 'relative'
@@ -82,6 +86,7 @@ function renderInputComponent(inputProps) {
 }
 
 class SearchBar extends Component {
+
   constructor() {
     super();
     this.state = {
@@ -120,9 +125,6 @@ class SearchBar extends Component {
     return(
       <div>
         <form onSubmit={this.props.handleSubmit}>
-          <Typography variant="h4" gutterBottom>
-            Search for a Country
-          </Typography><br/>
           <div style={{ maxWidth: 300, margin: '0 auto' }}>
             <Autosuggest
               suggestions={suggestions}
