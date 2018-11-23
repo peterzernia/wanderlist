@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import FavoriteIcon from '@material-ui/icons/Favorite'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import ShareIcon from '@material-ui/icons/Share'
 import Button from '@material-ui/core/Button'
 
@@ -34,7 +35,11 @@ const TripReport = (props) => {
         {listCountries}
       </CardContent>
       <CardActions >
-        <IconButton onClick={props.handleClick} id={props.id} ><FavoriteIcon /></IconButton>
+        {
+          props.favoriters.includes(props.pk)
+          ? <IconButton onClick={props.handleClick} id={props.id} ><FavoriteIcon /></IconButton>
+          : <IconButton onClick={props.handleClick} id={props.id} ><FavoriteBorderIcon /></IconButton>
+        }
         <IconButton onClick={() => {alert(`localhost:3000/p/${props.slug}/`);}}><ShareIcon /></IconButton>
       </CardActions>
     </Card>

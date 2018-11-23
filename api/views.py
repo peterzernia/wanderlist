@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.core import serializers
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
@@ -40,7 +41,9 @@ class TripReportViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     serializer_class = TripReportSerializer
     pagination_class = TripReportSetPagination
-    queryset = TripReport.objects.all().annotate(count=Count('favoriters')).order_by('-count')
+    # To order by favorite count:
+    #queryset = TripReport.objects.all().annotate(count=Count('favoriters')).order_by('-count')
+    queryset = TripReport.objects.all().order_by('-pk')
     filter_backends = (filters.SearchFilter, filters.OrderingFilter)
     search_fields = ('=author__username', '=slug')
     ordering_fields = ('pk', )
@@ -54,20 +57,21 @@ class UserListView(ListAPIView):
 
 
 class FavoriteAPI(APIView):
+    '''
+    When GET requests are made to this view, the user, who made the request, has
+    their ManyToMany relation toggled in the favoriter field of the Trip Report
+    model. The GET request returns the Trip Report object with the updated
+    favoriters array.
+    '''
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, slug=None, format=None, pk=None):
         obj = get_object_or_404(TripReport, id=pk)
         user = self.request.user
-        favorited = False
         if user.is_authenticated:
             if user in obj.favoriters.all():
-                favorited = False
                 obj.favoriters.remove(user)
             else:
-                favorited = True
                 obj.favoriters.add(user)
-        data = {
-            "favorited": favorited,
-        }
-        return Response(data)
+        serializer = TripReportSerializer(obj)
+        return Response(serializer.data)

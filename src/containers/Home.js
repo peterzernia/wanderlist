@@ -18,7 +18,7 @@ class Home extends Component {
 
   handleClick = (e) => {
     e.preventDefault();
-    this.props.toggleFavorite(e.target.id);
+    this.props.toggleFavorite(e.currentTarget.id);
   }
 
   render(){
@@ -27,7 +27,7 @@ class Home extends Component {
     if (this.props.tripReports){
       listTripReports = this.props.tripReports.map(tripReport =>(
         <div key={tripReport.id} style={{ marginBottom: 20 }}>
-          <TripReportTruncated handleClick={this.handleClick} {...tripReport} openCountryModal={this.props.openCountryModal}/>
+          <TripReportTruncated handleClick={this.handleClick} {...tripReport} {...this.props} openCountryModal={this.props.openCountryModal}/>
         </div>
       ));
     }
@@ -69,6 +69,7 @@ const mapState = state => {
     tripReports: state.tripReport.tripReports.results,
     showCountryModal: state.modal.showCountryModal,
     modalCountry: state.modal.modalCountry,
+    pk: state.user.user.pk,
   };
 }
 
@@ -87,6 +88,7 @@ Home.propTypes = {
   tripReport: PropTypes.array,
   showCountryModal: PropTypes.bool,
   modalCountry: PropTypes.object,
+  pk: PropTypes.number,
   removeError: PropTypes.func,
   openCountryModal: PropTypes.func,
   closeCountryModal: PropTypes.func,

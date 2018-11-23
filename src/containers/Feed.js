@@ -41,7 +41,7 @@ class Home extends Component {
 
   handleClick = (e) => {
     e.preventDefault();
-    this.props.toggleFavorite(e.target.id);
+    this.props.toggleFavorite(e.currentTarget.id);
   }
 
   render(){
@@ -50,7 +50,7 @@ class Home extends Component {
     if (this.props.tripReports){
       listTripReports = this.props.tripReports.map(tripReport =>(
         <div key={tripReport.id} style={{ marginBottom: 20 }}>
-          <TripReportTruncated handleClick={this.handleClick} {...tripReport} openCountryModal={this.props.openCountryModal}/>
+          <TripReportTruncated handleClick={this.handleClick} {...tripReport} {...this.props} openCountryModal={this.props.openCountryModal}/>
         </div>
       ));
     }
@@ -69,6 +69,7 @@ class Home extends Component {
 
 const mapState = state => {
   return {
+    pk: state.user.user.pk,
     fetched: state.tripReport.fetched,
     fetching: state.tripReport.fetching,
     next: state.tripReport.tripReports.next,
@@ -92,6 +93,7 @@ const mapDispatch = dispatch => {
 export default connect(mapState, mapDispatch)(Home);
 
 Home.propTypes = {
+  pk: PropTypes.number,
   fetched: PropTypes.bool,
   fetching: PropTypes.bool,
   next: PropTypes.string,

@@ -7,9 +7,9 @@ const initialState = {
   fetchedTripReports: false,
   fetchingSlugTripReports: false,
   fetchedSlugTripReports: false,
-  tripReports: {},
-  userTripReports: {},
-  slugTripReports: {},
+  tripReports: { results: [], count: null, next: null, previous: null},
+  userTripReports: { results: [], count: null, next: null, previous: null},
+  slugTripReports: { results: [], count: null, next: null, previous: null},
 }
 
 export default function (state = initialState, action) {
@@ -138,10 +138,16 @@ export default function (state = initialState, action) {
         Trip Reports and User Trip Reports lists.
         */
         userTripReports: {
-          results: [...state.userTripReports.results].concat(action.response).sort((a, b) => a.id < b.id)
+          results: [...state.userTripReports.results].concat(action.response).sort((a, b) => a.id < b.id),
+          count: state.userTripReports.count,
+          next: state.userTripReports.next,
+          previous: state.userTripReports.previous
         },
         tripReports: {
-          results: [...state.tripReports.results].concat(action.response).sort((a, b) => a.id < b.id)
+          results: [...state.tripReports.results].concat(action.response).sort((a, b) => a.id < b.id),
+          count: state.tripReports.count,
+          next: state.tripReports.next,
+          previous: state.tripReports.previous
         }
       }
     }
@@ -164,10 +170,16 @@ export default function (state = initialState, action) {
         lists.
         */
         userTripReports: {
-          results: [...state.userTripReports.results].filter(tripReport => tripReport.id !== action.response.id)
+          results: [...state.userTripReports.results].filter(tripReport => tripReport.id !== action.response.id),
+          count: state.userTripReports.count,
+          next: state.userTripReports.next,
+          previous: state.userTripReports.previous
         },
         tripReports: {
-          results: [...state.tripReports.results].filter(tripReport => tripReport.id !== action.response.id)
+          results: [...state.tripReports.results].filter(tripReport => tripReport.id !== action.response.id),
+          count: state.tripReports.count,
+          next: state.tripReports.next,
+          previous: state.tripReports.previous
         }
       }
     }
@@ -190,10 +202,16 @@ export default function (state = initialState, action) {
         the array must be sorted.
         */
         userTripReports: {
-          results: [...state.userTripReports.results].filter(tripReport => tripReport.id !== action.response.id).concat(action.response).sort((a, b) => a.id < b.id)
+          results: [...state.userTripReports.results].filter(tripReport => tripReport.id !== action.response.id).concat(action.response).sort((a, b) => a.id < b.id),
+          count: state.userTripReports.count,
+          next: state.userTripReports.next,
+          previous: state.userTripReports.previous
         },
         tripReports: {
-          results: [...state.tripReports.results].filter(tripReport => tripReport.id !== action.response.id).concat(action.response).sort((a, b) => a.id < b.id)
+          results: [...state.tripReports.results].filter(tripReport => tripReport.id !== action.response.id).concat(action.response).sort((a, b) => a.id < b.id),
+          count: state.tripReports.count,
+          next: state.tripReports.next,
+          previous: state.tripReports.previous
         }
       }
     }
@@ -222,6 +240,40 @@ export default function (state = initialState, action) {
         ...state,
         fetchingSlugTripReports: false,
         fetchedSlugTripReports: false,
+      }
+    }
+    case "TOGGLE_FAVORITE_FULFILLED": {
+      return {
+        ...state,
+        /*
+        Same as PUT request, the response of the axios call to toggle favorite
+        returns the new Trip Report object with updated favorites array. This
+        Trip Report object must replace the old Trip Report object.
+        */
+        userTripReports: {
+          results: [...state.userTripReports.results].filter(tripReport => tripReport.id !== action.response.id).concat(action.response).sort((a, b) => a.id < b.id),
+          count: state.userTripReports.count,
+          next: state.userTripReports.next,
+          previous: state.userTripReports.previous
+        },
+        tripReports: {
+          results: [...state.tripReports.results].filter(tripReport => tripReport.id !== action.response.id).concat(action.response).sort((a, b) => a.id < b.id),
+          count: state.tripReports.count,
+          next: state.tripReports.next,
+          previous: state.tripReports.previous
+        },
+        slugTripReports: {
+          results: [...state.slugTripReports.results].filter(tripReport => tripReport.id !== action.response.id).concat(action.response).sort((a, b) => a.id < b.id),
+          count: state.slugTripReports.count,
+          next: state.slugTripReports.next,
+          previous: state.slugTripReports.previous
+        }
+      }
+    }
+    case "TOGGLE_FAVORITE_REJECTED": {
+      return {
+        ...state,
+
       }
     }
     default:

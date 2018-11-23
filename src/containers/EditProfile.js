@@ -125,7 +125,7 @@ class EditProfile extends Component {
 
   handleClick = (e) => {
     e.preventDefault();
-    this.props.toggleFavorite(e.target.id);
+    this.props.toggleFavorite(e.currentTarget.id);
   }
 
   render(){
@@ -195,6 +195,7 @@ class EditProfile extends Component {
 
 const mapState = state => {
   return {
+    pk: state.user.user.pk,
     user: state.user.user,
     next: state.tripReport.userTripReports.next,
     fetched: state.user.fetched,
@@ -244,6 +245,7 @@ const mapDispatch = dispatch => {
 export default connect(mapState, mapDispatch)(EditProfile);
 
 EditProfile.propTypes = {
+  pk: PropTypes.number,
   user: PropTypes.object,
   next: PropTypes.string,
   fetched: PropTypes.bool,

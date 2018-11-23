@@ -27,7 +27,7 @@ class Post extends Component {
 
   handleClick = (e) => {
     e.preventDefault();
-    this.props.toggleFavorite(e.target.id);
+    this.props.toggleFavorite(e.currentTarget.id);
   }
 
   render(){
@@ -36,7 +36,7 @@ class Post extends Component {
     if (this.props.tripReports){
       listTripReport = this.props.tripReports.map(tripReport =>(
         <div key={tripReport.id} style={{ marginBottom: 20 }}>
-          <TripReport handleClick={this.handleClick} {...tripReport} openCountryModal={this.props.openCountryModal}/>
+          <TripReport handleClick={this.handleClick} {...tripReport} {...this.props} openCountryModal={this.props.openCountryModal}/>
         </div>
       ));
     }
@@ -53,6 +53,7 @@ class Post extends Component {
 
 const mapState = state => {
   return {
+    pk: state.user.user.pk,
     tripReports: state.tripReport.slugTripReports.results,
     fetched: state.tripReport.fetchedSlugTripReports,
     fetching: state.tripReport.fetchingSlugTripReports,
@@ -74,6 +75,7 @@ const mapDispatch = dispatch => {
 export default connect(mapState, mapDispatch)(Post);
 
 Post.propTypes = {
+  pk: PropTypes.number,
   tripReport: PropTypes.array,
   fetched: PropTypes.bool,
   showCountryModal: PropTypes.bool,

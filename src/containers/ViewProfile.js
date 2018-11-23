@@ -60,7 +60,7 @@ class ViewProfile extends Component {
 
   handleClick = (e) => {
     e.preventDefault();
-    this.props.toggleFavorite(e.target.id);
+    this.props.toggleFavorite(e.currentTarget.id);
   }
 
   render() {
@@ -117,6 +117,7 @@ class ViewProfile extends Component {
 
 const mapState = state => {
   return {
+    pk: state.user.user.pk,
     fetched: state.user.fetchedSingleUser,
     user: state.user.singleUser,
     modalCountry: state.modal.modalCountry,
@@ -149,6 +150,7 @@ const mapDispatch = dispatch => {
 export default connect(mapState, mapDispatch)(ViewProfile);
 
 ViewProfile.propTypes = {
+  pk: PropTypes.number,
   fetched: PropTypes.bool,
   user: PropTypes.object,
   modalCountry: PropTypes.object,

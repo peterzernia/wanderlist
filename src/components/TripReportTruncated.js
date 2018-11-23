@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import FavoriteIcon from '@material-ui/icons/Favorite'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import ShareIcon from '@material-ui/icons/Share'
 import Button from '@material-ui/core/Button'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
@@ -85,7 +86,11 @@ class TripReportTruncated extends Component {
                 <ExpandMoreIcon />
               </IconButton>
           }
-          <IconButton onClick={this.props.handleClick} id={this.props.id} ><FavoriteIcon /></IconButton>
+          {
+            this.props.favoriters.includes(this.props.pk)
+            ? <IconButton onClick={this.props.handleClick} id={this.props.id} ><FavoriteIcon /></IconButton>
+            : <IconButton onClick={this.props.handleClick} id={this.props.id} ><FavoriteBorderIcon /></IconButton>
+          }
           <IconButton onClick={() => {alert(`localhost:3000/p/${this.props.slug}/`);}}><ShareIcon /></IconButton>
         </CardActions>
       </Card>
