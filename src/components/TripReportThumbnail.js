@@ -31,7 +31,7 @@ class TripReportThumbnail extends Component {
     return(
       <Card style={{ width: 300, height: 300}}>
         <CardHeader title={this.props.tripReport.title}
-        action={
+          action={
             <IconButton
               onClick={this.handleClick}
               aria-owns={anchorEl ? 'simple-menu' : undefined}
@@ -47,8 +47,8 @@ class TripReportThumbnail extends Component {
             onClose={this.handleClose}
           >
             <MenuItem onClick={() => {this.handleClose(); this.props.openTripReportModal(this.props.tripReport);}}><LibraryBooksIcon /></MenuItem>
-            <MenuItem onClick={() => {this.handleClose(); this.props.openUpdatePostModal(this.props.tripReport);}}><EditIcon /></MenuItem>
-            <MenuItem onClick={() => {this.handleClose(); this.props.openConfirmDeleteModal(this.props.tripReport);}}><DeleteIcon /></MenuItem>
+            {this.props.match.path === '/profile' && <MenuItem onClick={() => {this.handleClose(); this.props.openUpdatePostModal(this.props.tripReport);}}><EditIcon /></MenuItem>}
+            {this.props.match.path === '/profile' && <MenuItem onClick={() => {this.handleClose(); this.props.openConfirmDeleteModal(this.props.tripReport);}}><DeleteIcon /></MenuItem>}
           </Menu>
         <CardMedia component='img' src={[...this.props.tripReport.countries].sort((a, b) => a.name > b.name)[0].flag} alt="" />
       </Card>

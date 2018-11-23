@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { fetchTripReports, fetchUserTripReports } from './tripReportActions'
 
-// Fetch user axios actions
+// Fetch authenticated user axios actions
 export const fetchUserPending = () => {
   return {
     type: "FETCH_USER_PENDING"
@@ -41,8 +41,28 @@ export const putUserDataRejected = () => {
   }
 }
 
+// Fetch single user axios actions for viewing proflile
+export const fetchSingleUserPending = () => {
+  return {
+    type: "FETCH_SINGLE_USER_PENDING"
+  }
+}
 
-// GET requests the Django REST API, which returns user object.
+export const fetchSingleUserFulfilled = user => {
+  return {
+    type: "FETCH_SINGLE_USER_FULFILLED",
+    user: user
+  }
+}
+
+export const fetchSingleUserRejected = () => {
+  return {
+    type: "FETCH_SINGLE_USER_REJECTED",
+  }
+}
+
+
+// GET requests the Django REST API, which returns authenticated user object.
 export const fetchUser = () => {
   const token = localStorage.getItem('token');
   return dispatch => {
@@ -84,6 +104,22 @@ export const putUserData = (username, email, countries, home, biography) => {
       })
       .catch(err => {
         dispatch(putUserDataRejected());
+        dispatch({type: "ADD_ERROR", error: err});
+      })
+  }
+}
+
+// GET requests the Django REST API, which returns user object from List View.
+export const fetchSingleUser = (username) => {
+  return dispatch => {
+    dispatch(fetchSingleUserPending());
+    axios.get(`http://localhost:8000/api/v1/users/?search=${username}`)
+      .then(response => {
+        const user = response.data;
+        dispatch(fetchSingleUserFulfilled(user));
+      })
+      .catch(err => {
+        dispatch(fetchSingleUserRejected());
         dispatch({type: "ADD_ERROR", error: err});
       })
   }

@@ -3,7 +3,10 @@ const initialState = {
   fetched: false,
   adding: false,
   added: false,
+  fetchingSingleUser: false,
+  fetchedSingleUser: false,
   user: {},
+  singleUser: {},
 }
 
 /* Reducer Function*/
@@ -51,6 +54,31 @@ export default function (state = initialState, action) {
         ...state,
         adding: false,
         added: false,
+      }
+    }
+    case "FETCH_SINGLE_USER_PENDING": {
+      return {
+        ...state,
+        fetchingSingleUser: true
+      }
+    }
+    /*
+    API search returns an array of 1 object, since the search parameter is an
+    exact match.
+    */
+    case "FETCH_SINGLE_USER_FULFILLED": {
+      return {
+        ...state,
+        fetchingSingleUser: false,
+        fetchedSingleUser: true,
+        singleUser: action.user[0]
+      }
+    }
+    case "FETCH_SINGLE_USER_REJECTED": {
+      return {
+        ...state,
+        fetchingSingleUser: false,
+        fetchedSingleUser: false,
       }
     }
     default:

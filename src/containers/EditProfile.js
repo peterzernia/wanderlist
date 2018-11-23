@@ -27,7 +27,7 @@ import Grid from '@material-ui/core/Grid'
 import Add from '@material-ui/icons/Add'
 import Tooltip from '@material-ui/core/Tooltip';
 
-class Profile extends Component {
+class EditProfile extends Component {
 
   // Returns True if the user has scrolled past the bottom.
   isBottom(el) {
@@ -36,6 +36,7 @@ class Profile extends Component {
 
   // Adds event listener that checks for scrolling.
   componentDidMount() {
+    this.props.fetchUserTripReports(localStorage.getItem('username'));
     document.addEventListener('scroll', this.onScroll);
   }
 
@@ -134,17 +135,17 @@ class Profile extends Component {
             {this.props.user.home && <Avatar style={{ width: 150, height: 150, margin: '0 auto' }} src={this.props.user.home.flag}/>}
           </div>
           <div className='right' style={{textAlign: 'left', width: '63%', padding: 10 }}>
-            <div style={{ height: 30 }}>
+            <div style={{ height: 40 }}>
             <Typography variant="h4" gutterBottom>
               {this.props.user.username}
             </Typography>
             </div><br/>
-            <div style={{ height: 30 }}>
+            <div style={{ height: 40 }}>
               <Button size='small' variant='outlined' onClick={() => this.props.openEditProfileModal(this.props.user)}>
                 Edit Profile
               </Button>
             </div><br/>
-            <div style={{ height: 30, maxWidth: '75%' }}>
+            <div style={{ height: 40, maxWidth: '75%' }}>
               {this.props.user.biography}
             </div>
           </div>
@@ -218,9 +219,9 @@ const mapDispatch = dispatch => {
   }, dispatch);
 }
 
-export default connect(mapState, mapDispatch)(Profile);
+export default connect(mapState, mapDispatch)(EditProfile);
 
-Profile.propTypes = {
+EditProfile.propTypes = {
   user: PropTypes.object,
   next: PropTypes.string,
   fetched: PropTypes.bool,

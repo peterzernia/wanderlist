@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
+import EditProfile from './EditProfile'
 import Error from '../components/Error'
 import Feed from './Feed'
 import ForgotPassword from './ForgotPassword'
@@ -10,15 +11,14 @@ import Logout from './Logout'
 import NavBar from '../components/NavBar'
 import Post from './Post'
 import PrivateRoute from '../components/PrivateRoute'
-import Profile from './Profile'
 import Register from './Register'
 import Search from './Search'
 import Success from '../components/Success'
+import ViewProfile from './ViewProfile'
 import { Route } from "react-router-dom"
 import { connect } from 'react-redux'
 import { removeError } from '../actions/errorActions'
 import { fetchUser } from '../actions/userActions'
-import { fetchUserTripReports } from '../actions/tripReportActions'
 import { DotLoader } from 'react-spinners'
 
 class Layout extends Component {
@@ -26,7 +26,6 @@ class Layout extends Component {
   componentWillMount() {
     if (this.props.authenticated) {
       this.props.fetchUser();
-      this.props.fetchUserTripReports(localStorage.getItem('username'));
     }
   }
 
@@ -45,15 +44,16 @@ class Layout extends Component {
           <NavBar {...this.props} />
           {this.props.error && <Error {...this.props} error={this.props.error} />}
           {this.props.success && <Success {...this.props} />}
-          <Route exact path='/' component={Home}/>
-          <Route path='/search'component={Search}/>
-          <Route path='/feed'component={Feed}/>
-          <PrivateRoute {...this.props} path='/profile' component={Profile}/>
-          <Route path='/login' component={Login}/>
-          <Route path='/logout' component={Logout}/>
-          <Route path='/register' component={Register}/>
-          <Route path='/password_reset' component={ForgotPassword}/>
-          <Route path='/p/:slug' component={Post}/>
+          <Route exact path='/' component={Home} />
+          <Route path='/search'component={Search} />
+          <Route path='/feed'component={Feed} />
+          <PrivateRoute {...this.props} path='/profile' component={EditProfile} />
+          <Route path='/login' component={Login} />
+          <Route path='/logout' component={Logout} />
+          <Route path='/register' component={Register} />
+          <Route path='/password_reset' component={ForgotPassword} />
+          <Route path='/p/:slug' component={Post} />
+          <Route path='/u/:username' component={ViewProfile} />
         </div>
         :<div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>
       }
@@ -75,7 +75,6 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return bindActionCreators({
     fetchUser,
-    fetchUserTripReports,
     removeError
   }, dispatch)
 }
@@ -88,6 +87,5 @@ Layout.propTypes = {
   authenticated: PropTypes.bool,
   fetching: PropTypes.bool,
   fetchUser: PropTypes.func,
-  fetchUserTripReports: PropTypes.func,
   removeError: PropTypes.func
 };
