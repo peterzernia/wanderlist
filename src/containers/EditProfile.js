@@ -1,32 +1,35 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import GoogleMap from '../components/GoogleMap'
-import EditProfileModal from '../components/EditProfileModal'
+import PropTypes from 'prop-types'
+
 import { openEditProfileModal, closeEditProfileModal } from '../actions/modalActions'
 import { putUserData } from '../actions/userActions'
 import { fetchCountry } from '../actions/countryActions'
 import { fetchNextUserTripReports } from '../actions/tripReportActions'
-import Button from '@material-ui/core/Button'
-import Avatar from '@material-ui/core/Avatar'
-import Typography from '@material-ui/core/Typography'
-import CountryModal from '../components/CountryModal'
-import PostModal from '../components/PostModal'
-import TripReportThumbnail from '../components/TripReportThumbnail'
-import TripReportModal from '../components/TripReportModal'
-import ConfirmDeleteModal from '../components/ConfirmDeleteModal'
 import { fetchUserTripReports, postTripReport, deleteTripReport, updateTripReport } from '../actions/tripReportActions'
 import { openPostModal, closePostModal, openUpdatePostModal, openCountryModal,
          closeCountryModal, openConfirmDeleteModal, closeConfirmDeleteModal,
          openTripReportModal, closeTripReportModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
+import { toggleFavorite } from '../actions/favoriteActions'
+
+import GoogleMap from '../components/GoogleMap'
+import EditProfileModal from '../components/EditProfileModal'
+import TripReportThumbnail from '../components/TripReportThumbnail'
+import TripReportModal from '../components/TripReportModal'
+import ConfirmDeleteModal from '../components/ConfirmDeleteModal'
+import CountryModal from '../components/CountryModal'
+import PostModal from '../components/PostModal'
+
+import Button from '@material-ui/core/Button'
+import Avatar from '@material-ui/core/Avatar'
+import Typography from '@material-ui/core/Typography'
 import { DotLoader } from 'react-spinners'
 import IconButton from '@material-ui/core/IconButton'
 import Grid from '@material-ui/core/Grid'
 import Add from '@material-ui/icons/Add'
 import Tooltip from '@material-ui/core/Tooltip';
-import { toggleFavorite } from '../actions/favoriteActions'
 
 /*
 This container displays the same information as ViewProfile, but is used for

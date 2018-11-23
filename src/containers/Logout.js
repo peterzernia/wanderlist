@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { authLogout } from '../actions/authActions'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+
+import { authLogout } from '../actions/authActions'
 
 class Logout extends Component {
 

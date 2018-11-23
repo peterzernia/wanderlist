@@ -1,24 +1,28 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import EditProfile from './EditProfile'
+import { Route } from "react-router-dom"
+
+import { removeError } from '../actions/errorActions'
+import { fetchUser } from '../actions/userActions'
+
 import Error from '../components/Error'
+import NavBar from '../components/NavBar'
+import PrivateRoute from '../components/PrivateRoute'
+import Success from '../components/Success'
+
+import EditProfile from './EditProfile'
 import Feed from './Feed'
 import ForgotPassword from './ForgotPassword'
 import Home from './Home'
 import Login from './Login'
 import Logout from './Logout'
-import NavBar from '../components/NavBar'
 import Post from './Post'
-import PrivateRoute from '../components/PrivateRoute'
 import Register from './Register'
 import Search from './Search'
-import Success from '../components/Success'
 import ViewProfile from './ViewProfile'
-import { Route } from "react-router-dom"
-import { connect } from 'react-redux'
-import { removeError } from '../actions/errorActions'
-import { fetchUser } from '../actions/userActions'
+
 import { DotLoader } from 'react-spinners'
 
 class Layout extends Component {

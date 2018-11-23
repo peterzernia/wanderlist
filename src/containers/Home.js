@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
-import { removeError } from '../actions/errorActions'
-import Typography from '@material-ui/core/Typography'
-import { DotLoader } from 'react-spinners'
-import TripReportTruncated from '../components/TripReportTruncated'
-import { toggleFavorite } from '../actions/favoriteActions'
+
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import { removeError } from '../actions/errorActions'
+import { toggleFavorite } from '../actions/favoriteActions'
+
+import TripReportTruncated from '../components/TripReportTruncated'
 import CountryModal from '../components/CountryModal'
+
+import { DotLoader } from 'react-spinners'
+import Typography from '@material-ui/core/Typography'
 
 class Home extends Component {
 

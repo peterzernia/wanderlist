@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import PropTypes from 'prop-types'
-import LoginForm from '../components/LoginForm'
 import { connect } from 'react-redux'
-import { authLogin } from '../actions/authActions'
+import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
+
+import { authLogin } from '../actions/authActions'
 import { removeError } from '../actions/errorActions'
+
+import LoginForm from '../components/LoginForm'
 
 class Login extends Component {
 

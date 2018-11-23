@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
+
+import { fetchNextTripReports } from '../actions/tripReportActions'
+import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import { removeError } from '../actions/errorActions'
+import { toggleFavorite } from '../actions/favoriteActions'
+
 import CountryModal from '../components/CountryModal'
 import TripReportTruncated from '../components/TripReportTruncated'
-import { openCountryModal, closeCountryModal } from '../actions/modalActions'
-import { fetchNextTripReports } from '../actions/tripReportActions'
-import { removeError } from '../actions/errorActions'
+
 import { DotLoader } from 'react-spinners'
-import { toggleFavorite } from '../actions/favoriteActions'
 
 class Home extends Component {
 

@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom';
-import RegistrationForm from '../components/RegistrationForm'
-import { connect } from 'react-redux'
+
 import { authRegister } from '../actions/authActions'
 import { removeError } from '../actions/errorActions'
+
+import RegistrationForm from '../components/RegistrationForm'
 
 class Register extends Component {
 

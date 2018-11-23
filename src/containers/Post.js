@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
+
+import { fetchSlugTripReports } from '../actions/tripReportActions'
+import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import { removeError } from '../actions/errorActions'
+import { toggleFavorite } from '../actions/favoriteActions'
+
 import CountryModal from '../components/CountryModal'
 import TripReport from '../components/TripReport'
-import { openCountryModal, closeCountryModal } from '../actions/modalActions'
-import { fetchSlugTripReports } from '../actions/tripReportActions'
-import { removeError } from '../actions/errorActions'
+
 import { DotLoader } from 'react-spinners'
-import { toggleFavorite } from '../actions/favoriteActions'
 
 /*
 This component creates a link off the posts slug, so that users can share and

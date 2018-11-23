@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import ForgotPasswordForm from '../components/ForgotPasswordForm'
+import PropTypes from 'prop-types'
+
 import { requestPasswordReset } from '../actions/authActions'
+
+import ForgotPasswordForm from '../components/ForgotPasswordForm'
+
 
 class ForgotPassword extends Component{
 

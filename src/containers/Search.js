@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+
+import { fetchCountry } from '../actions/countryActions'
+import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import { putUserData } from '../actions/userActions'
+import { removeError } from '../actions/errorActions'
+
 import CountryModal from '../components/CountryModal'
 import Results from '../components/Results'
 import SearchBar from '../components/SearchBar'
-import { connect } from 'react-redux'
-import { fetchCountry } from '../actions/countryActions'
-import { putUserData } from '../actions/userActions'
-import { removeError } from '../actions/errorActions'
-import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+
 import { DotLoader } from 'react-spinners'
 
 class Search extends Component {
