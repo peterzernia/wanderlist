@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography'
 import { DotLoader } from 'react-spinners'
 import TripReportTruncated from '../components/TripReportTruncated'
 import { toggleFavorite } from '../actions/favoriteActions'
+import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import CountryModal from '../components/CountryModal'
 
 class Home extends Component {
 
@@ -32,6 +34,7 @@ class Home extends Component {
 
     return(
       <div >
+        {this.props.modalCountry && <CountryModal {...this.props} />}
         <div className='header-img'>
           <Typography variant="h2" gutterBottom style={{ color: 'white', paddingTop: 200 }}>
             Connect, learn and share
@@ -64,13 +67,17 @@ class Home extends Component {
 const mapState = state => {
   return {
     tripReports: state.tripReport.tripReports.results,
+    showCountryModal: state.modal.showCountryModal,
+    modalCountry: state.modal.modalCountry,
   };
 }
 
 const mapDispatch = dispatch => {
   return bindActionCreators({
     removeError,
-    toggleFavorite
+    toggleFavorite,
+    openCountryModal,
+    closeCountryModal
   }, dispatch);
 }
 
@@ -78,5 +85,9 @@ export default connect(mapState, mapDispatch)(Home);
 
 Home.propTypes = {
   tripReport: PropTypes.array,
-  removeError: PropTypes.func
+  showCountryModal: PropTypes.bool,
+  modalCountry: PropTypes.object,
+  removeError: PropTypes.func,
+  openCountryModal: PropTypes.func,
+  closeCountryModal: PropTypes.func,
 };
