@@ -4,7 +4,8 @@ import CardHeader from '@material-ui/core/CardHeader'
 import CardMedia from '@material-ui/core/CardMedia'
 import IconButton from '@material-ui/core/IconButton'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-import AddLocationIcon from '@material-ui/icons/AddLocation'
+import AddCircleIcon from '@material-ui/icons/AddCircle'
+import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 
@@ -44,7 +45,17 @@ class Results extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          {this.props.authenticated && <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} id={this.props.country.id}><AddLocationIcon style={{margin: '0 auto'}}/></MenuItem>}
+          {/*
+            Maps userCountries into an array of just the country names, then
+            checks if the Result country name is in the array. If it is, it
+            displays the Remove Button, if it is not, it displays the Add
+            Button.
+          */}
+          {
+            [...this.props.userCountries].map(country => country.name).includes(this.props.country.name)
+            ? <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} id={this.props.country.id}><RemoveCircleIcon style={{margin: '0 auto'}}/></MenuItem>
+            : <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} id={this.props.country.id}><AddCircleIcon style={{margin: '0 auto'}}/></MenuItem>
+          }
           <MenuItem onClick={() => {this.handleClose(); this.props.openCountryModal(this.props.country);}}>More Info</MenuItem>
         </Menu>
         <CardMedia component='img' src={this.props.country.flag} alt="" width="400"/>
