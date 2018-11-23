@@ -66,12 +66,18 @@ class TripReportTruncated extends Component {
             {listCountries}
           </CardContent>
         </Collapse>
-        <CardActions >
+        <CardActions style={{ display: 'flex' }} disableActionSpacing>
+          {
+            this.props.favoriters.includes(this.props.pk)
+            ? <IconButton onClick={this.props.handleClick} id={this.props.id} ><FavoriteIcon /></IconButton>
+            : <IconButton onClick={this.props.handleClick} id={this.props.id} ><FavoriteBorderIcon /></IconButton>
+          }
+          <IconButton onClick={() => {alert(`localhost:3000/p/${this.props.slug}/`);}}><ShareIcon /></IconButton>
           {/* Button flips when expanded */}
           {
             this.state.expanded
             ? <IconButton
-                style={{ transform: 'rotate(180deg)' }}
+                style={{ transform: 'rotate(180deg)', float: 'right', marginLeft: 'auto' }}
                 onClick={this.handleExpandClick}
                 aria-expanded={this.state.expanded}
                 aria-label="Show more"
@@ -79,6 +85,7 @@ class TripReportTruncated extends Component {
                 <ExpandMoreIcon />
               </IconButton>
             : <IconButton
+                style={{ float: 'right', marginLeft: 'auto' }}
                 onClick={this.handleExpandClick}
                 aria-expanded={this.state.expanded}
                 aria-label="Show more"
@@ -86,12 +93,6 @@ class TripReportTruncated extends Component {
                 <ExpandMoreIcon />
               </IconButton>
           }
-          {
-            this.props.favoriters.includes(this.props.pk)
-            ? <IconButton onClick={this.props.handleClick} id={this.props.id} ><FavoriteIcon /></IconButton>
-            : <IconButton onClick={this.props.handleClick} id={this.props.id} ><FavoriteBorderIcon /></IconButton>
-          }
-          <IconButton onClick={() => {alert(`localhost:3000/p/${this.props.slug}/`);}}><ShareIcon /></IconButton>
         </CardActions>
       </Card>
     )
