@@ -1,8 +1,6 @@
 const initialState = {
   fetching: false,
   fetched: false,
-  adding: false,
-  added: false,
   fetchingSingleUser: false,
   fetchedSingleUser: false,
   user: {},
@@ -34,26 +32,15 @@ export default function (state = initialState, action) {
       }
     }
     // Axios put
-    case "PUT_USER_DATA_PENDING": {
-      return {
-        ...state,
-        adding: true,
-        added: false,
-      }
-    }
     case "PUT_USER_DATA_FULFILLED": {
       return {
         ...state,
-        adding: false,
-        added: true,
         user: action.user
       }
     }
     case "PUT_USER_DATA_REJECTED": {
       return {
         ...state,
-        adding: false,
-        added: false,
       }
     }
     case "FETCH_SINGLE_USER_PENDING": {

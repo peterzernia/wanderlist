@@ -22,11 +22,6 @@ export const fetchUserRejected = () => {
 }
 
 // PUT user axios actions for updating user information
-export const putUserDataPending = () => {
-  return {
-    type: "PUT_USER_DATA_PENDING"
-  }
-}
 
 export const putUserDataFulfilled = user => {
   return {
@@ -83,7 +78,6 @@ export const fetchUser = () => {
 export const putUserData = (username, email, countries, home, biography, success) => {
   const token = localStorage.getItem('token');
   return dispatch => {
-    dispatch(putUserDataPending());
     axios.put(
       'http://localhost:8000/api/v1/rest-auth/user/',
       {
@@ -98,6 +92,10 @@ export const putUserData = (username, email, countries, home, biography, success
       .then(response => {
         const user = response.data;
         dispatch(putUserDataFulfilled(user));
+        /*
+        Fetch Trip Reports and User Trip Reports to refresh their author so that
+        the profile picture is updated.
+        */
         dispatch(fetchTripReports());
         dispatch(fetchUserTripReports(username));
         dispatch({type: "ADD_SUCCESS", success: success});
