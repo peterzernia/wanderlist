@@ -8,6 +8,7 @@ import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { fetchSlugTripReports } from '../actions/tripReportActions'
 import { removeError } from '../actions/errorActions'
 import { DotLoader } from 'react-spinners'
+import { toggleFavorite } from '../actions/favoriteActions'
 
 /*
 This component creates a link off the posts slug, so that users can share and
@@ -24,13 +25,18 @@ class Post extends Component {
     this.props.removeError();
   }
 
+  handleClick = (e) => {
+    e.preventDefault();
+    this.props.toggleFavorite(e.target.id);
+  }
+
   render(){
 
     let listTripReport = null;
     if (this.props.tripReports){
       listTripReport = this.props.tripReports.map(tripReport =>(
         <div key={tripReport.id} style={{ marginBottom: 20 }}>
-          <TripReport {...tripReport} openCountryModal={this.props.openCountryModal}/>
+          <TripReport handleClick={this.handleClick} {...tripReport} openCountryModal={this.props.openCountryModal}/>
         </div>
       ));
     }
@@ -60,7 +66,8 @@ const mapDispatch = dispatch => {
     fetchSlugTripReports,
     removeError,
     openCountryModal,
-    closeCountryModal
+    closeCountryModal,
+    toggleFavorite,
   }, dispatch);
 }
 
@@ -74,5 +81,6 @@ Post.propTypes = {
   fetchSlugTripReports: PropTypes.func,
   removeError: PropTypes.func,
   openCountryModal: PropTypes.func,
-  closeCountryModal: PropTypes.func
+  closeCountryModal: PropTypes.func,
+  toggleFavorite: PropTypes.func,
 };

@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { fetchSingleUser } from '../actions/userActions'
 import { fetchUserTripReports, fetchNextUserTripReports } from '../actions/tripReportActions'
 import { removeError } from '../actions/errorActions'
+import { toggleFavorite } from '../actions/favoriteActions'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { openTripReportModal, closeTripReportModal } from '../actions/modalActions'
 
@@ -57,6 +58,11 @@ class ViewProfile extends Component {
     }
   };
 
+  handleClick = (e) => {
+    e.preventDefault();
+    this.props.toggleFavorite(e.target.id);
+  }
+
   render() {
 
     let listTripReports = null;
@@ -98,7 +104,7 @@ class ViewProfile extends Component {
 
         {/* This section is the user posts */}
         <div style={{marginTop: 50}}>
-          {this.props.modalPost.author && <TripReportModal {...this.props} />}
+          {this.props.modalPost.author && <TripReportModal handleClick={this.handleClick} {...this.props} />}
           {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
           {this.props.fetchedTripReports && <Grid container spacing={24} justify='center' >{listTripReports}</Grid>}
           <div style={{ height: 15 }}/>
@@ -136,6 +142,7 @@ const mapDispatch = dispatch => {
     closeCountryModal,
     openTripReportModal,
     closeTripReportModal,
+    toggleFavorite,
   }, dispatch);
 }
 
@@ -162,4 +169,5 @@ ViewProfile.propTypes = {
   closeCountryModal: PropTypes.func,
   openTripReportModal: PropTypes.func,
   closeTripReportModal: PropTypes.func,
+  toggleFavorite: PropTypes.func,
 };

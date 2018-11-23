@@ -85,7 +85,7 @@ class TripReportTruncated extends Component {
                 <ExpandMoreIcon />
               </IconButton>
           }
-          <IconButton><FavoriteIcon /></IconButton>
+          <IconButton onClick={this.props.handleClick} id={this.props.id} ><FavoriteIcon /></IconButton>
           <IconButton onClick={() => {alert(`localhost:3000/p/${this.props.slug}/`);}}><ShareIcon /></IconButton>
         </CardActions>
       </Card>

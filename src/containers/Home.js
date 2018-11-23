@@ -6,11 +6,17 @@ import { removeError } from '../actions/errorActions'
 import Typography from '@material-ui/core/Typography'
 import { DotLoader } from 'react-spinners'
 import TripReportTruncated from '../components/TripReportTruncated'
+import { toggleFavorite } from '../actions/favoriteActions'
 
 class Home extends Component {
 
   componentWillUnmount() {
     this.props.removeError();
+  }
+
+  handleClick = (e) => {
+    e.preventDefault();
+    this.props.toggleFavorite(e.target.id);
   }
 
   render(){
@@ -19,7 +25,7 @@ class Home extends Component {
     if (this.props.tripReports){
       listTripReports = this.props.tripReports.map(tripReport =>(
         <div key={tripReport.id} style={{ marginBottom: 20 }}>
-          <TripReportTruncated {...tripReport} openCountryModal={this.props.openCountryModal}/>
+          <TripReportTruncated handleClick={this.handleClick} {...tripReport} openCountryModal={this.props.openCountryModal}/>
         </div>
       ));
     }
@@ -63,7 +69,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return bindActionCreators({
-    removeError
+    removeError,
+    toggleFavorite
   }, dispatch);
 }
 

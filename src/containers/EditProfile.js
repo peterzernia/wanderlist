@@ -26,6 +26,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Grid from '@material-ui/core/Grid'
 import Add from '@material-ui/icons/Add'
 import Tooltip from '@material-ui/core/Tooltip';
+import { toggleFavorite } from '../actions/favoriteActions'
 
 /*
 This container displays the same information as ViewProfile, but is used for
@@ -122,6 +123,11 @@ class EditProfile extends Component {
     this.props.closeEditProfileModal();
   }
 
+  handleClick = (e) => {
+    e.preventDefault();
+    this.props.toggleFavorite(e.target.id);
+  }
+
   render(){
 
     /*
@@ -176,7 +182,7 @@ class EditProfile extends Component {
           </Tooltip>
           <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} />
           <ConfirmDeleteModal {...this.props} />
-          {this.props.modalPost.author && <TripReportModal {...this.props} />}
+          {this.props.modalPost.author && <TripReportModal handleClick={this.handleClick} {...this.props} />}
           {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
           {this.props.fetchedTripReports && <Grid container spacing={24} justify='center' >{listTripReports}</Grid>}
           <div style={{ height: 15 }}/>
@@ -231,6 +237,7 @@ const mapDispatch = dispatch => {
     openTripReportModal,
     closeTripReportModal,
     fetchNextUserTripReports,
+    toggleFavorite,
   }, dispatch);
 }
 
@@ -273,5 +280,6 @@ EditProfile.propTypes = {
   closeConfirmDeleteModal: PropTypes.func,
   openTripReportModal: PropTypes.func,
   closeTripReportModal: PropTypes.func,
-  fetchNextUserTripReports: PropTypes.func
+  fetchNextUserTripReports: PropTypes.func,
+  toggleFavorite: PropTypes.func,
 };

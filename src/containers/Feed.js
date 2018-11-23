@@ -8,6 +8,7 @@ import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { fetchNextTripReports } from '../actions/tripReportActions'
 import { removeError } from '../actions/errorActions'
 import { DotLoader } from 'react-spinners'
+import { toggleFavorite } from '../actions/favoriteActions'
 
 class Home extends Component {
 
@@ -38,13 +39,18 @@ class Home extends Component {
     }
   };
 
+  handleClick = (e) => {
+    e.preventDefault();
+    this.props.toggleFavorite(e.target.id);
+  }
+
   render(){
 
     let listTripReports = null;
     if (this.props.tripReports){
       listTripReports = this.props.tripReports.map(tripReport =>(
         <div key={tripReport.id} style={{ marginBottom: 20 }}>
-          <TripReportTruncated {...tripReport} openCountryModal={this.props.openCountryModal}/>
+          <TripReportTruncated handleClick={this.handleClick} {...tripReport} openCountryModal={this.props.openCountryModal}/>
         </div>
       ));
     }
@@ -79,6 +85,7 @@ const mapDispatch = dispatch => {
     closeCountryModal,
     removeError,
     fetchNextTripReports,
+    toggleFavorite,
   }, dispatch);
 }
 
@@ -95,4 +102,5 @@ Home.propTypes = {
   closeCountryModal: PropTypes.func,
   removeError: PropTypes.func,
   fetchNextTripReports: PropTypes.func,
+  toggleFavorite: PropTypes.func,
 };

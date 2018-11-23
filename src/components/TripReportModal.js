@@ -16,7 +16,7 @@ const TripReportModal = (props) => {
         <Close />
       </IconButton><br/>
       <div className='content'>
-        <TripReport {...props.modalPost} {...props} />
+        <TripReport {...props.modalPost} handleClick={props.handleClick} {...props} />
       </div>
     </ReactModal>
   )

@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
+from rest_framework.views import APIView
 from rest_framework import viewsets, filters
 from .serializers import CountrySerializer, TripReportSerializer, UserSerializer
 from countries.models import Country
@@ -49,3 +51,23 @@ class UserListView(ListAPIView):
     serializer_class = UserSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('=username', )
+
+
+class FavoriteAPI(APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, slug=None, format=None, pk=None):
+        obj = get_object_or_404(TripReport, id=pk)
+        user = self.request.user
+        favorited = False
+        if user.is_authenticated:
+            if user in obj.favoriters.all():
+                favorited = False
+                obj.favoriters.remove(user)
+            else:
+                favorited = True
+                obj.favoriters.add(user)
+        data = {
+            "favorited": favorited,
+        }
+        return Response(data)
