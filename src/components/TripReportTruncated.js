@@ -66,13 +66,24 @@ class TripReportTruncated extends Component {
           </CardContent>
         </Collapse>
         <CardActions >
-          <IconButton
-            onClick={this.handleExpandClick}
-            aria-expanded={this.state.expanded}
-            aria-label="Show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
+          {
+            this.state.expanded
+            ? <IconButton
+                style={{ transform: 'rotate(180deg)' }}
+                onClick={this.handleExpandClick}
+                aria-expanded={this.state.expanded}
+                aria-label="Show more"
+              >
+                <ExpandMoreIcon />
+              </IconButton>
+            : <IconButton
+                onClick={this.handleExpandClick}
+                aria-expanded={this.state.expanded}
+                aria-label="Show more"
+              >
+                <ExpandMoreIcon />
+              </IconButton>
+          }
           <IconButton><FavoriteIcon /></IconButton>
           <IconButton onClick={() => {alert(`localhost:3000/p/${this.props.slug}/`);}}><ShareIcon /></IconButton>
         </CardActions>
