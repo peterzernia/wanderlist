@@ -45,15 +45,15 @@ class Layout extends Component {
           <NavBar {...this.props} />
           {this.props.error && <Error {...this.props} error={this.props.error} />}
           {this.props.success && <Success {...this.props} />}
-          <Route exact path={`${this.props.match.url}`} component={Home}/>
-          <Route path={`${this.props.match.url}/search`} component={Search}/>
-          <Route path={`${this.props.match.url}/feed`} component={Feed}/>
-          <PrivateRoute {...this.props} path={`${this.props.match.url}/profile`} component={Profile}/>
-          <Route path={`${this.props.match.url}/login`} component={Login}/>
-          <Route path={`${this.props.match.url}/logout`} component={Logout}/>
-          <Route path={`${this.props.match.url}/register`} component={Register}/>
-          <Route path={`${this.props.match.url}/password_reset`} component={ForgotPassword}/>
-          <Route path={`${this.props.match.url}/p/:slug`} component={Post}/>
+          <Route exact path='/' component={Home}/>
+          <Route path='/search'component={Search}/>
+          <Route path='/feed'component={Feed}/>
+          <PrivateRoute {...this.props} path='/profile' component={Profile}/>
+          <Route path='/login' component={Login}/>
+          <Route path='/logout' component={Logout}/>
+          <Route path='/register' component={Register}/>
+          <Route path='/password_reset' component={ForgotPassword}/>
+          <Route path='/p/:slug' component={Post}/>
         </div>
         :<div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>
       }
