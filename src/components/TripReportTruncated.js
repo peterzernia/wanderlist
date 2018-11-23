@@ -66,6 +66,7 @@ class TripReportTruncated extends Component {
           </CardContent>
         </Collapse>
         <CardActions >
+          {/* Button flips when expanded */}
           {
             this.state.expanded
             ? <IconButton
