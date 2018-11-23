@@ -4,9 +4,8 @@ import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import { removeError } from '../actions/errorActions'
 import Typography from '@material-ui/core/Typography'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
 import { DotLoader } from 'react-spinners'
+import TripReportTruncated from '../components/TripReportTruncated'
 
 class Home extends Component {
 
@@ -15,6 +14,15 @@ class Home extends Component {
   }
 
   render(){
+
+    let listTripReports = null;
+    if (this.props.tripReports){
+      listTripReports = this.props.tripReports.map(tripReport =>(
+        <div key={tripReport.id} style={{ marginBottom: 20 }}>
+          <TripReportTruncated {...tripReport} openCountryModal={this.props.openCountryModal}/>
+        </div>
+      ));
+    }
 
     return(
       <div >
@@ -33,27 +41,10 @@ class Home extends Component {
             traveling and the world around us."
           </h1>
         </div>
-        <div style={{ height: 400 }}>
+        <div className='content' style={{ height: 400, margin: '0 auto' }}>
           {
-            this.props.tripReport
-            ? <Card style={{ width: '90%', height: 400, margin: '0 auto'}}>
-              <CardContent>
-                <div style={{ width: '50%', float: 'left' }}>
-                  <img className='homepage-thumbnail' src={[...this.props.tripReport[0].countries].sort((a, b) => a.name > b.name)[0].flag} alt=""/>
-                </div>
-                <div style={{width: '50%', float: 'right', textAlign: 'center' }}>
-                  <Typography variant="h4" gutterBottom>
-                    {this.props.tripReport[0].title}
-                  </Typography>
-                  <Typography variant="h5" gutterBottom>
-                    by {this.props.tripReport[0].author.username}
-                  </Typography>
-                  <Typography variant="subtitle1" gutterBottom>
-                    {this.props.tripReport[0].content}
-                  </Typography>
-                </div>
-              </CardContent>
-            </Card>
+            this.props.tripReports
+            ? <div>{listTripReports[0]}</div>
             : <DotLoader size={50} color={'#2196f3'} className="content" />
           }
         </div>
@@ -66,7 +57,7 @@ class Home extends Component {
 
 const mapState = state => {
   return {
-    tripReport: state.tripReport.tripReports.results,
+    tripReports: state.tripReport.tripReports.results,
   };
 }
 
