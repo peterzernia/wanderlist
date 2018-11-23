@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import CountryModal from '../components/CountryModal'
-import TripReport from '../components/TripReport'
+import TripReportTruncated from '../components/TripReportTruncated'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { fetchNextTripReports } from '../actions/tripReportActions'
 import { removeError } from '../actions/errorActions'
@@ -44,7 +44,7 @@ class Home extends Component {
     if (this.props.tripReports){
       listTripReports = this.props.tripReports.map(tripReport =>(
         <div key={tripReport.id} style={{ marginBottom: 20 }}>
-          <TripReport {...tripReport} openCountryModal={this.props.openCountryModal}/>
+          <TripReportTruncated {...tripReport} openCountryModal={this.props.openCountryModal}/>
         </div>
       ));
     }
