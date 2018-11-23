@@ -208,7 +208,7 @@ first page of the list of the Users TripReports.
 export const fetchUserTripReports = (username) => {
   return dispatch => {
     dispatch(fetchUserTripReportsPending());
-    axios.get(`http://localhost:8000/api/v1/reports/?search=${username}`)
+    axios.get(`http://localhost:8000/api/v1/reports/?ordering=-pk&?search=${username}`)
       .then(response => {
         const tripReports = response.data;
         dispatch(fetchUserTripReportsFulfilled(tripReports));

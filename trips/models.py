@@ -12,6 +12,7 @@ class TripReport(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     slug = models.SlugField(max_length=12, unique=True, blank=True)
+    favoriters = models.ManyToManyField(User, related_name='favoriters')
 
     def __str__(self):
         return self.title

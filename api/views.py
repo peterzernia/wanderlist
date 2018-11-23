@@ -7,6 +7,7 @@ from trips.models import TripReport
 from users.models import User
 from rest_framework import permissions
 from rest_framework.pagination import PageNumberPagination
+from django.db.models import Count
 
 
 class TripReportSetPagination(PageNumberPagination):
@@ -37,9 +38,10 @@ class TripReportViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     serializer_class = TripReportSerializer
     pagination_class = TripReportSetPagination
-    queryset = TripReport.objects.all().order_by('-pk')
-    filter_backends = (filters.SearchFilter,)
+    queryset = TripReport.objects.all().annotate(count=Count('favoriters')).order_by('-count')
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter)
     search_fields = ('=author__username', '=slug')
+    ordering_fields = ('pk', )
 
 
 class UserListView(ListAPIView):
