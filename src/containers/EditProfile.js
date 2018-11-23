@@ -100,7 +100,7 @@ class EditProfile extends Component {
       this.props.user.pk,
       e.target.title.value,
       e.target.content.value,
-      countries
+      countries,
     );
     this.props.closePostModal();
   }
@@ -116,7 +116,8 @@ class EditProfile extends Component {
       e.target.email.value,
       userCountryList,
       Number(e.target.country.value),
-      e.target.biography.value
+      e.target.biography.value,
+      'Your profile has been updated.'
     );
     this.props.closeEditProfileModal();
   }

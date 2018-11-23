@@ -53,8 +53,8 @@ class Results extends React.Component {
           */}
           {
             [...this.props.userCountries].map(country => country.name).includes(this.props.country.name)
-            ? <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} id={this.props.country.id}><RemoveCircleIcon style={{margin: '0 auto'}}/></MenuItem>
-            : <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} id={this.props.country.id}><AddCircleIcon style={{margin: '0 auto'}}/></MenuItem>
+            ? <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} value={this.props.country.name} id={this.props.country.id}><RemoveCircleIcon style={{margin: '0 auto'}}/></MenuItem>
+            : <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} value={this.props.country.name} id={this.props.country.id}><AddCircleIcon style={{margin: '0 auto'}}/></MenuItem>
           }
           <MenuItem onClick={() => {this.handleClose(); this.props.openCountryModal(this.props.country);}}>More Info</MenuItem>
         </Menu>

@@ -80,7 +80,7 @@ export const fetchUser = () => {
 }
 
 // PUT requests the Django REST API to update user object.
-export const putUserData = (username, email, countries, home, biography) => {
+export const putUserData = (username, email, countries, home, biography, success) => {
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch(putUserDataPending());
@@ -100,7 +100,7 @@ export const putUserData = (username, email, countries, home, biography) => {
         dispatch(putUserDataFulfilled(user));
         dispatch(fetchTripReports());
         dispatch(fetchUserTripReports(username));
-        dispatch({type: "ADD_SUCCESS", success: 'Your profile has been updated.'});
+        dispatch({type: "ADD_SUCCESS", success: success});
       })
       .catch(err => {
         dispatch(putUserDataRejected());

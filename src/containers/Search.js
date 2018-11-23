@@ -28,7 +28,9 @@ class Search extends Component {
     e.preventDefault();
     // Resets newCountry to null at the beginning of every function call.
     let newCountry = null;
-    let newCountryList
+    let newCountryList;
+    let success;
+    let countryName = e.currentTarget.attributes.value.nodeValue;
     newCountry =  Number(e.currentTarget.id)
     // If the userCountries array is empty, the new array just becomes the newCountry.
     if (this.props.userCountries.length === 0) {
@@ -39,13 +41,15 @@ class Search extends Component {
       newCountryList = newCountryList.map(country => country.id);
       // If country is not in the userCountries, it gets added.
       if (newCountryList.findIndex(country => country === newCountry) === -1) {
-      newCountryList = newCountryList.concat([newCountry]);
+        newCountryList = newCountryList.concat([newCountry]);
+        success = `${countryName} has been added to your map.`
       // If country is in the userCountries, it gets deleted.
       } else {
-        let index = newCountryList.findIndex(country => country === newCountry);
-        // If the index === -1, it means the country is not in the array.
-        if (index !== -1){
-          newCountryList.splice(index, 1);
+          let index = newCountryList.findIndex(country => country === newCountry);
+          // If the index === -1, it means the country is not in the array.
+          if (index !== -1){
+            newCountryList.splice(index, 1);
+          success = `${countryName} has been removed from your map.`
         }
       }
     }
@@ -55,7 +59,8 @@ class Search extends Component {
       this.props.email,
       newCountryList,
       this.props.home.id,
-      this.props.biography
+      this.props.biography,
+      success
     );
   }
 

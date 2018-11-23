@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
 import countries from '../country_data'
 import Autosuggest from 'react-autosuggest'
 import TextField from '@material-ui/core/TextField'
@@ -8,7 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 
 /*
 This component contains all of the logic for react-autosuggest to auto complete
-users searches for countries. 
+users searches for countries.
 */
 const theme = {
   container: {
