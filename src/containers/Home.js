@@ -10,6 +10,8 @@ import { toggleFavorite } from '../actions/favoriteActions'
 import TripReportTruncated from '../components/TripReportTruncated'
 import CountryModal from '../components/CountryModal'
 
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
 import { DotLoader } from 'react-spinners'
 import Typography from '@material-ui/core/Typography'
 
@@ -43,24 +45,27 @@ class Home extends Component {
             Connect, learn and share
           </Typography>
         </div>
-        <div className="home-page" style={{ height: 400 }}>
-          <h1 style={{ padding: 50 }}>
-            "Countries is a slow social media platform, or 'slocial media'. The
-            focus of Countries is to encourage users to write thoughtful jouralism
-            with an emphasis on photography. We encourage users to slow down and
-            spend time creating their Trip Reports. Users can connect with new people
-            both across the world and close to home to find inspiration and wonder in
-            traveling and the world around us."
-          </h1>
-        </div>
-        <div className='content' style={{ height: 400, margin: '0 auto' }}>
+        <Card style={{ margin: '0 auto', marginTop: 30, width: '90%' }}>
+          <CardContent>
+            <h2 className='home-page'>
+              "Countries is a slow social media platform, or 'slocial media'. The
+              focus of Countries is to encourage users to write thoughtful jouralism
+              with an emphasis on photography. We encourage users to slow down and
+              spend time creating their Trip Reports. Users can connect with new people
+              both across the world and close to home to find inspiration and wonder in
+              traveling and the world around us."
+            </h2>
+          </CardContent>
+        </Card>
+        <div className='content' style={{ margin: '0 auto', marginTop: 30 }}>
+          <div style={{ textAlign: 'left', width: '90%', margin: '0 auto' }}>
+            Featured Article
+          </div>
           {
             this.props.tripReports
             ? <div>{listTripReports[0]}</div>
             : <DotLoader size={50} color={'#2196f3'} className="content" />
           }
-        </div>
-        <div style={{ height: 400 }}>
         </div>
       </div>
     );
