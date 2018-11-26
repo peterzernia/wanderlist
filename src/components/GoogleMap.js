@@ -6,10 +6,12 @@ const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 const GoogleMap = (props) => {
 
   const style = {
-    maxWidth: '95%',
+    position: 'relative',
+    display: 'flex',
+    width: '95%',
     height: '95%',
     border: '1px solid black',
-    margin: '0 auto'
+    margin: '0 auto',
   }
 
   /*
