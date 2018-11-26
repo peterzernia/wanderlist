@@ -280,7 +280,7 @@ export const deleteTripReport = (tripReport) => {
     }})
       .then(response => {
         dispatch(deleteTripReportsFulfilled(tripReport));
-        dispatch({type: "ADD_SUCCESS", success: 'The post has been deleted.'});
+        dispatch({type: "ADD_SUCCESS", success: 'Your post has been deleted.'});
       })
       .catch(err => {
         dispatch(deleteTripReportsRejected());
@@ -309,6 +309,7 @@ export const updateTripReport = (tripReport, author, title, content, countries) 
     }})
       .then(response => {
         dispatch(updateTripReportsFulfilled(response.data));
+        dispatch({type: "ADD_SUCCESS", success: 'Your post has been updated.'});
       })
       .catch(err => {
         dispatch(updateTripReportsRejected());
