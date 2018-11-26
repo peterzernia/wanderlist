@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
 import InputLabel from '@material-ui/core/InputLabel'
+import FormControl from '@material-ui/core/FormControl'
 
 class PostTripReportForm extends Component {
 
@@ -32,10 +33,12 @@ class PostTripReportForm extends Component {
       <form onSubmit={this.props.handleSubmit}>
         <TextField className="user-auth" type='text' name="title" label="Title"/><br/>
         <TextField multiline fullWidth className="user-auth" type='text' name="content" label="Content"/><br/>
-        <InputLabel shrink htmlFor="countries">Countries</InputLabel><br/>
-        <Select style={{ textAlign: 'left'}} multiple className="user-auth" name="countries" onChange={this.handleChange} value={this.state.countries}>
-          {menuItems}
-        </Select><br/><br/>
+        <FormControl>
+          <InputLabel htmlFor="countries">Countries</InputLabel>
+          <Select style={{ textAlign: 'left'}} multiple className="user-auth" name="countries" onChange={this.handleChange} value={this.state.countries}>
+            {menuItems}
+          </Select>
+        </FormControl><br/>
         <Button variant="contained" color="primary" type="submit">Post</Button>
       </form>
     )

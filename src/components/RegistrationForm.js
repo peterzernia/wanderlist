@@ -8,6 +8,7 @@ import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
 import InputLabel from '@material-ui/core/InputLabel'
+import FormControl from '@material-ui/core/FormControl'
 import countries from '../country_data'
 
 class RegistrationForm extends Component {
@@ -25,7 +26,7 @@ class RegistrationForm extends Component {
 
   render() {
 
-    /* 
+    /*
     Importing JSON file with all of the country names and pks from the Django
     database. This array is mapped over to create the options of the Matrial
     UI select form.
@@ -43,10 +44,12 @@ class RegistrationForm extends Component {
             <TextField className="user-auth" type='text' name="email" label="Email"/><br/>
             <TextField className="user-auth" type='password' name="password1" label="Password"/><br/>
             <TextField className="user-auth" type='password' name="password2" label="Confirm Password"/><br/>
-            <InputLabel shrink htmlFor="country">Home Country</InputLabel><br/>
-            <Select style={{ textAlign: 'left'}} className="user-auth" name="country" onChange={this.handleChange} value={this.state.country}>
-              {menuItems}
-            </Select><br/><br/>
+            <FormControl>
+              <InputLabel htmlFor="country">Home Country</InputLabel>
+              <Select style={{ textAlign: 'left'}} className="user-auth" name="country" onChange={this.handleChange} value={this.state.country}>
+                {menuItems}
+              </Select>
+            </FormControl><br/>
             <Button variant="contained" color="primary" type="submit">Register</Button>
             <Link to="/login"><Button>Cancel</Button></Link>
           </form>
