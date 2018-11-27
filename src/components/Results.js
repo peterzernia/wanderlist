@@ -8,6 +8,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle'
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import Tooltip from '@material-ui/core/Tooltip'
 
 class Results extends React.Component {
 
@@ -53,11 +54,23 @@ class Results extends React.Component {
           */}
           {
             (this.props.authenticated && ![...this.props.userCountries].map(country => country.name).includes(this.props.country.name))
-            && <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} value={this.props.country.name} id={this.props.country.id}><AddCircleIcon style={{margin: '0 auto'}}/></MenuItem>
+            && (
+              <Tooltip title='Add To My Map'>
+                <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} value={this.props.country.name} id={this.props.country.id}>
+                  <AddCircleIcon style={{margin: '0 auto'}}/>
+                </MenuItem>
+              </Tooltip>
+            )
           }
           {
             (this.props.authenticated && [...this.props.userCountries].map(country => country.name).includes(this.props.country.name))
-            && <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} value={this.props.country.name} id={this.props.country.id}><RemoveCircleIcon style={{margin: '0 auto'}}/></MenuItem>
+            && (
+              <Tooltip title='Remove From My Map'>
+                <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} value={this.props.country.name} id={this.props.country.id}>
+                  <RemoveCircleIcon style={{margin: '0 auto'}}/>
+                </MenuItem>
+              </Tooltip>
+            )    
           }
           <MenuItem onClick={() => {this.handleClose(); this.props.openCountryModal(this.props.country);}}>More Info</MenuItem>
         </Menu>
