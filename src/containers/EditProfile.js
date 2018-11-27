@@ -203,6 +203,7 @@ class EditProfile extends Component {
 const mapState = state => {
   return {
     pk: state.user.user.pk,
+    authenticated: state.auth.authenticated,
     user: state.user.user,
     next: state.tripReport.userTripReports.next,
     fetched: state.user.fetched,
@@ -257,6 +258,7 @@ export default connect(mapState, mapDispatch)(EditProfile);
 
 EditProfile.propTypes = {
   pk: PropTypes.number,
+  authenticated: PropTypes.bool,
   user: PropTypes.object,
   next: PropTypes.string,
   fetched: PropTypes.bool,

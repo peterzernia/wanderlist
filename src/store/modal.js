@@ -121,6 +121,17 @@ export default function (state = initialState, action) {
         showCopyLinkModal: false,
       }
     }
+    case "TOGGLE_FAVORITE_FULFILLED": {
+      return {
+        ...state,
+        modalPost: action.response 
+      }
+    }
+    case "TOGGLE_FAVORITE_REJECTED": {
+      return {
+        ...state,
+      }
+    }
     default:
       return state
   }

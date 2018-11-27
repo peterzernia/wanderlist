@@ -125,6 +125,7 @@ class ViewProfile extends Component {
 const mapState = state => {
   return {
     pk: state.user.user.pk,
+    authenticated: state.auth.authenticated,
     fetched: state.user.fetchedSingleUser,
     user: state.user.singleUser,
     modalCountry: state.modal.modalCountry,
@@ -165,6 +166,7 @@ export default connect(mapState, mapDispatch)(ViewProfile);
 
 ViewProfile.propTypes = {
   pk: PropTypes.number,
+  authenticated: PropTypes.bool,
   fetched: PropTypes.bool,
   user: PropTypes.object,
   modalCountry: PropTypes.object,
