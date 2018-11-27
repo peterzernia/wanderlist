@@ -3,7 +3,7 @@ const initialState = {
   fetched: false,
   fetchingSingleUser: false,
   fetchedSingleUser: false,
-  user: {},
+  user: { countries: [] },
   singleUser: {},
 }
 

@@ -49,12 +49,15 @@ class Results extends React.Component {
             Maps userCountries into an array of just the country names, then
             checks if the Result country name is in the array. If it is, it
             displays the Remove Button, if it is not, it displays the Add
-            Button.
+            Button. If no user is authenticated, neither button will show.
           */}
           {
-            [...this.props.userCountries].map(country => country.name).includes(this.props.country.name)
-            ? <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} value={this.props.country.name} id={this.props.country.id}><RemoveCircleIcon style={{margin: '0 auto'}}/></MenuItem>
-            : <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} value={this.props.country.name} id={this.props.country.id}><AddCircleIcon style={{margin: '0 auto'}}/></MenuItem>
+            (this.props.authenticated && ![...this.props.userCountries].map(country => country.name).includes(this.props.country.name))
+            && <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} value={this.props.country.name} id={this.props.country.id}><AddCircleIcon style={{margin: '0 auto'}}/></MenuItem>
+          }
+          {
+            (this.props.authenticated && [...this.props.userCountries].map(country => country.name).includes(this.props.country.name))
+            && <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} value={this.props.country.name} id={this.props.country.id}><RemoveCircleIcon style={{margin: '0 auto'}}/></MenuItem>
           }
           <MenuItem onClick={() => {this.handleClose(); this.props.openCountryModal(this.props.country);}}>More Info</MenuItem>
         </Menu>
