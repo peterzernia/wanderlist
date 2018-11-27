@@ -62,14 +62,15 @@ class TripReportTruncated extends Component {
               */}
               {
                 this.props.content.indexOf("\n") !== -1
-                ? this.props.content.substring(this.props.content.indexOf("\n") + 2)
-                : null
+                && this.props.content.substring(this.props.content.indexOf("\n") + 2)
               }
             </Typography>
-            <hr/>
-            {listCountries}
           </CardContent>
         </Collapse>
+        <CardContent>
+          <hr/>
+          {listCountries}
+        </CardContent>
         <CardActions style={{ display: 'flex' }} disableActionSpacing>
           {
             this.props.favoriters.includes(this.props.pk)
