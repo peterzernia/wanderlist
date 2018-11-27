@@ -30,7 +30,9 @@ class Results extends React.Component {
 
     return(
       <Card style={{maxWidth: 400, margin: '0 auto'}}>
-        <CardHeader action={
+        <CardHeader
+          style={{ marginLeft: 24 }}
+          action={
             <IconButton
               onClick={this.handleClick}
               aria-owns={anchorEl ? 'simple-menu' : undefined}
@@ -70,7 +72,7 @@ class Results extends React.Component {
                   <RemoveCircleIcon style={{margin: '0 auto'}}/>
                 </MenuItem>
               </Tooltip>
-            )    
+            )
           }
           <MenuItem onClick={() => {this.handleClose(); this.props.openCountryModal(this.props.country);}}>More Info</MenuItem>
         </Menu>
