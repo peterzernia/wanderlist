@@ -116,7 +116,7 @@ class SearchBar extends Component {
     const { value, suggestions } = this.state;
 
     const inputProps = {
-      placeholder: 'Search for a Country',
+      placeholder: 'Search for a Country or Territory',
       value,
       onChange: this.onChange
     };

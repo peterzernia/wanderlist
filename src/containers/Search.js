@@ -70,11 +70,13 @@ class Search extends Component {
   render() {
 
     const listCountries = this.props.searchedCountry.map(country =>(
-      <div key={country.id}><Results {...this.props} country={country} handleClick={this.handleClick}/><br/></div>
+      <div style={{ marginTop: 20 }} key={country.id}>
+        <Results {...this.props} country={country} handleClick={this.handleClick}/>
+      </div>
     ));
 
       return (
-        <div className="content">
+        <div className="content" style={{marginTop: 60}} >
           <SearchBar handleSubmit={this.handleSubmit} /> <br/>
           {this.props.fetching && <DotLoader size={50} color={'#2196f3'} className="content" />}
           {this.props.fetched && <div>{listCountries}</div>}
