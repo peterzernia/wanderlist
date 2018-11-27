@@ -13,7 +13,7 @@ import TripReportTruncated from '../components/TripReportTruncated'
 
 import { DotLoader } from 'react-spinners'
 
-class Home extends Component {
+class Feed extends Component {
 
   // Returns True if the user has scrolled past the bottom.
   isBottom(el) {
@@ -73,6 +73,7 @@ class Home extends Component {
 const mapState = state => {
   return {
     pk: state.user.user.pk,
+    authenticated: state.auth.authenticated,
     fetched: state.tripReport.fetched,
     fetching: state.tripReport.fetching,
     next: state.tripReport.tripReports.next,
@@ -93,10 +94,11 @@ const mapDispatch = dispatch => {
   }, dispatch);
 }
 
-export default connect(mapState, mapDispatch)(Home);
+export default connect(mapState, mapDispatch)(Feed);
 
-Home.propTypes = {
+Feed.propTypes = {
   pk: PropTypes.number,
+  authenticated: PropTypes.bool,
   fetched: PropTypes.bool,
   fetching: PropTypes.bool,
   next: PropTypes.string,

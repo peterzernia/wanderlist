@@ -57,6 +57,7 @@ class Post extends Component {
 const mapState = state => {
   return {
     pk: state.user.user.pk,
+    authenticated: state.auth.authenticated,
     tripReports: state.tripReport.slugTripReports.results,
     fetched: state.tripReport.fetchedSlugTripReports,
     fetching: state.tripReport.fetchingSlugTripReports,
@@ -79,6 +80,7 @@ export default connect(mapState, mapDispatch)(Post);
 
 Post.propTypes = {
   pk: PropTypes.number,
+  authenticated: PropTypes.bool,
   tripReport: PropTypes.array,
   fetched: PropTypes.bool,
   showCountryModal: PropTypes.bool,

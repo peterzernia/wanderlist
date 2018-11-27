@@ -78,6 +78,7 @@ const mapState = state => {
     showCountryModal: state.modal.showCountryModal,
     modalCountry: state.modal.modalCountry,
     pk: state.user.user.pk,
+    authenticated: state.auth.authenticated,
   };
 }
 
@@ -97,6 +98,7 @@ Home.propTypes = {
   showCountryModal: PropTypes.bool,
   modalCountry: PropTypes.object,
   pk: PropTypes.number,
+  authenticated: PropTypes.bool,
   removeError: PropTypes.func,
   openCountryModal: PropTypes.func,
   closeCountryModal: PropTypes.func,
