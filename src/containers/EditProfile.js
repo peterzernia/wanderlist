@@ -29,7 +29,7 @@ import { DotLoader } from 'react-spinners'
 import IconButton from '@material-ui/core/IconButton'
 import Grid from '@material-ui/core/Grid'
 import Add from '@material-ui/icons/Add'
-import Tooltip from '@material-ui/core/Tooltip';
+import Tooltip from '@material-ui/core/Tooltip'
 
 /*
 This container displays the same information as ViewProfile, but is used for
