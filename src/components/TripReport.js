@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
@@ -23,7 +24,10 @@ const TripReport = (props) => {
     <Card style={{ margin: '0 auto', width: '90%' }}>
       <CardHeader
         title={props.title}
-        subheader={props.author.username}
+        subheader=
+          <Link style={{ textDecoration: 'none', color: 'gray' }} to={`/u/${props.author.username}/`} >
+            {props.author.username}
+          </Link>
         avatar={<Avatar src={props.author.home.flag}/>} />
       <CardContent>
         <Typography component="p">
