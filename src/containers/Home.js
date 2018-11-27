@@ -42,22 +42,19 @@ class Home extends Component {
         {this.props.modalCountry && <CountryModal {...this.props} />}
         <div className='header-img'>
           <Typography variant="h2" gutterBottom style={{ color: 'white', paddingTop: 200 }}>
-            Connect, learn and share
+            Connect, Learn, Share
           </Typography>
         </div>
-        <Card style={{ margin: '0 auto', marginTop: 30, width: '90%' }}>
-          <CardContent>
-            <h2 className='home-page'>
-              "Countries is a slow social media platform, or 'slocial media'. The
-              focus of Countries is to encourage users to write thoughtful jouralism
-              with an emphasis on photography. We encourage users to slow down and
-              spend time creating their Trip Reports. Users can connect with new people
-              both across the world and close to home to find inspiration and wonder in
-              traveling and the world around us."
-            </h2>
-          </CardContent>
-        </Card>
+        <div style={{ marginTop: 60, textAlign: 'center' }}>
+          <h2>Search for Countries and Territories</h2>
+          <img style={{ margin: '0 auto' }} src={require('../../src/country.png')} />
+        </div>
+        <div style={{marginTop: 60, textAlign: 'center' }}>
+          <h2>Add them to your personalized map</h2>
+          <img style={{ margin: '0 auto' }} src={require('../../src/map.png')} />
+        </div>
         <div className='content' style={{ margin: '0 auto', marginTop: 30 }}>
+          <h2>Post Trip Reports about journeys you've taken</h2>
           <div style={{ textAlign: 'left', width: '90%', margin: '0 auto' }}>
             Featured Article
           </div>
