@@ -6,7 +6,6 @@ import CardActions from '@material-ui/core/CardActions'
 import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import ShareIcon from '@material-ui/icons/Share'
@@ -36,7 +35,7 @@ class TripReportTruncated extends Component {
     return(
       <Card style={{ margin: '0 auto', width: '90%' }}>
         <CardHeader
-          action={<IconButton><MoreVertIcon /></IconButton>}
+          style={{ marginRight: 64}}
           title={this.props.title}
           subheader={this.props.author.username}
           avatar={<Avatar src={this.props.author.home.flag}/>} />
