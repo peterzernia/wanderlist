@@ -74,6 +74,17 @@ class Results extends React.Component {
               </Tooltip>
             )
           }
+          {/* If user is not authenticated, Add button shows alert instead. */}
+          {
+            !this.props.authenticated
+            && (
+              <Tooltip title='Add To My Map'>
+                <MenuItem onClick={() => {alert(`You must be logged in to do that!`);}} value={this.props.country.name} id={this.props.country.id}>
+                  <AddCircleIcon style={{margin: '0 auto'}}/>
+                </MenuItem>
+              </Tooltip>
+            )
+          }
           <MenuItem onClick={() => {this.handleClose(); this.props.openCountryModal(this.props.country);}}>More Info</MenuItem>
         </Menu>
         <CardMedia component='img' src={this.props.country.flag} alt="" width="400"/>
