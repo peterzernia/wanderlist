@@ -22,7 +22,6 @@ const TripReport = (props) => {
   return(
     <Card style={{ margin: '0 auto', width: '90%' }}>
       <CardHeader
-        style={{ marginRight: 64}}
         title={props.title}
         subheader={props.author.username}
         avatar={<Avatar src={props.author.home.flag}/>} />

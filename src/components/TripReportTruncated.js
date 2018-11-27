@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
@@ -37,7 +39,10 @@ class TripReportTruncated extends Component {
         <CardHeader
           style={{ marginRight: 64}}
           title={this.props.title}
-          subheader={this.props.author.username}
+          subheader=
+            <Link style={{ textDecoration: 'none', color: 'gray' }} to={`/u/${this.props.author.username}/`} >
+              {this.props.author.username}
+            </Link>
           avatar={<Avatar src={this.props.author.home.flag}/>} />
         <CardContent>
           <Typography component="p">
