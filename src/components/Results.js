@@ -79,7 +79,7 @@ class Results extends React.Component {
             !this.props.authenticated
             && (
               <Tooltip title='Add To My Map'>
-                <MenuItem onClick={() => {alert(`You must be logged in to do that!`);}} value={this.props.country.name} id={this.props.country.id}>
+                <MenuItem onClick={() => this.props.openNotAuthModal()} value={this.props.country.name} id={this.props.country.id}>
                   <AddCircleIcon style={{margin: '0 auto'}}/>
                 </MenuItem>
               </Tooltip>

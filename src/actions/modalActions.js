@@ -74,3 +74,16 @@ export const closeTripReportModal = () => {
     dispatch({ type: "CLOSE_TRIP_REPORT_MODAL" })
   }
 }
+
+// Not Authenticated modal actions
+export const openNotAuthModal = () => {
+  return dispatch => {
+    dispatch({ type: "OPEN_NOT_AUTH_MODAL" })
+  }
+}
+
+export const closeNotAuthModal = () => {
+  return dispatch => {
+    dispatch({ type: "CLOSE_NOT_AUTH_MODAL" })
+  }
+}

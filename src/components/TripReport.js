@@ -36,7 +36,7 @@ const TripReport = (props) => {
         {
           props.favoriters.includes(props.pk)
           ? <IconButton onClick={props.handleClick} id={props.id} ><FavoriteIcon /></IconButton>
-          : <IconButton onClick={(e) => props.authenticated ? props.handleClick(e) : alert('You must be logged in to do that!')} id={props.id} ><FavoriteBorderIcon /></IconButton>
+          : <IconButton onClick={(e) => props.authenticated ? props.handleClick(e) : props.openNotAuthModal()} id={props.id} ><FavoriteBorderIcon /></IconButton>
         }
         <IconButton onClick={() => {alert(`localhost:3000/p/${props.slug}/`);}}><ShareIcon /></IconButton>
       </CardActions>

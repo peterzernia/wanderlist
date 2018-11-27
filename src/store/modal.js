@@ -5,6 +5,7 @@ const initialState = {
   updatePostModal: false,
   showConfirmDeleteModal: false,
   showTripReportModal: false,
+  showNotAuthModal: false,
   modalCountry: {},
   modalProfile: {},
   modalPost: {}
@@ -89,6 +90,19 @@ export default function (state = initialState, action) {
       return {
         ...state,
         showTripReportModal: false,
+      }
+    }
+    // Not Authenticated modal
+    case "OPEN_NOT_AUTH_MODAL": {
+      return {
+        ...state,
+        showNotAuthModal: true,
+      }
+    }
+    case "CLOSE_NOT_AUTH_MODAL": {
+      return {
+        ...state,
+        showNotAuthModal: false,
       }
     }
     default:

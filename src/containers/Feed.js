@@ -5,10 +5,12 @@ import { PropTypes } from 'prop-types'
 
 import { fetchNextTripReports } from '../actions/tripReportActions'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 
 import CountryModal from '../components/CountryModal'
+import NotAuthModal from '../components/NotAuthModal'
 import TripReportTruncated from '../components/TripReportTruncated'
 
 import { DotLoader } from 'react-spinners'
@@ -60,6 +62,7 @@ class Feed extends Component {
 
     return(
       <div id='scroll' className="content">
+        <NotAuthModal {...this.props} />
         {this.props.fetching && <div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
         {this.props.fetched && <CountryModal {...this.props} />}
         {this.props.fetched && <div>{listTripReports}</div>}
@@ -80,7 +83,8 @@ const mapState = state => {
     fetchingNext: state.tripReport.fetchingNext,
     tripReports: state.tripReport.tripReports.results,
     showCountryModal: state.modal.showCountryModal,
-    modalCountry: state.modal.modalCountry
+    modalCountry: state.modal.modalCountry,
+    showNotAuthModal: state.modal.showNotAuthModal
   };
 }
 
@@ -91,6 +95,8 @@ const mapDispatch = dispatch => {
     removeError,
     fetchNextTripReports,
     toggleFavorite,
+    openNotAuthModal,
+    closeNotAuthModal
   }, dispatch);
 }
 
@@ -105,9 +111,12 @@ Feed.propTypes = {
   tripReports: PropTypes.array,
   showCountryModal: PropTypes.bool,
   modalCountry: PropTypes.object,
+  showNotAuthModal: PropTypes.bool,
   openCountryModal: PropTypes.func,
   closeCountryModal: PropTypes.func,
   removeError: PropTypes.func,
   fetchNextTripReports: PropTypes.func,
   toggleFavorite: PropTypes.func,
+  openNotAuthModal: PropTypes.func,
+  closeNotAuthModal: PropTypes.func,
 };

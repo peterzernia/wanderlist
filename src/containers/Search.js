@@ -5,10 +5,12 @@ import PropTypes from 'prop-types'
 
 import { fetchCountry } from '../actions/countryActions'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
 import { putUserData } from '../actions/userActions'
 import { removeError } from '../actions/errorActions'
 
 import CountryModal from '../components/CountryModal'
+import NotAuthModal from '../components/NotAuthModal'
 import Results from '../components/Results'
 import SearchBar from '../components/SearchBar'
 
@@ -76,7 +78,8 @@ class Search extends Component {
     ));
 
       return (
-        <div className="content" style={{marginTop: 60}} >
+        <div className="content" style={{marginTop: 60}}>
+          <NotAuthModal {...this.props} />
           <SearchBar handleSubmit={this.handleSubmit} /> <br/>
           {this.props.fetching && <DotLoader size={50} color={'#2196f3'} className="content" />}
           {this.props.fetched && <div>{listCountries}</div>}
@@ -98,7 +101,8 @@ const mapState = state => {
     fetched: state.country.fetched,
     fetching: state.country.fetching,
     showCountryModal: state.modal.showCountryModal,
-    modalCountry: state.modal.modalCountry
+    modalCountry: state.modal.modalCountry,
+    showNotAuthModal: state.modal.showNotAuthModal,
   };
 };
 
@@ -108,7 +112,9 @@ const mapDispatch = dispatch => {
     putUserData,
     openCountryModal,
     closeCountryModal,
-    removeError
+    removeError,
+    openNotAuthModal,
+    closeNotAuthModal,
   }, dispatch);
 };
 
@@ -126,9 +132,13 @@ Search.propTypes = {
   fetching: PropTypes.bool,
   showCountryModal: PropTypes.bool,
   modalCountry: PropTypes.object,
+  showNotAuthModal: PropTypes.bool,
+
   fetchCountry: PropTypes.func,
   putUserData: PropTypes.func,
   openCountryModal: PropTypes.func,
   closeCountryModal: PropTypes.func,
-  removeError: PropTypes.func
+  removeError: PropTypes.func,
+  openNotAuthModal: PropTypes.func,
+  closeNotAuthModal: PropTypes.func,
 };

@@ -9,9 +9,11 @@ import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { openTripReportModal, closeTripReportModal } from '../actions/modalActions'
+import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
 
 import CountryModal from '../components/CountryModal'
 import GoogleMap from '../components/GoogleMap'
+import NotAuthModal from '../components/NotAuthModal'
 import TripReportModal from '../components/TripReportModal'
 import TripReportThumbnail from '../components/TripReportThumbnail'
 
@@ -76,8 +78,9 @@ class ViewProfile extends Component {
 
     return (
       <div id='scroll' className='content'>
-        {/* This section is the user avatar, username, biography, etc. */}
+        <NotAuthModal {...this.props} />
         {this.props.fetched && <CountryModal {...this.props} />}
+        {/* This section is the user avatar, username, biography, etc. */}
         <div className='wrap' style={{ marginBottom: 60 }} >
           <div className='left' style={{ width: '37%' }}>
             {this.props.user.home && <Avatar style={{ width: 150, height: 150, margin: '0 auto' }} src={this.props.user.home.flag}/>}
@@ -130,6 +133,7 @@ const mapState = state => {
     fetchingNext: state.tripReport.fetchingNext,
     tripReports: state.tripReport.userTripReports.results,
     next: state.tripReport.userTripReports.next,
+    showNotAuthModal: state.modal.showNotAuthModal,
   };
 }
 
@@ -144,6 +148,8 @@ const mapDispatch = dispatch => {
     openTripReportModal,
     closeTripReportModal,
     toggleFavorite,
+    openNotAuthModal,
+    closeNotAuthModal,
   }, dispatch);
 }
 
@@ -162,6 +168,7 @@ ViewProfile.propTypes = {
   fetchingNext: PropTypes.bool,
   tripReports: PropTypes.array,
   next: PropTypes.string,
+  showNotAuthModal: PropTypes.bool,
 
   removeError: PropTypes.func,
   fetchSingleUser: PropTypes.func,
@@ -172,4 +179,6 @@ ViewProfile.propTypes = {
   openTripReportModal: PropTypes.func,
   closeTripReportModal: PropTypes.func,
   toggleFavorite: PropTypes.func,
+  openNotAuthModal: PropTypes.func,
+  closeNotAuthModal: PropTypes.func,
 };

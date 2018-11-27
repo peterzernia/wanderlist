@@ -4,11 +4,13 @@ import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 
 import TripReportTruncated from '../components/TripReportTruncated'
 import CountryModal from '../components/CountryModal'
+import NotAuthModal from '../components/NotAuthModal'
 
 import { DotLoader } from 'react-spinners'
 import Typography from '@material-ui/core/Typography'
@@ -38,6 +40,7 @@ class Home extends Component {
     return(
       <div >
         {this.props.modalCountry && <CountryModal {...this.props} />}
+        <NotAuthModal {...this.props} />
         <div className='header-img'>
           <Typography variant="h2" gutterBottom style={{ color: 'white', paddingTop: 200 }}>
             Connect, Learn, Share
@@ -74,6 +77,7 @@ const mapState = state => {
     modalCountry: state.modal.modalCountry,
     pk: state.user.user.pk,
     authenticated: state.auth.authenticated,
+    showNotAuthModal: state.modal.showNotAuthModal
   };
 }
 
@@ -82,7 +86,9 @@ const mapDispatch = dispatch => {
     removeError,
     toggleFavorite,
     openCountryModal,
-    closeCountryModal
+    closeCountryModal,
+    openNotAuthModal,
+    closeNotAuthModal
   }, dispatch);
 }
 
@@ -94,6 +100,7 @@ Home.propTypes = {
   modalCountry: PropTypes.object,
   pk: PropTypes.number,
   authenticated: PropTypes.bool,
+  showNotAuthModal: PropTypes.bool,
   removeError: PropTypes.func,
   openCountryModal: PropTypes.func,
   closeCountryModal: PropTypes.func,
