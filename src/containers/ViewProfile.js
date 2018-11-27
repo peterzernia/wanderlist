@@ -83,6 +83,8 @@ class ViewProfile extends Component {
         <CopyLinkModal {...this.props} />
         <NotAuthModal {...this.props} />
         {this.props.fetched && <CountryModal {...this.props} />}
+        {this.props.modalPost.author && <TripReportModal handleClick={this.handleClick} {...this.props} />}
+
         {/* This section is the user avatar, username, biography, etc. */}
         <div className='wrap' style={{ marginBottom: 60 }} >
           <div className='left' style={{ width: '37%' }}>
@@ -110,7 +112,6 @@ class ViewProfile extends Component {
 
         {/* This section is the user posts */}
         <div style={{marginTop: 50}}>
-          {this.props.modalPost.author && <TripReportModal handleClick={this.handleClick} {...this.props} />}
           {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
           {this.props.fetchedTripReports && <Grid container spacing={24} justify='center' >{listTripReports}</Grid>}
           <div style={{ height: 15 }}/>

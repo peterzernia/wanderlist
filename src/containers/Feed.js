@@ -66,8 +66,8 @@ class Feed extends Component {
       <div id='scroll' className="content">
         <CopyLinkModal {...this.props} />
         <NotAuthModal {...this.props} />
-        {this.props.fetching && <div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
         {this.props.fetched && <CountryModal {...this.props} />}
+        {this.props.fetching && <div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
         {this.props.fetched && <div>{listTripReports}</div>}
         <div style={{ height: 15 }}/>
         {this.props.fetchingNext && <DotLoader size={50} color={'#2196f3'} className="content" />}

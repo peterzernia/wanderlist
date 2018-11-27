@@ -99,6 +99,7 @@ Layout.propTypes = {
   success: PropTypes.string,
   authenticated: PropTypes.bool,
   fetching: PropTypes.bool,
+  
   fetchUser: PropTypes.func,
   removeError: PropTypes.func
 };

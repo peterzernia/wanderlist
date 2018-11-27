@@ -41,9 +41,9 @@ class Home extends Component {
 
     return(
       <div >
-        {this.props.modalCountry && <CountryModal {...this.props} />}
         <NotAuthModal {...this.props} />
         <CopyLinkModal {...this.props} />
+        {this.props.modalCountry && <CountryModal {...this.props} />}
         <div className='header-img'>
           <Typography variant="h2" gutterBottom style={{ color: 'white', paddingTop: 200 }}>
             Connect, Learn, Share

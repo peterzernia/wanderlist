@@ -152,6 +152,10 @@ class EditProfile extends Component {
         <CopyLinkModal {...this.props} />
         {this.props.fetched && <CountryModal {...this.props} />}
         <EditProfileModal handleSubmit={this.handleSubmit} {...this.props} />
+        <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} />
+        <ConfirmDeleteModal {...this.props} />
+        {this.props.modalPost.author && <TripReportModal handleClick={this.handleClick} {...this.props} />}
+
         {/* This section is the user avatar, username, biography, etc. */}
         <div className='wrap' style={{ marginBottom: 60 }} >
           <div className='left' style={{ width: '37%' }}>
@@ -186,9 +190,6 @@ class EditProfile extends Component {
               <Add />
             </IconButton>
           </Tooltip>
-          <PostModal {...this.props} handlePostSubmit={this.handlePostSubmit} handleUpdateSubmit={this.handleUpdateSubmit} />
-          <ConfirmDeleteModal {...this.props} />
-          {this.props.modalPost.author && <TripReportModal handleClick={this.handleClick} {...this.props} />}
           {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
           {this.props.fetchedTripReports && <Grid container spacing={24} justify='center' >{listTripReports}</Grid>}
           <div style={{ height: 15 }}/>

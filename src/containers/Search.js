@@ -80,10 +80,10 @@ class Search extends Component {
       return (
         <div className="content" style={{marginTop: 60}}>
           <NotAuthModal {...this.props} />
-          <SearchBar handleSubmit={this.handleSubmit} /> <br/>
-          {this.props.fetching && <DotLoader size={50} color={'#2196f3'} className="content" />}
-          {this.props.fetched && <div>{listCountries}</div>}
           {this.props.fetched && <CountryModal {...this.props} />}
+          {this.props.fetching && <DotLoader size={50} color={'#2196f3'} className="content" />}
+          <SearchBar handleSubmit={this.handleSubmit} /> <br/>
+          {this.props.fetched && <div>{listCountries}</div>}
         </div>
       );
   }
