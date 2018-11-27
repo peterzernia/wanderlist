@@ -45,7 +45,7 @@ class TripReportViewSet(viewsets.ModelViewSet):
     #queryset = TripReport.objects.all().annotate(count=Count('favoriters')).order_by('-count')
     queryset = TripReport.objects.all().order_by('-pk')
     filter_backends = (filters.SearchFilter, filters.OrderingFilter)
-    search_fields = ('=author__username', '=slug')
+    search_fields = ('=author__username', '=slug', 'countries__name')
     ordering_fields = ('pk', )
 
 
