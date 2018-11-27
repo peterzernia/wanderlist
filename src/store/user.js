@@ -68,6 +68,13 @@ export default function (state = initialState, action) {
         fetchedSingleUser: false,
       }
     }
+    // Reset authenticated user object on logout.
+    case "AUTH_LOGOUT": {
+      return {
+        ...state,
+        user: { countries: [] },
+      }
+    }
     default:
       return state
   }

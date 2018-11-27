@@ -273,7 +273,13 @@ export default function (state = initialState, action) {
     case "TOGGLE_FAVORITE_REJECTED": {
       return {
         ...state,
-
+      }
+    }
+    // Reset authenticated user trip reports array on logout.
+    case "AUTH_LOGOUT": {
+      return {
+        ...state,
+        userTripReports: { results: [], count: null, next: null, previous: null},
       }
     }
     default:

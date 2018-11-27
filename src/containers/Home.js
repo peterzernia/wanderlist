@@ -10,8 +10,6 @@ import { toggleFavorite } from '../actions/favoriteActions'
 import TripReportTruncated from '../components/TripReportTruncated'
 import CountryModal from '../components/CountryModal'
 
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
 import { DotLoader } from 'react-spinners'
 import Typography from '@material-ui/core/Typography'
 
@@ -47,11 +45,11 @@ class Home extends Component {
         </div>
         <div style={{ marginTop: 60, textAlign: 'center' }}>
           <h2>Search for Countries and Territories</h2>
-          <img style={{ margin: '0 auto' }} src={require('../../src/country.png')} />
+          <img style={{ margin: '0 auto' }} src={require('../../src/country.png')} alt='' />
         </div>
         <div style={{marginTop: 60, textAlign: 'center' }}>
           <h2>Add them to your personalized map</h2>
-          <img style={{ margin: '0 auto' }} src={require('../../src/map.png')} />
+          <img style={{ margin: '0 auto' }} src={require('../../src/map.png')} alt='' />
         </div>
         <div className='content' style={{ margin: '0 auto', marginTop: 30 }}>
           <h2>Post Trip Reports about journeys you've taken</h2>
