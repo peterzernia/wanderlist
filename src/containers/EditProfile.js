@@ -64,7 +64,7 @@ class EditProfile extends Component {
   */
   onScroll = () => {
     const element = document.getElementById('scroll');
-    if (this.isBottom(element) && this.props.next && !this.props.fetchingNext) {
+    if (this.isBottom(element) && this.props.next && !this.props.fetchingUserNext) {
       this.props.fetchNextUserTripReports(this.props.next);
     }
   };
@@ -193,7 +193,7 @@ class EditProfile extends Component {
           {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
           {this.props.fetchedTripReports && <Grid container spacing={24} justify='center' >{listTripReports}</Grid>}
           <div style={{ height: 15 }}/>
-          {this.props.fetchingNext && <DotLoader size={50} color={'#2196f3'} className="content" />}
+          {this.props.fetchingUserNext && <DotLoader size={50} color={'#2196f3'} className="content" />}
         </div>
       </div>
     );
@@ -206,7 +206,7 @@ const mapState = state => {
     user: state.user.user,
     next: state.tripReport.userTripReports.next,
     fetched: state.user.fetched,
-    fetchingNext: state.tripReport.fetchingNext,
+    fetchingUserNext: state.tripReport.fetchingUserNext,
     searchedCountry: state.country.country,
     showEditProfileModal: state.modal.showEditProfileModal,
     modalProfile: state.modal.modalProfile,
@@ -260,7 +260,7 @@ EditProfile.propTypes = {
   user: PropTypes.object,
   next: PropTypes.string,
   fetched: PropTypes.bool,
-  fetchingNext: PropTypes.bool,
+  fetchingUserNext: PropTypes.bool,
   searchedCountry: PropTypes.array,
   showEditProfileModal: PropTypes.bool,
   modalProfile: PropTypes.object,

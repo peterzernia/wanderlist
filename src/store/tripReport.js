@@ -3,6 +3,8 @@ const initialState = {
   fetched: false,
   fetchingNext: false,
   fetchedNext: false,
+  fetchingUserNext: false,
+  fetchedUserNext: false,
   fetchingTripReports: false,
   fetchedTripReports: false,
   fetchingSlugTripReports: false,
@@ -99,15 +101,15 @@ export default function (state = initialState, action) {
     case "FETCH_NEXT_USER_TRIP_REPORTS_PENDING": {
       return {
         ...state,
-        fetchingNext: true,
-        fetchedNext: false
+        fetchingUserNext: true,
+        fetchedUserNext: false
       }
     }
     case "FETCH_NEXT_USER_TRIP_REPORTS_FULFILLED": {
       return {
         ...state,
-        fetchingNext: false,
-        fetchedNext: true,
+        fetchingUserNext: false,
+        fetchedUserNext: true,
         userTripReports: {
           count: action.tripReports.count,
           next: action.tripReports.next,
@@ -119,8 +121,8 @@ export default function (state = initialState, action) {
     case "FETCH_NEXT_USER_TRIP_REPORTS_REJECTED": {
       return {
         ...state,
-        fetchingNext: false,
-        fetchedNext: false,
+        fetchingUserNext: false,
+        fetchedUserNext: false,
       }
     }
     // Axios post

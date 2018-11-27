@@ -57,7 +57,7 @@ class ViewProfile extends Component {
   */
   onScroll = () => {
     const element = document.getElementById('scroll');
-    if (this.isBottom(element) && this.props.next && !this.props.fetchingNext) {
+    if (this.isBottom(element) && this.props.next && !this.props.fetchingUserNext) {
       this.props.fetchNextUserTripReports(this.props.next);
     }
   };
@@ -115,7 +115,7 @@ class ViewProfile extends Component {
           {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
           {this.props.fetchedTripReports && <Grid container spacing={24} justify='center' >{listTripReports}</Grid>}
           <div style={{ height: 15 }}/>
-          {this.props.fetchingNext && <DotLoader size={50} color={'#2196f3'} className="content" />}
+          {this.props.fetchingUserNext && <DotLoader size={50} color={'#2196f3'} className="content" />}
         </div>
       </div>
     )
@@ -134,7 +134,7 @@ const mapState = state => {
     showTripReportModal: state.modal.showTripReportModal,
     fetchingTripReports: state.tripReport.fetchingTripReports,
     fetchedTripReports: state.tripReport.fetchedTripReports,
-    fetchingNext: state.tripReport.fetchingNext,
+    fetchingUserNext: state.tripReport.fetchingUserNext,
     tripReports: state.tripReport.userTripReports.results,
     next: state.tripReport.userTripReports.next,
     showNotAuthModal: state.modal.showNotAuthModal,
@@ -173,7 +173,7 @@ ViewProfile.propTypes = {
   showTripReportModal: PropTypes.bool,
   fetchedTripReports: PropTypes.bool,
   fetchingTripReports: PropTypes.bool,
-  fetchingNext: PropTypes.bool,
+  fetchingUserNext: PropTypes.bool,
   tripReports: PropTypes.array,
   next: PropTypes.string,
   showNotAuthModal: PropTypes.bool,
