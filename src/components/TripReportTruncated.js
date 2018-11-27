@@ -77,7 +77,7 @@ class TripReportTruncated extends Component {
             ? <IconButton onClick={this.props.handleClick} id={this.props.id} ><FavoriteIcon /></IconButton>
             : <IconButton onClick={(e) => this.props.authenticated ? this.props.handleClick(e) : this.props.openNotAuthModal()} id={this.props.id} ><FavoriteBorderIcon /></IconButton>
           }
-          <IconButton onClick={() => {alert(`localhost:3000/p/${this.props.slug}/`);}}><ShareIcon /></IconButton>
+          <IconButton onClick={() => this.props.openCopyLinkModal(this.props.slug)}><ShareIcon /></IconButton>
           {/* Button flips when expanded */}
           {
             this.state.expanded

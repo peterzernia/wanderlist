@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 
+import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
 import { fetchSlugTripReports } from '../actions/tripReportActions'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
@@ -10,6 +11,7 @@ import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 
 import CountryModal from '../components/CountryModal'
+import CopyLinkModal from '../components/CopyLinkModal'
 import NotAuthModal from '../components/NotAuthModal'
 import TripReport from '../components/TripReport'
 
@@ -49,6 +51,7 @@ class Post extends Component {
     return(
       <div className="content">
         <NotAuthModal {...this.props} />
+        <CopyLinkModal {...this.props} />
         {this.props.fetching && <div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
         {this.props.fetched && <CountryModal {...this.props} />}
         {this.props.fetched && <div>{listTripReport}</div>}
@@ -67,6 +70,8 @@ const mapState = state => {
     showCountryModal: state.modal.showCountryModal,
     modalCountry: state.modal.modalCountry,
     showNotAuthModal: state.modal.showNotAuthModal,
+    showCopyLinkModal: state.modal.showCopyLinkModal,
+    modalLink: state.modal.modalLink
   };
 }
 
@@ -78,7 +83,9 @@ const mapDispatch = dispatch => {
     closeCountryModal,
     toggleFavorite,
     openNotAuthModal,
-    closeNotAuthModal
+    closeNotAuthModal,
+    openCopyLinkModal,
+    closeCopyLinkModal,
   }, dispatch);
 }
 
@@ -92,6 +99,9 @@ Post.propTypes = {
   showCountryModal: PropTypes.bool,
   modalCountry: PropTypes.object,
   showNotAuthModal: PropTypes.bool,
+  showCopyLinkModal: PropTypes.bool,
+  modalLink: PropTypes.string,
+
   fetchSlugTripReports: PropTypes.func,
   removeError: PropTypes.func,
   openCountryModal: PropTypes.func,
@@ -99,4 +109,6 @@ Post.propTypes = {
   toggleFavorite: PropTypes.func,
   openNotAuthModal: PropTypes.func,
   closeNotAuthModal: PropTypes.func,
+  openCopyLinkModal: PropTypes.func,
+  closeCopyLinkModal: PropTypes.func,
 };

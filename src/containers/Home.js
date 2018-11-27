@@ -3,14 +3,16 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 
+import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 
-import TripReportTruncated from '../components/TripReportTruncated'
+import CopyLinkModal from '../components/CopyLinkModal'
 import CountryModal from '../components/CountryModal'
 import NotAuthModal from '../components/NotAuthModal'
+import TripReportTruncated from '../components/TripReportTruncated'
 
 import { DotLoader } from 'react-spinners'
 import Typography from '@material-ui/core/Typography'
@@ -41,6 +43,7 @@ class Home extends Component {
       <div >
         {this.props.modalCountry && <CountryModal {...this.props} />}
         <NotAuthModal {...this.props} />
+        <CopyLinkModal {...this.props} />
         <div className='header-img'>
           <Typography variant="h2" gutterBottom style={{ color: 'white', paddingTop: 200 }}>
             Connect, Learn, Share
@@ -77,7 +80,9 @@ const mapState = state => {
     modalCountry: state.modal.modalCountry,
     pk: state.user.user.pk,
     authenticated: state.auth.authenticated,
-    showNotAuthModal: state.modal.showNotAuthModal
+    showNotAuthModal: state.modal.showNotAuthModal,
+    showCopyLinkModal: state.modal.showCopyLinkModal,
+    modalLink: state.modal.modalLink,
   };
 }
 
@@ -88,7 +93,9 @@ const mapDispatch = dispatch => {
     openCountryModal,
     closeCountryModal,
     openNotAuthModal,
-    closeNotAuthModal
+    closeNotAuthModal,
+    openCopyLinkModal,
+    closeCopyLinkModal
   }, dispatch);
 }
 
@@ -101,7 +108,12 @@ Home.propTypes = {
   pk: PropTypes.number,
   authenticated: PropTypes.bool,
   showNotAuthModal: PropTypes.bool,
+  showCopyLinkModal: PropTypes.bool,
+  modalLink: PropTypes.string,
+
   removeError: PropTypes.func,
   openCountryModal: PropTypes.func,
   closeCountryModal: PropTypes.func,
+  openCopyLinkModal: PropTypes.func,
+  closeCopyLinkModal: PropTypes.func,
 };

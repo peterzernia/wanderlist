@@ -7,11 +7,13 @@ import { fetchSingleUser } from '../actions/userActions'
 import { fetchUserTripReports, fetchNextUserTripReports } from '../actions/tripReportActions'
 import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
+import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { openTripReportModal, closeTripReportModal } from '../actions/modalActions'
 import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
 
 import CountryModal from '../components/CountryModal'
+import CopyLinkModal from '../components/CopyLinkModal'
 import GoogleMap from '../components/GoogleMap'
 import NotAuthModal from '../components/NotAuthModal'
 import TripReportModal from '../components/TripReportModal'
@@ -78,6 +80,7 @@ class ViewProfile extends Component {
 
     return (
       <div id='scroll' className='content'>
+        <CopyLinkModal {...this.props} />
         <NotAuthModal {...this.props} />
         {this.props.fetched && <CountryModal {...this.props} />}
         {/* This section is the user avatar, username, biography, etc. */}
@@ -134,6 +137,8 @@ const mapState = state => {
     tripReports: state.tripReport.userTripReports.results,
     next: state.tripReport.userTripReports.next,
     showNotAuthModal: state.modal.showNotAuthModal,
+    showCopyLinkModal: state.modal.showCopyLinkModal,
+    modalLink: state.modal.modalLink,
   };
 }
 
@@ -150,6 +155,8 @@ const mapDispatch = dispatch => {
     toggleFavorite,
     openNotAuthModal,
     closeNotAuthModal,
+    openCopyLinkModal,
+    closeCopyLinkModal,
   }, dispatch);
 }
 
@@ -169,6 +176,8 @@ ViewProfile.propTypes = {
   tripReports: PropTypes.array,
   next: PropTypes.string,
   showNotAuthModal: PropTypes.bool,
+  showCopyLinkModal: PropTypes.bool,
+  modalLink: PropTypes.string,
 
   removeError: PropTypes.func,
   fetchSingleUser: PropTypes.func,
@@ -181,4 +190,6 @@ ViewProfile.propTypes = {
   toggleFavorite: PropTypes.func,
   openNotAuthModal: PropTypes.func,
   closeNotAuthModal: PropTypes.func,
+  openCopyLinkModal: PropTypes.func,
+  closeCopyLinkModal: PropTypes.func,
 };

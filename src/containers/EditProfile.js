@@ -11,6 +11,7 @@ import { fetchUserTripReports, postTripReport, deleteTripReport, updateTripRepor
 import { openPostModal, closePostModal, openUpdatePostModal, openCountryModal,
          closeCountryModal, openConfirmDeleteModal, closeConfirmDeleteModal,
          openTripReportModal, closeTripReportModal } from '../actions/modalActions'
+import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 
@@ -20,6 +21,7 @@ import TripReportThumbnail from '../components/TripReportThumbnail'
 import TripReportModal from '../components/TripReportModal'
 import ConfirmDeleteModal from '../components/ConfirmDeleteModal'
 import CountryModal from '../components/CountryModal'
+import CopyLinkModal from '../components/CopyLinkModal'
 import PostModal from '../components/PostModal'
 
 import Button from '@material-ui/core/Button'
@@ -147,9 +149,10 @@ class EditProfile extends Component {
 
     return(
       <div id='scroll' className='content'>
-        {/* This section is the user avatar, username, biography, etc. */}
+        <CopyLinkModal {...this.props} />
         {this.props.fetched && <CountryModal {...this.props} />}
         <EditProfileModal handleSubmit={this.handleSubmit} {...this.props} />
+        {/* This section is the user avatar, username, biography, etc. */}
         <div className='wrap' style={{ marginBottom: 60 }} >
           <div className='left' style={{ width: '37%' }}>
             {this.props.user.home && <Avatar style={{ width: 150, height: 150, margin: '0 auto' }} src={this.props.user.home.flag}/>}
@@ -216,7 +219,9 @@ const mapState = state => {
     updatePostModal: state.modal.updatePostModal,
     modalPost: state.modal.modalPost,
     showConfirmDeleteModal: state.modal.showConfirmDeleteModal,
-    showTripReportModal: state.modal.showTripReportModal
+    showTripReportModal: state.modal.showTripReportModal,
+    showCopyLinkModal: state.modal.showCopyLinkModal,
+    modalLink: state.modal.modalLink,
   };
 }
 
@@ -242,6 +247,8 @@ const mapDispatch = dispatch => {
     closeTripReportModal,
     fetchNextUserTripReports,
     toggleFavorite,
+    openCopyLinkModal,
+    closeCopyLinkModal,
   }, dispatch);
 }
 
@@ -267,6 +274,9 @@ EditProfile.propTypes = {
   modalPost: PropTypes.object,
   showConfirmDeleteModal: PropTypes.bool,
   showTripReportModal: PropTypes.bool,
+  showCopyLinkModal: PropTypes.bool,
+  modalLink: PropTypes.string,
+
   fetchCountry: PropTypes.func,
   putUserData: PropTypes.func,
   openEditProfileModal: PropTypes.func,
@@ -287,4 +297,6 @@ EditProfile.propTypes = {
   closeTripReportModal: PropTypes.func,
   fetchNextUserTripReports: PropTypes.func,
   toggleFavorite: PropTypes.func,
+  openCopyLinkModal: PropTypes.func,
+  closeCopyLinkModal: PropTypes.func,
 };

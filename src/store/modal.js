@@ -6,9 +6,11 @@ const initialState = {
   showConfirmDeleteModal: false,
   showTripReportModal: false,
   showNotAuthModal: false,
+  showCopyLinkModal: false,
   modalCountry: {},
   modalProfile: {},
-  modalPost: {}
+  modalPost: {},
+  modalLink: null
 }
 
 /* Reducer Function*/
@@ -103,6 +105,20 @@ export default function (state = initialState, action) {
       return {
         ...state,
         showNotAuthModal: false,
+      }
+    }
+    // Copy Link modal
+    case "OPEN_COPY_LINK_MODAL": {
+      return {
+        ...state,
+        showCopyLinkModal: true,
+        modalLink: action.modalLink
+      }
+    }
+    case "CLOSE_COPY_LINK_MODAL": {
+      return {
+        ...state,
+        showCopyLinkModal: false,
       }
     }
     default:

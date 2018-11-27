@@ -38,7 +38,7 @@ const TripReport = (props) => {
           ? <IconButton onClick={props.handleClick} id={props.id} ><FavoriteIcon /></IconButton>
           : <IconButton onClick={(e) => props.authenticated ? props.handleClick(e) : props.openNotAuthModal()} id={props.id} ><FavoriteBorderIcon /></IconButton>
         }
-        <IconButton onClick={() => {alert(`localhost:3000/p/${props.slug}/`);}}><ShareIcon /></IconButton>
+        <IconButton onClick={() => props.openCopyLinkModal(props.slug)}><ShareIcon /></IconButton>
       </CardActions>
     </Card>
   )

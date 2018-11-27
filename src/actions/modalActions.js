@@ -87,3 +87,16 @@ export const closeNotAuthModal = () => {
     dispatch({ type: "CLOSE_NOT_AUTH_MODAL" })
   }
 }
+
+// Copy Link modal actions
+export const openCopyLinkModal = modalLink => {
+  return dispatch => {
+    dispatch({ type: "OPEN_COPY_LINK_MODAL", modalLink: modalLink })
+  }
+}
+
+export const closeCopyLinkModal = () => {
+  return dispatch => {
+    dispatch({ type: "CLOSE_COPY_LINK_MODAL" })
+  }
+}
