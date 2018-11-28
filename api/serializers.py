@@ -114,6 +114,7 @@ class TripReportSerializer(serializers.ModelSerializer):
     author = AuthorField(queryset=User.objects.all())
     countries = CountryField(queryset=Country.objects.all(), many=True)
     favoriters = serializers.PrimaryKeyRelatedField(required=False, queryset=User.objects.all(), many=True)
+    image = serializers.ImageField(max_length=None, use_url=True, required=False)
 
     class Meta:
         model = TripReport

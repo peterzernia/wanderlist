@@ -40,6 +40,16 @@ class UpdateTripReportForm extends Component {
             {menuItems}
           </Select>
         </FormControl><br/>
+        <input
+          name='image'
+          accept="image/*"
+          id="flat-button-file"
+          multiple={false}
+          type="file"
+        />
+        <label htmlFor="flat-button-file" style={{ marginLeft: '0 auto' }}>
+          <Button component="span">Image</Button>
+        </label><br/>
         <Button variant="contained" color="primary" type="submit">Post</Button>
       </form>
     )

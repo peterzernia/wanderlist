@@ -244,18 +244,21 @@ export const fetchNextUserTripReports = (url) => {
 POST requests a new trip report to the Django REST API by the authenticated
 user.
 */
-export const postTripReport = (author, title, content, countries) => {
+export const postTripReport = (author, title, content, countries, image) => {
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch(postTripReportsPending());
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('author', author);
+    formData.append('countries', countries);
+    // If image is undefined, no image is POSTed.
+    if (image) {
+      formData.append('image', image);
+    }
     axios.post(
-      'http://localhost:8000/api/v1/reports/',
-      {
-        title: title,
-        content: content,
-        author: author,
-        countries: countries
-      },
+      'http://localhost:8000/api/v1/reports/',formData,
       {headers: { 'Authorization': `Token ${token}`}}
     )
       .then(response => {
@@ -290,18 +293,20 @@ export const deleteTripReport = (tripReport) => {
 }
 
 // UPDATEs a post of the authenticated user on the API.
-export const updateTripReport = (tripReport, author, title, content, countries) => {
+export const updateTripReport = (tripReport, author, title, content, countries, image) => {
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch(updateTripReportsPending());
-    axios.put(`http://localhost:8000/api/v1/reports/${tripReport}/`,
-      {
-        id: tripReport,
-        author: author,
-        title: title,
-        content: content,
-        countries: countries
-      },
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('author', author);
+    formData.append('countries', countries);
+    // If image is field is left blank, the original image does not get updated or deleted.
+    if (image) {
+      formData.append('image', image);
+    }
+    axios.patch(`http://localhost:8000/api/v1/reports/${tripReport}/`, formData,
       {headers: {
         'X-Requested-With': 'XMLHttpRequest',
         'X-CSRFToken': 'csrftoken',

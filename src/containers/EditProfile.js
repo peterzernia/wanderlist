@@ -90,7 +90,8 @@ class EditProfile extends Component {
       this.props.user.pk,
       e.target.title.value,
       e.target.content.value,
-      countries
+      countries,
+      e.target.image.files[0]
     );
     this.props.closePostModal();
   }
@@ -107,6 +108,7 @@ class EditProfile extends Component {
       e.target.title.value,
       e.target.content.value,
       countries,
+      e.target.image.files[0]
     );
     this.props.closePostModal();
   }
