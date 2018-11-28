@@ -64,7 +64,7 @@ class EditProfile extends Component {
   */
   onScroll = () => {
     const element = document.getElementById('scroll');
-    if (this.isBottom(element) && this.props.next && !this.props.fetchingUserNext) {
+    if (this.isBottom(element) && this.props.next && !this.props.fetchingUserNext && !this.props.fetchingTripReports) {
       this.props.fetchNextUserTripReports(this.props.next);
     }
   };

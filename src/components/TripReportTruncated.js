@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import ShareIcon from '@material-ui/icons/Share'
+import CollectionsIcon from '@material-ui/icons/Collections'
 import Button from '@material-ui/core/Button'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Collapse from '@material-ui/core/Collapse'
@@ -35,14 +36,35 @@ class TripReportTruncated extends Component {
 
     return(
       <Card style={{ margin: '0 auto', width: '90%' }}>
-        <CardHeader
-          style={{ marginRight: 64}}
-          title={this.props.title}
-          subheader=
-            <Link style={{ textDecoration: 'none', color: 'gray' }} to={`/u/${this.props.author.username}/`} >
-              {this.props.author.username}
-            </Link>
-          avatar={<Avatar src={this.props.author.home.flag}/>} />
+        {/*
+        If Trip Report has an image, render the action button to view the image.
+        */}
+        {
+          this.props.image
+          ? <CardHeader
+              style={{ marginRight: 24 }}
+              title={this.props.title}
+              subheader={
+                <Link style={{ textDecoration: 'none', color: 'gray' }} to={`/u/${this.props.author.username}/`} >
+                  {this.props.author.username}
+                </Link>
+              }
+              action={
+                <IconButton><CollectionsIcon /></IconButton>
+              }
+              avatar={<Avatar src={this.props.author.home.flag}/>}
+            />
+            : <CardHeader
+                style={{ marginRight: 56 }}
+                title={this.props.title}
+                subheader={
+                  <Link style={{ textDecoration: 'none', color: 'gray' }} to={`/u/${this.props.author.username}/`} >
+                    {this.props.author.username}
+                  </Link>
+                }
+                avatar={<Avatar src={this.props.author.home.flag}/>}
+              />
+          }
         <CardContent>
           <Typography component="p">
             {/* Displays first paragraph */}
