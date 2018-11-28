@@ -1,4 +1,6 @@
 const initialState = {
+  posting: false,
+  updating: false,
   fetching: false,
   fetched: false,
   fetchingNext: false,
@@ -129,6 +131,7 @@ export default function (state = initialState, action) {
     case "POST_TRIP_REPORTS_PENDING": {
       return {
         ...state,
+        posting: true
       }
     }
     case "POST_TRIP_REPORTS_FULFILLED": {
@@ -150,12 +153,14 @@ export default function (state = initialState, action) {
           count: state.tripReports.count,
           next: state.tripReports.next,
           previous: state.tripReports.previous
-        }
+        },
+        posting: false
       }
     }
     case "POST_TRIP_REPORTS_REJECTED": {
       return {
         ...state,
+        posting: false
         }
     }
     // Axios deleet
@@ -193,6 +198,7 @@ export default function (state = initialState, action) {
     case "UPDATE_TRIP_REPORTS_PENDING": {
       return {
         ...state,
+        updating: true
       }
     }
     case "UPDATE_TRIP_REPORTS_FULFILLED": {
@@ -214,12 +220,14 @@ export default function (state = initialState, action) {
           count: state.tripReports.count,
           next: state.tripReports.next,
           previous: state.tripReports.previous
-        }
+        },
+        updating: false
       }
     }
     case "UPDATE_TRIP_REPORTS_REJECTED": {
       return {
         ...state,
+        updating: false
       }
     }
     case "FETCH_SLUG_TRIP_REPORTS_PENDING": {

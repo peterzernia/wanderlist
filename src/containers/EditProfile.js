@@ -192,6 +192,8 @@ class EditProfile extends Component {
               <Add />
             </IconButton>
           </Tooltip>
+          {this.props.posting && <div><DotLoader size={50} color={'#2196f3'} className="content" /><br/></div>}
+          {this.props.updating && <div><DotLoader size={50} color={'#2196f3'} className="content" /><br/></div>}
           {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
           {this.props.fetchedTripReports && <Grid container spacing={24} justify='center' >{listTripReports}</Grid>}
           <div style={{ height: 15 }}/>
@@ -226,6 +228,8 @@ const mapState = state => {
     showTripReportModal: state.modal.showTripReportModal,
     showCopyLinkModal: state.modal.showCopyLinkModal,
     modalLink: state.modal.modalLink,
+    posting: state.tripReport.posting,
+    updating: state.tripReport.updating,
   };
 }
 
@@ -281,6 +285,8 @@ EditProfile.propTypes = {
   showTripReportModal: PropTypes.bool,
   showCopyLinkModal: PropTypes.bool,
   modalLink: PropTypes.string,
+  posting: PropTypes.bool,
+  updating: PropTypes.bool,
 
   fetchCountry: PropTypes.func,
   putUserData: PropTypes.func,
