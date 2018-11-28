@@ -26,7 +26,6 @@ p {
 }
 
 .content {
-  align: center;
   text-align: center;
   align-items: center;
   margin-top: 30px;
@@ -137,7 +136,7 @@ This is the class for the DotLoader.
 }
 
 .header-img {
-  background-image: url('header.jpeg');
+  background-image: url('https://s3.eu-west-3.amazonaws.com/countries-app/media/header.jpeg');
   background-size: cover;
   background-position: top;
   height: 550px;
