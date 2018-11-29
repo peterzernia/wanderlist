@@ -208,7 +208,7 @@ first page of the list of the Users TripReports.
 export const fetchUserTripReports = (username) => {
   return dispatch => {
     dispatch(fetchUserTripReportsPending());
-    axios.get(`http://localhost:8000/api/v1/reports/?ordering=-pk&search=${username}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/v1/reports/?ordering=-pk&search=${username}`)
       .then(response => {
         const tripReports = response.data;
         dispatch(fetchUserTripReportsFulfilled(tripReports));
@@ -258,7 +258,7 @@ export const postTripReport = (author, title, content, countries, image) => {
       formData.append('image', image);
     }
     axios.post(
-      'http://localhost:8000/api/v1/reports/',formData,
+      `${process.env.REACT_APP_API_URL}/api/v1/reports/`,formData,
       {headers: { 'Authorization': `Token ${token}`}}
     )
       .then(response => {
@@ -276,7 +276,7 @@ export const deleteTripReport = (tripReport) => {
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch(deleteTripReportsPending());
-    axios.delete(`http://localhost:8000/api/v1/reports/${tripReport.id}/`, {headers: {
+    axios.delete(`${process.env.REACT_APP_API_URL}/api/v1/reports/${tripReport.id}/`, {headers: {
       'X-Requested-With': 'XMLHttpRequest',
       'X-CSRFToken': 'csrftoken',
       'Authorization': `Token ${token}`
@@ -306,7 +306,7 @@ export const updateTripReport = (tripReport, author, title, content, countries, 
     if (image) {
       formData.append('image', image);
     }
-    axios.patch(`http://localhost:8000/api/v1/reports/${tripReport}/`, formData,
+    axios.patch(`${process.env.REACT_APP_API_URL}/api/v1/reports/${tripReport}/`, formData,
       {headers: {
         'X-Requested-With': 'XMLHttpRequest',
         'X-CSRFToken': 'csrftoken',
@@ -330,7 +330,7 @@ page.
 export const fetchSlugTripReports = (slug) => {
   return dispatch => {
     dispatch(fetchSlugTripReportsPending());
-    axios.get(`http://localhost:8000/api/v1/reports/?search=${slug}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/v1/reports/?search=${slug}`)
       .then(response => {
         const tripReports = response.data;
         dispatch(fetchSlugTripReportsFulfilled(tripReports));

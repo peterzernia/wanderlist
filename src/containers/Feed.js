@@ -18,7 +18,6 @@ import Filter from '../components/Filter'
 import NotAuthModal from '../components/NotAuthModal'
 import TripReportTruncated from '../components/TripReportTruncated'
 
-import Button from '@material-ui/core/Button'
 import { DotLoader } from 'react-spinners'
 
 class Feed extends Component {
@@ -57,15 +56,15 @@ class Feed extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.fetchTripReports(`http://localhost:8000/api/v1/reports/?search=${e.target[0].value}`);
+    this.props.fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?search=${e.target[0].value}`);
   }
 
   handleNewestClick = () => {
-    this.props.fetchTripReports('http://localhost:8000/api/v1/reports/?ordering=-pk')
+    this.props.fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?ordering=-pk`)
   }
 
   handleTopClick = () => {
-    this.props.fetchTripReports('http://localhost:8000/api/v1/reports/')
+    this.props.fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/`)
   }
 
   render(){

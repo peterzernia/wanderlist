@@ -25,7 +25,7 @@ export const fetchCountryRejected = () => {
 export const fetchCountry = (query) => {
   return dispatch => {
     dispatch(fetchCountryPending());
-    axios.get(`http://localhost:8000/api/v1/countries/?search=${query}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/v1/countries/?search=${query}`)
       .then(response => {
         const country = response.data;
         dispatch(fetchCountryFulfilled(country));

@@ -41,7 +41,7 @@ is stored in localStorage.
 export const authLogin = (username, password) => {
   return dispatch => {
     dispatch(authStart());
-    axios.post('http://localhost:8000/api/v1/rest-auth/login/', {
+    axios.post(`${process.env.REACT_APP_API_URL}/api/v1/rest-auth/login/`, {
       username: username,
       password: password
     })
@@ -68,7 +68,7 @@ export const authRegister = (username, email, password1, password2, home) => {
   return dispatch => {
     localStorage.removeItem('token');
     dispatch(authStart());
-    axios.post('http://localhost:8000/api/v1/rest-auth/registration/', {
+    axios.post(`${process.env.REACT_APP_API_URL}/api/v1/rest-auth/registration/`, {
       username: username,
       email: email,
       password1: password1,
@@ -114,7 +114,7 @@ and errors.
 */
 export const requestPasswordReset = (email) => {
   return dispatch => {
-    axios.post('http://localhost:8000/api/v1/rest-auth/password/reset/', {
+    axios.post(`${process.env.REACT_APP_API_URL}/api/v1/rest-auth/password/reset/`, {
       email: email,
     })
       .then(response => {

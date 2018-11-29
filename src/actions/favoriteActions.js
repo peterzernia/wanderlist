@@ -16,7 +16,7 @@ export const toggleFavoriteRejected = () => {
 export const toggleFavorite = (tripReport) => {
   return dispatch => {
     const token = localStorage.getItem('token');
-    axios.get(`http://localhost:8000/api/v1/reports/${tripReport}/favorite/`, {headers: { 'Authorization': `Token ${token}`}})
+    axios.get(`${process.env.REACT_APP_API_URL}/api/v1/reports/${tripReport}/favorite/`, {headers: { 'Authorization': `Token ${token}`}})
       .then(response => {
         dispatch(toggleFavoriteFulfilled(response.data));
       })

@@ -98,7 +98,7 @@ class ViewProfile extends Component {
             </Typography>
             </div><br/>
             <div style={{ height: 40 }}>
-              {`localhost:3000${this.props.match.url}`}
+              {`${process.env.REACT_APP_API_URL}${this.props.match.url}`}
             </div><br/>
             <div style={{ height: 40, maxWidth: '75%' }}>
               {this.props.user.biography}

@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField'
 const CopyLinkModal = (props) => (
   <Dialog onClose={props.closeCopyLinkModal} open={props.showCopyLinkModal}>
     <DialogContent>
-      <TextField className="user-auth" type='text' name="link" defaultValue={`localhost:3000/p/${props.modalLink}/`} />
+      <TextField className="user-auth" type='text' name="link" defaultValue={`${process.env.REACT_APP_API_URL}/p/${props.modalLink}/`} />
       <DialogActions>
         <Button onClick={() => props.closeCopyLinkModal()} variant='contained' color="primary">
           Close
