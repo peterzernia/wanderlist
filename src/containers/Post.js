@@ -6,12 +6,14 @@ import { PropTypes } from 'prop-types'
 import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
 import { fetchSlugTripReports } from '../actions/tripReportActions'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import { openImageModal, closeImageModal } from '../actions/modalActions'
 import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 
 import CountryModal from '../components/CountryModal'
 import CopyLinkModal from '../components/CopyLinkModal'
+import ImageModal from '../components/ImageModal'
 import NotAuthModal from '../components/NotAuthModal'
 import TripReport from '../components/TripReport'
 
@@ -51,6 +53,7 @@ class Post extends Component {
     return(
       <div className="content">
         <NotAuthModal {...this.props} />
+        <ImageModal {...this.props} />
         <CopyLinkModal {...this.props} />
         {this.props.fetched && <CountryModal {...this.props} />}
         {this.props.fetching && <div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
@@ -71,7 +74,9 @@ const mapState = state => {
     modalCountry: state.modal.modalCountry,
     showNotAuthModal: state.modal.showNotAuthModal,
     showCopyLinkModal: state.modal.showCopyLinkModal,
-    modalLink: state.modal.modalLink
+    modalLink: state.modal.modalLink,
+    showImageModal: state.modal.showImageModal,
+    modalImage: state.modal.modalImage,
   };
 }
 
@@ -86,6 +91,8 @@ const mapDispatch = dispatch => {
     closeNotAuthModal,
     openCopyLinkModal,
     closeCopyLinkModal,
+    openImageModal,
+    closeImageModal,
   }, dispatch);
 }
 
@@ -101,6 +108,8 @@ Post.propTypes = {
   showNotAuthModal: PropTypes.bool,
   showCopyLinkModal: PropTypes.bool,
   modalLink: PropTypes.string,
+  showImageModal: PropTypes.bool,
+  modalImage: PropTypes.string,
 
   fetchSlugTripReports: PropTypes.func,
   removeError: PropTypes.func,
@@ -111,4 +120,6 @@ Post.propTypes = {
   closeNotAuthModal: PropTypes.func,
   openCopyLinkModal: PropTypes.func,
   closeCopyLinkModal: PropTypes.func,
+  openImageModal: PropTypes.func,
+  closeImageModal: PropTypes.func,
 };

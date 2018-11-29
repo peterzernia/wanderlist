@@ -6,12 +6,14 @@ import { PropTypes } from 'prop-types'
 import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
 import { fetchNextTripReports } from '../actions/tripReportActions'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import { openImageModal, closeImageModal } from '../actions/modalActions'
 import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 
 import CountryModal from '../components/CountryModal'
 import CopyLinkModal from '../components/CopyLinkModal'
+import ImageModal from '../components/ImageModal'
 import NotAuthModal from '../components/NotAuthModal'
 import TripReportTruncated from '../components/TripReportTruncated'
 
@@ -65,6 +67,7 @@ class Feed extends Component {
     return(
       <div id='scroll' className="content">
         <CopyLinkModal {...this.props} />
+        <ImageModal {...this.props} />
         <NotAuthModal {...this.props} />
         {this.props.fetched && <CountryModal {...this.props} />}
         {this.props.fetching && <div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
@@ -90,6 +93,8 @@ const mapState = state => {
     showNotAuthModal: state.modal.showNotAuthModal,
     showCopyLinkModal: state.modal.showCopyLinkModal,
     modalLink: state.modal.modalLink,
+    showImageModal: state.modal.showImageModal,
+    modalImage: state.modal.modalImage,
   };
 }
 
@@ -103,7 +108,9 @@ const mapDispatch = dispatch => {
     openNotAuthModal,
     closeNotAuthModal,
     openCopyLinkModal,
-    closeCopyLinkModal
+    closeCopyLinkModal,
+    openImageModal,
+    closeImageModal,
   }, dispatch);
 }
 
@@ -121,6 +128,8 @@ Feed.propTypes = {
   showNotAuthModal: PropTypes.bool,
   showCopyLinkModal: PropTypes.bool,
   modalLink: PropTypes.string,
+  showImageModal: PropTypes.bool,
+  modalImage: PropTypes.string,
 
   openCountryModal: PropTypes.func,
   closeCountryModal: PropTypes.func,
@@ -131,4 +140,6 @@ Feed.propTypes = {
   closeNotAuthModal: PropTypes.func,
   openCopyLinkModal: PropTypes.func,
   closeCopyLinkModal: PropTypes.func,
+  openImageModal: PropTypes.func,
+  closeImageModal: PropTypes.func,
 };

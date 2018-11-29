@@ -7,10 +7,12 @@ const initialState = {
   showTripReportModal: false,
   showNotAuthModal: false,
   showCopyLinkModal: false,
+  showImageModal: false,
   modalCountry: {},
   modalProfile: {},
   modalPost: {},
-  modalLink: null
+  modalLink: null,
+  modalImage: null
 }
 
 /* Reducer Function*/
@@ -121,15 +123,30 @@ export default function (state = initialState, action) {
         showCopyLinkModal: false,
       }
     }
+    // Update modal post, if users likes post in the modal
     case "TOGGLE_FAVORITE_FULFILLED": {
       return {
         ...state,
-        modalPost: action.response 
+        modalPost: action.response
       }
     }
     case "TOGGLE_FAVORITE_REJECTED": {
       return {
         ...state,
+      }
+    }
+    // Image modal
+    case "OPEN_IMAGE_MODAL": {
+      return {
+        ...state,
+        showImageModal: true,
+        modalImage: action.modalImage
+      }
+    }
+    case "CLOSE_IMAGE_MODAL": {
+      return {
+        ...state,
+        showImageModal: false,
       }
     }
     default:

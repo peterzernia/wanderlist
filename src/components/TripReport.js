@@ -37,7 +37,9 @@ const TripReport = (props) => {
               </Link>
             }
             action={
-              <IconButton><CollectionsIcon /></IconButton>
+              <IconButton onClick={() => props.openImageModal(props.image)}>
+                <CollectionsIcon />
+              </IconButton>
             }
             avatar={<Avatar src={props.author.home.flag}/>}
           />

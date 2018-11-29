@@ -50,7 +50,9 @@ class TripReportTruncated extends Component {
                 </Link>
               }
               action={
-                <IconButton><CollectionsIcon /></IconButton>
+                <IconButton onClick={() => this.props.openImageModal(this.props.image)}>
+                  <CollectionsIcon />
+                </IconButton>
               }
               avatar={<Avatar src={this.props.author.home.flag}/>}
             />

@@ -100,3 +100,16 @@ export const closeCopyLinkModal = () => {
     dispatch({ type: "CLOSE_COPY_LINK_MODAL" })
   }
 }
+
+// Image modal actions
+export const openImageModal = modalImage => {
+  return dispatch => {
+    dispatch({ type: "OPEN_IMAGE_MODAL", modalImage: modalImage })
+  }
+}
+
+export const closeImageModal = () => {
+  return dispatch => {
+    dispatch({ type: "CLOSE_IMAGE_MODAL" })
+  }
+}

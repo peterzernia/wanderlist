@@ -9,6 +9,7 @@ import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import { openImageModal, closeImageModal } from '../actions/modalActions'
 import { openTripReportModal, closeTripReportModal } from '../actions/modalActions'
 import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
 
@@ -141,6 +142,8 @@ const mapState = state => {
     showNotAuthModal: state.modal.showNotAuthModal,
     showCopyLinkModal: state.modal.showCopyLinkModal,
     modalLink: state.modal.modalLink,
+    showImageModal: state.modal.showImageModal,
+    modalImage: state.modal.modalImage,
   };
 }
 
@@ -159,6 +162,8 @@ const mapDispatch = dispatch => {
     closeNotAuthModal,
     openCopyLinkModal,
     closeCopyLinkModal,
+    openImageModal,
+    closeImageModal,
   }, dispatch);
 }
 
@@ -181,6 +186,8 @@ ViewProfile.propTypes = {
   showNotAuthModal: PropTypes.bool,
   showCopyLinkModal: PropTypes.bool,
   modalLink: PropTypes.string,
+  showImageModal: PropTypes.bool,
+  modalImage: PropTypes.string,
 
   removeError: PropTypes.func,
   fetchSingleUser: PropTypes.func,
@@ -195,4 +202,6 @@ ViewProfile.propTypes = {
   closeNotAuthModal: PropTypes.func,
   openCopyLinkModal: PropTypes.func,
   closeCopyLinkModal: PropTypes.func,
+  openImageModal: PropTypes.func,
+  closeImageModal: PropTypes.func,
 };

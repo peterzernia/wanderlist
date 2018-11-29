@@ -5,12 +5,14 @@ import { PropTypes } from 'prop-types'
 
 import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import { openImageModal, closeImageModal } from '../actions/modalActions'
 import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 
 import CopyLinkModal from '../components/CopyLinkModal'
 import CountryModal from '../components/CountryModal'
+import ImageModal from '../components/ImageModal'
 import NotAuthModal from '../components/NotAuthModal'
 import TripReportTruncated from '../components/TripReportTruncated'
 
@@ -43,6 +45,7 @@ class Home extends Component {
       <div >
         <NotAuthModal {...this.props} />
         <CopyLinkModal {...this.props} />
+        <ImageModal {...this.props} />
         {this.props.modalCountry && <CountryModal {...this.props} />}
         <div className='header-img'>
           <Typography variant="h2" gutterBottom style={{ color: 'white', paddingTop: 200 }}>
@@ -83,6 +86,8 @@ const mapState = state => {
     showNotAuthModal: state.modal.showNotAuthModal,
     showCopyLinkModal: state.modal.showCopyLinkModal,
     modalLink: state.modal.modalLink,
+    showImageModal: state.modal.showImageModal,
+    modalImage: state.modal.modalImage
   };
 }
 
@@ -95,7 +100,9 @@ const mapDispatch = dispatch => {
     openNotAuthModal,
     closeNotAuthModal,
     openCopyLinkModal,
-    closeCopyLinkModal
+    closeCopyLinkModal,
+    openImageModal,
+    closeImageModal
   }, dispatch);
 }
 
@@ -110,10 +117,14 @@ Home.propTypes = {
   showNotAuthModal: PropTypes.bool,
   showCopyLinkModal: PropTypes.bool,
   modalLink: PropTypes.string,
+  showImageModal: PropTypes.bool,
+  modalImage: PropTypes.string,
 
   removeError: PropTypes.func,
   openCountryModal: PropTypes.func,
   closeCountryModal: PropTypes.func,
   openCopyLinkModal: PropTypes.func,
   closeCopyLinkModal: PropTypes.func,
+  openImageModal: PropTypes.func,
+  closeImageModal: PropTypes.func,
 };

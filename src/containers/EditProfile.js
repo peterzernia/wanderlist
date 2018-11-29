@@ -12,6 +12,7 @@ import { openPostModal, closePostModal, openUpdatePostModal, openCountryModal,
          closeCountryModal, openConfirmDeleteModal, closeConfirmDeleteModal,
          openTripReportModal, closeTripReportModal } from '../actions/modalActions'
 import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
+import { openImageModal, closeImageModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 
@@ -230,6 +231,8 @@ const mapState = state => {
     modalLink: state.modal.modalLink,
     posting: state.tripReport.posting,
     updating: state.tripReport.updating,
+    showImageModal: state.modal.showImageModal,
+    modalImage: state.modal.modalImage,
   };
 }
 
@@ -257,6 +260,8 @@ const mapDispatch = dispatch => {
     toggleFavorite,
     openCopyLinkModal,
     closeCopyLinkModal,
+    openImageModal,
+    closeImageModal,
   }, dispatch);
 }
 
@@ -287,6 +292,8 @@ EditProfile.propTypes = {
   modalLink: PropTypes.string,
   posting: PropTypes.bool,
   updating: PropTypes.bool,
+  showImageModal: PropTypes.bool,
+  modalImage: PropTypes.string,
 
   fetchCountry: PropTypes.func,
   putUserData: PropTypes.func,
@@ -310,4 +317,6 @@ EditProfile.propTypes = {
   toggleFavorite: PropTypes.func,
   openCopyLinkModal: PropTypes.func,
   closeCopyLinkModal: PropTypes.func,
+  openImageModal: PropTypes.func,
+  closeImageModal: PropTypes.func,
 };
