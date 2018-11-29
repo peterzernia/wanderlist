@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 
 import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
-import { fetchNextTripReports } from '../actions/tripReportActions'
+import { fetchTripReports, fetchNextTripReports } from '../actions/tripReportActions'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { openImageModal, closeImageModal } from '../actions/modalActions'
 import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
@@ -14,9 +14,11 @@ import { toggleFavorite } from '../actions/favoriteActions'
 import CountryModal from '../components/CountryModal'
 import CopyLinkModal from '../components/CopyLinkModal'
 import ImageModal from '../components/ImageModal'
+import SearchBar from '../components/SearchBar'
 import NotAuthModal from '../components/NotAuthModal'
 import TripReportTruncated from '../components/TripReportTruncated'
 
+import Button from '@material-ui/core/Button'
 import { DotLoader } from 'react-spinners'
 
 class Feed extends Component {
@@ -53,6 +55,11 @@ class Feed extends Component {
     this.props.toggleFavorite(e.currentTarget.id);
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.fetchTripReports(`http://localhost:8000/api/v1/reports/?search=${e.target[0].value}`);
+  }
+
   render(){
 
     let listTripReports = null;
@@ -71,6 +78,13 @@ class Feed extends Component {
         <NotAuthModal {...this.props} />
         {this.props.fetched && <CountryModal {...this.props} />}
         {this.props.fetching && <div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
+        <SearchBar handleSubmit={this.handleSubmit} />
+        <Button onClick={() => this.props.fetchTripReports('http://localhost:8000/api/v1/reports/?ordering=-pk')}>
+          Newest
+        </Button>
+        <Button onClick={() => this.props.fetchTripReports('http://localhost:8000/api/v1/reports/')}>
+          Top
+        </Button>
         {this.props.fetched && <div>{listTripReports}</div>}
         <div style={{ height: 15 }}/>
         {this.props.fetchingNext && <DotLoader size={50} color={'#2196f3'} className="content" />}
@@ -104,6 +118,7 @@ const mapDispatch = dispatch => {
     closeCountryModal,
     removeError,
     fetchNextTripReports,
+    fetchTripReports,
     toggleFavorite,
     openNotAuthModal,
     closeNotAuthModal,
@@ -135,6 +150,7 @@ Feed.propTypes = {
   closeCountryModal: PropTypes.func,
   removeError: PropTypes.func,
   fetchNextTripReports: PropTypes.func,
+  fetchTripReports: PropTypes.func,
   toggleFavorite: PropTypes.func,
   openNotAuthModal: PropTypes.func,
   closeNotAuthModal: PropTypes.func,

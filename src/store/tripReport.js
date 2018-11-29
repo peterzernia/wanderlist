@@ -253,27 +253,25 @@ export default function (state = initialState, action) {
       }
     }
     case "TOGGLE_FAVORITE_FULFILLED": {
+      const index = state.tripReports.results.findIndex((tripReport => tripReport.id === action.response.id))
       return {
         ...state,
         /*
         Same as PUT request, the response of the axios call to toggle favorite
         returns the new Trip Report object with updated favorites array. This
-        Trip Report object must replace the old Trip Report object.
+        Trip Report favoriters must replace the old Trip Report favoriters.
+        User Trip Reports do not need to be updated since a favorite button is
+        never shown for that array.
         */
-        userTripReports: {
-          results: [...state.userTripReports.results].filter(tripReport => tripReport.id !== action.response.id).concat(action.response).sort((a, b) => a.id < b.id),
-          count: state.userTripReports.count,
-          next: state.userTripReports.next,
-          previous: state.userTripReports.previous
-        },
         tripReports: {
-          results: [...state.tripReports.results].filter(tripReport => tripReport.id !== action.response.id).concat(action.response).sort((a, b) => a.id < b.id),
+          // Since order matters, only the specific index of the array should be changed.
+          results: [...state.tripReports.results].map((tripReport, i) => i === index ? { ...tripReport, favoriters: action.response.favoriters} : {...tripReport}),
           count: state.tripReports.count,
           next: state.tripReports.next,
           previous: state.tripReports.previous
         },
         slugTripReports: {
-          results: [...state.slugTripReports.results].filter(tripReport => tripReport.id !== action.response.id).concat(action.response).sort((a, b) => a.id < b.id),
+          results: [action.response],
           count: state.slugTripReports.count,
           next: state.slugTripReports.next,
           previous: state.slugTripReports.previous

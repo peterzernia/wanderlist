@@ -164,12 +164,12 @@ export const fetchSlugTripReportsRejected = () => {
 
 /*
 GET requests the Django REST API and returns the first page of a list of Trip
-Reports.
+Reports. The passed in url can have filter parameters added.
 */
-export const fetchTripReports = () => {
+export const fetchTripReports = (url) => {
   return dispatch => {
     dispatch(fetchTripReportsPending());
-    axios.get('http://localhost:8000/api/v1/reports/')
+    axios.get(url)
       .then(response => {
         const tripReports = response.data;
         dispatch(fetchTripReportsFulfilled(tripReports));
@@ -208,7 +208,7 @@ first page of the list of the Users TripReports.
 export const fetchUserTripReports = (username) => {
   return dispatch => {
     dispatch(fetchUserTripReportsPending());
-    axios.get(`http://localhost:8000/api/v1/reports/?search=${username}`)
+    axios.get(`http://localhost:8000/api/v1/reports/?search=${username}&?ordering=-pk`)
       .then(response => {
         const tripReports = response.data;
         dispatch(fetchUserTripReportsFulfilled(tripReports));
