@@ -13,7 +13,7 @@ def auto_delete_file_on_trip_report_delete(sender, instance, **kwargs):
 
 # When a Trip Report image is updated, the old file gets deleted from file system.
 @receiver(pre_save, sender=TripReport)
-def auto_delete_old_trip_report_image_file_on_image_update(sender, instance, **kwargs):
+def auto_delete_old_image_file_on_image_update(sender, instance, **kwargs):
     try:
         old_file = TripReport.objects.get(pk=instance.pk).image
     except TripReport.DoesNotExist:
