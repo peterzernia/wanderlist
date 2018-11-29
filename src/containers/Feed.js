@@ -14,7 +14,7 @@ import { toggleFavorite } from '../actions/favoriteActions'
 import CountryModal from '../components/CountryModal'
 import CopyLinkModal from '../components/CopyLinkModal'
 import ImageModal from '../components/ImageModal'
-import SearchBar from '../components/SearchBar'
+import Filter from '../components/Filter'
 import NotAuthModal from '../components/NotAuthModal'
 import TripReportTruncated from '../components/TripReportTruncated'
 
@@ -60,6 +60,14 @@ class Feed extends Component {
     this.props.fetchTripReports(`http://localhost:8000/api/v1/reports/?search=${e.target[0].value}`);
   }
 
+  handleNewestClick = () => {
+    this.props.fetchTripReports('http://localhost:8000/api/v1/reports/?ordering=-pk')
+  }
+
+  handleTopClick = () => {
+    this.props.fetchTripReports('http://localhost:8000/api/v1/reports/')
+  }
+
   render(){
 
     let listTripReports = null;
@@ -72,19 +80,13 @@ class Feed extends Component {
     }
 
     return(
-      <div id='scroll' className="content">
+      <div id='scroll' className="content" style={{ marginTop: 0 }} >
         <CopyLinkModal {...this.props} />
         <ImageModal {...this.props} />
         <NotAuthModal {...this.props} />
         {this.props.fetched && <CountryModal {...this.props} />}
-        {this.props.fetching && <div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
-        <SearchBar handleSubmit={this.handleSubmit} />
-        <Button onClick={() => this.props.fetchTripReports('http://localhost:8000/api/v1/reports/?ordering=-pk')}>
-          Newest
-        </Button>
-        <Button onClick={() => this.props.fetchTripReports('http://localhost:8000/api/v1/reports/')}>
-          Top
-        </Button>
+        <Filter handleSubmit={this.handleSubmit} handleNewestClick={this.handleNewestClick} handleTopClick={this.handleTopClick}/>
+        {this.props.fetching && <div><DotLoader size={50} color={'#2196f3'} className="content" /><br/></div>}
         {this.props.fetched && <div>{listTripReports}</div>}
         <div style={{ height: 15 }}/>
         {this.props.fetchingNext && <DotLoader size={50} color={'#2196f3'} className="content" />}
