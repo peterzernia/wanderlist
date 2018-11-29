@@ -45,11 +45,15 @@ class PostTripReportForm extends Component {
           id="flat-button-file"
           multiple={false}
           type="file"
+          hidden
         />
-        <label htmlFor="flat-button-file" style={{ marginLeft: '0 auto' }}>
-          <Button component="span">Image</Button>
-        </label><br/>
-        <Button variant="contained" color="primary" type="submit">Post</Button>
+        <div style={{ width: 300, textAlign: 'left', margin: '0 auto', marginTop: 10 }}>
+          <label htmlFor="flat-button-file" >
+            <Button variant='contained' component="span">Browse</Button>
+            &nbsp;Select a file
+          </label>
+        </div>
+        <Button style={{ marginTop: 10 }} variant="contained" color="primary" type="submit">Post</Button>
       </form>
     )
   }
