@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { fetchTripReports, fetchUserTripReports } from './tripReportActions'
 
 // Fetch authenticated user axios actions
 export const fetchUserPending = () => {
@@ -92,12 +91,6 @@ export const putUserData = (username, email, countries, home, biography, success
       .then(response => {
         const user = response.data;
         dispatch(putUserDataFulfilled(user));
-        /*
-        Fetch Trip Reports and User Trip Reports to refresh their author so that
-        the profile picture is updated.
-        */
-        dispatch(fetchTripReports());
-        dispatch(fetchUserTripReports(username));
         dispatch({type: "ADD_SUCCESS", success: success});
       })
       .catch(err => {

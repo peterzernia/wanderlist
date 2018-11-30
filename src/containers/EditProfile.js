@@ -96,7 +96,7 @@ class EditProfile extends Component {
 
   handleUpdateSubmit = (e) => {
     e.preventDefault();
-    let countries = countries = e.target.countries.value.split(',').map(Number);
+    let countries = e.target.countries.value.split(',').map(Number);
     this.props.updateTripReport(
       this.props.modalPost.id,
       this.props.user.pk,

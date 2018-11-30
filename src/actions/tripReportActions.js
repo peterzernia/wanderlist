@@ -253,10 +253,7 @@ export const postTripReport = (author, title, content, countries, image) => {
     formData.append('content', content);
     formData.append('author', author);
     formData.append('countries', countries);
-    // If image is undefined, no image is POSTed.
-    if (image) {
-      formData.append('image', image);
-    }
+    formData.append('image', image);
     axios.post(
       `${process.env.REACT_APP_API_URL}/api/v1/reports/`,formData,
       {headers: { 'Authorization': `Token ${token}`}}
