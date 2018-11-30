@@ -35,7 +35,7 @@ class PostTripReportForm extends Component {
         <TextField multiline fullWidth className="user-auth" type='text' name="content" label="Content"/><br/>
         <FormControl>
           <InputLabel htmlFor="countries">Countries</InputLabel>
-          <Select style={{ textAlign: 'left'}} multiple className="user-auth" name="countries" onChange={this.handleChange} value={this.state.countries}>
+          <Select style={{ textAlign: 'left'}} className="user-auth" name="countries" onChange={this.handleChange} value={this.state.countries}>
             {menuItems}
           </Select>
         </FormControl><br/>
