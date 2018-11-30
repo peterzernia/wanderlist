@@ -16,7 +16,7 @@ class App extends Component {
   */
   componentWillMount() {
     this.props.authCheckState();
-    this.props.fetchTripReports('http://localhost:8000/api/v1/reports/?ordering=-pk');
+    this.props.fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?ordering=-pk`);
   }
 
   render() {

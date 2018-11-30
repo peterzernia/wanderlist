@@ -197,5 +197,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
+
+# Heroku settings, comment out for development.
 django_heroku.settings(locals())
 DATABASES['default'] =  dj_database_url.config()
