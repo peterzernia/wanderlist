@@ -62,7 +62,7 @@ export const fetchUser = () => {
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch(fetchUserPending());
-    axios.get('http://localhost:8000/api/v1/rest-auth/user/', {headers: { 'Authorization': `Token ${token}`}})
+    axios.get(`${process.env.REACT_APP_API_URL}/api/v1/rest-auth/user/`, {headers: { 'Authorization': `Token ${token}`}})
       .then(response => {
         const user = response.data;
         dispatch(fetchUserFulfilled(user));
@@ -79,7 +79,7 @@ export const putUserData = (username, email, countries, home, biography, success
   const token = localStorage.getItem('token');
   return dispatch => {
     axios.put(
-      'http://localhost:8000/api/v1/rest-auth/user/',
+      `${process.env.REACT_APP_API_URL}api/v1/rest-auth/user/`,
       {
         username: username,
         email: email,
@@ -111,7 +111,7 @@ export const putUserData = (username, email, countries, home, biography, success
 export const fetchSingleUser = (username) => {
   return dispatch => {
     dispatch(fetchSingleUserPending());
-    axios.get(`http://localhost:8000/api/v1/users/?search=${username}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/v1/users/?search=${username}`)
       .then(response => {
         const user = response.data;
         dispatch(fetchSingleUserFulfilled(user));
