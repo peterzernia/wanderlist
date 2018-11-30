@@ -8,7 +8,7 @@
 htmlcov
 
 # production
-production_settings.py
+
 /build
 
 # misc
