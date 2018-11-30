@@ -1,4 +1,4 @@
-import './App.css' 
+import './App.css'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import PropType from 'prop-types'
