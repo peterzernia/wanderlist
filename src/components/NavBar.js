@@ -18,7 +18,7 @@ const NavBar = (props) => {
             style={{ flex: 1, justifyContent: 'left', width: 90, backgroundColor: 'transparent' }}
             component={Link} to='/'
             color="inherit">
-            Countries
+            Wanderlist
           </Button>
           <Tooltip title='Trip Report Feed'>
             <Button component={Link} to='/feed' color="inherit"><ListIcon /></Button>
