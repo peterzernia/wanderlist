@@ -92,8 +92,8 @@ This is the class for the DotLoader.
   }
   .left,
   .right {
-    width: auto;
-    text-align: center;
+    width: auto!important;
+    text-align: center!important;
   }
 }
 

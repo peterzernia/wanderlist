@@ -169,7 +169,7 @@ class EditProfile extends Component {
                 Edit Profile
               </Button>
             </div><br/>
-            <div style={{ height: 40, maxWidth: '75%' }}>
+            <div style={{ height: 40 }}>
               {this.props.user.biography}
             </div>
           </div>
