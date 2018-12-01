@@ -13,9 +13,9 @@ const NavBar = (props) => {
   return (
     <div style={{ backgroundColor: '#ffffff'}} >
       <AppBar color='inherit' position="static">
-        <Toolbar>
+        <Toolbar style={{ padding: 0 }}>
           <Button
-            style={{ flex: 1, justifyContent: 'left', width: 90, backgroundColor: 'transparent' }}
+            style={{ flex: 1, justifyContent: 'left', minWidth: 90, backgroundColor: 'transparent' }}
             component={Link} to='/'
             color="inherit">
             Wanderlist
