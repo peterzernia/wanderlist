@@ -83,7 +83,10 @@ class EditProfile extends Component {
     e.preventDefault();
     // e.target.countries.value must be split at the comma and then strings
     // must be converted into numbers.
-    let countries = e.target.countries.value.split(',').map(Number);
+    let countries;
+    if (e.target.countries.value !== '') {
+      countries = e.target.countries.value.split(',').map(Number);
+    }
     this.props.postTripReport(
       this.props.user.pk,
       e.target.title.value,
@@ -96,7 +99,10 @@ class EditProfile extends Component {
 
   handleUpdateSubmit = (e) => {
     e.preventDefault();
-    let countries = e.target.countries.value.split(',').map(Number);
+    let countries;
+    if (e.target.countries.value !== '') {
+      countries = e.target.countries.value.split(',').map(Number);
+    }
     this.props.updateTripReport(
       this.props.modalPost.id,
       this.props.user.pk,
