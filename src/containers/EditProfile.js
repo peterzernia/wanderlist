@@ -8,9 +8,10 @@ import { putUserData } from '../actions/userActions'
 import { fetchCountry } from '../actions/countryActions'
 import { fetchNextUserTripReports } from '../actions/tripReportActions'
 import { fetchUserTripReports, postTripReport, deleteTripReport, updateTripReport } from '../actions/tripReportActions'
-import { openPostModal, closePostModal, openUpdatePostModal, openCountryModal,
-         closeCountryModal, openConfirmDeleteModal, closeConfirmDeleteModal,
-         openTripReportModal, closeTripReportModal } from '../actions/modalActions'
+import { openPostModal, closePostModal, openUpdatePostModal } from '../actions/modalActions'
+import { openCountryModal, closeCountryModal } from '../actions/modalActions'
+import { openConfirmDeleteModal, closeConfirmDeleteModal } from '../actions/modalActions'
+import { openTripReportModal, closeTripReportModal } from '../actions/modalActions'
 import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
 import { openImageModal, closeImageModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'

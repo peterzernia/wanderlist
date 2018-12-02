@@ -74,7 +74,10 @@ class Results extends React.Component {
               </Tooltip>
             )
           }
-          {/* If user is not authenticated, Add button shows alert instead. */}
+          {/*
+          If user is not authenticated, Add button shows the Not Authenticated
+          Modal instead.
+          */}
           {
             !this.props.authenticated
             && (

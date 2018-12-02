@@ -18,9 +18,11 @@ const CountryModal = (props) => {
     position: 'relative'
   }
 
-  // The data is all listed as conditional because some of the values do not
-  // exist for certain country objects e.g. Antarctica does not have a capital
-  // or borders.
+  /*
+  The data is all listed as conditional because some of the values do not
+  exist for certain country objects e.g. Antarctica does not have a capital
+  or borders.
+  */
   return (
     <ReactModal isOpen={props.showCountryModal}>
       <IconButton style={{ float: 'right' }} onClick={props.closeCountryModal}>

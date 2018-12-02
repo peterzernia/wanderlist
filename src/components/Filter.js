@@ -39,6 +39,11 @@ class Filter extends Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
+          {/*
+          Filter Menu contains a form to filter Trip Reports by country or
+          author and another two buttons to filter by the newest and top
+          (highest favorite count) Trip Reports. 
+          */}
           <MenuItem style={{ background: 'transparent' }} >
             <form onSubmit={(e) => {this.handleClose(); this.props.handleSubmit(e)}}>
               <TextField style={{ maxWidth: 250 }} type='text' name="filter" placeholder="Author or Country"/>

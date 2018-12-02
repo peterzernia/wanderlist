@@ -4,7 +4,8 @@ import { Route, Redirect } from 'react-router-dom';
 const PrivateRoute = ({ component: Component, authenticated, ...rest }) => (
 
   /*
-  Users must be logged in to view Private Routes.
+  Users must be authenticated in to view Private Routes or else they are
+  redirected to the Login Page.
   */
   <Route
     {...rest}

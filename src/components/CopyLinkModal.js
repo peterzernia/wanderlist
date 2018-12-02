@@ -5,6 +5,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import TextField from '@material-ui/core/TextField'
 
+// Form with the link of the Trip Report, so that users can easily copy the link.
 const CopyLinkModal = (props) => (
   <Dialog onClose={props.closeCopyLinkModal} open={props.showCopyLinkModal}>
     <DialogContent>

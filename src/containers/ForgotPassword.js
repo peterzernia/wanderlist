@@ -7,7 +7,10 @@ import { requestPasswordReset } from '../actions/authActions'
 
 import ForgotPasswordForm from '../components/ForgotPasswordForm'
 
-
+/*
+POSTS an email address to the Django backend, which handles sending an email
+with a url to set a new password for the user.
+*/
 class ForgotPassword extends Component{
 
   handleSubmit = (e) => {

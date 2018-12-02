@@ -19,9 +19,11 @@ class Register extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     let country;
-    // Js tries to convert empty string to 0 with Number, this prevents that,
-    // which POSTs an empty string instead of 0 to return the correct error
-    // if the Home Country field is left blank on registration.
+    /*
+    JS tries to convert empty string to 0 with Number, this prevents that,
+    which POSTs an empty string instead of 0 to return the correct error
+    if the Home Country field is left blank on registration.
+    */
     if (e.target.country.value !== '') {
       country = Number(e.target.country.value)
     }
@@ -35,8 +37,10 @@ class Register extends Component {
   }
   render(){
     return(
-      // If the user is authenticated on the Register page, it will redirect to
-      // the home page.
+      /*
+      If the user is authenticated on the Register page, it will redirect to
+      the home page.
+      */
       <div className="content">
       {
         !this.props.authenticated

@@ -27,8 +27,10 @@ class Search extends Component {
     this.props.fetchCountry(e.target[0].value);
   }
 
-  // This function handles making the new userCountries array and PUT requesting
-  // the array to the Django backend.
+  /*
+  This function handles making the new userCountries array and PUT requesting
+  the array to the Django backend.
+  */
   handleClick = (e) => {
     e.preventDefault();
     // Resets newCountry to null at the beginning of every function call.
