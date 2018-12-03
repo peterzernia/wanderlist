@@ -5,6 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
+import countries from '../country_data'
 
 class PostTripReportForm extends Component {
 
@@ -25,8 +26,18 @@ class PostTripReportForm extends Component {
     This copies the array to avoid mutation, sorts alphabetically by name,
     then maps to a Material UI MenuItem.
     */
-    const menuItems = [...this.props.user.countries].sort((a, b) => a.name > b.name).map(country => (
-      <MenuItem key={country.id} value={country.id}>{country.name}</MenuItem>
+    // const menuItems = [...this.props.user.countries].sort((a, b) => a.name > b.name).map(country => (
+    //   <MenuItem key={country.id} value={country.id}>{country.name}</MenuItem>
+    // ))
+
+    /*
+    Currently displaying list of all of the countries when posting. New users
+    were confused why the list was empty before they had added countries to
+    their map. To avoid confusion and make a better user experience, all of the
+    countries are shown until UX changes.
+    */
+    const menuItems = [...countries].sort((a, b) => a.name > b.name).map(country => (
+      <MenuItem key={country.pk} value={country.pk}>{country.name}</MenuItem>
     ))
 
     return(
