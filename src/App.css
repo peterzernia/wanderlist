@@ -17,10 +17,6 @@ img {
   max-width: 100%
 }
 
-li.languages {
-  display: inline;
-}
-
 p {
   white-space: pre-line;
 }
