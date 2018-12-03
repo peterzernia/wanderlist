@@ -76,22 +76,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'countries',
-        'USER': 'peterzernia',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -186,6 +170,12 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
 
-# Heroku settings, comment out for development.
+# Heroku settings get overridden if local_settings.py exists.
 django_heroku.settings(locals())
 DATABASES['default'] =  dj_database_url.config()
+
+# Local settings.
+try:
+    from backend.local_settings import *
+except ImportError:
+    pass
