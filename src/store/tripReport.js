@@ -303,9 +303,16 @@ export default function (state = initialState, action) {
         }
       }
     }
-    case "TOGGLE_FAVORITE_REJECTED": {
+    case "PUT_USER_DATA_FULFILLED": {
       return {
         ...state,
+        tripReports: {
+          // If the user home changes, any posts by that user must be updated to update Avatar image.
+          results: [...state.tripReports.results].map( tripReport => tripReport.author.username === action.user.username ? { ...tripReport, author: action.user} : {...tripReport}),
+          count: state.tripReports.count,
+          next: state.tripReports.next,
+          previous: state.tripReports.previous
+        },
       }
     }
     // Reset authenticated user trip reports array on logout.
