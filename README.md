@@ -86,7 +86,7 @@ SECRET_KEY = os.environ.get('COUNTRIES')
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 ```
-    **with**
+  *with*
 ```
 SECRET_KEY = 'your newly generated secret key here'
 EMAIL_HOST_USER = 'your gmail username'
