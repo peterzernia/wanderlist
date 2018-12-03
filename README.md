@@ -13,16 +13,16 @@ deployed on Heroku.
 In my earlier project [Petsygram](https://github.com/peterzernia/petsygram), I relied heavily on Django templates
 and barely even touched any of the Django Rest Framework. The motivation for my
 next project was to make use of Django Rest Framework to make a REST API and
-interact with that API in a  Single Page App (SPA). This is clearly the
+interact with that API in a Single Page App (SPA). This is clearly the
 direction modern web development has taken. Reactjs fit the bill for everything
 I was looking to do in this web app, as well as being an exciting and popular
 library. As an avid traveller and geography buff, creating an app based around
 traveling and geography made perfect sense. Countries have plenty of interesting
-data with which I could populate my database and REST API. Country data and
-statistics is obviously something I only wanted users to have read access to, so
+data with which I could populate my database and REST API. Country data
+is obviously something I only wanted users to have read access to, so
 to add create, update, and delete functionality to this web app, I decided to
 have users add and remove countries from a personalized map, using the Google
-Maps API, which grew into having users write Trip Reports on trips they have
+Maps API, which expanded into having users write Trip Reports on trips they have
 taken, tagging countries.
 
 
@@ -74,31 +74,19 @@ $ source ~/venvs/wanderlist/bin/activate
 7. Generate a secret key for your Django app using
 ```
 $ python
-```
-  **then**
-```
 >>> from django.utils.crypto import get_random_string
-```
-  **then**
-```
 >>> chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
-```
-  **then**
-```
 >>> get_random_string(50, chars)
-```
-  **and lastly**
-```
 >>> quit()
 ```
 
-8. Copy this result and in your wanderlist/backend/settings.py file replace
+8. Copy the result and in wanderlist/backend/settings.py file replace
 ```
 SECRET_KEY = os.environ.get('COUNTRIES')
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 ```
-  **with**
+    **with**
 ```
 SECRET_KEY = 'your newly generated secret key here'
 EMAIL_HOST_USER = 'your gmail username'
@@ -113,9 +101,9 @@ More info on Gmail App Passwords [here](https://support.google.com/accounts/answ
 REACT_APP_GOOGLE_API_KEY = 'your key here'
 REACT_APP_API_URL = 'http://localhost:8000'
 ```
-9. Create a Postgres database called 'wanderlist'
+11. Create a Postgres database called 'wanderlist'
 
-10. Create a wanderlist/backend/local_settings.py and add this with your
+12. Create a wanderlist/backend/local_settings.py and add this with your
 username for <username>,
 ```
 DEBUG = True
@@ -132,51 +120,51 @@ DATABASES = {
 }
 ```
 
-11. Change into the directory containing 'requirements.txt'
+13. Change into the directory containing 'requirements.txt'
 ```
 $ cd wanderlist
 ```
 
-12. Install the requirements
+14. Install the requirements
 ```
 $ pip install -r requirements.txt
 $ npm install
 ```
 
-13. Make migrations to set up the database
+15. Make migrations to set up the database
 ```
 $ python manage.py makemigrations
 ```
 
-14. When this has completed, run the migrations
+16. When this has completed, run the migrations
 ```
 $ python manage.py migrate
 ```
 
-15. Create a user profile to login with
+17. Create a user profile to login with
 ```
 $ python manage.py createsuperuser
 ```
-and follow the instructions
+  and follow the instructions
 
-17. Add the countries data to the database
+18. Add the countries data to the database
 ```
 $ python manage.py loaddata database.json
 ```
 
-18. Run the Django server
+19. Run the Django server
 ```
 $ python manage.py runserver
 ```
 
-19. Open a new terminal window, change into the project directory, and run the
+20. Open a new terminal window, change into the project directory, and run the
 React server
 ```
 $ cd projects/wanderlist
 $ npm start
 ```
 
-20. If there were no errors anywhere, you can now go to http://localhost:3000/
+21. If there were no errors anywhere, you can now go to http://localhost:3000/
 in your browser to view a local copy of Wanderlist. Any changes will be live
 updated on the React server.
 
@@ -189,7 +177,7 @@ There exist multiple endpoints for the API, /api/v1/.
 * [Trip Reports](https://w4nderlist.herokuapp.com/api/v1/reports/) - The endpoint for the Trip Reports. Authenticated users can create, read, update and delete Trip Reports from the React frontend.
 * [Users](https://w4nderlist.herokuapp.com/api/v1/reports/) - The read-only API view for user objects.
 * Rest-auth - These views allow registration and authentication via the django-rest-auth and django-allauth packages.
-* Favorite - /report/<pk>/favorite/ - GET requests from authenticated users to this custom API view toggle the users favorite status of a Trip Report
+* Favorite - /report/country_id/favorite/ - GET requests from authenticated users to this custom API view toggle the users favorite status of a Trip Report
 
 
 
