@@ -32,9 +32,9 @@ class Home extends Component {
 
   render(){
 
-    let listTripReports = null;
-    if (this.props.tripReports){
-      listTripReports = this.props.tripReports.map(tripReport =>(
+    let featuredTripReport = null;
+    if (this.props.tripReport){
+      featuredTripReport = this.props.tripReport.map(tripReport =>(
         <div key={tripReport.id} style={{ marginBottom: 20 }}>
           <TripReportTruncated handleClick={this.handleClick} {...tripReport} {...this.props} openCountryModal={this.props.openCountryModal}/>
         </div>
@@ -63,11 +63,11 @@ class Home extends Component {
         <div className='content' style={{ margin: '0 auto', marginTop: 30 }}>
           <h2>Post Trip Reports about journeys you've taken</h2>
           <div style={{ textAlign: 'left', width: '90%', margin: '0 auto' }}>
-            Featured Article
+            Featured Trip Report
           </div>
           {
-            this.props.tripReports
-            ? <div>{listTripReports[0]}</div>
+            this.props.tripReport
+            ? <div>{featuredTripReport}</div>
             : <DotLoader size={50} color={'#2196f3'} className="content" />
           }
         </div>
@@ -78,7 +78,7 @@ class Home extends Component {
 
 const mapState = state => {
   return {
-    tripReports: state.tripReport.tripReports.results,
+    tripReport: state.tripReport.featuredTripReport,
     showCountryModal: state.modal.showCountryModal,
     modalCountry: state.modal.modalCountry,
     pk: state.user.user.pk,

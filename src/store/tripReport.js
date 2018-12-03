@@ -11,9 +11,12 @@ const initialState = {
   fetchedTripReports: false,
   fetchingSlugTripReports: false,
   fetchedSlugTripReports: false,
+  fetchingFeaturedTripReport: false,
+  fetchedFeaturedTripReport: false,
   tripReports: { results: [], count: null, next: null, previous: null},
   userTripReports: { results: [], count: null, next: null, previous: null},
   slugTripReports: { results: [], count: null, next: null, previous: null},
+  featuredTripReport: []
 }
 
 export default function (state = initialState, action) {
@@ -250,6 +253,28 @@ export default function (state = initialState, action) {
         ...state,
         fetchingSlugTripReports: false,
         fetchedSlugTripReports: false,
+      }
+    }
+    case "FETCH_FEATURED_TRIP_REPORT_PENDING": {
+      return {
+        ...state,
+        fetchingFeaturedTripReport: true,
+        fetchedFeaturedTripReport: false
+      }
+    }
+    case "FETCH_FEATURED_TRIP_REPORT_FULFILLED": {
+      return {
+        ...state,
+        fetchingFeaturedTripReport: false,
+        fetchedFeaturedTripReport: true,
+        featuredTripReport: action.tripReport.results,
+      }
+    }
+    case "FETCH_FEATURED_TRIP_REPORT_REJECTED": {
+      return {
+        ...state,
+        fetchingFeaturedTripReport: false,
+        fetchedFeaturedTripReport: false,
       }
     }
     case "TOGGLE_FAVORITE_FULFILLED": {

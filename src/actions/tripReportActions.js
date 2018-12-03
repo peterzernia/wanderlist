@@ -162,6 +162,26 @@ export const fetchSlugTripReportsRejected = () => {
   }
 }
 
+// For fetching the Featured Trip Report
+export const fetchFeaturedTripReportPending = () => {
+  return {
+    type: "FETCH_FEATURED_TRIP_REPORT_PENDING"
+  }
+}
+
+export const fetchFeaturedTripReportFulfilled = tripReport => {
+  return {
+    type: "FETCH_FEATURED_TRIP_REPORT_FULFILLED",
+    tripReport: tripReport
+  }
+}
+
+export const fetchFeaturedTripReportRejected = () => {
+  return {
+    type: "FETCH_FEATURED_TRIP_REPORT_REJECTED"
+  }
+}
+
 /*
 GET requests the Django REST API and returns the first page of a list of Trip
 Reports. The passed in url can have filter parameters added.
@@ -336,6 +356,25 @@ export const fetchSlugTripReports = (slug) => {
       })
       .catch(err => {
         dispatch(fetchSlugTripReportsRejected());
+        dispatch({type: "ADD_ERROR", error: err});
+      })
+  }
+}
+
+/*
+GET requests the Django REST API and returns the Featured Trip Report. This slug
+for the Featured Trip Report is hardcoded into the function.
+*/
+export const fetchFeaturedTripReport = (slug) => {
+  return dispatch => {
+    dispatch(fetchFeaturedTripReportPending());
+    axios.get(`${process.env.REACT_APP_API_URL}/api/v1/reports/?search=${slug}`)
+      .then(response => {
+        const tripReport = response.data;
+        dispatch(fetchFeaturedTripReportFulfilled(tripReport));
+      })
+      .catch(err => {
+        dispatch(fetchFeaturedTripReportRejected());
         dispatch({type: "ADD_ERROR", error: err});
       })
   }
