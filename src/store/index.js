@@ -9,7 +9,13 @@ import tripReport from './tripReport'
 import user from './user'
 
 const reducer = combineReducers({auth, country, error, modal, tripReport, user})
-const middleware = applyMiddleware(thunk, createLogger())
+
+let middleware = applyMiddleware(thunk)
+// In development, we want the logger running.
+if (process.env.NODE_ENV === 'development') {
+  middleware = applyMiddleware(thunk, createLogger())
+}
+
 const store = createStore(reducer, middleware)
 
 export default store
