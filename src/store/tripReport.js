@@ -300,7 +300,8 @@ export default function (state = initialState, action) {
           count: state.slugTripReports.count,
           next: state.slugTripReports.next,
           previous: state.slugTripReports.previous
-        }
+        },
+        featuredTripReport: [...state.featuredTripReport].map((tripReport, i) => i === index ? { ...tripReport, favoriters: action.response.favoriters} : {...tripReport})
       }
     }
     case "PUT_USER_DATA_FULFILLED": {
