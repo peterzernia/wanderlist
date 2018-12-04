@@ -1,6 +1,6 @@
 # Wanderlist
 
-Wanderlist is a full-featured, single page web application built on the Django
+Wanderlist is a full-featured, single-page web application built on the Django
 framework with a Reactjs frontend. The Django server is hosting the React
 javascript pages while also hosting the REST API. React handles the client side
 interaction with the REST API through axios requests. The entire project is
@@ -13,7 +13,7 @@ deployed on Heroku.
 In my earlier project [Petsygram](https://github.com/peterzernia/petsygram), I relied heavily on Django templates
 and barely even touched any of the Django Rest Framework. The motivation for my
 next project was to make use of Django Rest Framework to make a REST API and
-interact with that API in a Single Page App (SPA). This is clearly the
+interact with that API in a Single-Page App (SPA). This is clearly the
 direction modern web development has taken. Reactjs fit the bill for everything
 I was looking to do in this web app, as well as being an exciting and popular
 library. As an avid traveller and geography buff, creating an app based around
@@ -103,8 +103,7 @@ REACT_APP_API_URL = 'http://localhost:8000'
 ```
 11. Create a Postgres database called 'wanderlist'
 
-12. Create a wanderlist/backend/local_settings.py and add this with your
-username for <username>,
+12. Create a wanderlist/backend/local_settings.py and add this to the file,
 ```
 DEBUG = True
 
@@ -112,13 +111,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'wanderlist',
-        'USER': '<username>,
+        'USER': '<username>',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
     }
 }
 ```
+  replacing <username> with your postgres username.
 
 13. Change into the directory containing 'requirements.txt'
 ```
@@ -185,7 +185,7 @@ There exist multiple endpoints for the API, /api/v1/.
 
 A lot. This project gave me an in-depth look into REST APIs as well as
 experience in a more complicated, capable, and real-world development stack. I
-had to learn an entirely knew language (javascript) to complete this project as
+had to learn an entirely new language (javascript) to complete this project as
 well as how to separate front and backends. I purposefully set out to write
 tests and comments sooner and better than in Petsygram. I explored SQL
 databases deeper than previously, using a PostgreSQL database in development
