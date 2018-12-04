@@ -5,6 +5,7 @@ from trips.models import TripReport
 from api.serializers import (
     UserDetailSerializer, RegistrationSerializer, AuthorField, CountryField
 )
+from api.views import FavoriteAPI
 from django.urls import reverse
 from rest_framework.test import force_authenticate, APIRequestFactory, APIClient
 from django.contrib.sessions.middleware import SessionMiddleware
@@ -16,88 +17,8 @@ from collections import OrderedDict
 class UserDetailSerializerTest(TestCase):
     def setUp(self):
         # Create two country objects.
-        self.country_one = Country.objects.create(
-            name="Bouvet Island",
-            top_level_domain=[
-              ".bv"
-            ],
-            alpha2code="BV",
-            alpha3code="BVT",
-            calling_codes=[
-              ""
-            ],
-            capital=None,
-            alt_spellings=[
-              "BV",
-              "Bouvet\u00f8ya",
-              "Bouvet-\u00f8ya"
-            ],
-            region=None,
-            subregion=None,
-            population=0,
-            latlng=[
-              -54.43333333,
-              3.4
-            ],
-            demonym=None,
-            area=49.0,
-            gini=None,
-            timezones=[
-              "UTC+01:00"
-            ],
-            borders=[],
-            native_name="Bouvet\u00f8ya",
-            numeric_code="074",
-            flag="https://restcountries.eu/data/bvt.svg",
-            cioc=None,
-        )
-        self.country_two = Country.objects.create(
-            name="Congo (Democratic Republic of the)",
-            top_level_domain=[
-              ".cd"
-            ],
-            alpha2code="CD",
-            alpha3code="COD",
-            calling_codes=[
-              "243"
-            ],
-            capital="Kinshasa",
-            alt_spellings=[
-              "CD",
-              "DR Congo",
-              "Congo-Kinshasa",
-              "DRC"
-            ],
-            region="Africa",
-            subregion="Middle Africa",
-            population=85026000,
-            latlng=[
-              0.0,
-              25.0
-            ],
-            demonym="Congolese",
-            area=2344858.0,
-            gini=None,
-            timezones=[
-              "UTC+01:00",
-              "UTC+02:00"
-            ],
-            borders=[
-              "AGO",
-              "BDI",
-              "CAF",
-              "COG",
-              "RWA",
-              "SSD",
-              "TZA",
-              "UGA",
-              "ZMB"
-            ],
-            native_name="R\u00e9publique d\u00e9mocratique du Congo",
-            numeric_code="180",
-            flag="https://restcountries.eu/data/cod.svg",
-            cioc="COD",
-        )
+        self.country_one = Country.objects.create(name="Bouvet Island")
+        self.country_two = Country.objects.create(name="Congo (Democratic Republic of the)")
         # Create a user object.
         self.user = User.objects.create(
             username='TestUser',
@@ -145,7 +66,7 @@ class UserDetailSerializerTest(TestCase):
         self.user.refresh_from_db()
         self.assertEqual(self.user.username, 'Test')
         self.assertEqual(self.user.email, 'new_email@test.com')
-        self.assertEqual(list(self.user.countries.all()), [self.country_one, self.country_two])
+        self.assertEqual(self.user.countries.all().count(), 2)
         self.assertEqual(self.user.home, self.country_two)
 
         # When the data is POSTed with full objects instead of just their pk,
@@ -181,88 +102,8 @@ class UserDetailSerializerTest(TestCase):
 class TestTripReportViewSet(TestCase):
     def setUp(self):
         # Create two country objects.
-        self.country_one = Country.objects.create(
-            name="Bouvet Island",
-            top_level_domain=[
-              ".bv"
-            ],
-            alpha2code="BV",
-            alpha3code="BVT",
-            calling_codes=[
-              ""
-            ],
-            capital=None,
-            alt_spellings=[
-              "BV",
-              "Bouvet\u00f8ya",
-              "Bouvet-\u00f8ya"
-            ],
-            region=None,
-            subregion=None,
-            population=0,
-            latlng=[
-              -54.43333333,
-              3.4
-            ],
-            demonym=None,
-            area=49.0,
-            gini=None,
-            timezones=[
-              "UTC+01:00"
-            ],
-            borders=[],
-            native_name="Bouvet\u00f8ya",
-            numeric_code="074",
-            flag="https://restcountries.eu/data/bvt.svg",
-            cioc=None,
-        )
-        self.country_two = Country.objects.create(
-            name="Congo (Democratic Republic of the)",
-            top_level_domain=[
-              ".cd"
-            ],
-            alpha2code="CD",
-            alpha3code="COD",
-            calling_codes=[
-              "243"
-            ],
-            capital="Kinshasa",
-            alt_spellings=[
-              "CD",
-              "DR Congo",
-              "Congo-Kinshasa",
-              "DRC"
-            ],
-            region="Africa",
-            subregion="Middle Africa",
-            population=85026000,
-            latlng=[
-              0.0,
-              25.0
-            ],
-            demonym="Congolese",
-            area=2344858.0,
-            gini=None,
-            timezones=[
-              "UTC+01:00",
-              "UTC+02:00"
-            ],
-            borders=[
-              "AGO",
-              "BDI",
-              "CAF",
-              "COG",
-              "RWA",
-              "SSD",
-              "TZA",
-              "UGA",
-              "ZMB"
-            ],
-            native_name="R\u00e9publique d\u00e9mocratique du Congo",
-            numeric_code="180",
-            flag="https://restcountries.eu/data/cod.svg",
-            cioc="COD",
-        )
+        self.country_one = Country.objects.create(name="Bouvet Island")
+        self.country_two = Country.objects.create(name="Congo (Democratic Republic of the)")
         # Create a user object.
         self.user = User.objects.create(
             username='TestUser',
@@ -272,7 +113,7 @@ class TestTripReportViewSet(TestCase):
         )
 
     # Test that Trip Reports can be POSTed with just the User & Country pks.
-    def test_post_request(self):
+    def test_post_and_put_request(self):
         client = APIClient()
         client.force_authenticate(user=self.user)
         data = {
@@ -284,19 +125,6 @@ class TestTripReportViewSet(TestCase):
         response = client.post('/api/v1/reports/', data)
         self.assertEqual(response.status_code, 201)
 
-        # Test PUT request with pk (not object) works.
-        data = {
-            'title': 'Test Updated',
-            'content': 'Test Content Updated',
-            'countries': (self.country_two.pk,), # Pk not object
-            'author': self.user.pk, # Pk not object
-        }
-        response = client.put('/api/v1/reports/1/', data)
-        self.assertEqual(response.status_code, 200)
-        report = TripReport.objects.get(pk=1)
-        self.assertEqual(report.title, 'Test Updated')
-        self.assertEqual(report.content, 'Test Content Updated')
-        self.assertEqual(list(report.countries.all()), [self.country_two])
 
         # POSTing with object instead of pk returns 400 bad response.
         data = {
@@ -309,43 +137,27 @@ class TestTripReportViewSet(TestCase):
         self.assertEqual(response.status_code, 400)
 
 
+        # Test that Trip Reports can be updated with just User & Country pks
+        client = APIClient()
+        client.force_authenticate(user=self.user)
+        data = {
+            'title': 'Test Updated',
+            'content': 'Test Content Updated',
+            'countries': (self.country_two.pk,), # Pk not object
+            'author': self.user.pk, # Pk not object
+        }
+        report = TripReport.objects.all()[0]
+        response = client.put(f'/api/v1/reports/{report.pk}/', data)
+        self.assertEqual(response.status_code, 200)
+        report = TripReport.objects.all()[0]
+        self.assertEqual(report.title, 'Test Updated')
+        self.assertEqual(report.content, 'Test Content Updated')
+        self.assertEqual(list(report.countries.all()), [self.country_two])
+
+
 class RegistrationSerializerTest(TestCase):
     def setUp(self):
-        self.country = Country.objects.create(
-            name="Bouvet Island",
-            top_level_domain=[
-              ".bv"
-            ],
-            alpha2code="BV",
-            alpha3code="BVT",
-            calling_codes=[
-              ""
-            ],
-            capital=None,
-            alt_spellings=[
-              "BV",
-              "Bouvet\u00f8ya",
-              "Bouvet-\u00f8ya"
-            ],
-            region=None,
-            subregion=None,
-            population=0,
-            latlng=[
-              -54.43333333,
-              3.4
-            ],
-            demonym=None,
-            area=49.0,
-            gini=None,
-            timezones=[
-              "UTC+01:00"
-            ],
-            borders=[],
-            native_name="Bouvet\u00f8ya",
-            numeric_code="074",
-            flag="https://restcountries.eu/data/bvt.svg",
-            cioc=None,
-        )
+        self.country = Country.objects.create(name="Bouvet Island")
 
     def test_save(self):
         factory = APIRequestFactory()
@@ -354,7 +166,7 @@ class RegistrationSerializerTest(TestCase):
             'email': 'test@test.com',
             'password1': 'testing1234',
             'password2': 'testing1234',
-            'home': self.country.pk,
+            'home': self.country.pk, # Post with pk and not object.
         }
         request = factory.post('/api/v1/rest-auth/registration/', data)
 
@@ -387,40 +199,27 @@ class CountryFieldTest(TestCase):
         serializer = CountryField(queryset=Country.objects.all())
         self.assertEqual(serializer.get_choices(), {})
 
-        self.country = Country.objects.create(
-            name="Bouvet Island",
-            top_level_domain=[
-              ".bv"
-            ],
-            alpha2code="BV",
-            alpha3code="BVT",
-            calling_codes=[
-              ""
-            ],
-            capital=None,
-            alt_spellings=[
-              "BV",
-              "Bouvet\u00f8ya",
-              "Bouvet-\u00f8ya"
-            ],
-            region=None,
-            subregion=None,
-            population=0,
-            latlng=[
-              -54.43333333,
-              3.4
-            ],
-            demonym=None,
-            area=49.0,
-            gini=None,
-            timezones=[
-              "UTC+01:00"
-            ],
-            borders=[],
-            native_name="Bouvet\u00f8ya",
-            numeric_code="074",
-            flag="https://restcountries.eu/data/bvt.svg",
-            cioc=None,
-        )
+        self.country = Country.objects.create(name="Bouvet Island")
         serializer = CountryField(queryset=Country.objects.all())
         self.assertEqual(serializer.get_choices(), OrderedDict([(1, 'Bouvet Island')]))
+
+
+class FavoriteAPITest(TestCase):
+    # Test that get request to FavoriteAPI toggles user to list of favoriters.
+    def test_get(self):
+        self.user = User.objects.create(username='TestUser')
+        self.trip_report = TripReport.objects.create(title='Test', content='Test', author=self.user)
+        # Test favoriters is currently empty.
+        self.assertEqual(self.trip_report.favoriters.all().count(), 0)
+
+        # Test get request was successful and user has been added.
+        client = APIClient()
+        client.force_authenticate(user=self.user)
+        response = client.get(f'/api/v1/reports/{self.trip_report.pk}/favorite/')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.trip_report.favoriters.all().count(), 1)
+
+        # Test user has been removed after second get request.
+        response = client.get(f'/api/v1/reports/{self.trip_report.pk}/favorite/')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.trip_report.favoriters.all().count(), 0)
