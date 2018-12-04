@@ -278,7 +278,6 @@ export default function (state = initialState, action) {
       }
     }
     case "TOGGLE_FAVORITE_FULFILLED": {
-      const index = state.tripReports.results.findIndex((tripReport => tripReport.id === action.response.id))
       return {
         ...state,
         /*
@@ -290,7 +289,7 @@ export default function (state = initialState, action) {
         */
         tripReports: {
           // Since order matters, only the specific index of the array should be changed.
-          results: [...state.tripReports.results].map((tripReport, i) => i === index ? { ...tripReport, favoriters: action.response.favoriters} : {...tripReport}),
+          results: [...state.tripReports.results].map( tripReport => tripReport.id === action.response.id ? { ...tripReport, favoriters: action.response.favoriters} : {...tripReport}),
           count: state.tripReports.count,
           next: state.tripReports.next,
           previous: state.tripReports.previous
@@ -301,7 +300,7 @@ export default function (state = initialState, action) {
           next: state.slugTripReports.next,
           previous: state.slugTripReports.previous
         },
-        featuredTripReport: [...state.featuredTripReport].map((tripReport, i) => i === index ? { ...tripReport, favoriters: action.response.favoriters} : {...tripReport})
+        featuredTripReport: [...state.featuredTripReport].map( tripReport => tripReport.id === action.response.id ? {...tripReport, favoriters: action.response.favoriters} : {...tripReport})
       }
     }
     case "PUT_USER_DATA_FULFILLED": {
