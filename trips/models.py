@@ -29,7 +29,7 @@ class TripReport(models.Model):
         '''
         Checks exif information for cellphone photos to see what orientation the
         photo was taken in, then rotates the image to be upright. images are reduced
-        to a width of 450px, with proportionally reduced height to save room on the
+        to a width of 600px, with proportionally reduced height to save room on the
         server.
         '''
         if self.image:

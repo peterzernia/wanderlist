@@ -21,5 +21,4 @@ def auto_delete_old_image_file_on_image_update(sender, instance, **kwargs):
 
     new_file = instance.image
     if new_file != old_file:
-        print(old_file)
         old_file.delete(save=False)

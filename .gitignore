@@ -38,3 +38,5 @@ load_data_python.txt
 /media
 /staticfiles
 local_settings.py
+test_image.jpg
+test_image2.jpeg
