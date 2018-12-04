@@ -5,7 +5,7 @@
 /coverage
 .coverage
 .coveragerc
-htmlcov
+/htmlcov
 
 # production
 
