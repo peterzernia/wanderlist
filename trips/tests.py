@@ -50,3 +50,38 @@ class TripReportTest(TestCase):
         self.trip_report.delete()
         response = requests.get(f"{MEDIA_URL}trip-report/test_image.jpg")
         self.assertEqual(response.status_code, 403)
+
+
+class SignalTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create(username="TestUser")
+        img = '/Users/peterzernia/projects/countries/test_image.jpg'
+        # Create the Trip Report with a test image.
+        with open(img, 'rb') as infile:
+            self.trip_report = TripReport.objects.create(
+                title='Test',
+                author=self.user,
+                image=infile
+            )
+
+    def test_auto_delete_old_image_file_on_image_update_signal(self):
+        # Originally the image exists.
+        response = requests.get(f"{MEDIA_URL}trip-report/test_image.jpg")
+        self.assertEqual(response.status_code, 200)
+
+        img = '/Users/peterzernia/projects/countries/test_image2.jpeg'
+        with open(img, 'rb') as infile:
+            self.trip_report.image = infile
+            self.trip_report.save()
+        # Then it is deleted.
+        response = requests.get(f"{MEDIA_URL}trip-report/test_image.jpg")
+        self.assertEqual(response.status_code, 403)
+        # And the new one exists.
+        response = requests.get(f"{MEDIA_URL}trip-report/test_image2.jpg")
+        self.assertEqual(response.status_code, 200)
+
+
+    def tearDown(self):
+        self.trip_report.delete()
+        response = requests.get(f"{MEDIA_URL}trip-report/test_image2.jpg")
+        self.assertEqual(response.status_code, 403)
