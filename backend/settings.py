@@ -174,6 +174,21 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 django_heroku.settings(locals())
 DATABASES['default'] =  dj_database_url.config()
 
+
+# Travis ci database settings.
+if 'TRAVIS' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'travis_ci_test',
+            'USER': 'postgres',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
+
+
 # Local settings.
 try:
     from backend.local_settings import *
