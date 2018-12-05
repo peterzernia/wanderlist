@@ -187,8 +187,9 @@ A lot. This project gave me an in-depth look into REST APIs as well as
 experience in a more complicated, capable, and real-world development stack. I
 had to learn an entirely new language (javascript) to complete this project as
 well as how to separate front and backends. I purposefully set out to write
-tests and comments sooner and better than in Petsygram. I explored SQL
-databases deeper than previously, using a PostgreSQL database in development
+tests and comments sooner and better than in Petsygram. I connected my project
+with Travis CI to make sure I was testing my commits pushed to github I explored
+SQL databases deeper than previously, using a PostgreSQL database in development
 and production. I learned how to keep separate environments for development and
 production. I learned how to serve my media files from Amazon S3 to make my app
 more scalable than hosting in the /media/ folder. Whereas Petsygram was an
@@ -204,6 +205,7 @@ expand.
 * [Django](https://www.djangoproject.com/) - Web Framework
 * [React](https://reactjs.org/) - JS
 * [Postgres](https://www.postgresql.org/) - Database
+* [Travis CI](https://travis-ci.com/) - Continuous Integration/Testing
 
 
 
