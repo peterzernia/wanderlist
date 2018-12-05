@@ -34,6 +34,8 @@ class Register extends Component {
       e.target.password2.value,
       country
     );
+    e.target.password1.value='';
+    e.target.password2.value='';
   }
   render(){
     return(

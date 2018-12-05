@@ -10,6 +10,7 @@ import CardContent from '@material-ui/core/CardContent'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import countries from '../country_data'
+import { DotLoader } from 'react-spinners'
 
 class RegistrationForm extends Component {
 
@@ -36,25 +37,28 @@ class RegistrationForm extends Component {
     ))
 
     return(
-      <Card style={{ maxWidth: 400, margin: '0 auto'}}>
-        <CardHeader title="Register"/>
-        <CardContent>
-          <form onSubmit={this.props.handleSubmit}>
-            <TextField className="user-auth" type='text' name="username" label="Username"/><br/>
-            <TextField className="user-auth" type='text' name="email" label="Email"/><br/>
-            <TextField className="user-auth" type='password' name="password1" label="Password"/><br/>
-            <TextField className="user-auth" type='password' name="password2" label="Confirm Password"/><br/>
-            <FormControl>
-              <InputLabel htmlFor="country">Home Country</InputLabel>
-              <Select style={{ textAlign: 'left'}} className="user-auth" name="country" onChange={this.handleChange} value={this.state.country}>
-                {menuItems}
-              </Select>
-            </FormControl><br/>
-            <Button variant="contained" color="primary" type="submit">Register</Button>
-            <Link to="/login"><Button>Cancel</Button></Link>
-          </form>
-        </CardContent>
-      </Card>
+      <div>
+        {this.props.authenticating && <div><DotLoader size={50} color={'#2196f3'} className="content" /><br/></div>}
+        <Card style={{ maxWidth: 400, margin: '0 auto'}}>
+          <CardHeader title="Register"/>
+          <CardContent>
+            <form onSubmit={this.props.handleSubmit}>
+              <TextField className="user-auth" type='text' name="username" label="Username"/><br/>
+              <TextField className="user-auth" type='text' name="email" label="Email"/><br/>
+              <TextField className="user-auth" type='password' name="password1" label="Password"/><br/>
+              <TextField className="user-auth" type='password' name="password2" label="Confirm Password"/><br/>
+              <FormControl>
+                <InputLabel htmlFor="country">Home Country</InputLabel>
+                <Select style={{ textAlign: 'left'}} className="user-auth" name="country" onChange={this.handleChange} value={this.state.country}>
+                  {menuItems}
+                </Select>
+              </FormControl><br/><br/>
+              <Button variant="contained" color="primary" type="submit">Register</Button>
+              <Link to="/login"><Button>Cancel</Button></Link>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
     )
   }
 };
