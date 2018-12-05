@@ -1,14 +1,24 @@
-language: python
-python:
-  - "3.6"
-install:
-  - pip install -r requirements.txt
-services:
-  - postgresql
-addons:
-  postgresql: "9.6"
-before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - python manage.py migrate
-script:
-  coverage run manage.py test
+matrix:
+  include:
+    - language: python
+      python:
+        - "3.6"
+      install:
+        - pip install -r requirements.txt
+      services:
+        - postgresql
+      addons:
+        postgresql: "9.6"
+      before_script:
+        - psql -c 'create database travis_ci_test;' -U postgres
+        - python manage.py migrate
+      script:
+        coverage run manage.py test
+    - language: node_js
+      node_js:
+        - "10.12"
+      cache:
+        directories:
+        - node_modules
+      script:
+        - npm test
