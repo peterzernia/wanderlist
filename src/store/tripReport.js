@@ -15,7 +15,7 @@ const initialState = {
   fetchedFeaturedTripReport: false,
   tripReports: { results: [], count: null, next: null, previous: null},
   userTripReports: { results: [], count: null, next: null, previous: null},
-  slugTripReports: { results: [], count: null, next: null, previous: null},
+  slugTripReports: [],
   featuredTripReport: []
 }
 
@@ -166,12 +166,7 @@ export default function (state = initialState, action) {
         posting: false
         }
     }
-    // Axios deleet
-    case "DELETE_TRIP_REPORTS_PENDING": {
-      return {
-        ...state,
-      }
-    }
+    // Axios delete
     case "DELETE_TRIP_REPORTS_FULFILLED": {
       return {
         ...state,
@@ -191,11 +186,6 @@ export default function (state = initialState, action) {
           next: state.tripReports.next,
           previous: state.tripReports.previous
         }
-      }
-    }
-    case "DELETE_TRIP_REPORTS_REJECTED": {
-      return {
-        ...state,
       }
     }
     case "UPDATE_TRIP_REPORTS_PENDING": {
@@ -245,7 +235,7 @@ export default function (state = initialState, action) {
         ...state,
         fetchingSlugTripReports: false,
         fetchedSlugTripReports: true,
-        slugTripReports: action.tripReports,
+        slugTripReports: action.tripReports.results,
       }
     }
     case "FETCH_SLUG_TRIP_REPORTS_REJECTED": {
@@ -294,12 +284,7 @@ export default function (state = initialState, action) {
           next: state.tripReports.next,
           previous: state.tripReports.previous
         },
-        slugTripReports: {
-          results: [action.response],
-          count: state.slugTripReports.count,
-          next: state.slugTripReports.next,
-          previous: state.slugTripReports.previous
-        },
+        slugTripReports: [...state.slugTripReports].map( tripReport => tripReport.id === action.response.id ? {...tripReport, favoriters: action.response.favoriters} : {...tripReport}),
         featuredTripReport: [...state.featuredTripReport].map( tripReport => tripReport.id === action.response.id ? {...tripReport, favoriters: action.response.favoriters} : {...tripReport})
       }
     }
@@ -308,7 +293,7 @@ export default function (state = initialState, action) {
         ...state,
         tripReports: {
           // If the user home changes, any posts by that user must be updated to update Avatar image.
-          results: [...state.tripReports.results].map( tripReport => tripReport.author.username === action.user.username ? { ...tripReport, author: action.user} : {...tripReport}),
+          results: [...state.tripReports.results].map( tripReport => tripReport.author.id === action.user.id ? { ...tripReport, author: action.user} : {...tripReport}),
           count: state.tripReports.count,
           next: state.tripReports.next,
           previous: state.tripReports.previous
@@ -319,7 +304,7 @@ export default function (state = initialState, action) {
     case "AUTH_LOGOUT": {
       return {
         ...state,
-        userTripReports: { results: [], count: null, next: null, previous: null},
+        userTripReports: { results: [], count: null, next: null, previous: null },
       }
     }
     default:

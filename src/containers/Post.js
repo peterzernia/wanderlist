@@ -67,7 +67,7 @@ const mapState = state => {
   return {
     pk: state.user.user.pk,
     authenticated: state.auth.authenticated,
-    tripReports: state.tripReport.slugTripReports.results,
+    tripReports: state.tripReport.slugTripReports,
     fetched: state.tripReport.fetchedSlugTripReports,
     fetching: state.tripReport.fetchingSlugTripReports,
     showCountryModal: state.modal.showCountryModal,

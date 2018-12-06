@@ -153,7 +153,7 @@ describe('modal Reducer', () => {
   it('can handle TOGGLE_FAVORITE_FULFILLED', () => {
     expect(modal(undefined, {
       type: 'TOGGLE_FAVORITE_FULFILLED',
-      modalPost: tripReport
+      response: tripReport
     })).toEqual({
       ...defaultState,
       modalPost: tripReport
