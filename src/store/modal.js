@@ -130,11 +130,6 @@ export default function (state = initialState, action) {
         modalPost: action.response
       }
     }
-    case "TOGGLE_FAVORITE_REJECTED": {
-      return {
-        ...state,
-      }
-    }
     // Image modal
     case "OPEN_IMAGE_MODAL": {
       return {
