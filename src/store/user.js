@@ -38,11 +38,6 @@ export default function (state = initialState, action) {
         user: action.user
       }
     }
-    case "PUT_USER_DATA_REJECTED": {
-      return {
-        ...state,
-      }
-    }
     case "FETCH_SINGLE_USER_PENDING": {
       return {
         ...state,
