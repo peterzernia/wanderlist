@@ -1,11 +1,12 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
-import TripReport from '../TripReport'
+import TripReportTruncated from '../TripReportTruncated'
 import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
 import CardHeader from '@material-ui/core/CardHeader'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+import Typography from '@material-ui/core/Typography'
 
 const country = {
   "id": 2,
@@ -67,15 +68,17 @@ const country = {
   "cioc": null
 }
 
-describe('<TripReport />', () =>{
+describe('<TripReportTruncated />', () =>{
   it('displays an image and button', () => {
     const image = "http://test.com/test.jpg";
     const countries = [country];
     const author = { username: "Test", home: country };
     const favoriters = [];
+    const content = "Test content"
     const wrapper = shallow(
-      <TripReport
-        image={image} author={author} favoriters={favoriters} countries={countries}
+      <TripReportTruncated
+        image={image} author={author} favoriters={favoriters}
+        countries={countries} content={content}
       />
     );
     // Finds the action to open image if there is an image
@@ -90,10 +93,11 @@ describe('<TripReport />', () =>{
     // props.favoriters includes pk
     const pk = 1;
     const favoriters = [1];
+    const content = "Test content"
     const wrapper = shallow(
-      <TripReport
+      <TripReportTruncated
         author={author} favoriters={favoriters} countries={countries} pk={pk}
-        handleClick={handleClick}
+        handleClick={handleClick} content={content}
       />
     );
     // Should display favorited button.
@@ -110,10 +114,12 @@ describe('<TripReport />', () =>{
     // props.favoriters does not includes pk
     const pk = 1;
     const favoriters = [];
+    const content = "Test content"
     const wrapper = shallow(
-      <TripReport
+      <TripReportTruncated
         author={author} favoriters={favoriters} countries={countries} pk={pk}
-        handleClick={handleClick} authenticated={true} openNotAuthModal={openNotAuthModal}
+        handleClick={handleClick} authenticated={true}
+        openNotAuthModal={openNotAuthModal} content={content}
       />
     );
     // Should display not favorited button.
@@ -132,10 +138,11 @@ describe('<TripReport />', () =>{
     const author = { username: "Test", home: country };
     const openCopyLinkModal = jest.fn();
     const favoriters = [];
+    const content = "Test content"
     const wrapper = shallow(
-      <TripReport
+      <TripReportTruncated
         author={author} favoriters={favoriters} countries={countries}
-        openCopyLinkModal={openCopyLinkModal}
+        openCopyLinkModal={openCopyLinkModal} content={content}
       />
     );
     wrapper.find(IconButton).at(1).simulate('click');
@@ -147,10 +154,11 @@ describe('<TripReport />', () =>{
     const author = { username: "Test", home: country };
     const openCountryModal = jest.fn();
     const favoriters = [];
+    const content = "Test content"
     const wrapper = shallow(
-      <TripReport
+      <TripReportTruncated
         author={author} favoriters={favoriters} countries={countries}
-        openCountryModal={openCountryModal}
+        openCountryModal={openCountryModal} content={content}
       />
     );
     expect(wrapper.find(Button).length).toEqual(1);
@@ -161,5 +169,45 @@ describe('<TripReport />', () =>{
     expect(wrapper.find(Button).length).toEqual(0);
     wrapper.setProps({ countries: [country, country, country] })
     expect(wrapper.find(Button).length).toEqual(3);
+  });
+  it('expands on button click', () => {
+    const countries = [country];
+    const author = { username: "Test", home: country };
+    const openCountryModal = jest.fn();
+    const favoriters = [];
+    const content = "Test content"
+    const wrapper = shallow(
+      <TripReportTruncated
+        author={author} favoriters={favoriters} countries={countries}
+        openCountryModal={openCountryModal} content={content}
+      />
+    );
+    expect(wrapper.state('expanded')).toEqual(false);
+    expect(wrapper.find(IconButton).at(2).prop('style')).toEqual({"float": "right", "marginLeft": "auto"})
+    // Clicking the button expands and flips the button.
+    wrapper.find(IconButton).at(2).simulate('click');
+    expect(wrapper.state('expanded')).toEqual(true);
+    expect(wrapper.find(IconButton).at(2).prop('style')).toEqual({"float": "right", "marginLeft": "auto", "transform": "rotate(180deg)"})
+    wrapper.find(IconButton).at(2).simulate('click');
+    // Clicking it again reverts it back.
+    expect(wrapper.state('expanded')).toEqual(false);
+    expect(wrapper.find(IconButton).at(2).prop('style')).toEqual({"float": "right", "marginLeft": "auto"})
+  });
+  it('truncates text', () => {
+    const countries = [country];
+    const author = { username: "Test", home: country };
+    const openCountryModal = jest.fn();
+    const favoriters = [];
+    const content = "Test\n content\n test"
+    const wrapper = shallow(
+      <TripReportTruncated
+        author={author} favoriters={favoriters} countries={countries}
+        openCountryModal={openCountryModal} content={content}
+      />
+    );
+    expect(wrapper.find(Typography).at(0).children().text()).toEqual("Test")
+    expect(wrapper.find(Typography).at(1).children().text()).toEqual("content\n test")
+    wrapper.setProps({ content: "Test content test" })
+    expect(wrapper.find(Typography).at(0).children().text()).toEqual("Test content test")
   });
 });
