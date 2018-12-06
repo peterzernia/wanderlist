@@ -9,9 +9,9 @@ export const authStart = () => {
   }
 }
 
-export const authSucess = token => {
+export const authSuccess = token => {
   return {
-    type: "AUTH_SUCESS",
+    type: "AUTH_SUCCESS",
     token: token
   }
 }
@@ -49,7 +49,7 @@ export const authLogin = (username, password) => {
         const token = response.data.key;
         localStorage.setItem('token', token);
         localStorage.setItem('username', username);
-        dispatch(authSucess(token));
+        dispatch(authSuccess(token));
         dispatch(fetchUser());
         dispatch(fetchUserTripReports(username));
       })
@@ -79,7 +79,7 @@ export const authRegister = (username, email, password1, password2, home) => {
         const token = response.data.key;
         localStorage.setItem('token', token);
         localStorage.setItem('username', username);
-        dispatch(authSucess(token));
+        dispatch(authSuccess(token));
         dispatch(fetchUser());
         dispatch({type: "ADD_SUCCESS", success: 'You have successfully registered.'});
       })
@@ -101,7 +101,7 @@ export const authCheckState = () => {
     if (token === null) {
       dispatch(authLogout());
     } else {
-      dispatch(authSucess(token));
+      dispatch(authSuccess(token));
     }
   }
 }

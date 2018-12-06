@@ -13,7 +13,7 @@ export default function (state = initialState, action) {
         authenticating: true,
       }
     }
-    case "AUTH_SUCESS": {
+    case "AUTH_SUCCESS": {
       return {
         ...state,
         authenticating: false,
