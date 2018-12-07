@@ -1,5 +1,5 @@
 import * as userActions from '../userActions'
-import user from '../../testVariables'
+import { user } from '../../testVariables'
 
 describe('User Action Creators', () => {
   it('should create a FETCH_USER_PENDING action', () => {

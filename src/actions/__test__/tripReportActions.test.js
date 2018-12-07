@@ -1,6 +1,8 @@
 import * as tripReportActions from '../tripReportActions'
-import tripReport from '../../testVariables'
+import { tripReport } from '../../testVariables'
 import { tripReport as response } from '../../testVariables'
+
+const tripReports = { results: [tripReport] }
 
 describe('Trip Report Action Creators', () => {
   it('should create a FETCH_TRIP_REPORTS_PENDING action', () => {
@@ -10,9 +12,9 @@ describe('Trip Report Action Creators', () => {
   it('should create a FETCH_TRIP_REPORTS_FULFILLED action', () => {
     const expectedAction = {
       type: 'FETCH_TRIP_REPORTS_FULFILLED',
-      tripReport
+      tripReports
     }
-    expect(tripReportActions.fetchTripReportsFulfilled(tripReport)).toEqual(expectedAction)
+    expect(tripReportActions.fetchTripReportsFulfilled(tripReports)).toEqual(expectedAction)
   });
   it('should create a FETCH_TRIP_REPORTS_REJECTED action', () => {
     const expectedAction = {type: 'FETCH_TRIP_REPORTS_REJECTED'}
@@ -26,9 +28,9 @@ describe('Trip Report Action Creators', () => {
   it('should create a FETCH_NEXT_TRIP_REPORTS_FULFILLED action', () => {
     const expectedAction = {
       type: 'FETCH_NEXT_TRIP_REPORTS_FULFILLED',
-      tripReport
+      tripReports
     }
-    expect(tripReportActions.fetchNextTripReportsFulfilled(tripReport)).toEqual(expectedAction)
+    expect(tripReportActions.fetchNextTripReportsFulfilled(tripReports)).toEqual(expectedAction)
   });
   it('should create a FETCH_NEXT_TRIP_REPORTS_REJECTED action', () => {
     const expectedAction = {type: 'FETCH_NEXT_TRIP_REPORTS_REJECTED'}
@@ -42,9 +44,9 @@ describe('Trip Report Action Creators', () => {
   it('should create a FETCH_USER_TRIP_REPORTS_FULFILLED action', () => {
     const expectedAction = {
       type: 'FETCH_USER_TRIP_REPORTS_FULFILLED',
-      tripReport
+      tripReports
     }
-    expect(tripReportActions.fetchUserTripReportsFulfilled(tripReport)).toEqual(expectedAction)
+    expect(tripReportActions.fetchUserTripReportsFulfilled(tripReports)).toEqual(expectedAction)
   });
   it('should create a FETCH_USER_TRIP_REPORTS_REJECTED action', () => {
     const expectedAction = {type: 'FETCH_USER_TRIP_REPORTS_REJECTED'}
@@ -58,9 +60,9 @@ describe('Trip Report Action Creators', () => {
   it('should create a FETCH_NEXT_USER_TRIP_REPORTS_FULFILLED action', () => {
     const expectedAction = {
       type: 'FETCH_NEXT_USER_TRIP_REPORTS_FULFILLED',
-      tripReport
+      tripReports
     }
-    expect(tripReportActions.fetchNextUserTripReportsFulfilled(tripReport)).toEqual(expectedAction)
+    expect(tripReportActions.fetchNextUserTripReportsFulfilled(tripReports)).toEqual(expectedAction)
   });
   it('should create a FETCH_NEXT_USER_TRIP_REPORTS_REJECTED action', () => {
     const expectedAction = {type: 'FETCH_NEXT_USER_TRIP_REPORTS_REJECTED'}
@@ -74,9 +76,9 @@ describe('Trip Report Action Creators', () => {
   it('should create a FETCH_NEXT_TRIP_REPORTS_FULFILLED action', () => {
     const expectedAction = {
       type: 'FETCH_NEXT_TRIP_REPORTS_FULFILLED',
-      tripReport
+      tripReports
     }
-    expect(tripReportActions.fetchNextTripReportsFulfilled(tripReport)).toEqual(expectedAction)
+    expect(tripReportActions.fetchNextTripReportsFulfilled(tripReports)).toEqual(expectedAction)
   });
   it('should create a FETCH_NEXT_TRIP_REPORTS_REJECTED action', () => {
     const expectedAction = {type: 'FETCH_NEXT_TRIP_REPORTS_REJECTED'}
@@ -138,9 +140,9 @@ describe('Trip Report Action Creators', () => {
   it('should create a FETCH_SLUG_TRIP_REPORTS_FULFILLED action', () => {
     const expectedAction = {
       type: 'FETCH_SLUG_TRIP_REPORTS_FULFILLED',
-      tripReport
+      tripReports
     }
-    expect(tripReportActions.fetchSlugTripReportsFulfilled(tripReport)).toEqual(expectedAction)
+    expect(tripReportActions.fetchSlugTripReportsFulfilled(tripReports)).toEqual(expectedAction)
   });
   it('should create a FETCH_SLUG_TRIP_REPORTS_REJECTED action', () => {
     const expectedAction = {type: 'FETCH_SLUG_TRIP_REPORTS_REJECTED'}

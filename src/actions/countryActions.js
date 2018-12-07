@@ -10,7 +10,7 @@ export const fetchCountryRejected = () => ({type: "FETCH_COUNTRY_REJECTED"})
 export const fetchCountry = (query) => {
   return dispatch => {
     dispatch(fetchCountryPending());
-    axios.get(`${process.env.REACT_APP_API_URL}/api/v1/countries/?search=${query}`)
+    return axios.get(`${process.env.REACT_APP_API_URL}/api/v1/countries/?search=${query}`)
       .then(response => {
         const country = response.data;
         dispatch(fetchCountryFulfilled(country));
