@@ -1,7 +1,7 @@
 import * as countryActions from '../countryActions'
 import country from '../../testVariables'
 
-describe('Country Actions', () => {
+describe('Country Action Creators', () => {
   it('should create a FETCH_COUNTRY_PENDING action', () => {
     const expectedAction = {type: 'FETCH_COUNTRY_PENDING'}
     expect(countryActions.fetchCountryPending()).toEqual(expectedAction)
