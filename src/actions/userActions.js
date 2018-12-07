@@ -1,60 +1,18 @@
 import axios from 'axios'
 
-// Fetch authenticated user axios actions
-export const fetchUserPending = () => {
-  return {
-    type: "FETCH_USER_PENDING"
-  }
-}
+// Fetch authenticated user action creators
+export const fetchUserPending = () => ({type: "FETCH_USER_PENDING"})
+export const fetchUserFulfilled = user => ({type: "FETCH_USER_FULFILLED", user})
+export const fetchUserRejected = () => ({type: "FETCH_USER_REJECTED"})
 
-export const fetchUserFulfilled = user => {
-  return {
-    type: "FETCH_USER_FULFILLED",
-    user: user
-  }
-}
+// Update user data action creator
+export const putUserDataFulfilled = user => ({type: "PUT_USER_DATA_FULFILLED", user})
+export const putUserDataRejected = () => ({type: "PUT_USER_DATA_REJECTED"})
 
-export const fetchUserRejected = () => {
-  return {
-    type: "FETCH_USER_REJECTED",
-  }
-}
-
-// PUT user axios actions for updating user information
-
-export const putUserDataFulfilled = user => {
-  return {
-    type: "PUT_USER_DATA_FULFILLED",
-    user: user
-  }
-}
-
-export const putUserDataRejected = () => {
-  return {
-    type: "PUT_USER_DATA_REJECTED",
-  }
-}
-
-// Fetch single user axios actions for viewing proflile
-export const fetchSingleUserPending = () => {
-  return {
-    type: "FETCH_SINGLE_USER_PENDING"
-  }
-}
-
-export const fetchSingleUserFulfilled = user => {
-  return {
-    type: "FETCH_SINGLE_USER_FULFILLED",
-    user: user
-  }
-}
-
-export const fetchSingleUserRejected = () => {
-  return {
-    type: "FETCH_SINGLE_USER_REJECTED",
-  }
-}
-
+// Fetch sungle user action creators
+export const fetchSingleUserPending = () => ({type: "FETCH_SINGLE_USER_PENDING"})
+export const fetchSingleUserFulfilled = user => ({type: "FETCH_SINGLE_USER_FULFILLED", user})
+export const fetchSingleUserRejected = () => ({type: "FETCH_SINGLE_USER_REJECTED"})
 
 // GET requests the Django REST API, which returns authenticated user object.
 export const fetchUser = () => {

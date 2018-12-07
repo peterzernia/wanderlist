@@ -2,25 +2,10 @@ import axios from 'axios'
 import { fetchUser } from './userActions'
 import { fetchUserTripReports } from './tripReportActions'
 
-// Authentication actions
-export const authStart = () => {
-  return {
-    type: "AUTH_START"
-  }
-}
-
-export const authSuccess = token => {
-  return {
-    type: "AUTH_SUCCESS",
-    token: token
-  }
-}
-
-export const authFail = () => {
-  return {
-    type: "AUTH_FAIL"
-  }
-}
+// Action creators
+export const authStart = () => ({type: "AUTH_START"})
+export const authSuccess = token => ({type: "AUTH_SUCCESS", token})
+export const authFail = () => ({type: "AUTH_FAIL"})
 
 /*
 The token stored in localStorage to authenticate the user is removed, logging

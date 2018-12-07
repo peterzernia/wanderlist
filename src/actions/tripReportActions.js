@@ -3,184 +3,49 @@ axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 // For fetching the first page of all of the users Trip Reports
-export const fetchTripReportsPending = () => {
-  return {
-    type: "FETCH_TRIP_REPORTS_PENDING"
-  }
-}
-
-export const fetchTripReportsFulfilled = tripReports => {
-  return {
-    type: "FETCH_TRIP_REPORTS_FULFILLED",
-    tripReports: tripReports
-  }
-}
-
-export const fetchTripReportsRejected = () => {
-  return {
-    type: "FETCH_TRIP_REPORTS_REJECTED"
-  }
-}
+export const fetchTripReportsPending = () => ({type: "FETCH_TRIP_REPORTS_PENDING"})
+export const fetchTripReportsFulfilled = tripReports => ({type: "FETCH_TRIP_REPORTS_FULFILLED", tripReports})
+export const fetchTripReportsRejected = () => ({type: "FETCH_TRIP_REPORTS_REJECTED"})
 
 // For fetching the next page of all of the users Trip Reports
-export const fetchNextTripReportsPending = () => {
-  return {
-    type: "FETCH_NEXT_TRIP_REPORTS_PENDING"
-  }
-}
-
-export const fetchNextTripReportsFulfilled = tripReports => {
-  return {
-    type: "FETCH_NEXT_TRIP_REPORTS_FULFILLED",
-    tripReports: tripReports
-  }
-}
-
-export const fetchNextTripReportsRejected = () => {
-  return {
-    type: "FETCH_NEXT_TRIP_REPORTS_REJECTED"
-  }
-}
+export const fetchNextTripReportsPending = () => ({type: "FETCH_NEXT_TRIP_REPORTS_PENDING"})
+export const fetchNextTripReportsFulfilled = tripReports => ({type: "FETCH_NEXT_TRIP_REPORTS_FULFILLED", tripReports})
+export const fetchNextTripReportsRejected = () => ({type: "FETCH_NEXT_TRIP_REPORTS_REJECTED"})
 
 // For fetching the first page of Trip Reports of the authenticated user
-export const fetchUserTripReportsPending = () => {
-  return {
-    type: "FETCH_USER_TRIP_REPORTS_PENDING"
-  }
-}
-
-export const fetchUserTripReportsFulfilled = tripReports => {
-  return {
-    type: "FETCH_USER_TRIP_REPORTS_FULFILLED",
-    tripReports: tripReports
-  }
-}
-
-export const fetchUserTripReportsRejected = () => {
-  return {
-    type: "FETCH_USER_TRIP_REPORTS_REJECTED",
-  }
-}
+export const fetchUserTripReportsPending = () => ({type: "FETCH_USER_TRIP_REPORTS_PENDING"})
+export const fetchUserTripReportsFulfilled = tripReports => ({type: "FETCH_USER_TRIP_REPORTS_FULFILLED", tripReports})
+export const fetchUserTripReportsRejected = () => ({type: "FETCH_USER_TRIP_REPORTS_REJECTED"})
 
 // For fetching the next page of the authenticated users Trip Reports
-export const fetchNextUserTripReportsPending = () => {
-  return {
-    type: "FETCH_NEXT_USER_TRIP_REPORTS_PENDING"
-  }
-}
-
-export const fetchNextUserTripReportsFulfilled = tripReports => {
-  return {
-    type: "FETCH_NEXT_USER_TRIP_REPORTS_FULFILLED",
-    tripReports: tripReports
-  }
-}
-
-export const fetchNextUserTripReportsRejected = () => {
-  return {
-    type: "FETCH_NEXT_USER_TRIP_REPORTS_REJECTED"
-  }
-}
+export const fetchNextUserTripReportsPending = () => ({type: "FETCH_NEXT_USER_TRIP_REPORTS_PENDING"})
+export const fetchNextUserTripReportsFulfilled = tripReports => ({type: "FETCH_NEXT_USER_TRIP_REPORTS_FULFILLED", tripReports})
+export const fetchNextUserTripReportsRejected = () => ({type: "FETCH_NEXT_USER_TRIP_REPORTS_REJECTED"})
 
 // For the authenticated user to POST request a new trip report
-export const postTripReportsPending = () => {
-  return {
-    type: "POST_TRIP_REPORTS_PENDING"
-  }
-}
-
-export const postTripReportsFulfilled = response => {
-  return {
-    type: "POST_TRIP_REPORTS_FULFILLED",
-    response: response
-  }
-}
-
-export const postTripReportsRejected = () => {
-  return {
-    type: "POST_TRIP_REPORTS_REJECTED",
-  }
-}
+export const postTripReportsPending = () => ({type: "POST_TRIP_REPORTS_PENDING"})
+export const postTripReportsFulfilled = response => ({type: "POST_TRIP_REPORTS_FULFILLED", response})
+export const postTripReportsRejected = () => ({type: "POST_TRIP_REPORTS_REJECTED"})
 
 // For the authenticated user to delete a Trip Report of theirs
-export const deleteTripReportsPending = () => {
-  return {
-    type: "DELETE_TRIP_REPORTS_PENDING"
-  }
-}
-
-export const deleteTripReportsFulfilled = response => {
-  return {
-    type: "DELETE_TRIP_REPORTS_FULFILLED",
-    response: response
-  }
-}
-
-export const deleteTripReportsRejected = () => {
-  return {
-    type: "DELETE_TRIP_REPORTS_REJECTED",
-  }
-}
+export const deleteTripReportsPending = () => ({type: "DELETE_TRIP_REPORTS_PENDING"})
+export const deleteTripReportsFulfilled = response => ({type: "DELETE_TRIP_REPORTS_FULFILLED", response})
+export const deleteTripReportsRejected = () => ({type: "DELETE_TRIP_REPORTS_REJECTED"})
 
 // For the authenticated user to update a Trip Report of theirs
-export const updateTripReportsPending = () => {
-  return {
-    type: "UPDATE_TRIP_REPORTS_PENDING"
-  }
-}
-
-export const updateTripReportsFulfilled = response => {
-  return {
-    type: "UPDATE_TRIP_REPORTS_FULFILLED",
-    response: response
-  }
-}
-
-export const updateTripReportsRejected = () => {
-  return {
-    type: "UPDATE_TRIP_REPORTS_REJECTED",
-  }
-}
+export const updateTripReportsPending = () => ({type: "UPDATE_TRIP_REPORTS_PENDING"})
+export const updateTripReportsFulfilled = response => ({type: "UPDATE_TRIP_REPORTS_FULFILLED", response})
+export const updateTripReportsRejected = () => ({type: "UPDATE_TRIP_REPORTS_REJECTED"})
 
 // For fetching the post based off slug
-export const fetchSlugTripReportsPending = () => {
-  return {
-    type: "FETCH_SLUG_TRIP_REPORTS_PENDING"
-  }
-}
-
-export const fetchSlugTripReportsFulfilled = tripReports => {
-  return {
-    type: "FETCH_SLUG_TRIP_REPORTS_FULFILLED",
-    tripReports: tripReports
-  }
-}
-
-export const fetchSlugTripReportsRejected = () => {
-  return {
-    type: "FETCH_SLUG_TRIP_REPORTS_REJECTED",
-  }
-}
+export const fetchSlugTripReportsPending = () => ({type: "FETCH_SLUG_TRIP_REPORTS_PENDING"})
+export const fetchSlugTripReportsFulfilled = tripReports => ({type: "FETCH_SLUG_TRIP_REPORTS_FULFILLED", tripReports})
+export const fetchSlugTripReportsRejected = () => ({type: "FETCH_SLUG_TRIP_REPORTS_REJECTED"})
 
 // For fetching the Featured Trip Report
-export const fetchFeaturedTripReportPending = () => {
-  return {
-    type: "FETCH_FEATURED_TRIP_REPORT_PENDING"
-  }
-}
-
-export const fetchFeaturedTripReportFulfilled = tripReport => {
-  return {
-    type: "FETCH_FEATURED_TRIP_REPORT_FULFILLED",
-    tripReport: tripReport
-  }
-}
-
-export const fetchFeaturedTripReportRejected = () => {
-  return {
-    type: "FETCH_FEATURED_TRIP_REPORT_REJECTED"
-  }
-}
+export const fetchFeaturedTripReportPending = () => ({type: "FETCH_FEATURED_TRIP_REPORT_PENDING"})
+export const fetchFeaturedTripReportFulfilled = tripReport => ({type: "FETCH_FEATURED_TRIP_REPORT_FULFILLED", tripReport})
+export const fetchFeaturedTripReportRejected = () => ({type: "FETCH_FEATURED_TRIP_REPORT_REJECTED"})
 
 /*
 GET requests the Django REST API and returns the first page of a list of Trip

@@ -1,6 +1,2 @@
-// Error action
-export const removeError = () => {
-  return dispatch => {
-    dispatch({ type: "REMOVE_ERROR" })
-  }
-}
+// Error action creators
+export const removeError = () => ({ type: "REMOVE_ERROR" })

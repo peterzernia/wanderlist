@@ -1,24 +1,9 @@
 import axios from 'axios'
 
-// Fetch country axios actions
-export const fetchCountryPending = () => {
-  return {
-    type: "FETCH_COUNTRY_PENDING"
-  }
-}
-
-export const fetchCountryFulfilled = country => {
-  return {
-    type: "FETCH_COUNTRY_FULFILLED",
-    country: country
-  }
-}
-
-export const fetchCountryRejected = () => {
-  return {
-    type: "FETCH_COUNTRY_REJECTED"
-  }
-}
+// Action creators
+export const fetchCountryPending = () => ({type: "FETCH_COUNTRY_PENDING"})
+export const fetchCountryFulfilled = country => ({type: "FETCH_COUNTRY_FULFILLED", country})
+export const fetchCountryRejected = () => ({type: "FETCH_COUNTRY_REJECTED"})
 
 
 // GET requests the Django REST API which returns country object(s).

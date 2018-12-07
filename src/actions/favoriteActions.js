@@ -1,17 +1,8 @@
 import axios from 'axios'
 
-export const toggleFavoriteFulfilled = response => {
-  return {
-    type: "TOGGLE_FAVORITE_FULFILLED",
-    response: response
-  }
-}
-
-export const toggleFavoriteRejected = () => {
-  return {
-    type: "TOGGLE_FAVORITE_REJECTED"
-  }
-}
+// Action creators
+export const toggleFavoriteFulfilled = response => ({type: "TOGGLE_FAVORITE_FULFILLED", response})
+export const toggleFavoriteRejected = () => ({type: "TOGGLE_FAVORITE_REJECTED"})
 
 export const toggleFavorite = (tripReport) => {
   return dispatch => {
