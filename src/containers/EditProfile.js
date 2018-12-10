@@ -41,7 +41,7 @@ authenticated users to edit their profile information, and post new Trip
 Reports. This is a protected route, so only authenticated users will have
 access to editing their profile.
 */
-class EditProfile extends Component {
+export class EditProfile extends Component {
 
   // Returns True if the user has scrolled past the bottom.
   isBottom(el) {
