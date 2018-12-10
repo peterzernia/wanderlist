@@ -2,9 +2,8 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { Layout } from '../Layout'
 import { DotLoader } from 'react-spinners'
-import Error from '../../components/error'
+import Error from '../../components/Error'
 import Success from '../../components/Success'
-import store from "../../store/index"
 
 describe('<Layout />', () =>{
   let wrapper;
@@ -28,7 +27,7 @@ describe('<Layout />', () =>{
   it('displays error', () => {
     expect(wrapper.find(Error).length).toEqual(0);
     wrapper.setProps({ error: { message: "Network Error" } });
-    expect(wrapper.find('Errors').length).toEqual(1);
+    expect(wrapper.find(Error).length).toEqual(1);
   });
   it('displays success', () => {
     expect(wrapper.find(Success).length).toEqual(0);

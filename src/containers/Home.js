@@ -19,7 +19,7 @@ import TripReportTruncated from '../components/TripReportTruncated'
 import { DotLoader } from 'react-spinners'
 import Typography from '@material-ui/core/Typography'
 
-class Home extends Component {
+export class Home extends Component {
 
   componentWillUnmount() {
     this.props.removeError();
