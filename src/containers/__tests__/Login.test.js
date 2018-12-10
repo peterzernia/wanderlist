@@ -1,7 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { Login } from '../Login'
-import { DotLoader } from 'react-spinners'
 import LoginForm from '../../components/LoginForm'
 import { Redirect } from 'react-router-dom'
 

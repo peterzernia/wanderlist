@@ -1,9 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { ForgotPassword } from '../ForgotPassword'
-import { DotLoader } from 'react-spinners'
-import ForgotPasswordForm from '../../components/ForgotPasswordForm'
-import { Redirect } from 'react-router-dom'
 
 describe('<ForgotPassword />', () =>{
   let wrapper;

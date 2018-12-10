@@ -23,7 +23,7 @@ import { DotLoader } from 'react-spinners'
 This component creates a link off the posts slug, so that users can share and
 access posts externally.
 */
-class Post extends Component {
+export class Post extends Component {
 
   componentDidMount () {
     const { slug } = this.props.match.params

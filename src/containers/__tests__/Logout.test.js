@@ -1,7 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { Logout } from '../Logout'
-import { DotLoader } from 'react-spinners'
 
 describe('<Logout />', () =>{
   let wrapper;
