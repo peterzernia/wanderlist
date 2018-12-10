@@ -16,7 +16,7 @@ import SearchBar from '../components/SearchBar'
 
 import { DotLoader } from 'react-spinners'
 
-class Search extends Component {
+export class Search extends Component {
 
   componentWillUnmount() {
     this.props.removeError();
