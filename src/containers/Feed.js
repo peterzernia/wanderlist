@@ -20,7 +20,7 @@ import TripReportTruncated from '../components/TripReportTruncated'
 
 import { DotLoader } from 'react-spinners'
 
-class Feed extends Component {
+export class Feed extends Component {
 
   // Returns True if the user has scrolled past the bottom.
   isBottom(el) {
