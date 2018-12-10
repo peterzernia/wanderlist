@@ -25,7 +25,7 @@ import ViewProfile from './ViewProfile'
 
 import { DotLoader } from 'react-spinners'
 
-class Layout extends Component {
+export class Layout extends Component {
 
   componentWillMount() {
     if (this.props.authenticated) {
