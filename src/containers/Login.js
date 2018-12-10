@@ -9,7 +9,7 @@ import { removeError } from '../actions/errorActions'
 
 import LoginForm from '../components/LoginForm'
 
-class Login extends Component {
+export class Login extends Component {
 
   componentWillUnmount() {
     this.props.removeError();
