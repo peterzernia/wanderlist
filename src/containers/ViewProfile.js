@@ -31,7 +31,7 @@ the person visiting this page to edit or post new content. Since this route is
 not a private route, it allows users to have a link to their profile to share
 outside of this website.
 */
-class ViewProfile extends Component {
+export class ViewProfile extends Component {
 
   // Returns True if the user has scrolled past the bottom.
   isBottom(el) {
