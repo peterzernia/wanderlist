@@ -13,8 +13,9 @@ deployed on Heroku.
 In my earlier project [Petsygram](https://github.com/peterzernia/petsygram), I relied heavily on Django templates
 and barely even touched any of the Django Rest Framework. The motivation for my
 next project was to make use of Django Rest Framework to make a REST API and
-interact with that API in a Single-Page App (SPA). This is clearly the
-direction modern web development has taken. Reactjs fit the bill for everything
+interact with that API in a Single-Page App (SPA). SPAs are one of the
+directions modern web development has taken, and it seems very important to
+learn how to build them. Reactjs fit the bill for everything
 I was looking to do in this web app, as well as being an exciting and popular
 library. As an avid traveller and geography buff, creating an app based around
 traveling and geography made perfect sense. Countries have plenty of interesting
@@ -170,14 +171,66 @@ updated on the React server.
 
 
 
-## REST API Reference
+## REST API Endpoint Reference
 
 There exist multiple endpoints for the API, /api/v1/.
-* [Countries](https://w4nderlist.herokuapp.com/api/v1/countries/) - The read-only API view for country objects. Only administrators can update this data.
-* [Trip Reports](https://w4nderlist.herokuapp.com/api/v1/reports/) - The endpoint for the Trip Reports. Authenticated users can create, read, update and delete Trip Reports from the React frontend.
-* [Users](https://w4nderlist.herokuapp.com/api/v1/reports/) - The read-only API view for user objects.
-* Rest-auth - These views allow registration and authentication via the django-rest-auth and django-allauth packages.
-* Favorite - /report/country_id/favorite/ - GET requests from authenticated users to this custom API view toggle the users favorite status of a Trip Report
+
+* [Countries](https://w4nderlist.herokuapp.com/api/v1/countries/) - The
+read-only API view for country objects. Only administrators can update this
+data, but GET requests can be made with a search parameter of a country name or
+language, e.g. /api/v1/countries/?search=Aland&Islands. This endpoint returns
+case-insensitive, partial matches. A query of /api/v1/countries/?search=united
+will return the countries United Republic of Tanzania, United Arab Emirites,
+United Kingdom, and United States of America.
+
+* [Trip Reports](https://w4nderlist.herokuapp.com/api/v1/reports/) - The
+endpoint for the Trip Reports. Authenticated users can create, read, update and
+delete Trip Reports from the React frontend. GET requests are
+paginated to three trip reports and are ordered by favorite
+count, but can also be ordered by primary key, i.e. /api/v1/reports/?ordering=pk.
+The second page would be viewable at /api/v1/reports/?ordering=pk&page=2. Search
+parameters for an exact match on a username, exact match on the trip report
+slug, and case-insensitive partial match for countries of the trip report can
+also be made, e.g. /api/v1/reports/?search=peterzernia. POST requests to this
+endpont require the authentication token returned from the rest-auth endpoints
+to be sent in the request header, i.e.
+```
+axios.post(
+  `/api/v1/reports/`, data,{
+    headers: {
+      'Authorization': `Token ${token}`
+    }
+  }
+)
+```
+along with the required fields, title, content, authors, and countries. The
+image field is optional. PUT, PATCH, and DELETE requests must be made to the
+specific trip report endpoint of /api/v1/reports/tripReport_pk/, e.g.
+/api/v1/reports/12/ and require the same headers as POST.
+
+* [Users](https://w4nderlist.herokuapp.com/api/v1/users/) - The read-only API
+view for users. GET requests can be made with the exact match username, e.g.
+/api/v1/users/?search=peterzernia.
+
+* Rest-auth - These views allow authentication, registration and password reset
+request via the django-rest-auth and django-allauth packages.
+POST requests made to /api/v1/rest-auth/login/ return an authentication token. This
+token is stored in the browsers localStorage, and used to check authentication, and
+POST, PUT, and DELETE trip reports. POST requests to /login/ require the username
+and password passed in as data. POST requests to /registration/ require username,
+email, password, verified password, and home country pk to be passed in. GET
+requests to /user/ returns the authenticated user object. POST requests to
+/api/v1/rest-auth/password/reset/ will send an email to the email address that
+was posted giving instructions on how to reset the password.
+
+* Favorite - /report/tripReport_pk/favorite/ - GET requests from authenticated
+users to this custom API view toggle the users favorite status of a Trip Report.
+GET requests returns the Trip Report object with the updated favoriters. For
+example,if the favoriters of Trip Report number 12 is an array of the pks [2, 3]
+and the user with pk number 1 makes a GET request to /report/12/favorite/, it
+will return the same trip report object, but the favoriters array will now be
+[1, 2, 3]. GET requests also must include the authentication token in the
+headers.
 
 
 
