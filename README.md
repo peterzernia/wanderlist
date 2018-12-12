@@ -24,7 +24,10 @@ is obviously something I only wanted users to have read access to, so
 to add create, update, and delete functionality to this web app, I decided to
 have users add and remove countries from a personalized map, using the Google
 Maps API, which expanded into having users write Trip Reports on trips they have
-taken, tagging countries.
+taken, tagging countries. Finally, I wanted to add image upload to this project.
+I had images in my last project as well, but I served the images from the
+/media/ folder in Django. This time, I wanted to use AWS S3 to learn how, and
+make this project more scalable.
 
 
 
