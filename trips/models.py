@@ -2,11 +2,11 @@ import os, sys
 from io import BytesIO
 from PIL import Image
 from django.db import models
-from users.models import User
-from countries.models import Country
 from django.utils import timezone
 from django.utils.crypto import get_random_string
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from users.models import User
+from countries.models import Country
 
 
 class TripReport(models.Model):

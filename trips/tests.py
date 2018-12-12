@@ -1,12 +1,14 @@
+import requests
+from io import BytesIO
+from PIL import Image
 from django.test import TestCase
 from trips.models import TripReport
 from users.models import User
 from django.core.files.uploadedfile import SimpleUploadedFile
 from backend.settings import *
 from api.serializers import TripReportSerializer
-from PIL import Image
-import requests
-from io import BytesIO
+from trips.models import TripReport
+from users.models import User
 
 
 class TripReportTest(TestCase):

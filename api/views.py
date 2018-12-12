@@ -4,13 +4,13 @@ from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
 from rest_framework import viewsets, filters
-from .serializers import CountrySerializer, TripReportSerializer, UserSerializer
-from countries.models import Country
-from trips.models import TripReport
-from users.models import User
 from rest_framework import permissions
 from rest_framework.pagination import PageNumberPagination
 from django.db.models import Count
+from api.serializers import CountrySerializer, TripReportSerializer, UserSerializer
+from countries.models import Country
+from trips.models import TripReport
+from users.models import User
 
 
 class TripReportSetPagination(PageNumberPagination):

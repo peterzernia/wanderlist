@@ -1,7 +1,7 @@
 from django.urls import path, include
-from .views import CountryListView, TripReportViewSet, UserListView
 from rest_framework.routers import DefaultRouter
-from .views import FavoriteAPI
+from .views import CountryListView, TripReportViewSet, UserListView, FavoriteAPI
+
 
 router = DefaultRouter()
 router.register(r'reports', TripReportViewSet, base_name='trip_report')

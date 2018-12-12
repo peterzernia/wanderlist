@@ -1,12 +1,12 @@
+from collections import OrderedDict
 from rest_framework import serializers
-from countries.models import Country, Currency, Language, RegionalBloc
-from users.models import User
-from trips.models import TripReport
 from rest_auth.serializers import UserDetailsSerializer
 from rest_auth.registration.serializers import RegisterSerializer
 from allauth.account.adapter import get_adapter
 from allauth.account.utils import setup_user_email
-from collections import OrderedDict
+from countries.models import Country, Currency, Language, RegionalBloc
+from users.models import User
+from trips.models import TripReport
 
 
 class CurrenciesSerializer(serializers.ModelSerializer):

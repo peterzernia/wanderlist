@@ -1,17 +1,17 @@
+from collections import OrderedDict
 from django.test import TestCase
-from users.models import User
-from countries.models import Country
-from trips.models import TripReport
-from api.serializers import (
-    UserDetailSerializer, RegistrationSerializer, AuthorField, CountryField
-)
-from api.views import FavoriteAPI
 from django.urls import reverse
 from rest_framework.test import force_authenticate, APIRequestFactory, APIClient
 from django.contrib.sessions.middleware import SessionMiddleware
 from rest_framework.authtoken.models import Token
 from rest_auth.views import UserDetailsView
-from collections import OrderedDict
+from users.models import User
+from countries.models import Country
+from trips.models import TripReport
+from .serializers import (
+    UserDetailSerializer, RegistrationSerializer, AuthorField, CountryField
+)
+from .views import FavoriteAPI
 
 
 class UserDetailSerializerTest(TestCase):
