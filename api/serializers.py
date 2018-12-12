@@ -10,18 +10,27 @@ from collections import OrderedDict
 
 
 class CurrenciesSerializer(serializers.ModelSerializer):
+    '''
+    Currency serializer inherited from ModelSerializer.
+    '''
     class Meta:
         model = Currency
         fields = ('code', 'name', 'symbol')
 
 
 class LanguagesSerializer(serializers.ModelSerializer):
+    '''
+    Languages serializer inherited from ModelSerializer.
+    '''
     class Meta:
         model = Language
         fields = ('iso639_1', 'name', 'native_name')
 
 
 class RegionalBlocsSerializer(serializers.ModelSerializer):
+    '''
+    RegionalBloc serializer inherited from ModelSerializer.
+    '''
     class Meta:
         model = RegionalBloc
         fields = ('acronym', 'name', 'other_acronyms', 'other_names')
@@ -111,6 +120,12 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class TripReportSerializer(serializers.ModelSerializer):
+    '''
+    The Trip Report serializer uses the AuthorField and CountryField serializers
+    that allows Trip Reports to be posted and updated on the frontend with
+    just the pks for these fields. The pk values are easily stored in a select
+    input on the frontend.
+    '''
     author = AuthorField(queryset=User.objects.all())
     countries = CountryField(queryset=Country.objects.all(), many=True)
     favoriters = serializers.PrimaryKeyRelatedField(required=False, queryset=User.objects.all(), many=True)
@@ -149,7 +164,7 @@ class UserDetailSerializer(UserDetailsSerializer):
 
 class RegistrationSerializer(RegisterSerializer):
     '''
-    Custom Registration Serializer used to include home country field.
+    Custom Registration Serializer used to include required home country field.
     '''
     username = serializers.CharField(required=True, write_only=True)
     email = serializers.EmailField(required=True, write_only=True)
@@ -166,8 +181,10 @@ class RegistrationSerializer(RegisterSerializer):
             'home': self.validated_data.get('home', ''),
         }
 
-    # As per the Allauth documents, Registration Serializer must include save
-    # function that returns user instance.
+    '''
+    As per the Allauth documents, Registration Serializer must include save
+    function that returns user instance.
+    '''
     def save(self, request):
         adapter = get_adapter()
         user = adapter.new_user(request)

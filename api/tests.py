@@ -18,7 +18,9 @@ class UserDetailSerializerTest(TestCase):
     def setUp(self):
         # Create two country objects.
         self.country_one = Country.objects.create(name="Bouvet Island")
-        self.country_two = Country.objects.create(name="Congo (Democratic Republic of the)")
+        self.country_two = Country.objects.create(
+            name="Congo (Democratic Republic of the)"
+        )
         # Create a user object.
         self.user = User.objects.create(
             username='TestUser',
@@ -42,7 +44,10 @@ class UserDetailSerializerTest(TestCase):
         self.user.refresh_from_db()
         self.assertEqual(self.user.username, 'Test')
         self.assertEqual(self.user.email, 'new_email@test.com')
-        self.assertEqual(list(self.user.countries.all().order_by('pk')), [self.country_one, self.country_two])
+        self.assertEqual(
+            list(self.user.countries.all().order_by('pk')),
+            [self.country_one, self.country_two]
+        )
         self.assertEqual(self.user.home, self.country_two)
         self.assertEqual(self.user.biography, 'Hi World!')
 
@@ -103,7 +108,9 @@ class TestTripReportViewSet(TestCase):
     def setUp(self):
         # Create two country objects.
         self.country_one = Country.objects.create(name="Bouvet Island")
-        self.country_two = Country.objects.create(name="Congo (Democratic Republic of the)")
+        self.country_two = Country.objects.create(
+            name="Congo (Democratic Republic of the)"
+        )
         # Create a user object.
         self.user = User.objects.create(
             username='TestUser',
@@ -177,7 +184,9 @@ class RegistrationSerializerTest(TestCase):
 
         serializer = RegistrationSerializer(data=data)
         serializer.is_valid()
-        self.assertEqual(serializer.save(request), User.objects.get(username='TestUser'))
+        self.assertEqual(
+            serializer.save(request), User.objects.get(username='TestUser')
+        )
 
 
 class AuthorFieldTest(TestCase):
@@ -191,7 +200,9 @@ class AuthorFieldTest(TestCase):
             biography='Hello World!'
         )
         serializer = AuthorField(queryset=User.objects.all())
-        self.assertEqual(serializer.get_choices(), OrderedDict([(1, 'TestUser')]))
+        self.assertEqual(
+            serializer.get_choices(), OrderedDict([(1, 'TestUser')])
+        )
 
 
 class CountryFieldTest(TestCase):
@@ -201,14 +212,18 @@ class CountryFieldTest(TestCase):
 
         self.country = Country.objects.create(name="Bouvet Island")
         serializer = CountryField(queryset=Country.objects.all())
-        self.assertEqual(serializer.get_choices(), OrderedDict([(1, 'Bouvet Island')]))
+        self.assertEqual(
+            serializer.get_choices(), OrderedDict([(1, 'Bouvet Island')])
+        )
 
 
 class FavoriteAPITest(TestCase):
     # Test that get request to FavoriteAPI toggles user to list of favoriters.
     def test_get(self):
         self.user = User.objects.create(username='TestUser')
-        self.trip_report = TripReport.objects.create(title='Test', content='Test', author=self.user)
+        self.trip_report = TripReport.objects.create(
+                               title='Test', content='Test', author=self.user
+                           )
         # Test favoriters is currently empty.
         self.assertEqual(self.trip_report.favoriters.all().count(), 0)
 

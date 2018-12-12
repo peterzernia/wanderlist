@@ -10,6 +10,10 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
 class TripReport(models.Model):
+    '''
+    The model for trip reports. The countries field is a list of countries the
+    post references.
+    '''
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     countries = models.ManyToManyField(Country, blank=False, related_name='trip_countries')
     title = models.CharField(max_length=100)
@@ -23,15 +27,15 @@ class TripReport(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
+        '''
+        Save assigns a random slug to the post, checks exif information for
+        cellphone photos to see what orientation the photo was taken in, then
+        rotates the image to be upright. images are reduced to a width of 600px,
+        with proportionally reduced height to save room on the server.
+        '''
         if not self.slug:
             self.slug = get_random_string(12,'0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
-        '''
-        Checks exif information for cellphone photos to see what orientation the
-        photo was taken in, then rotates the image to be upright. images are reduced
-        to a width of 600px, with proportionally reduced height to save room on the
-        server.
-        '''
         if self.image:
             img = Image.open(self.image)
             exif = img._getexif()

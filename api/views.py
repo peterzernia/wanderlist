@@ -38,6 +38,12 @@ class CountryListView(ListAPIView):
 
 
 class TripReportViewSet(viewsets.ModelViewSet):
+    '''
+    This is the viewset for Trip Reports. The queryset ordering defaults to
+    count of users who have favorited a post, but this behavior can be
+    overridden. Search fields allow users to filter the trip reports by authors
+    or users on the frontend. The slug is used to filter for a specific post.
+    '''
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     serializer_class = TripReportSerializer
     pagination_class = TripReportSetPagination
@@ -50,6 +56,9 @@ class TripReportViewSet(viewsets.ModelViewSet):
 
 
 class UserListView(ListAPIView):
+    '''
+    A simple ListAPIView to list all of the users.
+    '''
     queryset = User.objects.all()
     serializer_class = UserSerializer
     filter_backends = (filters.SearchFilter,)

@@ -34,7 +34,9 @@ class TripReportTest(TestCase):
         response = requests.get(f"{MEDIA_URL}trip-report/test_image.jpg")
         serializer = TripReportSerializer(self.trip_report)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(serializer.data['image'], f"{MEDIA_URL}trip-report/test_image.jpg")
+        self.assertEqual(
+            serializer.data['image'], f"{MEDIA_URL}trip-report/test_image.jpg"
+        )
 
     # Verify that the uploaded image has been reduced to 600 pixels wide.
     def test_image_size(self):
