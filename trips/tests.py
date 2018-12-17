@@ -1,14 +1,12 @@
 import requests
+import os
 from io import BytesIO
 from PIL import Image
 from django.test import TestCase
 from trips.models import TripReport
 from users.models import User
-from django.core.files.uploadedfile import SimpleUploadedFile
-from backend.settings import *
+from backend.settings import MEDIA_URL, BASE_DIR
 from api.serializers import TripReportSerializer
-from trips.models import TripReport
-from users.models import User
 
 
 class TripReportTest(TestCase):
@@ -46,10 +44,10 @@ class TripReportTest(TestCase):
         img = Image.open(BytesIO(response.content))
         self.assertEqual(img.size[0], 600)
 
-
     # tearDown also tests the auto_delete_file_on_trip_report_delete. An GET
     # request to the s3 server where the image does not exist returns code 403
     # forbidden.
+
     def tearDown(self):
         self.trip_report.delete()
         response = requests.get(f"{MEDIA_URL}trip-report/test_image.jpg")
@@ -83,7 +81,6 @@ class SignalTest(TestCase):
         # And the new one exists.
         response = requests.get(f"{MEDIA_URL}trip-report/test_image2.jpg")
         self.assertEqual(response.status_code, 200)
-
 
     def tearDown(self):
         self.trip_report.delete()

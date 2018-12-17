@@ -1,4 +1,5 @@
-import os, sys
+import os
+import sys
 from io import BytesIO
 from PIL import Image
 from django.db import models
@@ -15,7 +16,8 @@ class TripReport(models.Model):
     post references.
     '''
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    countries = models.ManyToManyField(Country, blank=False, related_name='trip_countries')
+    countries = models.ManyToManyField(
+        Country, blank=False, related_name='trip_countries')
     title = models.CharField(max_length=100)
     content = models.TextField()
     image = models.ImageField(upload_to='trip-report', null=True)
@@ -30,11 +32,14 @@ class TripReport(models.Model):
         '''
         Save assigns a random slug to the post, checks exif information for
         cellphone photos to see what orientation the photo was taken in, then
-        rotates the image to be upright. images are reduced to a width of 600px,
-        with proportionally reduced height to save room on the server.
+        rotates the image to be upright. images are reduced to a width of
+        600px, with proportionally reduced height to save room on the server.
         '''
         if not self.slug:
-            self.slug = get_random_string(12,'0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+            self.slug = get_random_string(
+                12,
+                '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            )
 
         if self.image:
             img = Image.open(self.image)
@@ -57,6 +62,8 @@ class TripReport(models.Model):
             img.thumbnail(output_size)
             img.save(output, format='JPEG', quality=90)
             output.seek(0)
-            self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.image.name.split('.')[0], 'image/jpeg',
-                                            sys.getsizeof(output), None)
+            self.image = InMemoryUploadedFile(
+                output, 'ImageField', "%s.jpg" % self.image.name.split('.')[0],
+                'image/jpeg', sys.getsizeof(output), None
+            )
         super().save(*args, **kwargs)

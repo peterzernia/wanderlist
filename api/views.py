@@ -1,5 +1,4 @@
-from django.shortcuts import render, get_object_or_404
-from django.core import serializers
+from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
@@ -7,7 +6,9 @@ from rest_framework import viewsets, filters
 from rest_framework import permissions
 from rest_framework.pagination import PageNumberPagination
 from django.db.models import Count
-from api.serializers import CountrySerializer, TripReportSerializer, UserSerializer
+from api.serializers import (
+    CountrySerializer, TripReportSerializer, UserSerializer
+)
 from countries.models import Country
 from trips.models import TripReport
 from users.models import User
@@ -27,9 +28,9 @@ class TripReportSetPagination(PageNumberPagination):
 
 class CountryListView(ListAPIView):
     '''
-    This is the api view for all of the countries and territories represented in
-    the Country model. This model can be filtered with search, using the fields
-    listed in search_fields.
+    This is the api view for all of the countries and territories represented
+    in the Country model. This model can be filtered with search, using the
+    fields listed in search_fields.
     '''
     queryset = Country.objects.all().order_by('name')
     serializer_class = CountrySerializer
@@ -48,8 +49,9 @@ class TripReportViewSet(viewsets.ModelViewSet):
     serializer_class = TripReportSerializer
     pagination_class = TripReportSetPagination
     # To order by favorite count or 'top':
-    queryset = TripReport.objects.all().annotate(count=Count('favoriters')).order_by('-count')
-    #queryset = TripReport.objects.all().order_by('-pk')
+    queryset = TripReport.objects.all().annotate(
+        count=Count('favoriters')).order_by('-count')
+    # queryset = TripReport.objects.all().order_by('-pk')
     filter_backends = (filters.SearchFilter, filters.OrderingFilter)
     search_fields = ('=author__username', '=slug', 'countries__name', )
     ordering_fields = ('pk', )
@@ -67,10 +69,10 @@ class UserListView(ListAPIView):
 
 class FavoriteAPI(APIView):
     '''
-    When GET requests are made to this view, the user, who made the request, has
-    their ManyToMany relation toggled in the favoriter field of the Trip Report
-    model. The GET request returns the Trip Report object with the updated
-    favoriters array.
+    When GET requests are made to this view, the user, who made the request,
+    has their ManyToMany relation toggled in the favoriter field of the Trip
+    Report model. The GET request returns the Trip Report object with the
+    updated favoriters array.
     '''
     permission_classes = (permissions.IsAuthenticated,)
 

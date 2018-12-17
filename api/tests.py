@@ -1,7 +1,9 @@
 from collections import OrderedDict
 from django.test import TestCase
 from django.urls import reverse
-from rest_framework.test import force_authenticate, APIRequestFactory, APIClient
+from rest_framework.test import (
+    force_authenticate, APIRequestFactory, APIClient
+)
 from django.contrib.sessions.middleware import SessionMiddleware
 from rest_framework.authtoken.models import Token
 from rest_auth.views import UserDetailsView
@@ -11,7 +13,6 @@ from trips.models import TripReport
 from .serializers import (
     UserDetailSerializer, RegistrationSerializer, AuthorField, CountryField
 )
-from .views import FavoriteAPI
 
 
 class UserDetailSerializerTest(TestCase):
@@ -59,8 +60,9 @@ class UserDetailSerializerTest(TestCase):
         data = {
             'username': 'Test',
             'email': 'new_email@test.com',
-            'countries': (self.country_one.pk, self.country_two.pk), # Pk not object
-            'home': self.country_two.pk, # Pk not object
+            # Pk not object
+            'countries': (self.country_one.pk, self.country_two.pk),
+            'home': self.country_two.pk,  # Pk not object
             'biography': 'Hi World!'
         }
         url = reverse('rest_user_details')
@@ -126,12 +128,11 @@ class TestTripReportViewSet(TestCase):
         data = {
             'title': 'Test',
             'content': 'Test Content',
-            'countries': (self.country_one.pk,), # Pk not object
-            'author': self.user.pk, # Pk not object
+            'countries': (self.country_one.pk,),  # Pk not object
+            'author': self.user.pk,  # Pk not object
         }
         response = client.post('/api/v1/reports/', data)
         self.assertEqual(response.status_code, 201)
-
 
         # POSTing with object instead of pk returns 400 bad response.
         data = {
@@ -143,15 +144,14 @@ class TestTripReportViewSet(TestCase):
         response = client.post('/api/v1/reports/', data)
         self.assertEqual(response.status_code, 400)
 
-
         # Test that Trip Reports can be updated with just User & Country pks
         client = APIClient()
         client.force_authenticate(user=self.user)
         data = {
             'title': 'Test Updated',
             'content': 'Test Content Updated',
-            'countries': (self.country_two.pk,), # Pk not object
-            'author': self.user.pk, # Pk not object
+            'countries': (self.country_two.pk,),  # Pk not object
+            'author': self.user.pk,  # Pk not object
         }
         report = TripReport.objects.all()[0]
         response = client.put(f'/api/v1/reports/{report.pk}/', data)
@@ -173,7 +173,7 @@ class RegistrationSerializerTest(TestCase):
             'email': 'test@test.com',
             'password1': 'testing1234',
             'password2': 'testing1234',
-            'home': self.country.pk, # Post with pk and not object.
+            'home': self.country.pk,  # Post with pk and not object.
         }
         request = factory.post('/api/v1/rest-auth/registration/', data)
 
@@ -222,19 +222,21 @@ class FavoriteAPITest(TestCase):
     def test_get(self):
         self.user = User.objects.create(username='TestUser')
         self.trip_report = TripReport.objects.create(
-                               title='Test', content='Test', author=self.user
-                           )
+            title='Test', content='Test', author=self.user
+        )
         # Test favoriters is currently empty.
         self.assertEqual(self.trip_report.favoriters.all().count(), 0)
 
         # Test get request was successful and user has been added.
         client = APIClient()
         client.force_authenticate(user=self.user)
-        response = client.get(f'/api/v1/reports/{self.trip_report.pk}/favorite/')
+        response = client.get(
+            f'/api/v1/reports/{self.trip_report.pk}/favorite/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(self.trip_report.favoriters.all().count(), 1)
 
         # Test user has been removed after second get request.
-        response = client.get(f'/api/v1/reports/{self.trip_report.pk}/favorite/')
+        response = client.get(
+            f'/api/v1/reports/{self.trip_report.pk}/favorite/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(self.trip_report.favoriters.all().count(), 0)

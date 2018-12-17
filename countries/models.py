@@ -25,7 +25,8 @@ class Currency(models.Model):
 
 class Language(models.Model):
     '''
-    Describes official languages recognized by countries or other jurisdictions.
+    Describes official languages recognized by countries or other
+    jurisdictions.
     '''
     iso639_1 = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
@@ -69,7 +70,7 @@ class Country(models.Model):
     timezones = JSONField(null=True, blank=True)
     borders = JSONField(null=True, blank=True)
     native_name = models.CharField(max_length=255, null=True, blank=True)
-    numeric_code= models.CharField(max_length=255, null=True, blank=True)
+    numeric_code = models.CharField(max_length=255, null=True, blank=True)
     currencies = models.ManyToManyField(Currency)
     languages = models.ManyToManyField(Language)
     flag = models.URLField(null=True)

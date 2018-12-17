@@ -54,7 +54,7 @@ class CountrySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Country
-        fields =('__all__')
+        fields = ('__all__')
 
 
 class CountryField(serializers.PrimaryKeyRelatedField):
@@ -67,6 +67,7 @@ class CountryField(serializers.PrimaryKeyRelatedField):
     maintain, e.g. the pk can be stored as the value of an option on a select
     form, instead of having to store the entire country object.
     '''
+
     def to_representation(self, value):
         pk = super(CountryField, self).to_representation(value)
         try:
@@ -89,6 +90,7 @@ class AuthorField(serializers.PrimaryKeyRelatedField):
     Same as the Country Field serializer, GET requests return User object, but
     POST/PUT/PATCH requests only require the pk of the user.
     '''
+
     def to_representation(self, value):
         pk = super(AuthorField, self).to_representation(value)
         try:
@@ -121,15 +123,17 @@ class UserSerializer(serializers.ModelSerializer):
 
 class TripReportSerializer(serializers.ModelSerializer):
     '''
-    The Trip Report serializer uses the AuthorField and CountryField serializers
-    that allows Trip Reports to be posted and updated on the frontend with
-    just the pks for these fields. The pk values are easily stored in a select
-    input on the frontend.
+    The Trip Report serializer uses the AuthorField and CountryField
+    serializers that allows Trip Reports to be posted and updated on the
+    frontend with just the pks for these fields. The pk values are easily
+    stored in a select input on the frontend.
     '''
     author = AuthorField(queryset=User.objects.all())
     countries = CountryField(queryset=Country.objects.all(), many=True)
-    favoriters = serializers.PrimaryKeyRelatedField(required=False, queryset=User.objects.all(), many=True)
-    image = serializers.ImageField(max_length=None, use_url=True, required=False)
+    favoriters = serializers.PrimaryKeyRelatedField(
+        required=False, queryset=User.objects.all(), many=True)
+    image = serializers.ImageField(
+        max_length=None, use_url=True, required=False)
 
     class Meta:
         model = TripReport
@@ -151,6 +155,7 @@ class UserDetailSerializer(UserDetailsSerializer):
     Updates the users object in the database. The username, email, countries,
     and home are set by a PUT request from the frontend.
     '''
+
     def update(self, instance, validated_data):
         instance.username = validated_data['username']
         instance.email = validated_data['email']
@@ -170,7 +175,8 @@ class RegistrationSerializer(RegisterSerializer):
     email = serializers.EmailField(required=True, write_only=True)
     password1 = serializers.CharField(required=True, write_only=True)
     password2 = serializers.CharField(required=True, write_only=True)
-    home = CountryField(queryset=Country.objects.all(),required=True, write_only=True)
+    home = CountryField(queryset=Country.objects.all(),
+                        required=True, write_only=True)
 
     def get_cleaned_data(self):
         return {
@@ -185,6 +191,7 @@ class RegistrationSerializer(RegisterSerializer):
     As per the Allauth documents, Registration Serializer must include save
     function that returns user instance.
     '''
+
     def save(self, request):
         adapter = get_adapter()
         user = adapter.new_user(request)
