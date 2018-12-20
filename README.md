@@ -55,7 +55,7 @@ $ cd projects
 $ git clone https://github.com/peterzernia/wanderlist.git
 ```
 
-3. Install a virtual environment
+3. Install a virtual environment (note instructions may be different for linux)
 ```
 $ pip install virtualenv
 ```
@@ -65,7 +65,7 @@ $ pip install virtualenv
 $ mkdir ~/venvs
 ```
 
-5. Make a new virtual environment for this project
+5. Make a new virtual environment for this project (make sure virtualenv python is set to python3.6 and not python2)
 ```
 $ virtualenv --system-site-packages ~/venvs/wanderlist
 ```
@@ -89,14 +89,21 @@ $ python
 SECRET_KEY = os.environ.get('COUNTRIES')
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 ```
   *with*
 ```
 SECRET_KEY = 'your newly generated secret key here'
 EMAIL_HOST_USER = 'your gmail username'
 EMAIL_HOST_PASSWORD = 'your gmail application password'
+AWS_STORAGE_BUCKET_NAME = 'your aws storage bucket name'
+AWS_ACCESS_KEY_ID = 'your aws access key id'
+AWS_SECRET_ACCESS_KEY = 'your aws secret access key'
 ```
 More info on Gmail App Passwords [here](https://support.google.com/accounts/answer/185833?hl=en)
+More info on AWS S3 [here](https://aws.amazon.com/s3/)
 
 9. Get a [Google Maps API Key](https://developers.google.com/maps/documentation/javascript/get-api-key)
 
@@ -262,6 +269,7 @@ expand.
 * [React](https://reactjs.org/) - JS
 * [Postgres](https://www.postgresql.org/) - Database
 * [Travis CI](https://travis-ci.com/) - Continuous Integration/Testing
+* [Heroku](https://heroku.com/) - Deployment
 
 
 
