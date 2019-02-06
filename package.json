@@ -1,0 +1,15 @@
+{
+  "name": "wanderlist",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "",
+  "author": "Peter Zernia",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "heroku-prebuild": "NODE_ENV=production cd frontend/ && npm install"
+  },
+  "cacheDirectories": [
+    "frontend/node_modules"
+  ]
+}
