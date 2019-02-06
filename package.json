@@ -9,6 +9,10 @@
   "scripts": {
     "heroku-prebuild": "NODE_ENV=production cd frontend/ && npm install"
   },
+  "engines": {
+    "node": "10.12.0",
+    "npm": "6.4.1"
+  },
   "cacheDirectories": [
     "frontend/node_modules"
   ]
