@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/actions/modalActions.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">src/actions</a> modalActions.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>34/34</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>17/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>17/17</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Country modal action creators
+export const openCountryModal = modalCountry =&gt; ({ type: "OPEN_COUNTRY_MODAL", modalCountry })
+export const closeCountryModal = () =&gt; ({ type: "CLOSE_COUNTRY_MODAL" })
+&nbsp;
+// Edit Profile modal action creators
+export const openEditProfileModal = modalProfile =&gt; ({ type: "OPEN_EDIT_PROFILE_MODAL", modalProfile })
+export const closeEditProfileModal = () =&gt; ({ type: "CLOSE_EDIT_PROFILE_MODAL" })
+&nbsp;
+/*
+There are two different actions that will open up the Post Modal. The first one
+opens up the Post modal with a blank form and a Post Submit function, and the
+second action passes in a trip report, and opens up the Post Modal with the forms
+autofilled with the trip report's details. The submit function will update the
+trip report.
+*/
+export const openPostModal = () =&gt; ({ type: "OPEN_POST_MODAL" })
+export const openUpdatePostModal = modalPost =&gt; ({ type: "OPEN_UPDATE_POST_MODAL", modalPost })
+export const closePostModal = () =&gt; ({ type: "CLOSE_POST_MODAL" })
+&nbsp;
+// Confirm Delete modal action creators
+export const openConfirmDeleteModal = modalPost =&gt;({ type: "OPEN_CONFIRM_DELETE_MODAL", modalPost })
+export const closeConfirmDeleteModal = () =&gt; ({ type: "CLOSE_CONFIRM_DELETE_MODAL" })
+&nbsp;
+// Trip Report modal action creators
+export const openTripReportModal = modalPost =&gt; ({ type: "OPEN_TRIP_REPORT_MODAL", modalPost })
+export const closeTripReportModal = () =&gt; ({ type: "CLOSE_TRIP_REPORT_MODAL" })
+&nbsp;
+// Not Authenticated modal action creators
+export const openNotAuthModal = () =&gt; ({ type: "OPEN_NOT_AUTH_MODAL" })
+export const closeNotAuthModal = () =&gt; ({ type: "CLOSE_NOT_AUTH_MODAL" })
+&nbsp;
+// Copy Link modal action creators
+export const openCopyLinkModal = modalLink =&gt; ({ type: "OPEN_COPY_LINK_MODAL", modalLink: modalLink })
+export const closeCopyLinkModal = () =&gt; ({ type: "CLOSE_COPY_LINK_MODAL" })
+&nbsp;
+// Image modal action creators
+export const openImageModal = modalImage =&gt; ({ type: "OPEN_IMAGE_MODAL", modalImage: modalImage })
+export const closeImageModal = () =&gt; ({ type: "CLOSE_IMAGE_MODAL" })
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Dec 10 2018 16:58:20 GMT+0100 (Central European Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

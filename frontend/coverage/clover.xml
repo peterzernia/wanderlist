@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1544457501439" clover="3.2.0">
+  <project timestamp="1544457501439" name="All files">
+    <metrics statements="710" coveredstatements="477" conditionals="340" coveredconditionals="222" methods="347" coveredmethods="227" elements="1397" coveredelements="926" complexity="0" loc="710" ncloc="710" packages="5" files="55" classes="55">
+      <package name="src">
+        <metrics statements="58" coveredstatements="14" conditionals="29" coveredconditionals="0" methods="19" coveredmethods="4"/>
+        <file name="App.js" path="/Users/peterzernia/projects/wanderlist/src/App.js">
+          <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+          <line num="18" count="1" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
+          <line num="47" count="1" type="stmt"/>
+          <line num="58" count="1" type="stmt"/>
+          <line num="59" count="2" type="stmt"/>
+          <line num="63" count="1" type="stmt"/>
+          <line num="64" count="1" type="stmt"/>
+          <line num="73" count="1" type="stmt"/>
+        </file>
+        <file name="index.js" path="/Users/peterzernia/projects/wanderlist/src/index.js">
+          <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="9" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+        </file>
+        <file name="serviceWorker.js" path="/Users/peterzernia/projects/wanderlist/src/serviceWorker.js">
+          <metrics statements="35" coveredstatements="0" conditionals="29" coveredconditionals="0" methods="15" coveredmethods="0"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="24" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="35" count="0" type="stmt"/>
+          <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="39" count="0" type="stmt"/>
+          <line num="43" count="0" type="stmt"/>
+          <line num="44" count="0" type="stmt"/>
+          <line num="51" count="0" type="stmt"/>
+          <line num="58" count="0" type="stmt"/>
+          <line num="61" count="0" type="stmt"/>
+          <line num="62" count="0" type="stmt"/>
+          <line num="63" count="0" type="stmt"/>
+          <line num="64" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="65" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="69" count="0" type="stmt"/>
+          <line num="75" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="76" count="0" type="stmt"/>
+          <line num="82" count="0" type="stmt"/>
+          <line num="85" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="86" count="0" type="stmt"/>
+          <line num="94" count="0" type="stmt"/>
+          <line num="100" count="0" type="stmt"/>
+          <line num="103" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="108" count="0" type="stmt"/>
+          <line num="109" count="0" type="stmt"/>
+          <line num="110" count="0" type="stmt"/>
+          <line num="115" count="0" type="stmt"/>
+          <line num="119" count="0" type="stmt"/>
+          <line num="126" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="127" count="0" type="stmt"/>
+          <line num="128" count="0" type="stmt"/>
+        </file>
+        <file name="setupTests.js" path="/Users/peterzernia/projects/wanderlist/src/setupTests.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="4" count="46" type="stmt"/>
+        </file>
+        <file name="testVariables.js" path="/Users/peterzernia/projects/wanderlist/src/testVariables.js">
+          <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="14" type="stmt"/>
+          <line num="61" count="14" type="stmt"/>
+          <line num="191" count="14" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.actions">
+        <metrics statements="232" coveredstatements="102" conditionals="6" coveredconditionals="1" methods="132" coveredmethods="72"/>
+        <file name="authActions.js" path="/Users/peterzernia/projects/wanderlist/src/actions/authActions.js">
+          <metrics statements="43" coveredstatements="15" conditionals="2" coveredconditionals="1" methods="18" coveredmethods="6"/>
+          <line num="6" count="7" type="stmt"/>
+          <line num="7" count="7" type="stmt"/>
+          <line num="8" count="7" type="stmt"/>
+          <line num="14" count="7" type="stmt"/>
+          <line num="15" count="2" type="stmt"/>
+          <line num="16" count="2" type="stmt"/>
+          <line num="17" count="2" type="stmt"/>
+          <line num="26" count="7" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+          <line num="29" count="0" type="stmt"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="35" count="0" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="39" count="0" type="stmt"/>
+          <line num="42" count="0" type="stmt"/>
+          <line num="43" count="0" type="stmt"/>
+          <line num="52" count="7" type="stmt"/>
+          <line num="53" count="0" type="stmt"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="55" count="0" type="stmt"/>
+          <line num="56" count="0" type="stmt"/>
+          <line num="64" count="0" type="stmt"/>
+          <line num="65" count="0" type="stmt"/>
+          <line num="66" count="0" type="stmt"/>
+          <line num="67" count="0" type="stmt"/>
+          <line num="68" count="0" type="stmt"/>
+          <line num="69" count="0" type="stmt"/>
+          <line num="72" count="0" type="stmt"/>
+          <line num="73" count="0" type="stmt"/>
+          <line num="83" count="7" type="stmt"/>
+          <line num="84" count="1" type="stmt"/>
+          <line num="85" count="1" type="stmt"/>
+          <line num="86" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="87" count="1" type="stmt"/>
+          <line num="89" count="0" type="stmt"/>
+          <line num="100" count="7" type="stmt"/>
+          <line num="101" count="0" type="stmt"/>
+          <line num="102" count="0" type="stmt"/>
+          <line num="106" count="0" type="stmt"/>
+          <line num="109" count="0" type="stmt"/>
+        </file>
+        <file name="countryActions.js" path="/Users/peterzernia/projects/wanderlist/src/actions/countryActions.js">
+          <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="7"/>
+          <line num="4" count="5" type="stmt"/>
+          <line num="5" count="5" type="stmt"/>
+          <line num="6" count="5" type="stmt"/>
+          <line num="10" count="5" type="stmt"/>
+          <line num="11" count="2" type="stmt"/>
+          <line num="12" count="2" type="stmt"/>
+          <line num="13" count="2" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="16" count="1" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+        </file>
+        <file name="errorActions.js" path="/Users/peterzernia/projects/wanderlist/src/actions/errorActions.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="2" count="11" type="stmt"/>
+        </file>
+        <file name="favoriteActions.js" path="/Users/peterzernia/projects/wanderlist/src/actions/favoriteActions.js">
+          <metrics statements="9" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="2"/>
+          <line num="4" count="8" type="stmt"/>
+          <line num="5" count="8" type="stmt"/>
+          <line num="7" count="8" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="9" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="16" count="0" type="stmt"/>
+        </file>
+        <file name="modalActions.js" path="/Users/peterzernia/projects/wanderlist/src/actions/modalActions.js">
+          <metrics statements="17" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="17" coveredmethods="17"/>
+          <line num="2" count="9" type="stmt"/>
+          <line num="3" count="9" type="stmt"/>
+          <line num="6" count="9" type="stmt"/>
+          <line num="7" count="9" type="stmt"/>
+          <line num="16" count="9" type="stmt"/>
+          <line num="17" count="9" type="stmt"/>
+          <line num="18" count="9" type="stmt"/>
+          <line num="21" count="9" type="stmt"/>
+          <line num="22" count="9" type="stmt"/>
+          <line num="25" count="9" type="stmt"/>
+          <line num="26" count="9" type="stmt"/>
+          <line num="29" count="9" type="stmt"/>
+          <line num="30" count="9" type="stmt"/>
+          <line num="33" count="9" type="stmt"/>
+          <line num="34" count="9" type="stmt"/>
+          <line num="37" count="9" type="stmt"/>
+          <line num="38" count="9" type="stmt"/>
+        </file>
+        <file name="tripReportActions.js" path="/Users/peterzernia/projects/wanderlist/src/actions/tripReportActions.js">
+          <metrics statements="117" coveredstatements="44" conditionals="4" coveredconditionals="0" methods="63" coveredmethods="31"/>
+          <line num="2" count="12" type="stmt"/>
+          <line num="3" count="12" type="stmt"/>
+          <line num="6" count="12" type="stmt"/>
+          <line num="7" count="12" type="stmt"/>
+          <line num="8" count="12" type="stmt"/>
+          <line num="11" count="12" type="stmt"/>
+          <line num="12" count="12" type="stmt"/>
+          <line num="13" count="12" type="stmt"/>
+          <line num="16" count="12" type="stmt"/>
+          <line num="17" count="12" type="stmt"/>
+          <line num="18" count="12" type="stmt"/>
+          <line num="21" count="12" type="stmt"/>
+          <line num="22" count="12" type="stmt"/>
+          <line num="23" count="12" type="stmt"/>
+          <line num="26" count="12" type="stmt"/>
+          <line num="27" count="12" type="stmt"/>
+          <line num="28" count="12" type="stmt"/>
+          <line num="31" count="12" type="stmt"/>
+          <line num="32" count="12" type="stmt"/>
+          <line num="33" count="12" type="stmt"/>
+          <line num="36" count="12" type="stmt"/>
+          <line num="37" count="12" type="stmt"/>
+          <line num="38" count="12" type="stmt"/>
+          <line num="41" count="12" type="stmt"/>
+          <line num="42" count="12" type="stmt"/>
+          <line num="43" count="12" type="stmt"/>
+          <line num="46" count="12" type="stmt"/>
+          <line num="47" count="12" type="stmt"/>
+          <line num="48" count="12" type="stmt"/>
+          <line num="54" count="12" type="stmt"/>
+          <line num="55" count="1" type="stmt"/>
+          <line num="56" count="1" type="stmt"/>
+          <line num="57" count="1" type="stmt"/>
+          <line num="59" count="0" type="stmt"/>
+          <line num="60" count="0" type="stmt"/>
+          <line num="63" count="0" type="stmt"/>
+          <line num="64" count="0" type="stmt"/>
+          <line num="74" count="12" type="stmt"/>
+          <line num="75" count="0" type="stmt"/>
+          <line num="76" count="0" type="stmt"/>
+          <line num="77" count="0" type="stmt"/>
+          <line num="79" count="0" type="stmt"/>
+          <line num="80" count="0" type="stmt"/>
+          <line num="83" count="0" type="stmt"/>
+          <line num="84" count="0" type="stmt"/>
+          <line num="93" count="12" type="stmt"/>
+          <line num="94" count="0" type="stmt"/>
+          <line num="95" count="0" type="stmt"/>
+          <line num="96" count="0" type="stmt"/>
+          <line num="98" count="0" type="stmt"/>
+          <line num="99" count="0" type="stmt"/>
+          <line num="102" count="0" type="stmt"/>
+          <line num="103" count="0" type="stmt"/>
+          <line num="113" count="12" type="stmt"/>
+          <line num="114" count="0" type="stmt"/>
+          <line num="115" count="0" type="stmt"/>
+          <line num="116" count="0" type="stmt"/>
+          <line num="118" count="0" type="stmt"/>
+          <line num="119" count="0" type="stmt"/>
+          <line num="122" count="0" type="stmt"/>
+          <line num="123" count="0" type="stmt"/>
+          <line num="132" count="12" type="stmt"/>
+          <line num="133" count="0" type="stmt"/>
+          <line num="134" count="0" type="stmt"/>
+          <line num="135" count="0" type="stmt"/>
+          <line num="136" count="0" type="stmt"/>
+          <line num="137" count="0" type="stmt"/>
+          <line num="138" count="0" type="stmt"/>
+          <line num="139" count="0" type="stmt"/>
+          <line num="140" count="0" type="stmt"/>
+          <line num="141" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="142" count="0" type="stmt"/>
+          <line num="144" count="0" type="stmt"/>
+          <line num="149" count="0" type="stmt"/>
+          <line num="152" count="0" type="stmt"/>
+          <line num="153" count="0" type="stmt"/>
+          <line num="159" count="12" type="stmt"/>
+          <line num="160" count="0" type="stmt"/>
+          <line num="161" count="0" type="stmt"/>
+          <line num="162" count="0" type="stmt"/>
+          <line num="163" count="0" type="stmt"/>
+          <line num="169" count="0" type="stmt"/>
+          <line num="170" count="0" type="stmt"/>
+          <line num="173" count="0" type="stmt"/>
+          <line num="174" count="0" type="stmt"/>
+          <line num="180" count="12" type="stmt"/>
+          <line num="181" count="0" type="stmt"/>
+          <line num="182" count="0" type="stmt"/>
+          <line num="183" count="0" type="stmt"/>
+          <line num="184" count="0" type="stmt"/>
+          <line num="185" count="0" type="stmt"/>
+          <line num="186" count="0" type="stmt"/>
+          <line num="187" count="0" type="stmt"/>
+          <line num="188" count="0" type="stmt"/>
+          <line num="190" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="191" count="0" type="stmt"/>
+          <line num="193" count="0" type="stmt"/>
+          <line num="200" count="0" type="stmt"/>
+          <line num="201" count="0" type="stmt"/>
+          <line num="204" count="0" type="stmt"/>
+          <line num="205" count="0" type="stmt"/>
+          <line num="214" count="12" type="stmt"/>
+          <line num="215" count="0" type="stmt"/>
+          <line num="216" count="0" type="stmt"/>
+          <line num="217" count="0" type="stmt"/>
+          <line num="219" count="0" type="stmt"/>
+          <line num="220" count="0" type="stmt"/>
+          <line num="223" count="0" type="stmt"/>
+          <line num="224" count="0" type="stmt"/>
+          <line num="233" count="12" type="stmt"/>
+          <line num="234" count="1" type="stmt"/>
+          <line num="235" count="1" type="stmt"/>
+          <line num="236" count="1" type="stmt"/>
+          <line num="238" count="0" type="stmt"/>
+          <line num="239" count="0" type="stmt"/>
+          <line num="242" count="0" type="stmt"/>
+          <line num="243" count="0" type="stmt"/>
+        </file>
+        <file name="userActions.js" path="/Users/peterzernia/projects/wanderlist/src/actions/userActions.js">
+          <metrics statements="34" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="20" coveredmethods="8"/>
+          <line num="4" count="11" type="stmt"/>
+          <line num="5" count="11" type="stmt"/>
+          <line num="6" count="11" type="stmt"/>
+          <line num="9" count="11" type="stmt"/>
+          <line num="10" count="11" type="stmt"/>
+          <line num="13" count="11" type="stmt"/>
+          <line num="14" count="11" type="stmt"/>
+          <line num="15" count="11" type="stmt"/>
+          <line num="18" count="11" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="21" count="0" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="24" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+          <line num="29" count="0" type="stmt"/>
+          <line num="35" count="11" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="50" count="0" type="stmt"/>
+          <line num="51" count="0" type="stmt"/>
+          <line num="52" count="0" type="stmt"/>
+          <line num="55" count="0" type="stmt"/>
+          <line num="56" count="0" type="stmt"/>
+          <line num="62" count="11" type="stmt"/>
+          <line num="63" count="0" type="stmt"/>
+          <line num="64" count="0" type="stmt"/>
+          <line num="65" count="0" type="stmt"/>
+          <line num="67" count="0" type="stmt"/>
+          <line num="68" count="0" type="stmt"/>
+          <line num="71" count="0" type="stmt"/>
+          <line num="72" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.components">
+        <metrics statements="138" coveredstatements="119" conditionals="107" coveredconditionals="48" methods="97" coveredmethods="80"/>
+        <file name="ConfirmDeleteModal.js" path="/Users/peterzernia/projects/wanderlist/src/components/ConfirmDeleteModal.js">
+          <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+          <line num="8" count="4" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="18" count="1" type="stmt"/>
+        </file>
+        <file name="CopyLinkModal.js" path="/Users/peterzernia/projects/wanderlist/src/components/CopyLinkModal.js">
+          <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+          <line num="9" count="8" type="stmt"/>
+          <line num="10" count="2" type="stmt"/>
+          <line num="14" count="1" type="stmt"/>
+        </file>
+        <file name="CountryModal.js" path="/Users/peterzernia/projects/wanderlist/src/components/CountryModal.js">
+          <metrics statements="7" coveredstatements="3" conditionals="56" coveredconditionals="0" methods="3" coveredmethods="0"/>
+          <line num="8" count="9" type="stmt"/>
+          <line num="9" count="9" type="stmt"/>
+          <line num="11" count="9" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="67" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="71" count="0" type="cond" truecount="0" falsecount="4"/>
+        </file>
+        <file name="EditProfileForm.js" path="/Users/peterzernia/projects/wanderlist/src/components/EditProfileForm.js">
+          <metrics statements="7" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="5"/>
+          <line num="13" count="3" type="stmt"/>
+          <line num="14" count="3" type="stmt"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="30" count="11733" type="stmt"/>
+          <line num="31" count="750" type="stmt"/>
+          <line num="34" count="3" type="stmt"/>
+          <line num="46" count="1" type="stmt"/>
+        </file>
+        <file name="EditProfileModal.js" path="/Users/peterzernia/projects/wanderlist/src/components/EditProfileModal.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="6" count="4" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+        </file>
+        <file name="Error.js" path="/Users/peterzernia/projects/wanderlist/src/components/Error.js">
+          <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="11" count="2" type="stmt"/>
+          <line num="12" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="14" count="1" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="22" count="2" type="stmt"/>
+        </file>
+        <file name="Filter.js" path="/Users/peterzernia/projects/wanderlist/src/components/Filter.js">
+          <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="6"/>
+          <line num="16" count="4" type="stmt"/>
+          <line num="20" count="3" type="stmt"/>
+          <line num="25" count="11" type="stmt"/>
+          <line num="27" count="11" type="stmt"/>
+          <line num="48" count="1" type="stmt"/>
+          <line num="55" count="1" type="stmt"/>
+          <line num="56" count="1" type="stmt"/>
+        </file>
+        <file name="ForgotPasswordForm.js" path="/Users/peterzernia/projects/wanderlist/src/components/ForgotPasswordForm.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="9" count="4" type="stmt"/>
+          <line num="10" count="2" type="stmt"/>
+        </file>
+        <file name="GoogleMap.js" path="/Users/peterzernia/projects/wanderlist/src/components/GoogleMap.js">
+          <metrics statements="7" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+          <line num="4" count="4" type="stmt"/>
+          <line num="6" count="4" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="21" count="0" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="24" count="0" type="stmt"/>
+          <line num="30" count="0" type="stmt"/>
+        </file>
+        <file name="ImageModal.js" path="/Users/peterzernia/projects/wanderlist/src/components/ImageModal.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="5" count="8" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+        </file>
+        <file name="LoginForm.js" path="/Users/peterzernia/projects/wanderlist/src/components/LoginForm.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="9" count="4" type="stmt"/>
+          <line num="10" count="2" type="stmt"/>
+        </file>
+        <file name="NavBar.js" path="/Users/peterzernia/projects/wanderlist/src/components/NavBar.js">
+          <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+          <line num="11" count="3" type="stmt"/>
+          <line num="13" count="3" type="stmt"/>
+        </file>
+        <file name="NotAuthModal.js" path="/Users/peterzernia/projects/wanderlist/src/components/NotAuthModal.js">
+          <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+          <line num="8" count="8" type="stmt"/>
+          <line num="9" count="2" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+        </file>
+        <file name="PostModal.js" path="/Users/peterzernia/projects/wanderlist/src/components/PostModal.js">
+          <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+          <line num="8" count="4" type="stmt"/>
+          <line num="17" count="4" type="stmt"/>
+          <line num="18" count="3" type="stmt"/>
+        </file>
+        <file name="PostTripReportForm.js" path="/Users/peterzernia/projects/wanderlist/src/components/PostTripReportForm.js">
+          <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
+          <line num="13" count="2" type="stmt"/>
+          <line num="14" count="2" type="stmt"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="39" count="7822" type="stmt"/>
+          <line num="40" count="500" type="stmt"/>
+          <line num="43" count="2" type="stmt"/>
+        </file>
+        <file name="PrivateRoute.js" path="/Users/peterzernia/projects/wanderlist/src/components/PrivateRoute.js">
+          <metrics statements="3" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="1"/>
+          <line num="4" count="2" type="stmt"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+        </file>
+        <file name="RegistrationForm.js" path="/Users/peterzernia/projects/wanderlist/src/components/RegistrationForm.js">
+          <metrics statements="6" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="4"/>
+          <line num="18" count="3" type="stmt"/>
+          <line num="19" count="3" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="35" count="11733" type="stmt"/>
+          <line num="36" count="750" type="stmt"/>
+          <line num="39" count="3" type="stmt"/>
+        </file>
+        <file name="Results.js" path="/Users/peterzernia/projects/wanderlist/src/components/Results.js">
+          <metrics statements="10" coveredstatements="10" conditionals="10" coveredconditionals="10" methods="9" coveredmethods="9"/>
+          <line num="20" count="5" type="stmt"/>
+          <line num="24" count="3" type="stmt"/>
+          <line num="29" count="13" type="stmt"/>
+          <line num="31" count="13" type="stmt"/>
+          <line num="58" count="6" type="cond" truecount="3" falsecount="0"/>
+          <line num="61" count="1" type="stmt"/>
+          <line num="68" count="6" type="cond" truecount="3" falsecount="0"/>
+          <line num="71" count="1" type="stmt"/>
+          <line num="85" count="1" type="stmt"/>
+          <line num="91" count="1" type="stmt"/>
+        </file>
+        <file name="SearchBar.js" path="/Users/peterzernia/projects/wanderlist/src/components/SearchBar.js">
+          <metrics statements="20" coveredstatements="18" conditionals="3" coveredconditionals="2" methods="12" coveredmethods="9"/>
+          <line num="12" count="4" type="stmt"/>
+          <line num="52" count="4" type="stmt"/>
+          <line num="53" count="2" type="stmt"/>
+          <line num="54" count="2" type="stmt"/>
+          <line num="55" count="2" type="cond" truecount="1" falsecount="1"/>
+          <line num="56" count="500" type="stmt"/>
+          <line num="60" count="4" type="stmt"/>
+          <line num="63" count="8" type="stmt"/>
+          <line num="73" count="6" type="cond" truecount="1" falsecount="0"/>
+          <line num="74" count="6" type="stmt"/>
+          <line num="78" count="2" type="stmt"/>
+          <line num="79" count="2" type="stmt"/>
+          <line num="90" count="2" type="stmt"/>
+          <line num="91" count="2" type="stmt"/>
+          <line num="98" count="0" type="stmt"/>
+          <line num="104" count="2" type="stmt"/>
+          <line num="110" count="0" type="stmt"/>
+          <line num="116" count="6" type="stmt"/>
+          <line num="118" count="6" type="stmt"/>
+          <line num="124" count="6" type="stmt"/>
+        </file>
+        <file name="Success.js" path="/Users/peterzernia/projects/wanderlist/src/components/Success.js">
+          <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="6" count="3" type="stmt"/>
+        </file>
+        <file name="TripReport.js" path="/Users/peterzernia/projects/wanderlist/src/components/TripReport.js">
+          <metrics statements="7" coveredstatements="6" conditionals="6" coveredconditionals="6" methods="7" coveredmethods="6"/>
+          <line num="16" count="7" type="stmt"/>
+          <line num="18" count="9" type="stmt"/>
+          <line num="19" count="10" type="stmt"/>
+          <line num="24" count="9" type="stmt"/>
+          <line num="40" count="0" type="stmt"/>
+          <line num="68" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="70" count="1" type="stmt"/>
+        </file>
+        <file name="TripReportModal.js" path="/Users/peterzernia/projects/wanderlist/src/components/TripReportModal.js">
+          <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="9" count="5" type="stmt"/>
+          <line num="11" count="5" type="stmt"/>
+          <line num="13" count="2" type="stmt"/>
+        </file>
+        <file name="TripReportThumbnail.js" path="/Users/peterzernia/projects/wanderlist/src/components/TripReportThumbnail.js">
+          <metrics statements="8" coveredstatements="7" conditionals="8" coveredconditionals="8" methods="7" coveredmethods="6"/>
+          <line num="20" count="5" type="stmt"/>
+          <line num="24" count="3" type="stmt"/>
+          <line num="29" count="15" type="stmt"/>
+          <line num="31" count="15" type="stmt"/>
+          <line num="49" count="1" type="stmt"/>
+          <line num="50" count="1" type="cond" truecount="2" falsecount="0"/>
+          <line num="51" count="1" type="cond" truecount="2" falsecount="0"/>
+          <line num="56" count="0" type="stmt"/>
+        </file>
+        <file name="TripReportTruncated.js" path="/Users/peterzernia/projects/wanderlist/src/components/TripReportTruncated.js">
+          <metrics statements="8" coveredstatements="7" conditionals="10" coveredconditionals="10" methods="9" coveredmethods="8"/>
+          <line num="23" count="2" type="stmt"/>
+          <line num="29" count="14" type="stmt"/>
+          <line num="31" count="14" type="stmt"/>
+          <line num="32" count="15" type="stmt"/>
+          <line num="37" count="14" type="stmt"/>
+          <line num="53" count="0" type="stmt"/>
+          <line num="101" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="103" count="1" type="stmt"/>
+        </file>
+        <file name="UpdateTripReportForm.js" path="/Users/peterzernia/projects/wanderlist/src/components/UpdateTripReportForm.js">
+          <metrics statements="7" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="5"/>
+          <line num="13" count="2" type="stmt"/>
+          <line num="14" count="2" type="stmt"/>
+          <line num="15" count="2" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="40" count="7822" type="stmt"/>
+          <line num="41" count="500" type="stmt"/>
+          <line num="44" count="2" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.containers">
+        <metrics statements="183" coveredstatements="144" conditionals="110" coveredconditionals="86" methods="81" coveredmethods="53"/>
+        <file name="EditProfile.js" path="/Users/peterzernia/projects/wanderlist/src/containers/EditProfile.js">
+          <metrics statements="35" coveredstatements="29" conditionals="30" coveredconditionals="22" methods="14" coveredmethods="9"/>
+          <line num="48" count="0" type="stmt"/>
+          <line num="53" count="11" type="stmt"/>
+          <line num="54" count="11" type="stmt"/>
+          <line num="58" count="1" type="stmt"/>
+          <line num="59" count="1" type="stmt"/>
+          <line num="68" count="0" type="stmt"/>
+          <line num="69" count="0" type="cond" truecount="0" falsecount="6"/>
+          <line num="70" count="0" type="stmt"/>
+          <line num="84" count="1" type="stmt"/>
+          <line num="88" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="89" count="1" type="stmt"/>
+          <line num="91" count="1" type="stmt"/>
+          <line num="98" count="1" type="stmt"/>
+          <line num="102" count="1" type="stmt"/>
+          <line num="104" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="105" count="1" type="stmt"/>
+          <line num="107" count="1" type="stmt"/>
+          <line num="115" count="1" type="stmt"/>
+          <line num="122" count="1" type="stmt"/>
+          <line num="123" count="1" type="stmt"/>
+          <line num="124" count="1" type="stmt"/>
+          <line num="132" count="1" type="stmt"/>
+          <line num="136" count="1" type="stmt"/>
+          <line num="137" count="1" type="stmt"/>
+          <line num="145" count="18" type="stmt"/>
+          <line num="146" count="18" type="cond" truecount="2" falsecount="0"/>
+          <line num="147" count="1" type="stmt"/>
+          <line num="148" count="2" type="stmt"/>
+          <line num="154" count="18" type="stmt"/>
+          <line num="175" count="1" type="stmt"/>
+          <line num="209" count="3" type="stmt"/>
+          <line num="210" count="0" type="stmt"/>
+          <line num="240" count="3" type="stmt"/>
+          <line num="241" count="0" type="stmt"/>
+          <line num="271" count="3" type="stmt"/>
+        </file>
+        <file name="Feed.js" path="/Users/peterzernia/projects/wanderlist/src/containers/Feed.js">
+          <metrics statements="23" coveredstatements="17" conditionals="15" coveredconditionals="10" methods="12" coveredmethods="8"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="32" count="7" type="stmt"/>
+          <line num="36" count="1" type="stmt"/>
+          <line num="37" count="1" type="stmt"/>
+          <line num="46" count="0" type="stmt"/>
+          <line num="47" count="0" type="cond" truecount="0" falsecount="5"/>
+          <line num="48" count="0" type="stmt"/>
+          <line num="53" count="1" type="stmt"/>
+          <line num="54" count="1" type="stmt"/>
+          <line num="58" count="1" type="stmt"/>
+          <line num="59" count="1" type="stmt"/>
+          <line num="63" count="1" type="stmt"/>
+          <line num="67" count="1" type="stmt"/>
+          <line num="72" count="10" type="stmt"/>
+          <line num="73" count="10" type="cond" truecount="2" falsecount="0"/>
+          <line num="74" count="1" type="stmt"/>
+          <line num="75" count="2" type="stmt"/>
+          <line num="81" count="10" type="stmt"/>
+          <line num="97" count="3" type="stmt"/>
+          <line num="98" count="0" type="stmt"/>
+          <line num="116" count="3" type="stmt"/>
+          <line num="117" count="0" type="stmt"/>
+          <line num="135" count="3" type="stmt"/>
+        </file>
+        <file name="ForgotPassword.js" path="/Users/peterzernia/projects/wanderlist/src/containers/ForgotPassword.js">
+          <metrics statements="9" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+          <line num="17" count="1" type="stmt"/>
+          <line num="18" count="1" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="31" count="3" type="stmt"/>
+          <line num="32" count="0" type="stmt"/>
+          <line num="37" count="3" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="45" count="3" type="stmt"/>
+        </file>
+        <file name="Home.js" path="/Users/peterzernia/projects/wanderlist/src/containers/Home.js">
+          <metrics statements="13" coveredstatements="13" conditionals="6" coveredconditionals="6" methods="6" coveredmethods="6"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="29" count="1" type="stmt"/>
+          <line num="30" count="1" type="stmt"/>
+          <line num="35" count="6" type="stmt"/>
+          <line num="36" count="6" type="cond" truecount="2" falsecount="0"/>
+          <line num="37" count="3" type="stmt"/>
+          <line num="38" count="2" type="stmt"/>
+          <line num="44" count="6" type="stmt"/>
+          <line num="79" count="3" type="stmt"/>
+          <line num="80" count="1" type="stmt"/>
+          <line num="94" count="3" type="stmt"/>
+          <line num="95" count="1" type="stmt"/>
+          <line num="111" count="3" type="stmt"/>
+        </file>
+        <file name="Layout.js" path="/Users/peterzernia/projects/wanderlist/src/containers/Layout.js">
+          <metrics statements="10" coveredstatements="10" conditionals="8" coveredconditionals="8" methods="5" coveredmethods="5"/>
+          <line num="31" count="7" type="cond" truecount="2" falsecount="0"/>
+          <line num="32" count="1" type="stmt"/>
+          <line num="37" count="1" type="stmt"/>
+          <line num="38" count="1" type="stmt"/>
+          <line num="43" count="10" type="stmt"/>
+          <line num="78" count="2" type="stmt"/>
+          <line num="79" count="1" type="stmt"/>
+          <line num="88" count="2" type="stmt"/>
+          <line num="89" count="1" type="stmt"/>
+          <line num="97" count="2" type="stmt"/>
+        </file>
+        <file name="Login.js" path="/Users/peterzernia/projects/wanderlist/src/containers/Login.js">
+          <metrics statements="9" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="3"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="25" count="4" type="stmt"/>
+          <line num="37" count="3" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="44" count="3" type="stmt"/>
+          <line num="45" count="0" type="stmt"/>
+          <line num="53" count="3" type="stmt"/>
+        </file>
+        <file name="Logout.js" path="/Users/peterzernia/projects/wanderlist/src/containers/Logout.js">
+          <metrics statements="7" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="23" count="3" type="stmt"/>
+          <line num="24" count="0" type="stmt"/>
+          <line num="28" count="3" type="stmt"/>
+          <line num="29" count="0" type="stmt"/>
+          <line num="36" count="3" type="stmt"/>
+        </file>
+        <file name="Post.js" path="/Users/peterzernia/projects/wanderlist/src/containers/Post.js">
+          <metrics statements="15" coveredstatements="13" conditionals="8" coveredconditionals="8" methods="7" coveredmethods="5"/>
+          <line num="29" count="6" type="stmt"/>
+          <line num="30" count="6" type="stmt"/>
+          <line num="34" count="1" type="stmt"/>
+          <line num="38" count="1" type="stmt"/>
+          <line num="39" count="1" type="stmt"/>
+          <line num="44" count="9" type="stmt"/>
+          <line num="45" count="9" type="cond" truecount="2" falsecount="0"/>
+          <line num="46" count="1" type="stmt"/>
+          <line num="47" count="2" type="stmt"/>
+          <line num="53" count="9" type="stmt"/>
+          <line num="66" count="3" type="stmt"/>
+          <line num="67" count="0" type="stmt"/>
+          <line num="83" count="3" type="stmt"/>
+          <line num="84" count="0" type="stmt"/>
+          <line num="101" count="3" type="stmt"/>
+        </file>
+        <file name="Register.js" path="/Users/peterzernia/projects/wanderlist/src/containers/Register.js">
+          <metrics statements="13" coveredstatements="11" conditionals="4" coveredconditionals="3" methods="5" coveredmethods="3"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="27" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="28" count="1" type="stmt"/>
+          <line num="30" count="1" type="stmt"/>
+          <line num="37" count="1" type="stmt"/>
+          <line num="38" count="1" type="stmt"/>
+          <line num="41" count="4" type="stmt"/>
+          <line num="57" count="3" type="stmt"/>
+          <line num="58" count="0" type="stmt"/>
+          <line num="64" count="3" type="stmt"/>
+          <line num="65" count="0" type="stmt"/>
+          <line num="73" count="3" type="stmt"/>
+        </file>
+        <file name="Search.js" path="/Users/peterzernia/projects/wanderlist/src/containers/Search.js">
+          <metrics statements="27" coveredstatements="16" conditionals="12" coveredconditionals="7" methods="10" coveredmethods="5"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
+          <line num="27" count="1" type="stmt"/>
+          <line num="35" count="1" type="stmt"/>
+          <line num="37" count="1" type="stmt"/>
+          <line num="40" count="1" type="stmt"/>
+          <line num="41" count="1" type="stmt"/>
+          <line num="43" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="44" count="1" type="stmt"/>
+          <line num="47" count="0" type="stmt"/>
+          <line num="48" count="0" type="stmt"/>
+          <line num="50" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="51" count="0" type="stmt"/>
+          <line num="52" count="0" type="stmt"/>
+          <line num="55" count="0" type="stmt"/>
+          <line num="57" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="58" count="0" type="stmt"/>
+          <line num="59" count="0" type="stmt"/>
+          <line num="64" count="1" type="stmt"/>
+          <line num="76" count="9" type="stmt"/>
+          <line num="77" count="1" type="stmt"/>
+          <line num="82" count="9" type="stmt"/>
+          <line num="94" count="3" type="stmt"/>
+          <line num="95" count="0" type="stmt"/>
+          <line num="111" count="3" type="stmt"/>
+          <line num="112" count="0" type="stmt"/>
+          <line num="125" count="3" type="stmt"/>
+        </file>
+        <file name="ViewProfile.js" path="/Users/peterzernia/projects/wanderlist/src/containers/ViewProfile.js">
+          <metrics statements="22" coveredstatements="16" conditionals="25" coveredconditionals="20" methods="9" coveredmethods="5"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="43" count="7" type="stmt"/>
+          <line num="44" count="7" type="stmt"/>
+          <line num="45" count="7" type="stmt"/>
+          <line num="46" count="7" type="stmt"/>
+          <line num="50" count="1" type="stmt"/>
+          <line num="51" count="1" type="stmt"/>
+          <line num="60" count="0" type="stmt"/>
+          <line num="61" count="0" type="cond" truecount="0" falsecount="5"/>
+          <line num="62" count="0" type="stmt"/>
+          <line num="67" count="1" type="stmt"/>
+          <line num="68" count="1" type="stmt"/>
+          <line num="73" count="12" type="stmt"/>
+          <line num="74" count="12" type="cond" truecount="2" falsecount="0"/>
+          <line num="75" count="1" type="stmt"/>
+          <line num="76" count="2" type="stmt"/>
+          <line num="82" count="12" type="stmt"/>
+          <line num="126" count="3" type="stmt"/>
+          <line num="127" count="0" type="stmt"/>
+          <line num="150" count="3" type="stmt"/>
+          <line num="151" count="0" type="stmt"/>
+          <line num="172" count="3" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.store">
+        <metrics statements="99" coveredstatements="98" conditionals="88" coveredconditionals="87" methods="18" coveredmethods="18"/>
+        <file name="auth.js" path="/Users/peterzernia/projects/wanderlist/src/store/auth.js">
+          <metrics statements="7" coveredstatements="7" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="9" count="12" type="cond" truecount="5" falsecount="0"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="17" count="1" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="32" count="2" type="stmt"/>
+          <line num="40" count="7" type="stmt"/>
+        </file>
+        <file name="country.js" path="/Users/peterzernia/projects/wanderlist/src/store/country.js">
+          <metrics statements="6" coveredstatements="6" conditionals="5" coveredconditionals="5" methods="1" coveredmethods="1"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="9" count="11" type="cond" truecount="4" falsecount="0"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="18" count="1" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
+          <line num="33" count="8" type="stmt"/>
+        </file>
+        <file name="error.js" path="/Users/peterzernia/projects/wanderlist/src/store/error.js">
+          <metrics statements="6" coveredstatements="6" conditionals="5" coveredconditionals="5" methods="1" coveredmethods="1"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="7" count="11" type="cond" truecount="4" falsecount="0"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="15" count="2" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="28" count="7" type="stmt"/>
+        </file>
+        <file name="index.js" path="/Users/peterzernia/projects/wanderlist/src/store/index.js">
+          <metrics statements="7" coveredstatements="6" conditionals="4" coveredconditionals="3" methods="0" coveredmethods="0"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="13" count="1" type="cond" truecount="2" falsecount="0"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="18" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
+        </file>
+        <file name="modal.js" path="/Users/peterzernia/projects/wanderlist/src/store/modal.js">
+          <metrics statements="21" coveredstatements="21" conditionals="20" coveredconditionals="20" methods="1" coveredmethods="1"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="20" count="26" type="cond" truecount="19" falsecount="0"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="30" count="1" type="stmt"/>
+          <line num="37" count="1" type="stmt"/>
+          <line num="44" count="1" type="stmt"/>
+          <line num="51" count="1" type="stmt"/>
+          <line num="57" count="1" type="stmt"/>
+          <line num="65" count="1" type="stmt"/>
+          <line num="73" count="1" type="stmt"/>
+          <line num="80" count="1" type="stmt"/>
+          <line num="87" count="1" type="stmt"/>
+          <line num="94" count="1" type="stmt"/>
+          <line num="101" count="1" type="stmt"/>
+          <line num="107" count="1" type="stmt"/>
+          <line num="114" count="1" type="stmt"/>
+          <line num="121" count="1" type="stmt"/>
+          <line num="128" count="1" type="stmt"/>
+          <line num="135" count="1" type="stmt"/>
+          <line num="142" count="1" type="stmt"/>
+          <line num="148" count="8" type="stmt"/>
+        </file>
+        <file name="tripReport.js" path="/Users/peterzernia/projects/wanderlist/src/store/tripReport.js">
+          <metrics statements="41" coveredstatements="41" conditionals="38" coveredconditionals="38" methods="13" coveredmethods="13"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="23" count="40" type="cond" truecount="29" falsecount="0"/>
+          <line num="26" count="2" type="stmt"/>
+          <line num="32" count="1" type="stmt"/>
+          <line num="40" count="1" type="stmt"/>
+          <line num="52" count="1" type="stmt"/>
+          <line num="59" count="2" type="stmt"/>
+          <line num="72" count="1" type="stmt"/>
+          <line num="80" count="1" type="stmt"/>
+          <line num="87" count="1" type="stmt"/>
+          <line num="95" count="1" type="stmt"/>
+          <line num="107" count="1" type="stmt"/>
+          <line num="114" count="2" type="stmt"/>
+          <line num="127" count="1" type="stmt"/>
+          <line num="135" count="1" type="stmt"/>
+          <line num="141" count="2" type="stmt"/>
+          <line num="149" count="1" type="stmt"/>
+          <line num="155" count="1" type="stmt"/>
+          <line num="164" count="1" type="stmt"/>
+          <line num="171" count="1" type="stmt"/>
+          <line num="178" count="1" type="stmt"/>
+          <line num="184" count="1" type="stmt"/>
+          <line num="192" count="1" type="stmt"/>
+          <line num="198" count="1" type="stmt"/>
+          <line num="206" count="2" type="stmt"/>
+          <line num="212" count="2" type="stmt"/>
+          <line num="221" count="1" type="stmt"/>
+          <line num="227" count="1" type="stmt"/>
+          <line num="234" count="1" type="stmt"/>
+          <line num="242" count="1" type="stmt"/>
+          <line num="249" count="2" type="stmt"/>
+          <line num="256" count="1" type="stmt"/>
+          <line num="264" count="1" type="stmt"/>
+          <line num="271" count="2" type="stmt"/>
+          <line num="282" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="287" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="288" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="292" count="1" type="stmt"/>
+          <line num="296" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="305" count="2" type="stmt"/>
+          <line num="311" count="5" type="stmt"/>
+        </file>
+        <file name="user.js" path="/Users/peterzernia/projects/wanderlist/src/store/user.js">
+          <metrics statements="11" coveredstatements="11" conditionals="10" coveredconditionals="10" methods="1" coveredmethods="1"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="12" count="16" type="cond" truecount="9" falsecount="0"/>
+          <line num="14" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="28" count="1" type="stmt"/>
+          <line num="36" count="1" type="stmt"/>
+          <line num="42" count="1" type="stmt"/>
+          <line num="52" count="1" type="stmt"/>
+          <line num="60" count="1" type="stmt"/>
+          <line num="68" count="2" type="stmt"/>
+          <line num="74" count="7" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>

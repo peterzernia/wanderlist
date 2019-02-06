@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/actions/tripReportActions.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">src/actions</a> tripReportActions.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">49.31% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>71/144</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">49.21% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>31/63</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">37.61% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>44/117</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import axios from 'axios'
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+&nbsp;
+// For fetching the first page of all of the users Trip Reports
+export const fetchTripReportsPending = () =&gt; ({type: "FETCH_TRIP_REPORTS_PENDING"})
+export const fetchTripReportsFulfilled = tripReports =&gt; ({type: "FETCH_TRIP_REPORTS_FULFILLED", tripReports})
+export const fetchTripReportsRejected = () =&gt; ({type: "FETCH_TRIP_REPORTS_REJECTED"})
+&nbsp;
+// For fetching the next page of all of the users Trip Reports
+export const fetchNextTripReportsPending = () =&gt; ({type: "FETCH_NEXT_TRIP_REPORTS_PENDING"})
+export const fetchNextTripReportsFulfilled = tripReports =&gt; ({type: "FETCH_NEXT_TRIP_REPORTS_FULFILLED", tripReports})
+export const fetchNextTripReportsRejected = () =&gt; ({type: "FETCH_NEXT_TRIP_REPORTS_REJECTED"})
+&nbsp;
+// For fetching the first page of Trip Reports of the authenticated user
+export const fetchUserTripReportsPending = () =&gt; ({type: "FETCH_USER_TRIP_REPORTS_PENDING"})
+export const fetchUserTripReportsFulfilled = tripReports =&gt; ({type: "FETCH_USER_TRIP_REPORTS_FULFILLED", tripReports})
+export const fetchUserTripReportsRejected = () =&gt; ({type: "FETCH_USER_TRIP_REPORTS_REJECTED"})
+&nbsp;
+// For fetching the next page of the authenticated users Trip Reports
+export const fetchNextUserTripReportsPending = () =&gt; ({type: "FETCH_NEXT_USER_TRIP_REPORTS_PENDING"})
+export const fetchNextUserTripReportsFulfilled = tripReports =&gt; ({type: "FETCH_NEXT_USER_TRIP_REPORTS_FULFILLED", tripReports})
+export const fetchNextUserTripReportsRejected = () =&gt; ({type: "FETCH_NEXT_USER_TRIP_REPORTS_REJECTED"})
+&nbsp;
+// For the authenticated user to POST request a new trip report
+export const postTripReportsPending = () =&gt; ({type: "POST_TRIP_REPORTS_PENDING"})
+export const postTripReportsFulfilled = response =&gt; ({type: "POST_TRIP_REPORTS_FULFILLED", response})
+export const postTripReportsRejected = () =&gt; ({type: "POST_TRIP_REPORTS_REJECTED"})
+&nbsp;
+// For the authenticated user to delete a Trip Report of theirs
+export const deleteTripReportsPending = () =&gt; ({type: "DELETE_TRIP_REPORTS_PENDING"})
+export const deleteTripReportsFulfilled = response =&gt; ({type: "DELETE_TRIP_REPORTS_FULFILLED", response})
+export const deleteTripReportsRejected = () =&gt; ({type: "DELETE_TRIP_REPORTS_REJECTED"})
+&nbsp;
+// For the authenticated user to update a Trip Report of theirs
+export const updateTripReportsPending = () =&gt; ({type: "UPDATE_TRIP_REPORTS_PENDING"})
+export const updateTripReportsFulfilled = response =&gt; ({type: "UPDATE_TRIP_REPORTS_FULFILLED", response})
+export const updateTripReportsRejected = () =&gt; ({type: "UPDATE_TRIP_REPORTS_REJECTED"})
+&nbsp;
+// For fetching the post based off slug
+export const fetchSlugTripReportsPending = () =&gt; ({type: "FETCH_SLUG_TRIP_REPORTS_PENDING"})
+export const fetchSlugTripReportsFulfilled = tripReports =&gt; ({type: "FETCH_SLUG_TRIP_REPORTS_FULFILLED", tripReports})
+export const fetchSlugTripReportsRejected = () =&gt; ({type: "FETCH_SLUG_TRIP_REPORTS_REJECTED"})
+&nbsp;
+// For fetching the Featured Trip Report
+export const fetchFeaturedTripReportPending = () =&gt; ({type: "FETCH_FEATURED_TRIP_REPORT_PENDING"})
+export const fetchFeaturedTripReportFulfilled = tripReport =&gt; ({type: "FETCH_FEATURED_TRIP_REPORT_FULFILLED", tripReport})
+export const fetchFeaturedTripReportRejected = () =&gt; ({type: "FETCH_FEATURED_TRIP_REPORT_REJECTED"})
+&nbsp;
+/*
+GET requests the Django REST API and returns the first page of a list of Trip
+Reports. The passed in url can have filter parameters added.
+*/
+export const fetchTripReports = (url) =&gt; {
+  return dispatch =&gt; {
+    dispatch(fetchTripReportsPending());
+    axios.get(url)
+      .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+        const tripReports = <span class="cstat-no" title="statement not covered" >response.data;</span>
+<span class="cstat-no" title="statement not covered" >        dispatch(fetchTripReportsFulfilled(tripReports));</span>
+      })
+      .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; {
+<span class="cstat-no" title="statement not covered" >        dispatch(fetchTripReportsRejected());</span>
+<span class="cstat-no" title="statement not covered" >        dispatch({type: "ADD_ERROR", error: err});</span>
+      })
+  }
+}
+&nbsp;
+/*
+Since the Trip Reports are paginated, the original axios call returns an object
+with a Next variable that contains the link API of the the next page, which is
+passed into this function to GET the next Trip Reports.
+*/
+export const fetchNextTripReports = <span class="fstat-no" title="function not covered" >(u</span>rl) =&gt; {
+<span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >di</span>spatch =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    dispatch(fetchNextTripReportsPending());</span>
+<span class="cstat-no" title="statement not covered" >    axios.get(url)</span>
+      .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+        const tripReports = <span class="cstat-no" title="statement not covered" >response.data;</span>
+<span class="cstat-no" title="statement not covered" >        dispatch(fetchNextTripReportsFulfilled(tripReports));</span>
+      })
+      .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; {
+<span class="cstat-no" title="statement not covered" >        dispatch(fetchNextTripReportsRejected());</span>
+<span class="cstat-no" title="statement not covered" >        dispatch({type: "ADD_ERROR", error: err});</span>
+      })
+  }
+}
+&nbsp;
+/*
+GET requests the Django REST API with the parameter of username to return the
+first page of the list of the Users TripReports.
+*/
+export const fetchUserTripReports = <span class="fstat-no" title="function not covered" >(u</span>sername) =&gt; {
+<span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >di</span>spatch =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    dispatch(fetchUserTripReportsPending());</span>
+<span class="cstat-no" title="statement not covered" >    axios.get(`${process.env.REACT_APP_API_URL}/api/v1/reports/?ordering=-pk&amp;search=${username}`)</span>
+      .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+        const tripReports = <span class="cstat-no" title="statement not covered" >response.data;</span>
+<span class="cstat-no" title="statement not covered" >        dispatch(fetchUserTripReportsFulfilled(tripReports));</span>
+      })
+      .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; {
+<span class="cstat-no" title="statement not covered" >        dispatch(fetchUserTripReportsRejected());</span>
+<span class="cstat-no" title="statement not covered" >        dispatch({type: "ADD_ERROR", error: err});</span>
+      })
+  }
+}
+&nbsp;
+/*
+Again, the paginated API returns a next variable that is the url to the next
+page, which is passed into this function to retrieve the next page of the user's
+Trip Reports.
+*/
+export const fetchNextUserTripReports = <span class="fstat-no" title="function not covered" >(u</span>rl) =&gt; {
+<span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >di</span>spatch =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    dispatch(fetchNextUserTripReportsPending());</span>
+<span class="cstat-no" title="statement not covered" >    axios.get(url)</span>
+      .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+        const tripReports = <span class="cstat-no" title="statement not covered" >response.data;</span>
+<span class="cstat-no" title="statement not covered" >        dispatch(fetchNextUserTripReportsFulfilled(tripReports));</span>
+      })
+      .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; {
+<span class="cstat-no" title="statement not covered" >        dispatch(fetchNextUserTripReportsRejected());</span>
+<span class="cstat-no" title="statement not covered" >        dispatch({type: "ADD_ERROR", error: err});</span>
+      })
+  }
+}
+&nbsp;
+/*
+POST requests a new trip report to the Django REST API by the authenticated
+user.
+*/
+export const postTripReport = <span class="fstat-no" title="function not covered" >(a</span>uthor, title, content, countries, image) =&gt; {
+  const token = <span class="cstat-no" title="statement not covered" >localStorage.getItem('token');</span>
+<span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >di</span>spatch =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    dispatch(postTripReportsPending());</span>
+    const formData = <span class="cstat-no" title="statement not covered" >new FormData();</span>
+<span class="cstat-no" title="statement not covered" >    formData.append('title', title);</span>
+<span class="cstat-no" title="statement not covered" >    formData.append('content', content);</span>
+<span class="cstat-no" title="statement not covered" >    formData.append('author', author);</span>
+<span class="cstat-no" title="statement not covered" >    formData.append('countries', countries);</span>
+<span class="cstat-no" title="statement not covered" >    if (image) {</span>
+<span class="cstat-no" title="statement not covered" >      formData.append('image', image);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    axios.post(</span>
+      `${process.env.REACT_APP_API_URL}/api/v1/reports/`, formData,
+      {headers: { 'Authorization': `Token ${token}`}}
+    )
+      .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+<span class="cstat-no" title="statement not covered" >        dispatch(postTripReportsFulfilled(response.data));</span>
+      })
+      .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; {
+<span class="cstat-no" title="statement not covered" >        dispatch(postTripReportsRejected());</span>
+<span class="cstat-no" title="statement not covered" >        dispatch({type: "ADD_ERROR", error: err});</span>
+      })
+  }
+}
+&nbsp;
+// DELETES a post of the authenticated user on the API.
+export const deleteTripReport = <span class="fstat-no" title="function not covered" >(t</span>ripReport) =&gt; {
+  const token = <span class="cstat-no" title="statement not covered" >localStorage.getItem('token');</span>
+<span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >di</span>spatch =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    dispatch(deleteTripReportsPending());</span>
+<span class="cstat-no" title="statement not covered" >    axios.delete(`${process.env.REACT_APP_API_URL}/api/v1/reports/${tripReport.id}/`, {headers: {</span>
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRFToken': 'csrftoken',
+      'Authorization': `Token ${token}`
+    }})
+      .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+<span class="cstat-no" title="statement not covered" >        dispatch(deleteTripReportsFulfilled(tripReport));</span>
+<span class="cstat-no" title="statement not covered" >        dispatch({type: "ADD_SUCCESS", success: 'Your post has been deleted.'});</span>
+      })
+      .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; {
+<span class="cstat-no" title="statement not covered" >        dispatch(deleteTripReportsRejected());</span>
+<span class="cstat-no" title="statement not covered" >        dispatch({type: "ADD_ERROR", error: err});</span>
+      })
+  }
+}
+&nbsp;
+// UPDATEs a post of the authenticated user on the API.
+export const updateTripReport = <span class="fstat-no" title="function not covered" >(t</span>ripReport, author, title, content, countries, image) =&gt; {
+  const token = <span class="cstat-no" title="statement not covered" >localStorage.getItem('token');</span>
+<span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >di</span>spatch =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    dispatch(updateTripReportsPending());</span>
+    const formData = <span class="cstat-no" title="statement not covered" >new FormData();</span>
+<span class="cstat-no" title="statement not covered" >    formData.append('title', title);</span>
+<span class="cstat-no" title="statement not covered" >    formData.append('content', content);</span>
+<span class="cstat-no" title="statement not covered" >    formData.append('author', author);</span>
+<span class="cstat-no" title="statement not covered" >    formData.append('countries', countries);</span>
+    // If image is field is left blank, the original image does not get updated or deleted.
+<span class="cstat-no" title="statement not covered" >    if (image) {</span>
+<span class="cstat-no" title="statement not covered" >      formData.append('image', image);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    axios.patch(`${process.env.REACT_APP_API_URL}/api/v1/reports/${tripReport}/`, formData,</span>
+      {headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRFToken': 'csrftoken',
+        'Authorization': `Token ${token}`
+    }})
+      .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+<span class="cstat-no" title="statement not covered" >        dispatch(updateTripReportsFulfilled(response.data));</span>
+<span class="cstat-no" title="statement not covered" >        dispatch({type: "ADD_SUCCESS", success: 'Your post has been updated.'});</span>
+      })
+      .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; {
+<span class="cstat-no" title="statement not covered" >        dispatch(updateTripReportsRejected());</span>
+<span class="cstat-no" title="statement not covered" >        dispatch({type: "ADD_ERROR", error: err});</span>
+      })
+  }
+}
+&nbsp;
+/*
+Fetches a single Trip Report based on slug to display on the posts /p/${slug}/
+page.
+*/
+export const fetchSlugTripReports = <span class="fstat-no" title="function not covered" >(s</span>lug) =&gt; {
+<span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >di</span>spatch =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    dispatch(fetchSlugTripReportsPending());</span>
+<span class="cstat-no" title="statement not covered" >    axios.get(`${process.env.REACT_APP_API_URL}/api/v1/reports/?search=${slug}`)</span>
+      .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+        const tripReports = <span class="cstat-no" title="statement not covered" >response.data;</span>
+<span class="cstat-no" title="statement not covered" >        dispatch(fetchSlugTripReportsFulfilled(tripReports));</span>
+      })
+      .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; {
+<span class="cstat-no" title="statement not covered" >        dispatch(fetchSlugTripReportsRejected());</span>
+<span class="cstat-no" title="statement not covered" >        dispatch({type: "ADD_ERROR", error: err});</span>
+      })
+  }
+}
+&nbsp;
+/*
+GET requests the Django REST API and returns the Featured Trip Report. This slug
+for the Featured Trip Report is hardcoded into the function.
+*/
+export const fetchFeaturedTripReport = (slug) =&gt; {
+  return dispatch =&gt; {
+    dispatch(fetchFeaturedTripReportPending());
+    axios.get(`${process.env.REACT_APP_API_URL}/api/v1/reports/?search=${slug}`)
+      .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+        const tripReport = <span class="cstat-no" title="statement not covered" >response.data;</span>
+<span class="cstat-no" title="statement not covered" >        dispatch(fetchFeaturedTripReportFulfilled(tripReport));</span>
+      })
+      .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; {
+<span class="cstat-no" title="statement not covered" >        dispatch(fetchFeaturedTripReportRejected());</span>
+<span class="cstat-no" title="statement not covered" >        dispatch({type: "ADD_ERROR", error: err});</span>
+      })
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Dec 10 2018 16:58:20 GMT+0100 (Central European Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
