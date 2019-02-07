@@ -10,24 +10,25 @@ deployed on Heroku.
 
 ## Motivation
 
-In my earlier project [Petsygram](https://github.com/peterzernia/petsygram), I relied heavily on Django templates
-and barely even touched any of the Django Rest Framework. The motivation for my
-next project was to make use of Django Rest Framework to make a REST API and
-interact with that API in a Single-Page App (SPA). SPAs are one of the
-directions modern web development has taken, and it seems very important to
-learn how to build them. Reactjs fit the bill for everything
-I was looking to do in this web app, as well as being an exciting and popular
-library. As an avid traveller and geography buff, creating an app based around
-traveling and geography made perfect sense. Countries have plenty of interesting
-data with which I could populate my database and REST API. Country data
-is obviously something I only wanted users to have read access to, so
+In my earlier project [Petsygram](https://github.com/peterzernia/petsygram), I
+relied heavily on Django templates and barely even touched any of the Django
+Rest Framework. The motivation for my next project was to make use of Django
+Rest Framework to make a REST API and interact with that API in a Single-Page
+App (SPA). SPAs are one of the directions modern web development has taken, and
+it seems very important to learn how to build them. Reactjs fit the bill for
+everything I was looking to do in this web app, as well as being an exciting and
+popular library. As an avid traveller and geography buff, creating an app based
+around traveling and geography made perfect sense. Countries have plenty of
+interesting data with which I could populate my database and REST API. Country
+data is obviously something I only wanted users to have read access to, so
 to add create, update, and delete functionality to this web app, I decided to
 have users add and remove countries from a personalized map, using the Google
 Maps API, which expanded into having users write Trip Reports on trips they have
 taken, tagging countries. Finally, I wanted to add image upload to this project.
 I had images in my last project as well, but I served the images from the
 /media/ folder in Django. This time, I wanted to use AWS S3 to learn how, and
-make this project more scalable.
+make this project more scalable. I even set up Docker containers to to set up a
+standard development environment.
 
 
 
@@ -39,7 +40,7 @@ development and testing purposes
 
 ### Prerequisites
 
-Python 3.6, Node 10.12.0, NPM 6.4.1, Postgres, & Git
+Docker & Git
 
 
 ### Installing
@@ -55,27 +56,18 @@ $ cd projects
 $ git clone https://github.com/peterzernia/wanderlist.git
 ```
 
-3. Install a virtual environment (note instructions may be different for linux)
+3. Build the first Docker image
 ```
-$ pip install virtualenv
-```
-
-4. Make a folder for your virtual environments e.g.
-```
-$ mkdir ~/venvs
+$ cd wanderlist
+$ docker-compose build
 ```
 
-5. Make a new virtual environment for this project (make sure virtualenv python is set to python3.6 and not python2)
+4. Create a local_settings.py file for development
 ```
-$ virtualenv --system-site-packages ~/venvs/wanderlist
-```
-
-6. Start the virtual environment
-```
-$ source ~/venvs/wanderlist/bin/activate
+$ touch backend/local_settings.py
 ```
 
-7. Generate a secret key for your Django app using
+5. Generate a secret key for your Django app using
 ```
 $ python
 >>> from django.utils.crypto import get_random_string
@@ -84,100 +76,84 @@ $ python
 >>> quit()
 ```
 
-8. Copy the result and in wanderlist/backend/settings.py file replace
-```
-SECRET_KEY = os.environ.get('COUNTRIES')
-EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-```
-  *with*
-```
-SECRET_KEY = 'your newly generated secret key here'
-EMAIL_HOST_USER = 'your gmail username'
-EMAIL_HOST_PASSWORD = 'your gmail application password'
-AWS_STORAGE_BUCKET_NAME = 'your aws storage bucket name'
-AWS_ACCESS_KEY_ID = 'your aws access key id'
-AWS_SECRET_ACCESS_KEY = 'your aws secret access key'
-```
-More info on Gmail App Passwords [here](https://support.google.com/accounts/answer/185833?hl=en)
-More info on AWS S3 [here](https://aws.amazon.com/s3/)
-
-9. Get a [Google Maps API Key](https://developers.google.com/maps/documentation/javascript/get-api-key)
-
-10. Make a .env file in the project directory and add
-```
-REACT_APP_GOOGLE_API_KEY = 'your key here'
-REACT_APP_API_URL = 'http://localhost:8000'
-```
-11. Create a Postgres database called 'wanderlist'
-
-12. Create a wanderlist/backend/local_settings.py and add this to the file,
+6. In the wanderlist/backend/settings.py file add
 ```
 DEBUG = True
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'wanderlist',
-        'USER': '<username>',
+        'NAME': 'postgres',
+        'USER': 'postgres',
         'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
-```
-  replacing <username> with your postgres username.
 
-13. Change into the directory containing 'requirements.txt'
-```
-$ cd wanderlist
-```
+SECRET_KEY = 'secret key generated with python'
+EMAIL_USER = 'your email username'
+EMAIL_PASS = 'your gmail app password'
+AWS_STORAGE_BUCKET_NAME = 'your aws bucket name'
+AWS_ACCESS_KEY_ID = 'your aws bucket access key id'
+AWS_SECRET_ACCESS_KEY = 'your aws bucket secret access key'
 
-14. Install the requirements
-```
-$ pip install -r requirements.txt
-$ npm install
-```
+MEDIAFILES_LOCATION = 'media'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 
-15. Make migrations to set up the database
 ```
-$ python manage.py makemigrations
-```
+More info on Gmail App Passwords [here](https://support.google.com/accounts/answer/185833?hl=en)
+More info on AWS S3 [here](https://aws.amazon.com/s3/)
 
-16. When this has completed, run the migrations
-```
-$ python manage.py migrate
-```
+7. Get a [Google Maps API Key](https://developers.google.com/maps/documentation/javascript/get-api-key)
 
-17. Create a user profile to login with
+8. Make a .env file in the project directory and add the REACT_APP variables
 ```
-$ python manage.py createsuperuser
+$ touch frontend/.env
 ```
-  and follow the instructions
-
-18. Add the countries data to the database
 ```
-$ python manage.py loaddata database.json
+REACT_APP_GOOGLE_API_KEY = 'your google maps api key here'
+REACT_APP_API_URL = 'http://localhost:8000'
 ```
 
-19. Run the Django server
+9. Setup database & admin user
 ```
-$ python manage.py runserver
-```
-
-20. Open a new terminal window, change into the project directory, and run the
-React server
-```
-$ cd projects/wanderlist
-$ npm start
+$ docker-compose run web python manage.py migrate --noinput
+$ docker-compose run web python manage.py createsuperuser
+$ docker-compose run web python manage.py loaddata database.json
 ```
 
-21. If there were no errors anywhere, you can now go to http://localhost:3000/
+10. Run the docker container
+```
+$ docker-compose up
+```
+
+11. While the backend server is running, open a second terminal window and change directories to frontend/
+```
+$ cd frontend
+```
+
+12. Build the second Docker image for the frontend server
+```
+$ docker-compose build
+```
+
+13. Run the second Docker container
+```
+$ docker-compose up
+```
+
+14. If there were no errors anywhere, you can now go to http://localhost:3000/
 in your browser to view a local copy of Wanderlist. Any changes will be live
-updated on the React server.
+updated on the React server. The REST API is hosted on http://localhost:8000/.
+Note: if you want to view the production React build, you can run
+```
+$ docker-compose run frontend npm run build
+```
+in the terminal window running the frontend server. This will create the
+index.html file that Django serves, and can be seen at http://localhost:8000/
+when the build is complete.
 
 
 
@@ -270,6 +246,7 @@ expand.
 * [Postgres](https://www.postgresql.org/) - Database
 * [Travis CI](https://travis-ci.com/) - Continuous Integration/Testing
 * [Heroku](https://heroku.com/) - Deployment
+* [Docker](https://www.docker.com/) - Development Container
 
 
 
