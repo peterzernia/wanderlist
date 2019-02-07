@@ -45,7 +45,7 @@ Docker & Git
 
 ### Installing
 
-1. Open up Terminal, and go into the directory where you want your local copy,
+1. Open up Terminal, and change into the directory where you want your local copy,
 e.g.
 ```
 $ cd projects
@@ -113,11 +113,12 @@ More info on AWS S3 [here](https://aws.amazon.com/s3/)
 $ touch frontend/.env
 ```
 ```
-REACT_APP_GOOGLE_API_KEY = 'your google maps api key here'
-REACT_APP_API_URL = 'http://localhost:8000'
+REACT_APP_GOOGLE_API_KEY= 'your google maps api key here'
+REACT_APP_API_URL= 'http://localhost:8000'
 ```
 
-9. Setup database & admin user
+9. Setup database & admin user. Note: if Postgres or another database, etc. is
+running locally on port 5432, you will need to suspend that.
 ```
 $ docker-compose run web python manage.py migrate --noinput
 $ docker-compose run web python manage.py createsuperuser
@@ -139,21 +140,19 @@ $ cd frontend
 $ docker-compose build
 ```
 
-13. Run the second Docker container
+13. Build the frontend JS
+```
+$ docker-compose run frontend npm run build
+```
+
+14. Run the second Docker container
 ```
 $ docker-compose up
 ```
 
-14. If there were no errors anywhere, you can now go to http://localhost:3000/
+15. If there were no errors anywhere, you can now go to http://localhost:3000/
 in your browser to view a local copy of Wanderlist. Any changes will be live
 updated on the React server. The REST API is hosted on http://localhost:8000/.
-Note: if you want to view the production React build, you can run
-```
-$ docker-compose run frontend npm run build
-```
-in the terminal window running the frontend server. This will create the
-index.html file that Django serves, and can be seen at http://localhost:8000/
-when the build is complete.
 
 
 
