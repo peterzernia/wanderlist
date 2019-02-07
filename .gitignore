@@ -2,15 +2,18 @@
 /node_modules
 /frontend/node_modules
 
+# development
+local_settings.py
+
 # testing
+/htmlcov
 /coverage
 .coverage
 .coveragerc
-/htmlcov
 
 # production
-
 /build
+frontend/build
 
 # misc
 .DS_Store
@@ -27,13 +30,5 @@ yarn-error.log*
 __pycache__
 *.pyc
 *~
-data.json
-db.sqlite3
-languages.json
-currencies.json
-countries.json
-load_data_python.txt
-/flags
 /media
 /staticfiles
-local_settings.py
