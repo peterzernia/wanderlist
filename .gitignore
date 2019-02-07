@@ -8,6 +8,7 @@ local_settings.py
 # testing
 /htmlcov
 /coverage
+/frontend/coverage/
 .coverage
 .coveragerc
 
