@@ -14,7 +14,7 @@ SECRET_KEY = os.environ.get('COUNTRIES')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'w4nderlist.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'w4nderlist.herokuapp.com', 'www.wanderlist.dev']
 
 
 # Application definition
