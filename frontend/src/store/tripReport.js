@@ -203,13 +203,21 @@ export default function (state = initialState, action) {
         the array must be sorted.
         */
         userTripReports: {
-          results: [...state.userTripReports.results].filter(tripReport => tripReport.id !== action.response.id).concat(action.response).sort((a, b) => a.id < b.id),
+          results: [...state.userTripReports.results].map(tripReport =>
+            tripReport.id === action.response.id
+              ? { ...action.response }
+              : { ...tripReport }
+          ),
           count: state.userTripReports.count,
           next: state.userTripReports.next,
           previous: state.userTripReports.previous
         },
         tripReports: {
-          results: [...state.tripReports.results].filter(tripReport => tripReport.id !== action.response.id).concat(action.response).sort((a, b) => a.id < b.id),
+          results: [...state.tripReports.results].map(tripReport =>
+            tripReport.id === action.response.id
+              ? { ...action.response }
+              : { ...tripReport }
+          ),
           count: state.tripReports.count,
           next: state.tripReports.next,
           previous: state.tripReports.previous
