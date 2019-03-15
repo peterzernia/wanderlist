@@ -13,35 +13,35 @@ const initialState = {
   fetchedSlugTripReports: false,
   fetchingFeaturedTripReport: false,
   fetchedFeaturedTripReport: false,
-  tripReports: { results: [], count: null, next: null, previous: null},
-  userTripReports: { results: [], count: null, next: null, previous: null},
+  tripReports: { results: [], count: null, next: null, previous: null },
+  userTripReports: { results: [], count: null, next: null, previous: null },
   slugTripReports: [],
   featuredTripReport: []
-}
+};
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     // Basic axios request returns a response, and the state must be updated.
     case "FETCH_TRIP_REPORTS_PENDING": {
       return {
         ...state,
-        fetching: true,
-      }
+        fetching: true
+      };
     }
     case "FETCH_TRIP_REPORTS_FULFILLED": {
       return {
         ...state,
         fetching: false,
         fetched: true,
-        tripReports: action.tripReports,
-      }
+        tripReports: action.tripReports
+      };
     }
     case "FETCH_TRIP_REPORTS_REJECTED": {
       return {
         ...state,
         fetching: false,
-        fetched: false,
-      }
+        fetched: false
+      };
     }
     /*
     In the case of fetching the next page of trip reports, the new trip reports
@@ -53,7 +53,7 @@ export default function (state = initialState, action) {
         ...state,
         fetchingNext: true,
         fetchedNext: false
-      }
+      };
     }
     case "FETCH_NEXT_TRIP_REPORTS_FULFILLED": {
       return {
@@ -64,16 +64,18 @@ export default function (state = initialState, action) {
           count: action.tripReports.count,
           next: action.tripReports.next,
           previous: action.tripReports.previous,
-          results: [...state.tripReports.results].concat(action.tripReports.results),
+          results: [...state.tripReports.results].concat(
+            action.tripReports.results
+          )
         }
-      }
+      };
     }
     case "FETCH_NEXT_TRIP_REPORTS_REJECTED": {
       return {
         ...state,
         fetchingNext: false,
-        fetchedNext: false,
-      }
+        fetchedNext: false
+      };
     }
     // Basic axios request for fetching a user's Trip Reports
     case "FETCH_USER_TRIP_REPORTS_PENDING": {
@@ -81,22 +83,22 @@ export default function (state = initialState, action) {
         ...state,
         fetchingTripReports: true,
         fetchedTripReports: false
-      }
+      };
     }
     case "FETCH_USER_TRIP_REPORTS_FULFILLED": {
       return {
         ...state,
         fetchingTripReports: false,
         fetchedTripReports: true,
-        userTripReports: action.tripReports,
-      }
+        userTripReports: action.tripReports
+      };
     }
     case "FETCH_USER_TRIP_REPORTS_REJECTED": {
       return {
         ...state,
         fetchingTripReports: false,
-        fetchedTripReports: false,
-      }
+        fetchedTripReports: false
+      };
     }
     /*
     In the case of fetching the next page of the user's trip reports, the new
@@ -108,7 +110,7 @@ export default function (state = initialState, action) {
         ...state,
         fetchingUserNext: true,
         fetchedUserNext: false
-      }
+      };
     }
     case "FETCH_NEXT_USER_TRIP_REPORTS_FULFILLED": {
       return {
@@ -119,23 +121,25 @@ export default function (state = initialState, action) {
           count: action.tripReports.count,
           next: action.tripReports.next,
           previous: action.tripReports.previous,
-          results: [...state.userTripReports.results].concat(action.tripReports.results),
+          results: [...state.userTripReports.results].concat(
+            action.tripReports.results
+          )
         }
-      }
+      };
     }
     case "FETCH_NEXT_USER_TRIP_REPORTS_REJECTED": {
       return {
         ...state,
         fetchingUserNext: false,
-        fetchedUserNext: false,
-      }
+        fetchedUserNext: false
+      };
     }
     // Axios post
     case "POST_TRIP_REPORTS_PENDING": {
       return {
         ...state,
         posting: true
-      }
+      };
     }
     case "POST_TRIP_REPORTS_FULFILLED": {
       return {
@@ -146,25 +150,29 @@ export default function (state = initialState, action) {
         Trip Reports and User Trip Reports lists.
         */
         userTripReports: {
-          results: [...state.userTripReports.results].concat(action.response).sort((a, b) => a.id < b.id),
+          results: [...state.userTripReports.results]
+            .concat(action.response)
+            .sort((a, b) => a.id < b.id),
           count: state.userTripReports.count,
           next: state.userTripReports.next,
           previous: state.userTripReports.previous
         },
         tripReports: {
-          results: [...state.tripReports.results].concat(action.response).sort((a, b) => a.id < b.id),
+          results: [...state.tripReports.results]
+            .concat(action.response)
+            .sort((a, b) => a.id < b.id),
           count: state.tripReports.count,
           next: state.tripReports.next,
           previous: state.tripReports.previous
         },
         posting: false
-      }
+      };
     }
     case "POST_TRIP_REPORTS_REJECTED": {
       return {
         ...state,
         posting: false
-        }
+      };
     }
     // Axios delete
     case "DELETE_TRIP_REPORTS_FULFILLED": {
@@ -175,24 +183,28 @@ export default function (state = initialState, action) {
         lists.
         */
         userTripReports: {
-          results: [...state.userTripReports.results].filter(tripReport => tripReport.id !== action.response.id),
+          results: [...state.userTripReports.results].filter(
+            tripReport => tripReport.id !== action.response.id
+          ),
           count: state.userTripReports.count,
           next: state.userTripReports.next,
           previous: state.userTripReports.previous
         },
         tripReports: {
-          results: [...state.tripReports.results].filter(tripReport => tripReport.id !== action.response.id),
+          results: [...state.tripReports.results].filter(
+            tripReport => tripReport.id !== action.response.id
+          ),
           count: state.tripReports.count,
           next: state.tripReports.next,
           previous: state.tripReports.previous
         }
-      }
+      };
     }
     case "UPDATE_TRIP_REPORTS_PENDING": {
       return {
         ...state,
         updating: true
-      }
+      };
     }
     case "UPDATE_TRIP_REPORTS_FULFILLED": {
       return {
@@ -203,77 +215,79 @@ export default function (state = initialState, action) {
         the array must be sorted.
         */
         userTripReports: {
-          results: [...state.userTripReports.results].map(tripReport =>
-            tripReport.id === action.response.id
-              ? { ...action.response }
-              : { ...tripReport }
+          results: [...state.userTripReports.results].map(
+            tripReport =>
+              tripReport.id === action.response.id
+                ? { ...action.response }
+                : { ...tripReport }
           ),
           count: state.userTripReports.count,
           next: state.userTripReports.next,
           previous: state.userTripReports.previous
         },
         tripReports: {
-          results: [...state.tripReports.results].map(tripReport =>
-            tripReport.id === action.response.id
-              ? { ...action.response }
-              : { ...tripReport }
+          results: [...state.tripReports.results].map(
+            tripReport =>
+              tripReport.id === action.response.id
+                ? { ...action.response }
+                : { ...tripReport }
           ),
           count: state.tripReports.count,
           next: state.tripReports.next,
           previous: state.tripReports.previous
         },
         updating: false
-      }
+      };
     }
     case "UPDATE_TRIP_REPORTS_REJECTED": {
       return {
         ...state,
         updating: false
-      }
+      };
     }
     case "FETCH_SLUG_TRIP_REPORTS_PENDING": {
       return {
         ...state,
         fetchingSlugTripReports: true,
         fetchedSlugTripReports: false
-      }
+      };
     }
     case "FETCH_SLUG_TRIP_REPORTS_FULFILLED": {
       return {
         ...state,
         fetchingSlugTripReports: false,
         fetchedSlugTripReports: true,
-        slugTripReports: action.tripReports.results,
-      }
+        slugTripReports: action.tripReports.results
+      };
     }
     case "FETCH_SLUG_TRIP_REPORTS_REJECTED": {
       return {
         ...state,
         fetchingSlugTripReports: false,
-        fetchedSlugTripReports: false,
-      }
+        fetchedSlugTripReports: false
+      };
     }
     case "FETCH_FEATURED_TRIP_REPORT_PENDING": {
       return {
         ...state,
         fetchingFeaturedTripReport: true,
         fetchedFeaturedTripReport: false
-      }
+      };
     }
     case "FETCH_FEATURED_TRIP_REPORT_FULFILLED": {
       return {
         ...state,
         fetchingFeaturedTripReport: false,
         fetchedFeaturedTripReport: true,
-        featuredTripReport: action.tripReport.results,
-      }
+        featuredTripReport: action.tripReport.results
+      };
     }
     case "FETCH_FEATURED_TRIP_REPORT_REJECTED": {
       return {
         ...state,
         fetchingFeaturedTripReport: false,
-        fetchedFeaturedTripReport: false,
-      }
+        fetchedFeaturedTripReport: false
+      };
     }
     case "TOGGLE_FAVORITE_FULFILLED": {
       return {
@@ -287,35 +301,70 @@ export default function (state = initialState, action) {
         */
         tripReports: {
           // Since order matters, only the specific index of the array should be changed.
-          results: [...state.tripReports.results].map( tripReport => tripReport.id === action.response.id ? { ...tripReport, favoriters: action.response.favoriters} : {...tripReport}),
+          results: [...state.tripReports.results].map(
+            tripReport =>
+              tripReport.id === action.response.id
+                ? { ...tripReport, favoriters: action.response.favoriters }
+                : { ...tripReport }
+          ),
           count: state.tripReports.count,
           next: state.tripReports.next,
           previous: state.tripReports.previous
         },
-        slugTripReports: [...state.slugTripReports].map( tripReport => tripReport.id === action.response.id ? {...tripReport, favoriters: action.response.favoriters} : {...tripReport}),
-        featuredTripReport: [...state.featuredTripReport].map( tripReport => tripReport.id === action.response.id ? {...tripReport, favoriters: action.response.favoriters} : {...tripReport})
-      }
+        slugTripReports: [...state.slugTripReports].map(
+          tripReport =>
+            tripReport.id === action.response.id
+              ? { ...tripReport, favoriters: action.response.favoriters }
+              : { ...tripReport }
+        ),
+        featuredTripReport: [...state.featuredTripReport].map(
+          tripReport =>
+            tripReport.id === action.response.id
+              ? { ...tripReport, favoriters: action.response.favoriters }
+              : { ...tripReport }
+        )
+      };
     }
     case "PUT_USER_DATA_FULFILLED": {
       return {
         ...state,
         tripReports: {
-          // If the user home changes, any posts by that user must be updated to update Avatar image.
-          results: [...state.tripReports.results].map( tripReport => tripReport.author.id === action.user.id ? { ...tripReport, author: action.user} : {...tripReport}),
+          results: [...state.tripReports.results].map(
+            tripReport =>
+              tripReport.author.pk === action.user.pk
+                ? { ...tripReport, author: action.user }
+                : { ...tripReport }
+          ),
           count: state.tripReports.count,
           next: state.tripReports.next,
           previous: state.tripReports.previous
         },
-      }
+        userTripReports: {
+          results: [...state.userTripReports.results].map(
+            tripReport =>
+              tripReport.author.pk === action.user.pk
+                ? { ...tripReport, author: action.user }
+                : { ...tripReport }
+          ),
+          count: state.userTripReports.count,
+          next: state.userTripReports.next,
+          previous: state.userTripReports.previous
+        }
+      };
     }
     // Reset authenticated user trip reports array on logout.
     case "AUTH_LOGOUT": {
       return {
         ...state,
-        userTripReports: { results: [], count: null, next: null, previous: null },
-      }
+        userTripReports: {
+          results: [],
+          count: null,
+          next: null,
+          previous: null
+        }
+      };
     }
     default:
-      return state
+      return state;
   }
 }
