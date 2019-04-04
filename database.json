@@ -10218,7 +10218,7 @@
   "model": "countries.country",
   "pk": 133,
   "fields": {
-    "name": "Macedonia (the former Yugoslav Republic of)",
+    "name": "North Macedonia (Republic of)",
     "top_level_domain": [
       ".mk"
     ],
@@ -15640,7 +15640,7 @@
   "model": "countries.country",
   "pk": 239,
   "fields": {
-    "name": "United Kingdom of Great Britain and Northern Ireland",
+    "name": "United Kingdom",
     "top_level_domain": [
       ".uk"
     ],
@@ -15679,7 +15679,7 @@
     "borders": [
       "IRL"
     ],
-    "native_name": "United Kingdom",
+    "native_name": "United Kingdom of Great Britain and Northern Ireland",
     "numeric_code": "826",
     "flag": "https://restcountries.eu/data/gbr.svg",
     "cioc": "GBR",
