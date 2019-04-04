@@ -12,7 +12,7 @@ from api.serializers import TripReportSerializer
 class TripReportTest(TestCase):
     def setUp(self):
         self.user = User.objects.create(username="TestUser")
-        img = os.path.join(BASE_DIR, "test_image.jpg")
+        img = os.path.join(BASE_DIR, "images/test_image.jpg")
         # Create the Trip Report with a test image.
         with open(img, 'rb') as infile:
             self.trip_report = TripReport.objects.create(
@@ -57,7 +57,7 @@ class TripReportTest(TestCase):
 class SignalTest(TestCase):
     def setUp(self):
         self.user = User.objects.create(username="TestUser")
-        img = os.path.join(BASE_DIR, "test_image.jpg")
+        img = os.path.join(BASE_DIR, "images/test_image.jpg")
         # Create the Trip Report with a test image.
         with open(img, 'rb') as infile:
             self.trip_report = TripReport.objects.create(
@@ -71,7 +71,7 @@ class SignalTest(TestCase):
         response = requests.get(f"{MEDIA_URL}trip-report/test_image.jpg")
         self.assertEqual(response.status_code, 200)
 
-        img = os.path.join(BASE_DIR, "test_image2.jpeg")
+        img = os.path.join(BASE_DIR, "images/test_image2.jpeg")
         with open(img, 'rb') as infile:
             self.trip_report.image = infile
             self.trip_report.save()
