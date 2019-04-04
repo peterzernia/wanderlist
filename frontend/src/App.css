@@ -1,5 +1,5 @@
 html {
-  font-family: 'Noto Sans SC', sans-serif;
+  font-family: "Noto Sans SC", sans-serif;
 }
 
 body {
@@ -14,7 +14,7 @@ form {
 
 img {
   height: auto;
-  max-width: 100%
+  max-width: 100%;
 }
 
 p {
@@ -34,7 +34,7 @@ p {
 .flag {
   width: 400px;
   border-style: solid;
-  border-width: .1px;
+  border-width: 0.1px;
 }
 
 .user-auth {
@@ -88,8 +88,8 @@ This is the class for the DotLoader.
   }
   .left,
   .right {
-    width: auto!important;
-    text-align: center!important;
+    width: auto !important;
+    text-align: center !important;
   }
 }
 
@@ -131,7 +131,7 @@ This is the class for the DotLoader.
 }
 
 .header-img {
-  background-image: url('https://s3.eu-west-3.amazonaws.com/countries-app/media/header.jpeg');
+  background-image: url("https://raw.githubusercontent.com/peterzernia/wanderlist/master/images/header.jpeg");
   background-size: cover;
   background-position: top;
   height: 550px;

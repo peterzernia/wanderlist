@@ -54,11 +54,11 @@ export class Home extends Component {
         </div>
         <div style={{ marginTop: 60, textAlign: 'center' }}>
           <h2>Search for Countries and Territories</h2>
-          <img style={{ margin: '0 auto' }} src='https://s3.eu-west-3.amazonaws.com/countries-app/media/country.png' alt='' />
+          <img style={{ margin: '0 auto' }} src='https://raw.githubusercontent.com/peterzernia/wanderlist/master/images/country.png' alt='' />
         </div>
         <div style={{marginTop: 60, textAlign: 'center' }}>
           <h2>Add them to your personalized map</h2>
-          <img style={{ margin: '0 auto' }} src='https://s3.eu-west-3.amazonaws.com/countries-app/media/map.png' alt='' />
+          <img style={{ margin: '0 auto' }} src='https://raw.githubusercontent.com/peterzernia/wanderlist/master/images/map.png' alt='' />
         </div>
         <div className='content' style={{ margin: '0 auto', marginTop: 30 }}>
           <h2>Post Trip Reports about journeys you've taken</h2>
