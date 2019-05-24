@@ -142,6 +142,7 @@ $ docker-compose build
 
 13. Build the frontend JS
 ```
+$ docker-compose run frontend npm install
 $ docker-compose run frontend npm run build
 ```
 
