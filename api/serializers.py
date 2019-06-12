@@ -118,7 +118,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('pk', 'username', 'email', 'countries', 'home', 'biography')
+        fields = ('pk', 'username', 'countries', 'home', 'biography')
 
 
 class TripReportSerializer(serializers.ModelSerializer):
