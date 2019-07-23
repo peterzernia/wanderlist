@@ -1,26 +1,28 @@
 matrix:
   include:
-    - language: python
-      python:
-        - "3.6"
-      install:
-        - pip install -r requirements.txt
-      services:
-        - postgresql
-      addons:
-        postgresql: "9.6"
-      before_script:
-        - psql -c 'create database travis_ci_test;' -U postgres
-        - python manage.py migrate
-      script:
-        coverage run manage.py test
-    - language: node_js
-      node_js:
-        - "10.12"
-      install:
-        - cd frontend && npm install
-      cache:
-        directories:
-        - frontend/node_modules
-      script:
-        - npm test
+  - language: python
+    python:
+    - '3.6'
+    install:
+    - pip install -r requirements.txt
+    services:
+    - postgresql
+    addons:
+      postgresql: '9.6'
+    before_script:
+    - psql -c 'create database travis_ci_test;' -U postgres
+    - python manage.py migrate
+    script: coverage run manage.py test
+  - language: node_js
+    node_js:
+    - '10.12'
+    install:
+    - cd frontend && npm install
+    cache:
+      directories:
+      - frontend/node_modules
+    script:
+    - npm test
+deploy:
+  api_key:
+    secure: Pc44amHFOPfofBegc2S9UkElPx7R95D1eH0cS/knlpGeV+w8XzyslLLy306vnAz0b8kTSGqnKY6yh9dT0+2ywnqQNVPSfeIL3wgc4gidokEmfyJ6cOABj8BXpXZKLQruLt/XUzpVJDRkAOBgAA0nxpuUCOwWUs2rfxZHj1Wv8/9k0r29a4KNNRqYzTpWnIo5q033476Vgc9P3AkMYB4CjNnA7Q7JvdBasH4oLZrglydppFt2ea2sPV56AmvlfMcdFSjLUHg2rb3//7DHIEwHuOeIDQJWfEdSww5Zkeirax0N4xWycAFQUkKoevL6fpQ3mdVJIkqHus98emmRClFiwRBITkgcUkDJGHCHg7XwuOsdDqGFodWfivpyVXAryemRbsIQDnuMZLhqo6Bpi5SGV4RMjV2lnSzLu2EVUOYqGEvXGGZ/ZBIdy3qo3eFHJE8j9aW5NjN/KlPRS/DRgYelYU9/j/CIueSvVIGOIkU9VhdG/Ic1862IawNTHtHPGptYZiRtxSErG2qn+ElDvjgM4nLhYZ+Tialvfp68Er9IBpOvD1p2KAu2ABidOJf3x/WSh/r0Qotit72n23MnB7cC8AbbuwZjlowQd+UOTFO4gBMJR+J4Oviu7MfqXEYHbXZurE5t5viUswAxCoi8eXWHWoFNMxYsEXI5GzDWKCl1LMU=
