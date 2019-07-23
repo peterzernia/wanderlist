@@ -13,6 +13,11 @@ matrix:
         - psql -c 'create database travis_ci_test;' -U postgres
         - python manage.py migrate
       script: coverage run manage.py test
+      deploy:
+        provider: heroku
+        api_key:
+          secure: hjYsoPFYB9tLPkTC/GYeGP3doUd9NoCn+o9IguekEx/xEpuDmeBJhMT+EEfJbyITxugaB3IBm6Ob52qwxoHuha62nAMRKOtxWx6vc8Dr/QcoIEjrAPii1ajiBQlRO/PaVqKoxPY1N99ccrwOHw5AsZwGPcUJ5Am8uSpSooLz83P15t4NzIf9Srhu8YuuzQ69goEwzrrH54fuwEr7zaaSKuDaWEiAq1jpjLshWb1/e5SNXf/fVrE5wtySf/FR5WA0SyEq2MBAqwZF2XBwrZwaFrKOJHo/jAQ+VHxJQaTCPs1U18i9ftZOZs24Jsv59LfGle8Lkm16XHBjShxLk+CnxImVaaXn6Ek3PoJAWY4JwuZOXa5cpcBFYObKIqsCVS8C1GNO6eWR9foF6LMemif98art0eJXN2bmXNqvCOcKi+T0HLLSuGT75ivz1Plw/dnno0jqJwArZtB0MVQyDQtiB75G5RveBJjY4UDzI5h2sMufuKAGNg915WNbrgc1IUmSNj4+OzEgjKKWgLv/EYx1OlYhyzzulraSZuMj8rd+WE1IffhWqCvGfX002Q1Fdi8BbMh5zu4GjMaxBBdGKOI9jgTryuwkUiEL12v8fhv0yH56snSz0aXr7SpNx+vEu8cRUsjCE4applKT5J9zpkGIJkvU85D/LVeax/GC9nWYaLw=
+        app: w4nderlist
     - language: node_js
       node_js:
         - "10.12"
@@ -23,8 +28,3 @@ matrix:
           - frontend/node_modules
       script:
         - npm test
-      deploy:
-        provider: heroku
-        api_key:
-          secure: hjYsoPFYB9tLPkTC/GYeGP3doUd9NoCn+o9IguekEx/xEpuDmeBJhMT+EEfJbyITxugaB3IBm6Ob52qwxoHuha62nAMRKOtxWx6vc8Dr/QcoIEjrAPii1ajiBQlRO/PaVqKoxPY1N99ccrwOHw5AsZwGPcUJ5Am8uSpSooLz83P15t4NzIf9Srhu8YuuzQ69goEwzrrH54fuwEr7zaaSKuDaWEiAq1jpjLshWb1/e5SNXf/fVrE5wtySf/FR5WA0SyEq2MBAqwZF2XBwrZwaFrKOJHo/jAQ+VHxJQaTCPs1U18i9ftZOZs24Jsv59LfGle8Lkm16XHBjShxLk+CnxImVaaXn6Ek3PoJAWY4JwuZOXa5cpcBFYObKIqsCVS8C1GNO6eWR9foF6LMemif98art0eJXN2bmXNqvCOcKi+T0HLLSuGT75ivz1Plw/dnno0jqJwArZtB0MVQyDQtiB75G5RveBJjY4UDzI5h2sMufuKAGNg915WNbrgc1IUmSNj4+OzEgjKKWgLv/EYx1OlYhyzzulraSZuMj8rd+WE1IffhWqCvGfX002Q1Fdi8BbMh5zu4GjMaxBBdGKOI9jgTryuwkUiEL12v8fhv0yH56snSz0aXr7SpNx+vEu8cRUsjCE4applKT5J9zpkGIJkvU85D/LVeax/GC9nWYaLw=
-        app: w4nderlist
