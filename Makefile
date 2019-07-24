@@ -1,5 +1,5 @@
 build:
-	#docker-compose build
+	docker-compose build
 	cd frontend && docker-compose build
 	cd frontend && docker-compose run frontend npm install
 	cd frontend && docker-compose run frontend npm run build

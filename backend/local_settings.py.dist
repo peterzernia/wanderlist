@@ -1,0 +1,23 @@
+DEBUG = True
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '',
+        'HOST': 'db',
+        'PORT': '5432',
+    }
+}
+
+SECRET_KEY = 'your secret django key'
+EMAIL_USER = 'your email username'
+EMAIL_PASS = 'your gmail app password'
+AWS_STORAGE_BUCKET_NAME = 'your aws bucket name'
+AWS_ACCESS_KEY_ID = 'your aws bucket access key id'
+AWS_SECRET_ACCESS_KEY = 'your aws bucket secret access key'
+
+MEDIAFILES_LOCATION = 'media'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
