@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import { removeError } from "../actions/errorActions";
 import { fetchUser } from "../actions/userActions";
@@ -46,7 +46,7 @@ export class Layout extends Component {
 
   render() {
     return (
-      <div>
+      <Router>
         {!this.props.fetching ? (
           <div>
             <NavBar {...this.props} />
@@ -78,7 +78,7 @@ export class Layout extends Component {
             <DotLoader size={50} color={"#2196f3"} className="content" />
           </div>
         )}
-      </div>
+      </Router>
     );
   }
 }
