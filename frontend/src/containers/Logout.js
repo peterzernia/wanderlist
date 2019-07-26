@@ -7,7 +7,7 @@ import { authLogout } from '../actions/authActions'
 
 export class Logout extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.authLogout();
   }
 

@@ -6,6 +6,8 @@ import { Route } from "react-router-dom";
 
 import { removeError } from "../actions/errorActions";
 import { fetchUser } from "../actions/userActions";
+import { authCheckState } from '../actions/authActions'
+import { fetchTripReports, fetchFeaturedTripReport } from '../actions/tripReportActions'
 
 import Error from "../components/Error";
 import NavBar from "../components/NavBar";
@@ -27,7 +29,11 @@ import ViewProfile from "./ViewProfile";
 import { DotLoader } from "react-spinners";
 
 export class Layout extends Component {
-  componentWillMount() {
+  async componentDidMount() {
+    await this.props.authCheckState();
+    this.props.fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?ordering=-pk`);
+    this.props.fetchFeaturedTripReport('rr9IuTcYtL3E');
+
     if (this.props.authenticated) {
       this.props.fetchUser();
     }
@@ -91,7 +97,10 @@ const mapDispatch = dispatch => {
   return bindActionCreators(
     {
       fetchUser,
-      removeError
+      removeError,
+      authCheckState,
+      fetchTripReports,
+      fetchFeaturedTripReport,
     },
     dispatch
   );
@@ -110,5 +119,8 @@ Layout.propTypes = {
   fetched: PropTypes.bool,
 
   fetchUser: PropTypes.func,
-  removeError: PropTypes.func
+  removeError: PropTypes.func,
+  authCheckState: PropTypes.func,
+  fetchTripReports: PropTypes.func,
+  fetchFeaturedTripReport: PropTypes.func,
 };

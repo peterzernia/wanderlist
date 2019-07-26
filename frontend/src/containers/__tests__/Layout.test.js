@@ -1,48 +1,64 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import { Layout } from '../Layout'
-import { DotLoader } from 'react-spinners'
-import Error from '../../components/Error'
-import Success from '../../components/Success'
+import React from "react";
+import { shallow } from "enzyme";
+import { Layout } from "../Layout";
+import { DotLoader } from "react-spinners";
+import Error from "../../components/Error";
+import Success from "../../components/Success";
 
-describe('<Layout />', () =>{
+describe("<Layout />", () => {
   let wrapper;
-  const authLogout = jest.fn();
-  const history = { push: jest.fn() }
+  let props;
 
   beforeEach(() => {
-    wrapper = shallow(
-      <Layout
-        error={null} fetching={false} success={null} authLogout={authLogout}
-        history={history}
-      />
-    )
+    props = {
+      fetching: false,
+      success: null,
+      error: null,
+      history: { push: jest.fn() },
+      authLogout: jest.fn(),
+      authCheckState: jest.fn(),
+      fetchTripReports: jest.fn(),
+      fetchFeaturedTripReport: jest.fn(),
+      fetchUser: jest.fn(),
+      authenticated: false
+    };
+    wrapper = shallow(<Layout {...props} />);
   });
 
-  it('displays loader', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("displays loader", () => {
     expect(wrapper.find(DotLoader).length).toEqual(0);
     wrapper.setProps({ fetching: true });
     expect(wrapper.find(DotLoader).length).toEqual(1);
   });
-  it('displays error', () => {
+  it("displays error", () => {
     expect(wrapper.find(Error).length).toEqual(0);
     wrapper.setProps({ error: { message: "Network Error" } });
     expect(wrapper.find(Error).length).toEqual(1);
   });
-  it('displays success', () => {
+  it("displays success", () => {
     expect(wrapper.find(Success).length).toEqual(0);
-    wrapper.setProps({ success: 'success' });
+    wrapper.setProps({ success: "success" });
     expect(wrapper.find(Success).length).toEqual(1);
   });
-  it('calls fetchUser', () => {
-    const fetchUser = jest.fn();
-    expect(fetchUser).toHaveBeenCalledTimes(0);
-    wrapper = shallow(<Layout fetchUser={fetchUser} authenticated={true} />)
-    expect(fetchUser).toHaveBeenCalledTimes(1);
+  it("calls series of functions", async () => {
+    expect(props.authCheckState).toHaveBeenCalledTimes(1);
+    expect(props.fetchTripReports).toHaveBeenCalledTimes(1);
+    expect(props.fetchFeaturedTripReport).toHaveBeenCalledTimes(1);
+    expect(props.fetchUser).toHaveBeenCalledTimes(0);
+    jest.clearAllMocks();
+    wrapper = await shallow(<Layout {...props} authenticated={true} />);
+    expect(props.authCheckState).toHaveBeenCalledTimes(1);
+    expect(props.fetchTripReports).toHaveBeenCalledTimes(1);
+    expect(props.fetchFeaturedTripReport).toHaveBeenCalledTimes(1);
+    expect(props.fetchUser).toHaveBeenCalledTimes(1);
   });
-  it('handleClick calls authLogout', () => {
-    wrapper.instance().handleClick()
-    expect(authLogout).toHaveBeenCalledTimes(1);
-    expect(history.push).toHaveBeenCalledTimes(1);
+  it("handleClick calls authLogout", () => {
+    wrapper.instance().handleClick();
+    expect(props.authLogout).toHaveBeenCalledTimes(1);
+    expect(props.history.push).toHaveBeenCalledTimes(1);
   });
 });

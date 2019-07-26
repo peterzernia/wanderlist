@@ -1,24 +1,10 @@
 import './App.css'
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import PropType from 'prop-types'
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import Layout from './containers/Layout'
-import { connect } from 'react-redux'
-import { authCheckState } from './actions/authActions'
-import { fetchTripReports, fetchFeaturedTripReport } from './actions/tripReportActions'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 class App extends Component {
-  /*
-  When the App component is mounted, it checks if a user is authenticated and
-  fetches the user data from the Django REST API.
-  */
-  componentWillMount() {
-    this.props.authCheckState();
-    this.props.fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?ordering=-pk`);
-    this.props.fetchFeaturedTripReport('rr9IuTcYtL3E');
-  }
 
   render() {
 
@@ -55,23 +41,4 @@ class App extends Component {
   }
 }
 
-const mapState = state => {
-  return {
-  }
-}
-
-const mapDispatch = dispatch => {
-  return bindActionCreators({
-    authCheckState,
-    fetchTripReports,
-    fetchFeaturedTripReport,
-  }, dispatch);
-}
-
-export default connect(mapState, mapDispatch)(App);
-
-App.propTypes = {
-  authCheckState: PropType.func,
-  fetchTripReports: PropType.func,
-  fetchFeaturedTripReport: PropType.func,
-};
+export default App
