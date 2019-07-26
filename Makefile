@@ -15,6 +15,6 @@ up:
 
 clean:
 	docker-compose stop
-	docker-compose rm -fva
+	docker-compose rm -fv
 	cd frontend && docker-compose stop
-	cd frontend && docker-compose rm -fva
+	cd frontend && docker-compose rm -fv
