@@ -4,7 +4,7 @@ import { ViewProfile } from '../ViewProfile'
 import { tripReport, user } from '../../testVariables'
 import TripReportThumbnail from '../../components/TripReportThumbnail'
 import CountryModal from '../../components/CountryModal'
-import GoogleMap from '../../components/GoogleMap'
+import OpenStreetMap from '../../components/OpenStreetMap'
 import { DotLoader } from 'react-spinners'
 
 describe('<ViewProfile />', () =>{
@@ -49,10 +49,10 @@ describe('<ViewProfile />', () =>{
     wrapper.setProps({ fetched: true })
     expect(wrapper.find(CountryModal).length).toEqual(1);
   });
-  it('displays GoogleMap', () => {
-    expect(wrapper.find(GoogleMap).length).toEqual(0);
+  it('displays OpenStreetMap', () => {
+    expect(wrapper.find(OpenStreetMap).length).toEqual(0);
     wrapper.setProps({ fetched: true })
-    expect(wrapper.find(GoogleMap).length).toEqual(1);
+    expect(wrapper.find(OpenStreetMap).length).toEqual(1);
   });
   it('displays loaders', () => {
     expect(wrapper.find(DotLoader).length).toEqual(0);

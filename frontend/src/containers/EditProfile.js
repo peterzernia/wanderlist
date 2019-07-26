@@ -16,7 +16,7 @@ import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 
-import GoogleMap from '../components/GoogleMap'
+import OpenStreetMap from '../components/OpenStreetMap'
 import EditProfileModal from '../components/EditProfileModal'
 import TripReportThumbnail from '../components/TripReportThumbnail'
 import TripReportModal from '../components/TripReportModal'
@@ -181,7 +181,7 @@ export class EditProfile extends Component {
         <hr style={{width: '85%', size: 1}}/>
 
         {/* This section is the user map */}
-        {this.props.fetched && <GoogleMap {...this.props}/>}
+        {this.props.fetched && <OpenStreetMap {...this.props}/>}
         <hr style={{width: '85%', size: 1}}/>
 
         {/* This section is the user posts */}

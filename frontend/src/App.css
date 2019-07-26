@@ -50,6 +50,12 @@ This is the class for the DotLoader.
   padding: auto;
 }
 
+.leaflet-container {
+  height: 580px;
+  width: 100%;
+  margin: 0px auto;
+}
+
 .map {
   margin-top: 60px;
   margin-bottom: 40px;

@@ -2,13 +2,12 @@ import React from 'react'
 import ReactModal from 'react-modal'
 import IconButton from '@material-ui/core/IconButton'
 import Close from '@material-ui/icons/Close'
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
+import { Map, TileLayer, Marker } from 'react-leaflet'
 import Typography from '@material-ui/core/Typography'
 
 ReactModal.setAppElement('body');
-const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-const CountryModal = (props) => {
+export default function CountryModal(props) {
 
   const style = {
     width: '100%',
@@ -39,15 +38,16 @@ const CountryModal = (props) => {
           <div style={{ maxWidth: 400, height: 300, position: 'relative', margin: 'auto' }}>
             { props.modalCountry.latlng &&
               <Map
-                options={{ gestureHandling: 'coopertive' }}
                 style={style}
-                google={props.google}
                 zoom={4}
-                initialCenter={{lat: props.modalCountry.latlng[0], lng: props.modalCountry.latlng[1]}}
+                center={[props.modalCountry.latlng[0], props.modalCountry.latlng[1]]}
               >
+                <TileLayer
+                  attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
                 <Marker
-                  name={props.modalCountry.name}
-                  position={{lat: props.modalCountry.latlng[0], lng: props.modalCountry.latlng[1]}}
+                  position={[props.modalCountry.latlng[0], props.modalCountry.latlng[1]]}
                 />
               </Map>
             }
@@ -87,5 +87,3 @@ const CountryModal = (props) => {
     </ReactModal>
   )
 };
-
-export default GoogleApiWrapper({ apiKey: (API_KEY) })(CountryModal);

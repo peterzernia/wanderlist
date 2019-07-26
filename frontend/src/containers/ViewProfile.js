@@ -14,7 +14,7 @@ import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
 
 import CountryModal from '../components/CountryModal'
 import CopyLinkModal from '../components/CopyLinkModal'
-import GoogleMap from '../components/GoogleMap'
+import OpenStreetMap from '../components/OpenStreetMap'
 import NotAuthModal from '../components/NotAuthModal'
 import TripReportModal from '../components/TripReportModal'
 import TripReportThumbnail from '../components/TripReportThumbnail'
@@ -107,7 +107,7 @@ export class ViewProfile extends Component {
         {this.props.fetched && <hr style={{width: '85%', size: 1}}/>}
 
         {/* This section is the user map */}
-        {this.props.fetched && <GoogleMap {...this.props}/>}
+        {this.props.fetched && <OpenStreetMap {...this.props}/>}
         {this.props.fetched && <hr style={{width: '85%', size: 1}}/>}
 
         {/* This section is the user posts */}
