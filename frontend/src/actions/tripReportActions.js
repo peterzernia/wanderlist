@@ -129,7 +129,7 @@ export const fetchNextUserTripReports = (url) => {
 POST requests a new trip report to the Django REST API by the authenticated
 user.
 */
-export const postTripReport = (author, title, content, countries, image) => {
+export const postTripReport = (author, title, content, countries) => {
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch(postTripReportsPending());
@@ -138,9 +138,6 @@ export const postTripReport = (author, title, content, countries, image) => {
     formData.append('content', content);
     formData.append('author', author);
     formData.append('countries', countries);
-    if (image) {
-      formData.append('image', image);
-    }
     axios.post(
       `${process.env.REACT_APP_API_URL}/api/v1/reports/`, formData,
       {headers: { 'Authorization': `Token ${token}`}}
@@ -177,7 +174,7 @@ export const deleteTripReport = (tripReport) => {
 }
 
 // UPDATEs a post of the authenticated user on the API.
-export const updateTripReport = (tripReport, author, title, content, countries, image) => {
+export const updateTripReport = (tripReport, author, title, content, countries) => {
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch(updateTripReportsPending());
@@ -186,10 +183,6 @@ export const updateTripReport = (tripReport, author, title, content, countries, 
     formData.append('content', content);
     formData.append('author', author);
     formData.append('countries', countries);
-    // If image is field is left blank, the original image does not get updated or deleted.
-    if (image) {
-      formData.append('image', image);
-    }
     axios.patch(`${process.env.REACT_APP_API_URL}/api/v1/reports/${tripReport}/`, formData,
       {headers: {
         'X-Requested-With': 'XMLHttpRequest',

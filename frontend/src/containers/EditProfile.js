@@ -13,7 +13,6 @@ import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { openConfirmDeleteModal, closeConfirmDeleteModal } from '../actions/modalActions'
 import { openTripReportModal, closeTripReportModal } from '../actions/modalActions'
 import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
-import { openImageModal, closeImageModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 
@@ -93,7 +92,6 @@ export class EditProfile extends Component {
       e.target.title.value,
       e.target.content.value,
       countries,
-      e.target.image.files[0]
     );
     this.props.closePostModal();
   }
@@ -110,7 +108,6 @@ export class EditProfile extends Component {
       e.target.title.value,
       e.target.content.value,
       countries,
-      e.target.image.files[0]
     );
     this.props.closePostModal();
   }
@@ -232,8 +229,6 @@ const mapState = state => {
     modalLink: state.modal.modalLink,
     posting: state.tripReport.posting,
     updating: state.tripReport.updating,
-    showImageModal: state.modal.showImageModal,
-    modalImage: state.modal.modalImage,
   };
 }
 
@@ -261,8 +256,6 @@ const mapDispatch = dispatch => {
     toggleFavorite,
     openCopyLinkModal,
     closeCopyLinkModal,
-    openImageModal,
-    closeImageModal,
   }, dispatch);
 }
 
@@ -293,8 +286,6 @@ EditProfile.propTypes = {
   modalLink: PropTypes.string,
   posting: PropTypes.bool,
   updating: PropTypes.bool,
-  showImageModal: PropTypes.bool,
-  modalImage: PropTypes.string,
 
   fetchCountry: PropTypes.func,
   putUserData: PropTypes.func,
@@ -318,6 +309,4 @@ EditProfile.propTypes = {
   toggleFavorite: PropTypes.func,
   openCopyLinkModal: PropTypes.func,
   closeCopyLinkModal: PropTypes.func,
-  openImageModal: PropTypes.func,
-  closeImageModal: PropTypes.func,
 };

@@ -7,12 +7,10 @@ const initialState = {
   showTripReportModal: false,
   showNotAuthModal: false,
   showCopyLinkModal: false,
-  showImageModal: false,
   modalCountry: {},
   modalProfile: {},
   modalPost: {},
   modalLink: null,
-  modalImage: null
 }
 
 /* Reducer Function*/
@@ -128,20 +126,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         modalPost: action.response
-      }
-    }
-    // Image modal
-    case "OPEN_IMAGE_MODAL": {
-      return {
-        ...state,
-        showImageModal: true,
-        modalImage: action.modalImage
-      }
-    }
-    case "CLOSE_IMAGE_MODAL": {
-      return {
-        ...state,
-        showImageModal: false,
       }
     }
     default:

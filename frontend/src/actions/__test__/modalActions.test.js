@@ -87,17 +87,4 @@ describe('Modal Action Creators', () => {
     const expectedAction = {type: 'CLOSE_COPY_LINK_MODAL'}
     expect(modalActions.closeCopyLinkModal()).toEqual(expectedAction)
   });
-
-  it('should create a OPEN_IMAGE_MODAL action', () => {
-    const modalImage = 'http://test.com/test.jpg'
-    const expectedAction = {
-      type: 'OPEN_IMAGE_MODAL',
-      modalImage
-    }
-    expect(modalActions.openImageModal(modalImage)).toEqual(expectedAction)
-  });
-  it('should create a CLOSE_IMAGE_MODAL action', () => {
-    const expectedAction = {type: 'CLOSE_IMAGE_MODAL'}
-    expect(modalActions.closeImageModal()).toEqual(expectedAction)
-  });
 });

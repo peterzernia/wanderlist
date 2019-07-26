@@ -68,21 +68,6 @@ const country = {
 }
 
 describe('<TripReport />', () =>{
-  it('displays an image and button', () => {
-    const image = "http://test.com/test.jpg";
-    const countries = [country];
-    const author = { username: "Test", home: country };
-    const favoriters = [];
-    const wrapper = shallow(
-      <TripReport
-        image={image} author={author} favoriters={favoriters} countries={countries}
-      />
-    );
-    // Finds the action to open image if there is an image
-    expect('action' in wrapper.find(CardHeader).props()).toEqual(true);
-    wrapper.setProps({ image: null });
-    expect('action' in wrapper.find(CardHeader).props()).toEqual(false);
-  });
   it('displays correct button when favorited and handles click', () => {
     const countries = [country];
     const author = { username: "Test", home: country };

@@ -10,12 +10,10 @@ const defaultState = {
   showTripReportModal: false,
   showNotAuthModal: false,
   showCopyLinkModal: false,
-  showImageModal: false,
   modalCountry: {},
   modalProfile: {},
   modalPost: {},
   modalLink: null,
-  modalImage: null
 }
 
 describe('modal Reducer', () => {
@@ -157,24 +155,6 @@ describe('modal Reducer', () => {
     })).toEqual({
       ...defaultState,
       modalPost: tripReport
-    })
-  });
-  it('can handle OPEN_IMAGE_MODAL', () => {
-    expect(modal(undefined, {
-      type: 'OPEN_IMAGE_MODAL',
-      modalImage: 'http://test.com/image.jpg'
-    })).toEqual({
-      ...defaultState,
-      showImageModal: true,
-      modalImage: 'http://test.com/image.jpg'
-    })
-  });
-  it('can handle CLOSE_IMAGE_MODAL', () => {
-    expect(modal(undefined, {
-      type: 'CLOSE_IMAGE_MODAL'
-    })).toEqual({
-      ...defaultState,
-      showImageModal: false
     })
   });
 });

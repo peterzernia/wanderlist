@@ -123,13 +123,4 @@ describe('<TripReportThumbnail />', () =>{
     expect(openConfirmDeleteModal).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledTimes(1);
   });
-  it('displays proper image', () => {
-    const tripReport = { title: "Test", countries: [country], image: "http://test.com/test.jpg" }
-    const match = { path: "/" }
-    const wrapper = mount(
-      <TripReportThumbnail tripReport={tripReport} match={match} />);
-    expect(wrapper.find(CardMedia).prop("src")).toEqual("http://test.com/test.jpg")
-    wrapper.setProps({ tripReport: { title: "Test", countries: [country] }})
-    expect(wrapper.find(CardMedia).prop("src")).toEqual("https://restcountries.eu/data/ala.svg")
-  });
 });

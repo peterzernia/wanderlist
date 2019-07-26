@@ -5,7 +5,6 @@ import { tripReport, user } from '../../testVariables'
 import TripReportThumbnail from '../../components/TripReportThumbnail'
 import CountryModal from '../../components/CountryModal'
 import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
 import GoogleMap from '../../components/GoogleMap'
 import { DotLoader } from 'react-spinners'
 
@@ -28,7 +27,6 @@ describe('<EditProfile />', () =>{
       country: { value: 1 },
       title: { value: 'test' },
       content: { value: 'test' },
-      image: { files: [null] },
       username: { value: 'TestUser' },
       email: { value: 'test@test.com' },
       biography: { value: 'test' }

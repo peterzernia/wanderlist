@@ -1,6 +1,5 @@
 import React from 'react'
 import CountryModal from './CountryModal'
-import ImageModal from './ImageModal'
 import TripReport from './TripReport'
 import ReactModal from 'react-modal'
 import Close from '@material-ui/icons/Close'
@@ -13,7 +12,6 @@ const TripReportModal = (props) => {
   return (
     <ReactModal isOpen={props.showTripReportModal}>
       <CountryModal {...props} />
-      <ImageModal {...props} />
       <IconButton style={{ float: 'right' }} onClick={props.closeTripReportModal}>
         <Close />
       </IconButton><br/>

@@ -71,8 +71,7 @@ axios.post(
 )
 ```
 
-along with the required fields, title, content, authors, and countries. The
-image field is optional. PUT, PATCH, and DELETE requests must be made to the
+along with the required fields, title, content, authors, and countries. PUT, PATCH, and DELETE requests must be made to the
 specific trip report endpoint of /api/v1/reports/tripReport_pk/, e.g.
 /api/v1/reports/12/ and require the same headers as POST.
 

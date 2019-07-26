@@ -32,7 +32,3 @@ export const closeNotAuthModal = () => ({ type: "CLOSE_NOT_AUTH_MODAL" })
 // Copy Link modal action creators
 export const openCopyLinkModal = modalLink => ({ type: "OPEN_COPY_LINK_MODAL", modalLink: modalLink })
 export const closeCopyLinkModal = () => ({ type: "CLOSE_COPY_LINK_MODAL" })
-
-// Image modal action creators
-export const openImageModal = modalImage => ({ type: "OPEN_IMAGE_MODAL", modalImage: modalImage })
-export const closeImageModal = () => ({ type: "CLOSE_IMAGE_MODAL" })

@@ -50,11 +50,7 @@ class TripReportThumbnail extends Component {
             {this.props.match.path === '/edit_profile' && <MenuItem onClick={() => {this.handleClose(); this.props.openUpdatePostModal(this.props.tripReport);}}><EditIcon /></MenuItem>}
             {this.props.match.path === '/edit_profile' && <MenuItem onClick={() => {this.handleClose(); this.props.openConfirmDeleteModal(this.props.tripReport);}}><DeleteIcon /></MenuItem>}
           </Menu>
-        {
-          this.props.tripReport.image
-          ? <CardMedia component='img' src={this.props.tripReport.image} alt="" />
-          : <CardMedia component='img' src={[...this.props.tripReport.countries].sort((a, b) => a.name > b.name)[0].flag} alt="" />
-        }
+          <CardMedia component='img' src={[...this.props.tripReport.countries].sort((a, b) => a.name > b.name)[0].flag} alt="" />
       </Card>
     )
   }

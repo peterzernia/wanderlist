@@ -9,9 +9,21 @@ init:
 	docker-compose run web python manage.py createsuperuser
 	docker-compose run web python manage.py loaddata database.json
 
+migrate:
+	docker-compose run web python manage.py makemigrations
+	docker-compose run web python manage.py migrate
+
 up:
 	docker-compose up --d
 	cd frontend && docker-compose up
+
+test-js:
+	cd frontend && docker-compose run frontend npm test
+
+test-py:
+	docker-compose run web coverage run manage.py test
+
+test: test-py test-js
 
 clean:
 	docker-compose stop
