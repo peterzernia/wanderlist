@@ -30,9 +30,9 @@ matrix:
       node_js:
         - "10.12"
       addons:
-      apt:
-        packages:
-          - libgconf-2-4libgconf-2-4
+        apt:
+          packages:
+            - libgconf-2-4libgconf-2-4
       install:
         - cd frontend && npm install
       script:
