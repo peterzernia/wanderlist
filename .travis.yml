@@ -35,17 +35,12 @@ matrix:
           - libgconf-2-4libgconf-2-4
       install:
         - cd frontend && npm install
-      scripts:
+      script:
         - ./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run --record
-
-
       cache:
-
         directories:
           - ~/.cache
           - frontend/node_modules
-      script:
-        - npm test
     - stage: Deploy to production
       script: skip
       deploy: &heroku
