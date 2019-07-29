@@ -32,13 +32,17 @@ matrix:
       addons:
       apt:
         packages:
-          - libgconf-2-4
+          - libgconf-2-4libgconf-2-4
       install:
-        - frontend/node_modules/.bin/cypress install && frontend/node_modules/.bin/cypress run --record
+        - cd frontend && npm install
+      scripts:
+        - ./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run --record
+
+
       cache:
-        npm: true
+
         directories:
-          - ~/frontend/.cache
+          - ~/.cache
           - frontend/node_modules
       script:
         - npm test
