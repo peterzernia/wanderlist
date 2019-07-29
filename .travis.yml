@@ -25,6 +25,22 @@ matrix:
           - frontend/node_modules
       script:
         - npm test
+    - stage: Integration tests
+      language: node_js
+      node_js:
+        - "10.12"
+      addons:
+      apt:
+        packages:
+          - libgconf-2-4
+      install:
+        - cd frontend && ./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run --record
+      cache:
+        npm: true
+        directories:
+          - ~/frontend/.cache
+      script:
+        - npm test
     - stage: Deploy to production
       script: skip
       deploy: &heroku
