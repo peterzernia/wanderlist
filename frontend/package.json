@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.17.0",
+    "cypress": "^3.4.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "prop-types": "^15.7.2",

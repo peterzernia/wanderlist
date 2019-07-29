@@ -25,6 +25,12 @@ test-py:
 
 test: test-py test-js
 
+cy-open:
+	cd frontend && docker-compose run frontend ./node_modules/.bin/cypress install && ./node_modules/.bin/cypress open
+
+cy-run:
+	cd frontend && docker-compose run frontend ./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run
+
 clean:
 	docker-compose stop
 	docker-compose rm -fv
