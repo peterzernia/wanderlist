@@ -27,7 +27,7 @@ export default function App() {
 
   return (
     <MuiThemeProvider theme={theme}>
-      <Layout />>
+      <Layout />
     </MuiThemeProvider>
   );
 }
