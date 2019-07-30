@@ -32,7 +32,7 @@ matrix:
       addons:
         apt:
           packages:
-            - libgconf-2-4libgconf-2-4
+            - libgconf-2-4
       before_install:
         - sudo apt-get update
       install:
