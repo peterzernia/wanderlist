@@ -44,7 +44,7 @@ matrix:
         - python manage.py migrate
         - python manage.py loaddata database.json
       script:
-        - python manage.py runserver
+        - nohup python manage.py runserver
         - frontend/node_modules/.bin/cypress install && frontend/node_modules/.bin/cypress run
       cache:
         directories:
