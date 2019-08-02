@@ -5,10 +5,14 @@ matrix:
       services:
         - docker
       before_install:
+        - sudo /etc/init.d/postgresql stop
         - make build
         - make up &
       script:
         - make cy-run
+      cache:
+        directories:
+          - ~/.cache
     - stage: Backend tests
       language: python
       python:
