@@ -6,13 +6,9 @@ matrix:
         - docker
       before_install:
         - make build
-        - make up
+        - make up &
       script:
         - make cy-run
-      cache:
-        directories:
-          - ~/.cache
-          - frontend/node_modules
     - stage: Backend tests
       language: python
       python:
