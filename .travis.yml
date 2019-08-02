@@ -15,7 +15,7 @@ matrix:
         - python manage.py migrate
       script: coverage run manage.py test
     - stage: Frontend tests
-      language: generic
+      language: node_js
       node_js:
         - "10.12"
       install:
@@ -26,13 +26,20 @@ matrix:
       script:
         - npm test
     - stage: Integration tests
-      language: node_js
-      node_js:
-        - "10.12"
+      language: python
+      python:
+        - "3.6"
+      services:
+        - postgresql
       addons:
+        postgresql: "9.6"
         apt:
           packages:
             - libgconf-2-4
+      before_script:
+        - psql -c 'create database travis_ci_test;' -U postgres
+        - python manage.py migrate
+        - nvm install 10.12
       install:
         - cd frontend && npm ci
       script:
