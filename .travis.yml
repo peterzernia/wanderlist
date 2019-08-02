@@ -1,27 +1,14 @@
 matrix:
   include:
     - stage: Integration tests
-      language: python
-      python:
-        - "3.6"
+      language: ruby
       services:
-        - postgresql
-      addons:
-        postgresql: "9.6"
-        apt:
-          packages:
-            - libgconf-2-4
-      install:
-        - pip install -r requirements.txt
-        - cd frontend && npm ci && cd ..
-      before_script:
-        - psql -c 'create database travis_ci_test;' -U postgres
-        - python manage.py migrate
-        - python manage.py loaddata database.json
-        - python manage.py runserver localhost:8000 &
+        - docker
+      before_install:
+        - make build
+        - make up
       script:
-        - cd frontend
-        - ./node_modules/wait-on/bin/wait-on http://localhost:8000 && ./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run
+        - make cy-run
       cache:
         directories:
           - ~/.cache
