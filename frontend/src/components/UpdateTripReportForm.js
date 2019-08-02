@@ -43,8 +43,8 @@ class UpdateTripReportForm extends Component {
 
     return(
       <form onSubmit={this.props.handleSubmit}>
-        <TextField className="user-auth" type='text' name="title" label="Title" onChange={this.handleChange} value={this.state.title}/><br/>
-        <TextField multiline fullWidth className="user-auth" type='text' name="content" label="Content" onChange={this.handleChange} value={this.state.content}/><br/>
+        <TextField className="user-auth" type='text' name="title" label="Title" onChange={this.handleChange} value={this.state.title} required/><br/>
+        <TextField multiline fullWidth className="user-auth" type='text' name="content" label="Content" onChange={this.handleChange} value={this.state.content} required/><br/>
         <FormControl>
           <InputLabel htmlFor="countries">Countries</InputLabel>
           <Select style={{ textAlign: 'left'}} className="user-auth" name="countries" onChange={this.handleChange} value={this.state.countries}>

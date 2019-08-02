@@ -42,8 +42,8 @@ class PostTripReportForm extends Component {
 
     return(
       <form onSubmit={this.props.handleSubmit}>
-        <TextField className="user-auth" type='text' name="title" label="Title"/><br/>
-        <TextField multiline fullWidth className="user-auth" type='text' name="content" label="Content"/><br/>
+        <TextField className="user-auth" type='text' name="title" label="Title" required/><br/>
+        <TextField multiline fullWidth className="user-auth" type='text' name="content" label="Content" required/><br/>
         <FormControl>
           <InputLabel htmlFor="countries">Countries</InputLabel>
           <Select style={{ textAlign: 'left'}} className="user-auth" name="countries" onChange={this.handleChange} value={this.state.countries}>

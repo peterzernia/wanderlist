@@ -43,10 +43,10 @@ class RegistrationForm extends Component {
           <CardHeader title="Register"/>
           <CardContent>
             <form onSubmit={this.props.handleSubmit}>
-              <TextField className="user-auth" type='text' name="username" label="Username"/><br/>
-              <TextField className="user-auth" type='text' name="email" label="Email"/><br/>
-              <TextField className="user-auth" type='password' name="password1" label="Password"/><br/>
-              <TextField className="user-auth" type='password' name="password2" label="Confirm Password"/><br/>
+              <TextField className="user-auth" type='text' name="username" label="Username" required/><br/>
+              <TextField className="user-auth" type='text' name="email" label="Email" required/><br/>
+              <TextField className="user-auth" type='password' name="password1" label="Password" required/><br/>
+              <TextField className="user-auth" type='password' name="password2" label="Confirm Password" required/><br/>
               <FormControl>
                 <InputLabel htmlFor="country">Home Country</InputLabel>
                 <Select style={{ textAlign: 'left'}} className="user-auth" name="country" onChange={this.handleChange} value={this.state.country}>

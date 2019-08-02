@@ -33,8 +33,8 @@ class EditProfileForm extends React.Component {
 
     return(
       <form onSubmit={this.props.handleSubmit}>
-        <TextField className="user-auth" type='text' label='Username' name="username" defaultValue={this.props.user.username}/><br/>
-        <TextField className="user-auth" type='text' label='Email' name="email" defaultValue={this.props.user.email}/><br/>
+        <TextField className="user-auth" type='text' label='Username' name="username" defaultValue={this.props.user.username} required/><br/>
+        <TextField className="user-auth" type='text' label='Email' name="email" defaultValue={this.props.user.email} required/><br/>
         <TextField multiline className="user-auth" type='text' label='Biography' name="biography" defaultValue={this.props.user.biography}/><br/>
         <FormControl>
           <InputLabel htmlFor="countries">Home Country</InputLabel>

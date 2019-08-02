@@ -11,7 +11,7 @@ const ForgotPasswordForm = (props) => (
     <CardHeader title="Request Password Reset"/>
     <CardContent>
       <form onSubmit={props.handleSubmit}>
-        <TextField className="user-auth" type='text' name="email" label="Email"/><br/><br/>
+        <TextField className="user-auth" type='text' name="email" label="Email" required/><br/><br/>
         <Button variant="contained" color="primary" type="submit">Submit</Button>
         <Link to="/login"><Button>Cancel</Button></Link>
       </form>
