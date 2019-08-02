@@ -18,7 +18,7 @@ matrix:
         - psql -c 'create database travis_ci_test;' -U postgres
         - python manage.py migrate
         - python manage.py loaddata database.json
-        - python manage.py runserver &
+        - python manage.py runserver 8000 &
       script:
         - cd frontend && ./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run
       cache:
