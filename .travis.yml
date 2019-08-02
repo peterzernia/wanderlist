@@ -15,7 +15,7 @@ matrix:
         - python manage.py migrate
       script: coverage run manage.py test
     - stage: Frontend tests
-      language: node_js
+      language: generic
       node_js:
         - "10.12"
       install:
