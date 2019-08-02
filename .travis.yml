@@ -1,5 +1,30 @@
 matrix:
   include:
+    - stage: Integration tests
+      language: python
+      python:
+        - "3.6"
+      services:
+        - postgresql
+      addons:
+        postgresql: "9.6"
+        apt:
+          packages:
+            - libgconf-2-4
+      install:
+        - pip install -r requirements.txt
+        - cd frontend && npm ci && cd ..
+      before_script:
+        - psql -c 'create database travis_ci_test;' -U postgres
+        - python manage.py migrate
+        - python manage.py loaddata database.json
+      script:
+        - nohup python manage.py runserver &
+        - cd frontend && ./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run
+      cache:
+        directories:
+          - ~/.cache
+          - frontend/node_modules
     - stage: Backend tests
       language: python
       python:
@@ -25,31 +50,6 @@ matrix:
           - frontend/node_modules
       script:
         - npm test
-    - stage: Integration tests
-      language: python
-      python:
-        - "3.6"
-      services:
-        - postgresql
-      addons:
-        postgresql: "9.6"
-        apt:
-          packages:
-            - libgconf-2-4
-      install:
-        - pip install -r requirements.txt
-        - cd frontend && npm ci && cd ..
-      before_script:
-        - psql -c 'create database travis_ci_test;' -U postgres
-        - python manage.py migrate
-        - python manage.py loaddata database.json
-      script:
-        - nohup python manage.py runserver &
-        - frontend/node_modules/.bin/cypress install && frontend/node_modules/.bin/cypress run
-      cache:
-        directories:
-          - ~/.cache
-          - frontend/node_modules
     - stage: Deploy to production
       script: skip
       deploy: &heroku
