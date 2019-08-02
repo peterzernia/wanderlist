@@ -20,7 +20,8 @@ matrix:
         - python manage.py loaddata database.json
         - python manage.py runserver localhost:8000 &
       script:
-        - cd frontend && ./node_modules/.bin/cypress install && curl localhost:8000 && ./node_modules/.bin/cypress run
+        - cd frontend
+        - ./node_modules/wait-on/bin/wait-on http://localhost:8000 && ./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run
       cache:
         directories:
           - ~/.cache
