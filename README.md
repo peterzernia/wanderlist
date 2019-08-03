@@ -3,11 +3,11 @@
 Wanderlist is a full-featured, single-page web application built on the Django
 framework with a Reactjs frontend.
 
-Now available on the [Google Play](https://play.google.com/store/apps/details?id=dev.wanderlist.wanderlist)
+Now available on [Google Play](https://play.google.com/store/apps/details?id=dev.wanderlist.wanderlist)
 
 ## Development
 
-Create a backend/local_settings.py and frontend/.env file for development from their respective .dist files
+Create backend/local_settings.py and frontend/.env files for development from their respective .dist files
 and fill them out with the appropriate environment variables.
 
 Build the docker containers and install dependencies:
@@ -28,8 +28,17 @@ Start the servers:
 make up
 ```
 
-The Django dev server is now available at localhost:8000, and the React dev server
-is available at localhost:3000.
+The Django dev server is now available at localhost:8000, and the React dev server is available at localhost:3000.
+
+Unit Test:
+```
+make test
+```
+
+Integration/E2E test:
+```
+make cy-run
+```
 
 Stop and remove the docker containers:
 
