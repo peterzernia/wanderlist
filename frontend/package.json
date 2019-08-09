@@ -19,7 +19,8 @@
     "react-spinners": "^0.4.7",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "wait-on": "^3.3.0"
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.17.0",
