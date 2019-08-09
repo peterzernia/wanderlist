@@ -7,10 +7,11 @@ matrix:
       before_install:
         - sudo /etc/init.d/postgresql stop
       install:
+        - touch backend/local_settings.py
         - make build
         - docker-compose run web python manage.py migrate --noinput && docker-compose run web python manage.py loaddata database.json
       before_script:
-        - make up &
+        - docker-compose up -d
       script:
         - make cy-run
       cache:
