@@ -9,7 +9,7 @@ describe('Authentication', () => {
       .type('testing1234')
     cy.get('[name="password2"]')
       .type('testing1234')
-    cy.get('.jss129')
+    cy.get('.jss1351')
       .click({ multiple: true })
     cy.contains('Aland Islands')
       .click()
