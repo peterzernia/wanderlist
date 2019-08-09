@@ -8,7 +8,7 @@ matrix:
         - sudo /etc/init.d/postgresql stop
       install:
         - make build
-        - make init
+        - docker-compose run web python manage.py migrate --noinput && docker-compose run web python manage.py loaddata database.json
       before_script:
         - make up &
       script:

@@ -176,5 +176,16 @@ if 'TRAVIS' in os.environ:
 # Local settings.
 try:
     from backend.local_settings import *
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': '',
+            'HOST': 'db',
+            'PORT': '5432',
+        }
+    }
 except ImportError:
     pass
