@@ -11,12 +11,11 @@ matrix:
         - docker-compose build
         - docker-compose run web python manage.py migrate --noinput && docker-compose run web python manage.py loaddata database.json
         - cd frontend && npm install && npm run build
-      before_script:
-        - cd .. && docker-compose up -d
       script:
+        - cd .. && docker-compose up -d
         - cd frontend
         - ./node_modules/.bin/cypress install
-        - ./node_modules/.bin/cypress run
+        - wait-on http://localhost:8000 && ./node_modules/.bin/cypress run
     - stage: Backend tests
       language: python
       python:
