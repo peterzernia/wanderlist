@@ -9,10 +9,7 @@ describe('Authentication', () => {
       .type('testing1234')
     cy.get('[name="password2"]')
       .type('testing1234')
-    cy.get('.jss1351')
-      .click({ multiple: true })
-    cy.contains('Aland Islands')
-      .click()
+    cy.get('input[name="country"]').then(el => el.val(Math.random() * 250))
     cy.get('[type="submit"]')
       .click()
 

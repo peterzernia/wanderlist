@@ -22,6 +22,7 @@ describe("Profile page", () => {
     cy.get('[name="email"]')
       .clear()
       .type('test2@test.com')
+    cy.get('input[name="country"]').then(el => el.val(Math.random() * 250))
     cy.get('[type="submit"]')
       .click()
 
@@ -35,6 +36,7 @@ describe("Profile page", () => {
 
     cy.get('[title="New Trip Report"]')
       .click()
+    cy.get('input[name="countries"]').then(el => el.val(`${Math.random() * 250}`))
     cy.get('[name="title"]')
       .type('Test Trip Report')
     cy.get('[name="content"]')
