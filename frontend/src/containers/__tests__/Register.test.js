@@ -6,12 +6,16 @@ import { Redirect } from 'react-router-dom'
 
 describe('<Register />', () =>{
   let wrapper;
-  const removeError = jest.fn();
-  const authRegister = jest.fn();
+  const props = {
+    removeError: jest.fn(),
+    authRegister: jest.fn(),
+    authenticated: false,
+    authenticating: false,
+  }
 
   beforeEach(() => {
     wrapper = shallow(
-      <Register removeError={removeError} authRegister={authRegister} />
+      <Register {...props} />
     )
   });
 
