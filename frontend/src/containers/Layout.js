@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { removeError } from "../actions/errorActions";
 import { fetchUser } from "../actions/userActions";
 import { authCheckState } from '../actions/authActions'
-import { fetchTripReports, fetchFeaturedTripReport } from '../actions/tripReportActions'
+import { fetchTripReports, fetchFeaturedTripReport, fetchUserTripReports } from '../actions/tripReportActions'
 
 import Error from "../components/Error";
 import NavBar from "../components/NavBar";
@@ -31,6 +31,7 @@ export function Layout(props) {
     authCheckState, 
     fetchTripReports, 
     fetchFeaturedTripReport, 
+    fetchUserTripReports,
     authenticated, 
     fetchUser,
     error, 
@@ -43,6 +44,11 @@ export function Layout(props) {
       await authCheckState();
       fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?ordering=-pk`);
       fetchFeaturedTripReport('rr9IuTcYtL3E');
+
+      const username = localStorage.getItem('username')
+      if (username) {
+        fetchUserTripReports(username)
+      }
   
       if (authenticated) {
         fetchUser();
@@ -50,7 +56,7 @@ export function Layout(props) {
     }
 
     fetchData()
-  }, [authCheckState, authenticated, fetchFeaturedTripReport, fetchTripReports, fetchUser])
+  }, [authCheckState, authenticated, fetchFeaturedTripReport, fetchTripReports, fetchUser, fetchUserTripReports])
 
   return (
     <Router>
@@ -106,6 +112,7 @@ const mapDispatch = dispatch => {
       authCheckState,
       fetchTripReports,
       fetchFeaturedTripReport,
+      fetchUserTripReports,
     },
     dispatch
   );
@@ -122,10 +129,10 @@ Layout.propTypes = {
   authenticated: PropTypes.bool,
   fetching: PropTypes.bool,
   fetched: PropTypes.bool,
-
   fetchUser: PropTypes.func,
   removeError: PropTypes.func,
   authCheckState: PropTypes.func,
   fetchTripReports: PropTypes.func,
   fetchFeaturedTripReport: PropTypes.func,
+  fetchUserTripReports: PropTypes.func,
 };
