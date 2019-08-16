@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
@@ -6,7 +6,6 @@ import { PropTypes } from 'prop-types'
 import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
 import { openCountryModal, closeCountryModal } from '../actions/modalActions'
 import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
-import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 
 import CopyLinkModal from '../components/CopyLinkModal'
@@ -17,60 +16,51 @@ import TripReportTruncated from '../components/TripReportTruncated'
 import { DotLoader } from 'react-spinners'
 import Typography from '@material-ui/core/Typography'
 
-export class Home extends Component {
+export function Home(props) {
+  const { tripReport, modalCountry, toggleFavorite } = props;
 
-  componentWillUnmount() {
-    this.props.removeError();
-  }
-
-  handleClick = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-    this.props.toggleFavorite(e.currentTarget.id);
+    toggleFavorite(e.currentTarget.id);
   }
 
-  render(){
+  const featuredTripReport = tripReport && tripReport.map(tripReport =>(
+    <div key={tripReport.id} style={{ marginBottom: 20 }}>
+      <TripReportTruncated handleClick={handleClick} {...tripReport} {...props}/>
+    </div>
+  ));
 
-    let featuredTripReport = null;
-    if (this.props.tripReport){
-      featuredTripReport = this.props.tripReport.map(tripReport =>(
-        <div key={tripReport.id} style={{ marginBottom: 20 }}>
-          <TripReportTruncated handleClick={this.handleClick} {...tripReport} {...this.props} openCountryModal={this.props.openCountryModal}/>
-        </div>
-      ));
-    }
-
-    return(
-      <div >
-        <NotAuthModal {...this.props} />
-        <CopyLinkModal {...this.props} />
-        {this.props.modalCountry && <CountryModal {...this.props} />}
-        <div className='header-img'>
-          <Typography variant="h2" gutterBottom style={{ color: 'white', paddingTop: 200 }}>
-            Connect, Learn, Share
-          </Typography>
-        </div>
-        <div style={{ marginTop: 60, textAlign: 'center' }}>
-          <h2>Search for Countries and Territories</h2>
-          <img style={{ margin: '0 auto' }} src='https://raw.githubusercontent.com/peterzernia/wanderlist/master/images/country.png' alt='' />
-        </div>
-        <div style={{marginTop: 60, textAlign: 'center' }}>
-          <h2>Add them to your personalized map</h2>
-          <img style={{ margin: '0 auto' }} src='https://raw.githubusercontent.com/peterzernia/wanderlist/master/images/map.png' alt='' />
-        </div>
-        <div className='content' style={{ margin: '0 auto', marginTop: 30 }}>
-          <h2>Post Trip Reports about journeys you've taken</h2>
-          <div style={{ textAlign: 'left', width: '90%', margin: '0 auto' }}>
-            Featured Trip Report
-          </div>
-          {
-            this.props.tripReport
-            ? <div>{featuredTripReport}</div>
-            : <DotLoader size={50} color={'#2196f3'} className="content" />
-          }
-        </div>
+  return(
+    <div >
+      <NotAuthModal {...props} />
+      <CopyLinkModal {...props} />
+      {modalCountry && <CountryModal {...props} />}
+      <div className='header-img'>
+        <Typography variant="h2" gutterBottom style={{ color: 'white', paddingTop: 200 }}>
+          Connect, Learn, Share
+        </Typography>
       </div>
-    );
-  }
+      <div style={{ marginTop: 60, textAlign: 'center' }}>
+        <h2>Search for Countries and Territories</h2>
+        <img style={{ margin: '0 auto' }} src='https://raw.githubusercontent.com/peterzernia/wanderlist/master/images/country.png' alt='' />
+      </div>
+      <div style={{marginTop: 60, textAlign: 'center' }}>
+        <h2>Add them to your personalized map</h2>
+        <img style={{ margin: '0 auto' }} src='https://raw.githubusercontent.com/peterzernia/wanderlist/master/images/map.png' alt='' />
+      </div>
+      <div className='content' style={{ margin: '0 auto', marginTop: 30 }}>
+        <h2>Post Trip Reports about journeys you've taken</h2>
+        <div style={{ textAlign: 'left', width: '90%', margin: '0 auto' }}>
+          Featured Trip Report
+        </div>
+        {
+          tripReport
+          ? <div>{featuredTripReport}</div>
+          : <DotLoader size={50} color={'#2196f3'} className="content" />
+        }
+      </div>
+    </div>
+  );
 }
 
 const mapState = state => {
@@ -88,7 +78,6 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return bindActionCreators({
-    removeError,
     toggleFavorite,
     openCountryModal,
     closeCountryModal,
@@ -110,8 +99,6 @@ Home.propTypes = {
   showNotAuthModal: PropTypes.bool,
   showCopyLinkModal: PropTypes.bool,
   modalLink: PropTypes.string,
-
-  removeError: PropTypes.func,
   openCountryModal: PropTypes.func,
   closeCountryModal: PropTypes.func,
   openCopyLinkModal: PropTypes.func,
