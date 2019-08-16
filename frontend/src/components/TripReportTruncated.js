@@ -72,7 +72,7 @@ class TripReportTruncated extends Component {
           <hr/>
           {listCountries}
         </CardContent>
-        <CardActions style={{ display: 'flex' }} disableActionSpacing>
+        <CardActions style={{ display: 'flex' }} disableSpacing>
           {
             this.props.favoriters.includes(this.props.pk)
             ? <IconButton onClick={this.props.handleClick} id={this.props.id} ><FavoriteIcon /></IconButton>

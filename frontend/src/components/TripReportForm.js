@@ -13,8 +13,8 @@ class TripReportForm extends Component {
     super(props);
     let countryList = props.modalPost.countries ? props.modalPost.countries.map(country => country.id) : [];
     this.state = {
-      title: props.modalPost.title,
-      content: props.modalPost.content,
+      title: props.modalPost.title || '',
+      content: props.modalPost.content || '',
       countries: countryList
     }
   }

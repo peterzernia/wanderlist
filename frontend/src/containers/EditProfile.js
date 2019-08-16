@@ -194,7 +194,7 @@ export class EditProfile extends Component {
           {this.props.posting && <div><DotLoader size={50} color={'#2196f3'} className="content" /><br/></div>}
           {this.props.updating && <div><DotLoader size={50} color={'#2196f3'} className="content" /><br/></div>}
           {this.props.fetchingTripReports && <div><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
-          {this.props.fetchedTripReports && <Grid container spacing={24} justify='center' >{listTripReports}</Grid>}
+          {this.props.fetchedTripReports && <Grid container spacing={10} justify='center' >{listTripReports}</Grid>}
           <div style={{ height: 15 }}/>
           {this.props.fetchingUserNext && <DotLoader size={50} color={'#2196f3'} className="content" />}
         </div>
