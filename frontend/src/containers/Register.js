@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -9,25 +9,15 @@ import { removeError } from '../actions/errorActions'
 
 import RegistrationForm from '../components/RegistrationForm'
 
-export class Register extends Component {
+export function Register(props) {
+  const { authRegister, authenticated } = props
 
-  componentWillUnmount() {
-    this.props.removeError();
-  }
-
-  // Registers the user.
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    let country;
-    /*
-    JS tries to convert empty string to 0 with Number, this prevents that,
-    which POSTs an empty string instead of 0 to return the correct error
-    if the Home Country field is left blank on registration.
-    */
-    if (e.target.country.value !== '') {
-      country = Number(e.target.country.value)
-    }
-    this.props.authRegister(
+
+    const country = e.target.country.value && Number(e.target.country.value)
+
+    authRegister(
       e.target.username.value,
       e.target.email.value,
       e.target.password1.value,
@@ -37,21 +27,16 @@ export class Register extends Component {
     e.target.password1.value='';
     e.target.password2.value='';
   }
-  render(){
-    return(
-      /*
-      If the user is authenticated on the Register page, it will redirect to
-      the home page.
-      */
-      <div className="content">
-      {
-        !this.props.authenticated
-        ? <RegistrationForm handleSubmit={this.handleSubmit} {...this.props}/>
-        : <Redirect to={{pathname: "/",}} />
-      }
-      </div>
-    );
-  }
+
+  return(
+    <div className="content">
+    {
+      !authenticated
+      ? <RegistrationForm handleSubmit={handleSubmit} {...props}/>
+      : <Redirect to={{pathname: "/",}} />
+    }
+    </div>
+  );
 }
 
 const mapState = state => {
@@ -71,7 +56,7 @@ const mapDispatch = dispatch => {
 export default connect(mapState, mapDispatch)(Register);
 
 Register.propTypes = {
-  authenticating: PropTypes.bool,
-  authenticated: PropTypes.bool,
-  authRegister: PropTypes.func
+  authenticating: PropTypes.bool.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+  authRegister: PropTypes.func.isRequired,
 };
