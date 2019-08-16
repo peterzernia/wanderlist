@@ -3,33 +3,25 @@ import { shallow } from 'enzyme'
 import { Login } from '../Login'
 import LoginForm from '../../components/LoginForm'
 import { Redirect } from 'react-router-dom'
+import Button from '@material-ui/core/Button'
 
 describe('<Login />', () =>{
   let wrapper;
-  const e = { preventDefault: jest.fn(), target: { username: 'TestUser', password: 'test' } };
-  const authLogin = jest.fn();
-  const removeError = jest.fn();
+
+  const props = {
+    authLogin: jest.fn(),
+    removeError: jest.fn(),
+    authenticated: false,
+  }
 
   beforeEach(() => {
-    wrapper = shallow(
-      <Login
-        authLogin={authLogin} removeError={removeError} authenticated={false}
-      />
-    )
+    wrapper = shallow(<Login {...props} />)
   });
 
-  it('handleClick calls authLogin', () => {
-    wrapper.instance().handleSubmit(e)
-    expect(authLogin).toHaveBeenCalledTimes(1);
-  });
   it('displays loginform', () => {
     expect(wrapper.find(LoginForm).length).toEqual(1);
     wrapper.setProps({ authenticated: true })
     expect(wrapper.find(LoginForm).length).toEqual(0);
     expect(wrapper.find(Redirect).length).toEqual(1);
-  });
-  it('componentWillUnmount calls removeError', () => {
-    wrapper.instance().componentWillUnmount()
-    expect(removeError).toHaveBeenCalledTimes(1);
   });
 });

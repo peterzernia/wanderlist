@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -9,29 +9,22 @@ import { removeError } from '../actions/errorActions'
 
 import LoginForm from '../components/LoginForm'
 
-export class Login extends Component {
-
-  componentWillUnmount() {
-    this.props.removeError();
-  }
-
+export function Login({ authLogin, authenticated, ...rest }) {
   // Authenticates the user.
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.props.authLogin(e.target.username.value, e.target.password.value);
+    authLogin(e.target.username.value, e.target.password.value);
   }
 
-  render(){
-    return(
-      <div className="content">
-        {
-          !this.props.authenticated
-          ? <LoginForm handleSubmit={this.handleSubmit} {...this.props} />
-          : <Redirect to={{pathname: "/",}} />
-        }
-      </div>
-    );
-  }
+  return(
+    <div className="content">
+      {
+        !authenticated
+        ? <LoginForm handleSubmit={handleSubmit} {...rest} />
+        : <Redirect to={{pathname: "/",}} />
+      }
+    </div>
+  );
 }
 
 const mapState = state => {
@@ -51,7 +44,7 @@ const mapDispatch = dispatch => {
 export default connect(mapState, mapDispatch)(Login);
 
 Login.propTypes = {
-  authenticating: PropTypes.bool,
-  authenticated: PropTypes.bool,
-  authLogin: PropTypes.func
+  authenticating: PropTypes.bool.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+  authLogin: PropTypes.func.isRequired,
 };
