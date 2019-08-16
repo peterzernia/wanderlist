@@ -81,11 +81,11 @@ class Results extends React.Component {
           {
             !this.props.authenticated
             && (
-              <Tooltip title='Add To My Map'>
                 <MenuItem onClick={() => this.props.openNotAuthModal()} value={this.props.country.name} id={this.props.country.id}>
-                  <AddCircleIcon style={{margin: '0 auto'}}/>
+                  <Tooltip title='Add To My Map'>
+                    <AddCircleIcon style={{margin: '0 auto'}}/>
+                  </Tooltip>
                 </MenuItem>
-              </Tooltip>
             )
           }
           <MenuItem onClick={() => {this.handleClose(); this.props.openCountryModal(this.props.country);}}>More Info</MenuItem>
