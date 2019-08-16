@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
@@ -17,47 +17,45 @@ import TripReportTruncated from '../components/TripReportTruncated'
 
 import { DotLoader } from 'react-spinners'
 
-/*
-This component creates a link off the posts slug, so that users can share and
-access posts externally.
-*/
-export class Post extends Component {
+export function Post(props) {
+  const {
+    match,
+    fetchSlugTripReports,
+    toggleFavorite,
+    tripReports,
+    fetching,
+  } = props
 
-  componentDidMount () {
-    const { slug } = this.props.match.params
-    this.props.fetchSlugTripReports(slug);
-  }
-
-  componentWillUnmount() {
-    this.props.removeError();
-  }
-
-  handleClick = (e) => {
-    e.preventDefault();
-    this.props.toggleFavorite(e.currentTarget.id);
-  }
-
-  render(){
-
-    let listTripReport = null;
-    if (this.props.tripReports){
-      listTripReport = this.props.tripReports.map(tripReport =>(
-        <div key={tripReport.id} style={{ marginBottom: 20 }}>
-          <TripReportTruncated handleClick={this.handleClick} {...tripReport} {...this.props} openCountryModal={this.props.openCountryModal}/>
-        </div>
-      ));
+  useEffect(() => {
+    async function fetchData() {
+      const { slug } = match.params
+      fetchSlugTripReports(slug);
     }
 
-    return(
-      <div className="content">
-        <NotAuthModal {...this.props} />
-        <CopyLinkModal {...this.props} />
-        {this.props.fetched && <CountryModal {...this.props} />}
-        {this.props.fetching && <div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>}
-        {this.props.fetched && <div>{listTripReport}</div>}
-      </div>
-    );
+    fetchData()
+  }, [fetchSlugTripReports, match.params])
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    toggleFavorite(e.currentTarget.id);
   }
+
+  let listTripReport = tripReports && tripReports.map(tripReport =>(
+      <div key={tripReport.id} style={{ marginBottom: 20 }}>
+        <TripReportTruncated handleClick={handleClick} {...tripReport} {...props} />
+      </div>
+    ));
+
+  if (fetching) return <div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>
+
+  return(
+    <div className="content">
+      <NotAuthModal {...props} />
+      <CopyLinkModal {...props} />
+      <CountryModal {...props} />
+      <div>{listTripReport}</div>
+    </div>
+  );
 }
 
 const mapState = state => {
@@ -65,7 +63,6 @@ const mapState = state => {
     pk: state.user.user.pk,
     authenticated: state.auth.authenticated,
     tripReports: state.tripReport.slugTripReports,
-    fetched: state.tripReport.fetchedSlugTripReports,
     fetching: state.tripReport.fetchingSlugTripReports,
     showCountryModal: state.modal.showCountryModal,
     modalCountry: state.modal.modalCountry,
@@ -95,13 +92,11 @@ Post.propTypes = {
   pk: PropTypes.number,
   authenticated: PropTypes.bool,
   tripReport: PropTypes.array,
-  fetched: PropTypes.bool,
   showCountryModal: PropTypes.bool,
   modalCountry: PropTypes.object,
   showNotAuthModal: PropTypes.bool,
   showCopyLinkModal: PropTypes.bool,
   modalLink: PropTypes.string,
-
   fetchSlugTripReports: PropTypes.func,
   removeError: PropTypes.func,
   openCountryModal: PropTypes.func,

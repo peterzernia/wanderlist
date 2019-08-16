@@ -8,47 +8,38 @@ import { tripReport } from '../../testVariables'
 
 describe('<Post />', () =>{
   let wrapper;
-  const fetchSlugTripReports = jest.fn();
-  const match = { params : { slug: "AO3TH39223S" }}
-  const removeError = jest.fn();
-  const e = { preventDefault: jest.fn(), currentTarget: { id: 1 } };
-  const toggleFavorite = jest.fn();
+
+  const props = {
+    fetchSlugTripReports: jest.fn(),
+    removeError: jest.fn(),
+    toggleFavorite: jest.fn(),
+    fetching: true,
+    match: { params : { slug: "AO3TH39223S" }},
+  }
 
   beforeEach(() => {
     wrapper = shallow(
-      <Post
-        fetchSlugTripReports={fetchSlugTripReports} match={match}
-        removeError={removeError} toggleFavorite={toggleFavorite}
-        fetched={false} fetching={false}
-      />
+      <Post { ...props}/>
     )
   });
 
-  it('componentDidMount calls fetchSlugTripReports', () => {
-    expect(fetchSlugTripReports).toHaveBeenCalledTimes(1);
-  });
-  it('componentWillUnmount calls fetchSlugTripReports', () => {
-    wrapper.instance().componentWillUnmount();
-    expect(removeError).toHaveBeenCalledTimes(1);
-  });
-  it('handleClick calls toggleFavorite', () => {
-    wrapper.instance().handleClick(e);
-    expect(toggleFavorite).toHaveBeenCalledTimes(1);
-  });
+
   it('displays loader', () => {
-    expect(wrapper.find(DotLoader).length).toEqual(0);
-    wrapper.setProps({ fetching: true })
     expect(wrapper.find(DotLoader).length).toEqual(1);
+    wrapper.setProps({ fetching: false })
+    expect(wrapper.find(DotLoader).length).toEqual(0);
   });
+
   it('displays TripReport', () => {
     expect(wrapper.find(TripReportTruncated).length).toEqual(0);
-    wrapper.setProps({ fetched: true, tripReports: [tripReport, tripReport] })
+    wrapper.setProps({ fetching: false, tripReports: [tripReport, tripReport] })
     // One <TripReportTruncated /> for every trip report in the array.
     expect(wrapper.find(TripReportTruncated).length).toEqual(2);
   });
+
   it('displays CountryModal', () => {
     expect(wrapper.find(CountryModal).length).toEqual(0);
-    wrapper.setProps({ fetched: true })
+    wrapper.setProps({ fetching: false })
     expect(wrapper.find(CountryModal).length).toEqual(1);
   });
 });
