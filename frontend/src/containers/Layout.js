@@ -21,7 +21,6 @@ import Home from "./Home";
 import Login from "./Login";
 import Logout from "./Logout";
 import Post from "./Post";
-import PrivacyPolicy from "./PrivacyPolicy";
 import Register from "./Register";
 import Search from "./Search";
 
@@ -79,7 +78,6 @@ export function Layout(props) {
           <Route path="/register" component={Register} />
           <Route path="/password-reset" component={ForgotPassword} />
           <Route path="/p/:slug" component={Post} />
-          <Route path="/privacy" component={PrivacyPolicy} />
         </div>
       ) : (
         <div className="centered">
