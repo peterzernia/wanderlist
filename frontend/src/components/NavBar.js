@@ -27,7 +27,7 @@ const NavBar = (props) => {
             <Button component={Link} to='/search' color="inherit"><SearchIcon /></Button>
           </Tooltip>
           <Tooltip title='My Profile'>
-            <Button component={Link} to='/edit_profile' color="inherit"><AccountCircleIcon /></Button>
+            <Button component={Link} to='/profile' color="inherit"><AccountCircleIcon /></Button>
           </Tooltip>
           {
             props.authenticated

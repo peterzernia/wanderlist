@@ -148,7 +148,7 @@ export class Profile extends Component {
       ));
     }
 
-    const isEdit = this.props.location.pathname === '/edit_profile'
+    const isEdit = this.props.location.pathname === '/profile'
 
     return(
       <div id='scroll' className='content'>

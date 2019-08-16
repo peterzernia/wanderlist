@@ -63,7 +63,7 @@ export class Layout extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/search" component={Search} />
             <Route path="/feed" component={Feed} />
-            <PrivateRoute {...this.props} path="/edit_profile" component={Profile} />
+            <PrivateRoute {...this.props} path="/profile" component={Profile} />
             <Route path="/u/:username" component={Profile} />
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />

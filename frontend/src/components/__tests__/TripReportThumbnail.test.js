@@ -77,9 +77,9 @@ describe('<TripReportThumbnail />', () =>{
     expect(wrapper.find(Menu).length).toEqual(1);
     expect(wrapper.find(MenuItem).length).toEqual(1);
   });
-  it('displays edit and delete buttons when on edit_profile page', () => {
+  it('displays edit and delete buttons when on profile page', () => {
     const tripReport = { title: "Test", countries: [country] }
-    const match = { path: "/edit_profile" }
+    const match = { path: "/profile" }
     const wrapper = mount(
       <TripReportThumbnail tripReport={tripReport} match={match} />);
     wrapper.find(IconButton).simulate('click');
@@ -101,7 +101,7 @@ describe('<TripReportThumbnail />', () =>{
   });
   it('opens updatePostModal', () => {
     const tripReport = { title: "Test", countries: [country] }
-    const match = { path: "/edit_profile" }
+    const match = { path: "/profile" }
     const openUpdatePostModal = jest.fn();
     const wrapper = mount(
       <TripReportThumbnail tripReport={tripReport} match={match} openUpdatePostModal={openUpdatePostModal} />);
@@ -113,7 +113,7 @@ describe('<TripReportThumbnail />', () =>{
   });
   it('opens confirmDeleteModal', () => {
     const tripReport = { title: "Test", countries: [country] }
-    const match = { path: "/edit_profile" }
+    const match = { path: "/profile" }
     const openConfirmDeleteModal = jest.fn();
     const wrapper = mount(
       <TripReportThumbnail tripReport={tripReport} match={match} openConfirmDeleteModal={openConfirmDeleteModal} />);

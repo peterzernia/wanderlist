@@ -25,7 +25,7 @@ describe('<Profile />', () =>{
     userCountries:[],
     fetchedTripReports: false,
     fetched: false,
-    location: { pathname: '/edit_profile' } 
+    location: { pathname: '/profile' } 
   }
 
   const e = {

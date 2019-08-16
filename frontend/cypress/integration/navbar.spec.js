@@ -16,6 +16,6 @@ describe('Navigating with the navbar', () => {
     cy.login()
     cy.visit('/')
     cy.get('[title="My Profile"]').click()
-    cy.url().should('include', '/edit_profile')
+    cy.url().should('include', '/profile')
   })
 })
