@@ -1,6 +1,6 @@
 import React from 'react'
 import CountryModal from './CountryModal'
-import TripReport from './TripReport'
+import TripReportTruncated from './TripReportTruncated'
 import ReactModal from 'react-modal'
 import Close from '@material-ui/icons/Close'
 import IconButton from '@material-ui/core/IconButton'
@@ -16,7 +16,7 @@ const TripReportModal = (props) => {
         <Close />
       </IconButton><br/>
       <div className='content'>
-        <TripReport {...props.modalPost} handleClick={props.handleClick} {...props} />
+        <TripReportTruncated {...props.modalPost} handleClick={props.handleClick} {...props} />
       </div>
     </ReactModal>
   )

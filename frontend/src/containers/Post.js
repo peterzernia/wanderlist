@@ -13,7 +13,7 @@ import { toggleFavorite } from '../actions/favoriteActions'
 import CountryModal from '../components/CountryModal'
 import CopyLinkModal from '../components/CopyLinkModal'
 import NotAuthModal from '../components/NotAuthModal'
-import TripReport from '../components/TripReport'
+import TripReportTruncated from '../components/TripReportTruncated'
 
 import { DotLoader } from 'react-spinners'
 
@@ -43,7 +43,7 @@ export class Post extends Component {
     if (this.props.tripReports){
       listTripReport = this.props.tripReports.map(tripReport =>(
         <div key={tripReport.id} style={{ marginBottom: 20 }}>
-          <TripReport handleClick={this.handleClick} {...tripReport} {...this.props} openCountryModal={this.props.openCountryModal}/>
+          <TripReportTruncated handleClick={this.handleClick} {...tripReport} {...this.props} openCountryModal={this.props.openCountryModal}/>
         </div>
       ));
     }

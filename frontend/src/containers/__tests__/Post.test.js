@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import { Post } from '../Post'
 import { DotLoader } from 'react-spinners'
 import CountryModal from '../../components/CountryModal'
-import TripReport from '../../components/TripReport'
+import TripReportTruncated from '../../components/TripReportTruncated'
 import { tripReport } from '../../testVariables'
 
 describe('<Post />', () =>{
@@ -41,10 +41,10 @@ describe('<Post />', () =>{
     expect(wrapper.find(DotLoader).length).toEqual(1);
   });
   it('displays TripReport', () => {
-    expect(wrapper.find(TripReport).length).toEqual(0);
+    expect(wrapper.find(TripReportTruncated).length).toEqual(0);
     wrapper.setProps({ fetched: true, tripReports: [tripReport, tripReport] })
-    // One <TripReport /> for every trip report in the array.
-    expect(wrapper.find(TripReport).length).toEqual(2);
+    // One <TripReportTruncated /> for every trip report in the array.
+    expect(wrapper.find(TripReportTruncated).length).toEqual(2);
   });
   it('displays CountryModal', () => {
     expect(wrapper.find(CountryModal).length).toEqual(0);

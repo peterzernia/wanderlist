@@ -47,7 +47,6 @@ describe('<Search />', () =>{
   it('displays Results', () => {
     expect(wrapper.find(Results).length).toEqual(0);
     wrapper.setProps({ fetched: true, searchedCountry: [tripReport] })
-    // One <TripReport /> for every trip report in the array.
     expect(wrapper.find(Results).length).toEqual(1);
   });
   it('displays CountryModal', () => {
