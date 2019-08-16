@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -11,21 +11,19 @@ import ForgotPasswordForm from '../components/ForgotPasswordForm'
 POSTS an email address to the Django backend, which handles sending an email
 with a url to set a new password for the user.
 */
-export class ForgotPassword extends Component{
+export function ForgotPassword({ requestPasswordReset }) {
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.props.requestPasswordReset(e.target.email.value);
+    requestPasswordReset(e.target.email.value);
     e.target.email.value = "";
   }
 
-  render() {
     return (
       <div className='content'>
-        <ForgotPasswordForm handleSubmit={this.handleSubmit}/>
+        <ForgotPasswordForm handleSubmit={handleSubmit}/>
       </div>
     )
-  }
 }
 
 const mapState = state => {
@@ -43,6 +41,6 @@ const mapDispatch = dispatch => {
 export default connect(mapState, mapDispatch)(ForgotPassword);
 
 ForgotPassword.propTypes = {
-  requestPasswordReset: PropTypes.func,
+  requestPasswordReset: PropTypes.func.isRequired,
   success: PropTypes.string
 };
