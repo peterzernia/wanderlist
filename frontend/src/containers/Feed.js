@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
@@ -18,84 +18,77 @@ import TripReportTruncated from '../components/TripReportTruncated'
 
 import { DotLoader } from 'react-spinners'
 
-export class Feed extends Component {
+export function Feed(props) {
+  const {
+    next,
+    fetchingNext,
+    fetchNextTripReports,
+    toggleFavorite,
+    fetchTripReports,
+    tripReports,
+    fetching,
+  } = props
 
-  // Returns True if the user has scrolled past the bottom.
-  isBottom(el) {
+  const isBottom = (el) => {
     return el.getBoundingClientRect().bottom <= window.innerHeight;
   }
 
-  // Adds event listener that checks for scrolling.
-  componentDidMount() {
-    document.addEventListener('scroll', this.onScroll);
-  }
-
-  componentWillUnmount() {
-    this.props.removeError();
-    document.removeEventListener('scroll', this.onScroll);
-  }
-
-  /*
-  If the user has scrolled to the bottom, AND there is next URL to load more
-  Trip Reports, AND the next Trip Reports are not already being fetched, the
-  next Trip Reports will be fetched i.e. infinite scrolling.
-  */
-  onScroll = () => {
-    const element = document.getElementById('scroll');
-    if (this.isBottom(element) && this.props.next && !this.props.fetchingNext) {
-      this.props.fetchNextTripReports(this.props.next);
+  // Infinite scrolling
+  const handleScroll = useCallback(() => {
+    const el = document.getElementById('scroll');
+    if (isBottom(el) && next && !fetchingNext) {
+      fetchNextTripReports(next);
     }
-  };
+  },[fetchNextTripReports, fetchingNext, next]);
 
-  handleClick = (e) => {
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]); 
+
+  const handleClick = (e) => {
     e.preventDefault();
-    this.props.toggleFavorite(e.currentTarget.id);
+    toggleFavorite(e.currentTarget.id);
   }
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.props.fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?search=${e.target[0].value}`);
+    fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?search=${e.target[0].value}`);
   }
 
-  handleNewestClick = () => {
-    this.props.fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?ordering=-pk`)
+  const handleNewestClick = () => {
+    fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?ordering=-pk`)
   }
 
-  handleTopClick = () => {
-    this.props.fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/`)
+  const handleTopClick = () => {
+    fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/`)
   }
 
-  render(){
-
-    let listTripReports = null;
-    if (this.props.tripReports){
-      listTripReports = this.props.tripReports.map(tripReport =>(
-        <div key={tripReport.id} style={{ marginBottom: 20 }}>
-          <TripReportTruncated handleClick={this.handleClick} {...tripReport} {...this.props} openCountryModal={this.props.openCountryModal}/>
-        </div>
-      ));
-    }
-
-    return(
-      <div id='scroll' className="content" style={{ marginTop: 0 }} >
-        <CopyLinkModal {...this.props} />
-        <NotAuthModal {...this.props} />
-        {this.props.fetched && <CountryModal {...this.props} />}
-        <Filter handleSubmit={this.handleSubmit} handleNewestClick={this.handleNewestClick} handleTopClick={this.handleTopClick}/>
-        {this.props.fetching && <div><DotLoader size={50} color={'#2196f3'} className="content" /><br/></div>}
-        {this.props.fetched && <div>{listTripReports}</div>}
-        <div style={{ height: 15 }}/>
-        {this.props.fetchingNext && <DotLoader size={50} color={'#2196f3'} className="content" />}
+  const listTripReports = tripReports && tripReports.map(tripReport =>(
+      <div key={tripReport.id} style={{ marginBottom: 20 }}>
+        <TripReportTruncated handleClick={handleClick} {...tripReport} {...props} />
       </div>
-    );
-  }
+    ));
+  
+  if (fetching) return <div><DotLoader size={50} color={'#2196f3'} className="content" /><br/></div>
+
+  return(
+    <div id='scroll' className="content" style={{ marginTop: 0 }} >
+      <CopyLinkModal {...props} />
+      <NotAuthModal {...props} />
+      <CountryModal {...props} />
+      <Filter handleSubmit={handleSubmit} handleNewestClick={handleNewestClick} handleTopClick={handleTopClick}/>
+      <div>{listTripReports}</div>
+      <div style={{ height: 15 }}/>
+      {fetchingNext && <DotLoader size={50} color={'#2196f3'} className="content" />}
+    </div>
+  );
 }
 
 const mapState = state => {
   return {
     pk: state.user.user.pk,
     authenticated: state.auth.authenticated,
-    fetched: state.tripReport.fetched,
     fetching: state.tripReport.fetching,
     next: state.tripReport.tripReports.next,
     fetchingNext: state.tripReport.fetchingNext,
@@ -128,7 +121,6 @@ export default connect(mapState, mapDispatch)(Feed);
 Feed.propTypes = {
   pk: PropTypes.number,
   authenticated: PropTypes.bool,
-  fetched: PropTypes.bool,
   fetching: PropTypes.bool,
   next: PropTypes.string,
   tripReports: PropTypes.array,
