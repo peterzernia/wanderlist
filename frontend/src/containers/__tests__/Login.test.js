@@ -3,7 +3,6 @@ import { shallow } from 'enzyme'
 import { Login } from '../Login'
 import LoginForm from '../../components/LoginForm'
 import { Redirect } from 'react-router-dom'
-import Button from '@material-ui/core/Button'
 
 describe('<Login />', () =>{
   let wrapper;
@@ -12,6 +11,7 @@ describe('<Login />', () =>{
     authLogin: jest.fn(),
     removeError: jest.fn(),
     authenticated: false,
+    authenticating: false,
   }
 
   beforeEach(() => {

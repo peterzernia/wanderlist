@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import Results from '../Results'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -135,7 +135,7 @@ describe('<Results />', () =>{
         authenticated={true}
         userCountries={[country]}
       />);
-    const spy = jest.spyOn(wrapper.instance(), 'handleClose');
+    jest.spyOn(wrapper.instance(), 'handleClose');
     wrapper.find(IconButton).simulate('click');
     // Displays Add to Map button, onClick, handleClick is called.
     wrapper.find(MenuItem).at(0).simulate('click');

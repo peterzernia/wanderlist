@@ -25,7 +25,8 @@ describe('<Profile />', () =>{
     userCountries:[],
     fetchedTripReports: false,
     fetched: false,
-    location: { pathname: '/profile' } 
+    location: { pathname: '/profile' },
+    showPostModal: false, 
   }
 
   const e = {

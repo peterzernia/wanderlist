@@ -14,7 +14,8 @@ describe('<PostModal />', () =>{
     expect(closePostModal).toHaveBeenCalledTimes(1);
   });
   it('renders post/update forms conditionally', () => {
-    const wrapper = shallow(<PostModal updatePostModal={false} showPostModal={true} />);
+    const closePostModal = jest.fn();
+    const wrapper = shallow(<PostModal closePostModal={closePostModal} updatePostModal={false} showPostModal={true} />);
     expect(wrapper.find(TripReportForm).length).toEqual(1);
     wrapper.setProps({ updatePostModal: true })
     expect(wrapper.find(TripReportForm).length).toEqual(1);
