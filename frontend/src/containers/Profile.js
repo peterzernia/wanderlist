@@ -40,7 +40,7 @@ authenticated users to edit their profile information, and post new Trip
 Reports. This is a protected route, so only authenticated users will have
 access to editing their profile.
 */
-export class EditProfile extends Component {
+export class Profile extends Component {
 
   // Returns True if the user has scrolled past the bottom.
   isBottom(el) {
@@ -148,6 +148,8 @@ export class EditProfile extends Component {
       ));
     }
 
+    const isEdit = this.props.location.pathname === '/edit_profile'
+
     return(
       <div id='scroll' className='content'>
         <CopyLinkModal {...this.props} />
@@ -168,11 +170,16 @@ export class EditProfile extends Component {
               {this.props.user.username}
             </Typography>
             </div><br/>
-            <div style={{ height: 40 }}>
-              <Button size='small' variant='outlined' onClick={() => this.props.openEditProfileModal(this.props.user)}>
-                Edit Profile
-              </Button>
-            </div><br/>
+            {
+              isEdit && (
+                <div style={{ height: 40 }}>
+                <Button size='small' variant='outlined' onClick={() => this.props.openEditProfileModal(this.props.user)}>
+                  Edit Profile
+                </Button>
+              </div>
+              )
+            }
+            <br/>
             <div style={{ height: 40 }}>
               {this.props.user.biography}
             </div>
@@ -259,9 +266,9 @@ const mapDispatch = dispatch => {
   }, dispatch);
 }
 
-export default connect(mapState, mapDispatch)(EditProfile);
+export default connect(mapState, mapDispatch)(Profile);
 
-EditProfile.propTypes = {
+Profile.propTypes = {
   pk: PropTypes.number,
   authenticated: PropTypes.bool,
   user: PropTypes.object,

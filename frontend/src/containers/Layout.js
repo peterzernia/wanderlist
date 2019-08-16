@@ -14,7 +14,7 @@ import NavBar from "../components/NavBar";
 import PrivateRoute from "../components/PrivateRoute";
 import Success from "../components/Success";
 
-import EditProfile from "./EditProfile";
+import Profile from "./Profile";
 import Feed from "./Feed";
 import ForgotPassword from "./ForgotPassword";
 import Home from "./Home";
@@ -24,7 +24,6 @@ import Post from "./Post";
 import PrivacyPolicy from "./PrivacyPolicy";
 import Register from "./Register";
 import Search from "./Search";
-import ViewProfile from "./ViewProfile";
 
 import { DotLoader } from "react-spinners";
 
@@ -64,8 +63,8 @@ export class Layout extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/search" component={Search} />
             <Route path="/feed" component={Feed} />
-            <PrivateRoute {...this.props} path="/edit_profile" component={EditProfile} />
-            <Route path="/u/:username" component={ViewProfile} />
+            <PrivateRoute {...this.props} path="/edit_profile" component={Profile} />
+            <Route path="/u/:username" component={Profile} />
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
             <Route path="/register" component={Register} />

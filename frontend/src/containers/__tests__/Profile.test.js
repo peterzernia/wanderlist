@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { EditProfile } from '../EditProfile'
+import { Profile } from '../Profile'
 import { tripReport, user } from '../../testVariables'
 import TripReportThumbnail from '../../components/TripReportThumbnail'
 import CountryModal from '../../components/CountryModal'
@@ -8,17 +8,26 @@ import Button from '@material-ui/core/Button'
 import OpenStreetMap from '../../components/OpenStreetMap'
 import { DotLoader } from 'react-spinners'
 
-describe('<EditProfile />', () =>{
+describe('<Profile />', () =>{
   let wrapper;
-  const fetchUserTripReports = jest.fn();
-  const removeError = jest.fn();
-  const postTripReport = jest.fn();
-  const closePostModal = jest.fn();
-  const updateTripReport = jest.fn();
-  const putUserData = jest.fn();
-  const closeEditProfileModal = jest.fn();
-  const openEditProfileModal = jest.fn();
-  const toggleFavorite = jest.fn();
+  const props = {
+    fetchUserTripReports: jest.fn(),
+    removeError: jest.fn(),
+    postTripReport: jest.fn(),
+    closePostModal: jest.fn(),
+    updateTripReport: jest.fn(),
+    putUserData: jest.fn(),
+    closeEditProfileModal: jest.fn(),
+    openEditProfileModal: jest.fn(),
+    toggleFavorite: jest.fn(),
+    modalPost:{tripReport},
+    user, 
+    userCountries:[],
+    fetchedTripReports: false,
+    fetched: false,
+    location: { pathname: '/edit_profile' } 
+  }
+
   const e = {
     preventDefault: jest.fn(),
     currentTarget: { id: 1 },
@@ -35,43 +44,36 @@ describe('<EditProfile />', () =>{
 
   beforeEach(() => {
     wrapper = shallow(
-      <EditProfile
-        fetchUserTripReports={fetchUserTripReports} modalPost={tripReport}
-        user={user} removeError={removeError} postTripReport={postTripReport}
-        closePostModal={closePostModal} updateTripReport={updateTripReport}
-        putUserData={putUserData} userCountries={[]} toggleFavorite={toggleFavorite}
-        closeEditProfileModal={closeEditProfileModal} fetchedTripReports={false}
-        fetched={false} openEditProfileModal={openEditProfileModal}
-      />
+      <Profile { ...props} />
     )
   });
 
   it('componentDidMount calls fetchUserTripReports', () => {
-    expect(fetchUserTripReports).toHaveBeenCalledTimes(1);
+    expect(props.fetchUserTripReports).toHaveBeenCalledTimes(1);
   });
   it('componentWillUnmount calls removeError', () => {
     wrapper.instance().componentWillUnmount();
-    expect(removeError).toHaveBeenCalledTimes(1);
+    expect(props.removeError).toHaveBeenCalledTimes(1);
   });
   it('handlePostSubmit calls postTripReport', () => {
     wrapper.instance().handlePostSubmit(e);
-    expect(postTripReport).toHaveBeenCalledTimes(1);
-    expect(closePostModal).toHaveBeenCalledTimes(1);
+    expect(props.postTripReport).toHaveBeenCalledTimes(1);
+    expect(props.closePostModal).toHaveBeenCalledTimes(1);
   });
   it('handleUpdateSubmit calls putUserData', () => {
     wrapper.instance().handleUpdateSubmit(e);
-    expect(updateTripReport).toHaveBeenCalledTimes(1);
+    expect(props.updateTripReport).toHaveBeenCalledTimes(1);
     // This is the second time it is called this test suite.
-    expect(closePostModal).toHaveBeenCalledTimes(2);
+    expect(props.closePostModal).toHaveBeenCalledTimes(2);
   });
   it('handleSubmit calls putUserData', () => {
     wrapper.instance().handleSubmit(e);
-    expect(putUserData).toHaveBeenCalledTimes(1);
-    expect(closeEditProfileModal).toHaveBeenCalledTimes(1);
+    expect(props.putUserData).toHaveBeenCalledTimes(1);
+    expect(props.closeEditProfileModal).toHaveBeenCalledTimes(1);
   });
   it('handleClick calls toggleFavorite', () => {
     wrapper.instance().handleClick(e);
-    expect(toggleFavorite).toHaveBeenCalledTimes(1);
+    expect(props.toggleFavorite).toHaveBeenCalledTimes(1);
   });
   it('displays Trip Report thumbnails', () => {
     expect(wrapper.find(TripReportThumbnail).length).toEqual(0);
@@ -86,7 +88,7 @@ describe('<EditProfile />', () =>{
   });
   it('button opens EditProfile Modal', () => {
     wrapper.find(Button).simulate('click')
-    expect(openEditProfileModal).toHaveBeenCalledTimes(1);
+    expect(props.openEditProfileModal).toHaveBeenCalledTimes(1);
   });
   it('displays OpenStreetMap', () => {
     expect(wrapper.find(OpenStreetMap).length).toEqual(0);
