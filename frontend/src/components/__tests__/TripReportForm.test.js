@@ -1,8 +1,7 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
-import UpdateTripReportForm from '../UpdateTripReportForm'
+import { shallow } from 'enzyme'
+import TripReportForm from '../TripReportForm'
 import MenuItem from '@material-ui/core/MenuItem'
-import Select from '@material-ui/core/Select'
 
 const country = {
     "id": 1,
@@ -79,18 +78,18 @@ const country = {
     "cioc": "AFG"
 }
 
-describe('<UpdateTripReportForm />', () =>{
+describe('<TripReportForm />', () =>{
   it('handles submit', () => {
     const handleSubmit = jest.fn();
     const modalPost = { countries: [country] }
-    const wrapper = shallow(<UpdateTripReportForm handleSubmit={handleSubmit} modalPost={modalPost} />);
+    const wrapper = shallow(<TripReportForm handleSubmit={handleSubmit} modalPost={modalPost} />);
     wrapper.find('form').simulate('submit');
     expect(handleSubmit).toHaveBeenCalledTimes(1);
   });
   it('renders MenuItems correctly', () => {
     const handleSubmit = jest.fn();
     const modalPost = { countries: [country] }
-    const wrapper = shallow(<UpdateTripReportForm handleSubmit={handleSubmit} modalPost={modalPost} />);
+    const wrapper = shallow(<TripReportForm handleSubmit={handleSubmit} modalPost={modalPost} />);
     expect(wrapper.find(MenuItem).length).toEqual(250)
   });
 });

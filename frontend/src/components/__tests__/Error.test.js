@@ -11,7 +11,7 @@ describe('<Error />', () =>{
     wrapper.find(IconButton).simulate('click');
     expect(removeError).toHaveBeenCalledTimes(1);
     expect(wrapper.find('p').length).toEqual(0);
-    expect(wrapper.text()).toEqual('<WithStyles(IconButton) />Network Error')
+    expect(wrapper.text()).toEqual('Network Error')
     wrapper.setProps({ error: { response: { data: { password: ["This field may not be blank."] }}}})
     expect(wrapper.find('p').length).toEqual(1);
   });
