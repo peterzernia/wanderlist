@@ -77,7 +77,7 @@ export function Layout(props) {
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
           <Route path="/register" component={Register} />
-          <Route path="/password_reset" component={ForgotPassword} />
+          <Route path="/password-reset" component={ForgotPassword} />
           <Route path="/p/:slug" component={Post} />
           <Route path="/privacy" component={PrivacyPolicy} />
         </div>
