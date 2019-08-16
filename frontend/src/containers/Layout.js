@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -27,59 +27,67 @@ import Search from "./Search";
 
 import { DotLoader } from "react-spinners";
 
-export class Layout extends Component {
-  async componentDidMount() {
-    await this.props.authCheckState();
-    this.props.fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?ordering=-pk`);
-    this.props.fetchFeaturedTripReport('rr9IuTcYtL3E');
+export function Layout(props) {
+  const {
+    authCheckState, 
+    fetchTripReports, 
+    fetchFeaturedTripReport, 
+    authenticated, 
+    fetchUser,
+    error, 
+    success,
+    fetching,
+  } = props
 
-    if (this.props.authenticated) {
-      this.props.fetchUser();
+  useEffect(() => {
+    async function fetchData() {
+      await authCheckState();
+      fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?ordering=-pk`);
+      fetchFeaturedTripReport('rr9IuTcYtL3E');
+  
+      if (authenticated) {
+        fetchUser();
+      }
     }
-  }
 
-  handleClick = () => {
-    this.props.authLogout();
-    this.props.history.push("/");
-  };
+    fetchData()
+  }, [authCheckState, authenticated, fetchFeaturedTripReport, fetchTripReports, fetchUser])
 
-  render() {
-    return (
-      <Router>
-        {!this.props.fetching ? (
-          <div>
-            <NavBar {...this.props} />
-            {/*
-            Errors are added if there are server errors, authentication errors,
-            errors while posting content, etc. Succeses are added to give users
-            feedback when they have successfully added a country to their map,
-            deleted a post, etc. The removeError function is run on every
-            components Unmount, so that errors and sucesses do not persist
-            through navigation. Users can also remove these by clicking the 'x'.
-          */}
-            {this.props.error && <Error {...this.props} error={this.props.error} />}
-            {this.props.success && <Success {...this.props} />}
+  return (
+    <Router>
+      {!fetching ? (
+        <div>
+          <NavBar {...props} />
+          {/*
+          Errors are added if there are server errors, authentication errors,
+          errors while posting content, etc. Succeses are added to give users
+          feedback when they have successfully added a country to their map,
+          deleted a post, etc. The removeError function is run on every
+          components Unmount, so that errors and sucesses do not persist
+          through navigation. Users can also remove these by clicking the 'x'.
+        */}
+          {error && <Error {...props} />}
+          {success && <Success {...props} />}
 
-            <Route exact path="/" component={Home} />
-            <Route path="/search" component={Search} />
-            <Route path="/feed" component={Feed} />
-            <PrivateRoute {...this.props} path="/profile" component={Profile} />
-            <Route path="/u/:username" component={Profile} />
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
-            <Route path="/register" component={Register} />
-            <Route path="/password_reset" component={ForgotPassword} />
-            <Route path="/p/:slug" component={Post} />
-            <Route path="/privacy" component={PrivacyPolicy} />
-          </div>
-        ) : (
-          <div className="centered">
-            <DotLoader size={50} color={"#2196f3"} className="content" />
-          </div>
-        )}
-      </Router>
-    );
-  }
+          <Route exact path="/" component={Home} />
+          <Route path="/search" component={Search} />
+          <Route path="/feed" component={Feed} />
+          <PrivateRoute {...props} path="/profile" component={Profile} />
+          <Route path="/u/:username" component={Profile} />
+          <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/register" component={Register} />
+          <Route path="/password_reset" component={ForgotPassword} />
+          <Route path="/p/:slug" component={Post} />
+          <Route path="/privacy" component={PrivacyPolicy} />
+        </div>
+      ) : (
+        <div className="centered">
+          <DotLoader size={50} color={"#2196f3"} className="content" />
+        </div>
+      )}
+    </Router>
+  );
 }
 
 const mapState = state => {
