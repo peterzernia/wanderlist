@@ -12,6 +12,7 @@ describe('<Login />', () =>{
     removeError: jest.fn(),
     authenticated: false,
     authenticating: false,
+    location: {},
   }
 
   beforeEach(() => {

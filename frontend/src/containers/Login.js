@@ -9,7 +9,7 @@ import { removeError } from '../actions/errorActions'
 
 import LoginForm from '../components/LoginForm'
 
-export function Login({ authLogin, authenticated, ...rest }) {
+export function Login({ authLogin, authenticated, location, ...rest }) {
   // Authenticates the user.
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ export function Login({ authLogin, authenticated, ...rest }) {
       {
         !authenticated
         ? <LoginForm handleSubmit={handleSubmit} {...rest} />
-        : <Redirect to={{pathname: "/",}} />
+        : <Redirect to={location.state ? location.state.from.pathname : '/'} />
       }
     </div>
   );
