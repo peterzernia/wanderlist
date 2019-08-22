@@ -1,4 +1,5 @@
 import React from 'react'
+import { shape, func } from 'prop-types'
 import { Map, TileLayer, Marker } from 'react-leaflet'
 
 import 'leaflet/dist/leaflet.css'
@@ -14,6 +15,7 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 export default function OpenStreetMap(props) {
+  const { userCountries, openCountryModal, } = props
 
   const style = {
     position: 'relative',
@@ -26,10 +28,10 @@ export default function OpenStreetMap(props) {
     zIndex: 0,
   }
 
-  const listMarkers = props.userCountries.map(country =>(
+  const listMarkers = userCountries.map(country =>(
     <Marker
       key={country.id}
-      onClick={() => props.openCountryModal(country)}
+      onClick={() => openCountryModal(country)}
       name={country.name}
       position={[country.latlng[0], country.latlng[1]]} />
   ));
@@ -51,4 +53,9 @@ export default function OpenStreetMap(props) {
       </Map>
     </div>
   );
+}
+
+OpenStreetMap.propTypes = {
+  userCountries: shape({}),
+  openCountryModal: func,
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { bool } from 'prop-types'
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import AppBar from '@material-ui/core/AppBar'
@@ -8,9 +9,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import ListIcon from '@material-ui/icons/FormatListBulleted'
 import Tooltip from '@material-ui/core/Tooltip'
 
-const NavBar = (props) => {
-
-  return (
+const NavBar = ({ authenticated }) => (
     <div style={{ backgroundColor: '#ffffff'}} >
       <AppBar color='inherit' position="static">
         <Toolbar style={{ padding: 0 }}>
@@ -30,7 +29,7 @@ const NavBar = (props) => {
             <Button component={Link} to='/profile' color="inherit"><AccountCircleIcon /></Button>
           </Tooltip>
           {
-            props.authenticated
+            authenticated
             ? <Button component={Link} to='/logout' color="inherit">Logout</Button>
             : <Button component={Link} to='/login' color="inherit">Login</Button>
           }
@@ -38,6 +37,9 @@ const NavBar = (props) => {
       </AppBar>
     </div>
   )
-};
 
 export default NavBar;
+
+NavBar.propTypes = {
+  authenticated: bool,
+}
