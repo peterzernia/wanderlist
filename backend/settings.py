@@ -176,16 +176,5 @@ DATABASES['default'] = dj_database_url.config()
 # Local settings.
 try:
     from backend.local_settings import *
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'postgres',
-            'USER': 'postgres',
-            'PASSWORD': '',
-            'HOST': 'db',
-            'PORT': '5432',
-        }
-    }
 except ImportError:
     pass
