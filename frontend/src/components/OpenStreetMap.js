@@ -1,5 +1,5 @@
 import React from 'react'
-import { shape, func } from 'prop-types'
+import { shape, func, arrayOf } from 'prop-types'
 import { Map, TileLayer, Marker } from 'react-leaflet'
 
 import 'leaflet/dist/leaflet.css'
@@ -56,6 +56,6 @@ export default function OpenStreetMap(props) {
 }
 
 OpenStreetMap.propTypes = {
-  userCountries: shape({}),
+  userCountries: arrayOf(shape({})),
   openCountryModal: func,
 }

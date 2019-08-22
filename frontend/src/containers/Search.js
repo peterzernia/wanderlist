@@ -68,6 +68,7 @@ export function Search(props) {
         }
       }
     }
+
     // Makes the PUT request.
     putUserData(
       username,

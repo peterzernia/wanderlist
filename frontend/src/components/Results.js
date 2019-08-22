@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { shape, bool, func, arrayOf } from 'prop-types'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardMedia from '@material-ui/core/CardMedia'
@@ -10,89 +11,97 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import Tooltip from '@material-ui/core/Tooltip'
 
-class Results extends React.Component {
+export default function Results(props) {
+  const [anchorEl, setAnchorEl] = useState(null)
+  const {
+    country,
+    authenticated,
+    userCountries,
+    openNotAuthModal,
+    openCountryModal,
+    handleClick
+  } = props
 
-  state = {
-    anchorEl: null,
+  const handleOpen = e => {
+    setAnchorEl(e.currentTarget)
   };
 
-  handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget });
+  const handleClose = () => {
+    setAnchorEl(null)
   };
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
-  render(){
-
-    const { anchorEl } = this.state;
-
-    return(
-      <Card style={{maxWidth: 400, margin: '0 auto'}}>
-        <CardHeader
-          style={{ marginLeft: 24 }}
-          action={
-            <IconButton
-              onClick={this.handleClick}
-              aria-owns={anchorEl ? 'simple-menu' : undefined}
-              aria-haspopup="true"
-            >
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title={this.props.country.name} />
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={this.handleClose}
-        >
-          {/*
-            Maps userCountries into an array of just the country names, then
-            checks if the Result country name is in the array. If it is, it
-            displays the Remove Button, if it is not, it displays the Add
-            Button. If no user is authenticated, neither button will show.
-          */}
-          {
-            (this.props.authenticated && ![...this.props.userCountries].map(country => country.name).includes(this.props.country.name))
-            && (
-              <Tooltip title='Add To My Map'>
-                <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} value={this.props.country.name} id={this.props.country.id}>
+  return(
+    <Card style={{maxWidth: 400, margin: '0 auto'}}>
+      <CardHeader
+        style={{ marginLeft: 24 }}
+        action={
+          <IconButton
+            onClick={handleOpen}
+            aria-owns={anchorEl ? 'simple-menu' : undefined}
+            aria-haspopup="true"
+          >
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title={country.name} />
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        {/*
+          Maps userCountries into an array of just the country names, then
+          checks if the Result country name is in the array. If it is, it
+          displays the Remove Button, if it is not, it displays the Add
+          Button. If no user is authenticated, neither button will show.
+        */}
+        {
+          (authenticated && ![...userCountries].map(country => country.name).includes(country.name))
+          && (
+            <Tooltip title='Add To My Map'>
+              <MenuItem onClick={(e) => {handleClose(); handleClick(e);}} value={country.name} id={country.id}>
+                <AddCircleIcon style={{margin: '0 auto'}}/>
+              </MenuItem>
+            </Tooltip>
+          )
+        }
+        {
+          (authenticated && [...userCountries].map(country => country.name).includes(country.name))
+          && (
+            <Tooltip title='Remove From My Map'>
+              <MenuItem onClick={(e) => {handleClose(); handleClick(e);}} value={country.name} id={country.id}>
+                <RemoveCircleIcon style={{margin: '0 auto'}}/>
+              </MenuItem>
+            </Tooltip>
+          )
+        }
+        {/*
+        If user is not authenticated, Add button shows the Not Authenticated
+        Modal instead.
+        */}
+        {
+          !authenticated
+          && (
+              <MenuItem onClick={() => openNotAuthModal()} value={country.name} id={country.id}>
+                <Tooltip title='Add To My Map'>
                   <AddCircleIcon style={{margin: '0 auto'}}/>
-                </MenuItem>
-              </Tooltip>
-            )
-          }
-          {
-            (this.props.authenticated && [...this.props.userCountries].map(country => country.name).includes(this.props.country.name))
-            && (
-              <Tooltip title='Remove From My Map'>
-                <MenuItem onClick={(e) => {this.handleClose(); this.props.handleClick(e);}} value={this.props.country.name} id={this.props.country.id}>
-                  <RemoveCircleIcon style={{margin: '0 auto'}}/>
-                </MenuItem>
-              </Tooltip>
-            )
-          }
-          {/*
-          If user is not authenticated, Add button shows the Not Authenticated
-          Modal instead.
-          */}
-          {
-            !this.props.authenticated
-            && (
-                <MenuItem onClick={() => this.props.openNotAuthModal()} value={this.props.country.name} id={this.props.country.id}>
-                  <Tooltip title='Add To My Map'>
-                    <AddCircleIcon style={{margin: '0 auto'}}/>
-                  </Tooltip>
-                </MenuItem>
-            )
-          }
-          <MenuItem onClick={() => {this.handleClose(); this.props.openCountryModal(this.props.country);}}>More Info</MenuItem>
-        </Menu>
-        <CardMedia component='img' src={this.props.country.flag} alt="" width="400"/>
-      </Card>
-    )};
+                </Tooltip>
+              </MenuItem>
+          )
+        }
+        <MenuItem onClick={() => {handleClose(); openCountryModal(country);}}>More Info</MenuItem>
+      </Menu>
+      <CardMedia component='img' src={country.flag} alt="" width="400"/>
+    </Card>
+  )
 }
 
-export default Results;
+Results.propTypes = {
+  country: shape({}),
+  authenticated: bool,
+  userCountries: arrayOf(shape({})),
+  openNotAuthModal: func,
+  openCountryModal: func,
+  handleClick: func,
+}
