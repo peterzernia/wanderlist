@@ -1,6 +1,6 @@
-import React from 'react';
-import { bool, object } from 'prop-types'
-import { Route, Redirect } from 'react-router-dom';
+import React from 'react'
+import { bool, shape } from 'prop-types'
+import { Route, Redirect } from 'react-router-dom'
 
 const PrivateRoute = ({ component: Component, authenticated, ...rest }) => (
 
@@ -10,17 +10,22 @@ const PrivateRoute = ({ component: Component, authenticated, ...rest }) => (
   */
   <Route
     {...rest}
-    render={props => (
+    render={(props) => (
       authenticated
         ? <Component {...props} />
-        : <Redirect to={{pathname: "/login", state: { from: props.location }}} />
+        : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
     )}
   />
-);
+)
 
-export default PrivateRoute;
+export default PrivateRoute
 
 PrivateRoute.propTypes = {
-  authenticated: bool,
-  component: object,
+  authenticated: bool.isRequired,
+  component: shape({}).isRequired,
+  location: shape({}),
+}
+
+PrivateRoute.defaultProps = {
+  location: null,
 }

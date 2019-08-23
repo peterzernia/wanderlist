@@ -13,17 +13,17 @@ const NotAuthModal = ({ closeNotAuthModal, showNotAuthModal }) => (
         You must be logged in to do that.
       </DialogContentText>
       <DialogActions>
-      <Button onClick={() => closeNotAuthModal()} variant="contained" color="primary">
+        <Button onClick={() => closeNotAuthModal()} variant="contained" color="primary">
         Close
-      </Button>
-    </DialogActions>
+        </Button>
+      </DialogActions>
     </DialogContent>
   </Dialog>
-);
+)
 
 export default NotAuthModal
 
 NotAuthModal.propTypes = {
-  closeNotAuthModal: func,
-  showNotAuthModal: bool,
+  closeNotAuthModal: func.isRequired,
+  showNotAuthModal: bool.isRequired,
 }

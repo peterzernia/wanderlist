@@ -10,16 +10,16 @@ import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
-import countries from '../country_data'
 import { DotLoader } from 'react-spinners'
+import countries from '../country_data'
 
 export default function RegistrationForm(props) {
   const [country, setCountry] = useState('')
-  const { authenticating, handleSubmit} = props
+  const { authenticating, handleSubmit } = props
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setCountry(event.target.value)
-  };
+  }
 
 
   /*
@@ -27,29 +27,40 @@ export default function RegistrationForm(props) {
   database. This array is mapped over to create the options of the Matrial
   UI select form.
   */
-  const menuItems = [...countries].sort((a, b) => a.name > b.name).map(country => (
-    <MenuItem key={country.pk} value={country.pk}>{country.name}</MenuItem>
+  const menuItems = [...countries].sort((a, b) => a.name > b.name).map((cntry) => (
+    <MenuItem key={cntry.pk} value={cntry.pk}>{cntry.name}</MenuItem>
   ))
 
-  return(
+  return (
     <div>
-      {authenticating && <div><DotLoader size={50} color={'#2196f3'} className="content" /><br/></div>}
-      <Card style={{ maxWidth: 400, margin: '0 auto'}}>
-        <CardHeader title="Register"/>
+      {authenticating && (
+      <div>
+        <DotLoader size={50} color="#2196f3" className="content" />
+        <br />
+      </div>
+)}
+      <Card style={{ maxWidth: 400, margin: '0 auto' }}>
+        <CardHeader title="Register" />
         <CardContent>
           <form onSubmit={handleSubmit}>
-            <TextField className="user-auth" type='text' name="username" label="Username" required/><br/>
-            <TextField className="user-auth" type='text' name="email" label="Email" required/><br/>
-            <TextField className="user-auth" type='password' name="password1" label="Password" required/><br/>
-            <TextField className="user-auth" type='password' name="password2" label="Confirm Password" required/><br/>
+            <TextField className="user-auth" type="text" name="username" label="Username" required />
+            <br />
+            <TextField className="user-auth" type="text" name="email" label="Email" required />
+            <br />
+            <TextField className="user-auth" type="password" name="password1" label="Password" required />
+            <br />
+            <TextField className="user-auth" type="password" name="password2" label="Confirm Password" required />
+            <br />
             <FormControl>
               <InputLabel htmlFor="country">Home Country</InputLabel>
-              <Select style={{ textAlign: 'left'}} className="user-auth" name="country" onChange={handleChange} value={country}>
+              <Select style={{ textAlign: 'left' }} className="user-auth" name="country" onChange={handleChange} value={country}>
                 {menuItems}
               </Select>
-            </FormControl><br/><br/>
+            </FormControl>
+            <br />
+            <br />
             <Button variant="contained" color="primary" type="submit">Register</Button>
-            <Link to="/login"><Button>Cancel</Button></Link>
+            <Link to="/login" href=""><Button>Cancel</Button></Link>
           </form>
         </CardContent>
       </Card>
@@ -58,6 +69,6 @@ export default function RegistrationForm(props) {
 }
 
 RegistrationForm.propTypes = {
-  authenticating: bool,
-  handleSubmit: func,
+  authenticating: bool.isRequired,
+  handleSubmit: func.isRequired,
 }

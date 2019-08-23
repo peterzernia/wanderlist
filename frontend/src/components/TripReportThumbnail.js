@@ -13,26 +13,27 @@ import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
 
 export default function TripReportThumbnail(props) {
   const [anchorEl, setAnchorEl] = useState(null)
-  const { 
-    tripReport, 
-    openTripReportModal, 
-    openUpdatePostModal, 
-    openConfirmDeleteModal, 
+  const {
+    tripReport,
+    openTripReportModal,
+    openUpdatePostModal,
+    openConfirmDeleteModal,
     match,
   } = props
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     setAnchorEl(e.currentTarget)
-  };
+  }
 
   const handleClose = () => {
     setAnchorEl(null)
-  };
+  }
 
-  return(
-    <Card style={{ width: 300, height: 300}}>
-      <CardHeader title={tripReport.title}
-        action={
+  return (
+    <Card style={{ width: 300, height: 300 }}>
+      <CardHeader
+        title={tripReport.title}
+        action={(
           <IconButton
             onClick={handleClick}
             aria-owns={anchorEl ? 'simple-menu' : undefined}
@@ -40,26 +41,29 @@ export default function TripReportThumbnail(props) {
           >
             <MoreVertIcon />
           </IconButton>
-        }/>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          <MenuItem onClick={() => {handleClose(); openTripReportModal(tripReport);}}><LibraryBooksIcon /></MenuItem>
-          {match.path === '/profile' && <MenuItem onClick={() => {handleClose(); openUpdatePostModal(tripReport);}}><EditIcon /></MenuItem>}
-          {match.path === '/profile' && <MenuItem onClick={() => {handleClose(); openConfirmDeleteModal(tripReport);}}><DeleteIcon /></MenuItem>}
-        </Menu>
-        <CardMedia component='img' src={[...tripReport.countries].sort((a, b) => a.name > b.name)[0].flag} alt="" />
+)}
+      />
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={() => { handleClose(); openTripReportModal(tripReport) }}>
+          <LibraryBooksIcon />
+        </MenuItem>
+        {match.path === '/profile' && <MenuItem onClick={() => { handleClose(); openUpdatePostModal(tripReport) }}><EditIcon /></MenuItem>}
+        {match.path === '/profile' && <MenuItem onClick={() => { handleClose(); openConfirmDeleteModal(tripReport) }}><DeleteIcon /></MenuItem>}
+      </Menu>
+      <CardMedia component="img" src={[...tripReport.countries].sort((a, b) => a.name > b.name)[0].flag} alt="" />
     </Card>
   )
-};
+}
 
 TripReportThumbnail.propTypes = {
-  tripReport: shape({}), 
-  openTripReportModal: func, 
-  openUpdatePostModal: func, 
-  openConfirmDeleteModal: func, 
-  match: shape({}),
+  tripReport: shape({}).isRequired,
+  openTripReportModal: func.isRequired,
+  openUpdatePostModal: func.isRequired,
+  openConfirmDeleteModal: func.isRequired,
+  match: shape({}).isRequired,
 }

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { func } from 'prop-types'
 import Button from '@material-ui/core/Button'
-import countries from '../country_data'
 import Autosuggest from 'react-autosuggest'
 import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
+import countries from '../country_data'
 
 /*
 This component contains all of the logic for react-autosuggest to auto complete
@@ -12,22 +12,22 @@ users searches for countries.
 */
 const theme = {
   container: {
-    position: 'relative'
+    position: 'relative',
   },
   input: {
     width: 300,
     height: 30,
-    marginBottom: 10
+    marginBottom: 10,
   },
   inputFocused: {
-    outline: 'none'
+    outline: 'none',
   },
   inputOpen: {
     borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0
+    borderBottomRightRadius: 0,
   },
   suggestionsContainer: {
-    display: 'none'
+    display: 'none',
   },
   suggestionsContainerOpen: {
     display: 'block',
@@ -35,7 +35,7 @@ const theme = {
     width: 300,
     maxHeight: 200,
     zIndex: 2,
-    overflowY: 'auto'
+    overflowY: 'auto',
   },
   suggestionsList: {
     margin: 0,
@@ -43,44 +43,44 @@ const theme = {
     listStyleType: 'none',
   },
   suggestion: {
-    display: 'block'
+    display: 'block',
   },
   suggestionHighlighted: {
-    backgroundColor: '#ddd'
-  }
-};
+    backgroundColor: '#ddd',
+  },
+}
 
-const getSuggestions = value => {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
-  return inputLength === 0 ? [] : countries.filter(country =>
-    country.name.toLowerCase().slice(0, inputLength) === inputValue
-  );
-};
+const getSuggestions = (value) => {
+  const inputValue = value.trim().toLowerCase()
+  const inputLength = inputValue.length
+  return inputLength === 0
+  ? []
+  : countries.filter((country) => country.name.toLowerCase().slice(0, inputLength) === inputValue)
+}
 
-const getSuggestionValue = suggestion => suggestion.name;
+const getSuggestionValue = (suggestion) => suggestion.name
 
 const renderSuggestion = (suggestion) => (
-    <MenuItem component="div">
-      <div>
-        {suggestion.name}
-      </div>
-    </MenuItem>
+  <MenuItem component="div">
+    <div>
+      {suggestion.name}
+    </div>
+  </MenuItem>
 )
 
 const renderInputComponent = (inputProps) => {
-  const { inputRef = () => {}, ref, ...other } = inputProps;
+  const { inputRef = () => {}, ref, ...other } = inputProps
   return (
     <TextField
       InputProps={{
-        inputRef: node => {
-          ref(node);
-          inputRef(node);
+        inputRef: (node) => {
+          ref(node)
+          inputRef(node)
         },
       }}
       {...other}
     />
-  );
+  )
 }
 
 export default function SearchBar({ handleSubmit }) {
@@ -89,23 +89,24 @@ export default function SearchBar({ handleSubmit }) {
 
   const onChange = (e, { newValue }) => {
     setValue(newValue)
-  };
+  }
 
+  // eslint-disable-next-line
   const onSuggestionsFetchRequested = ({ value }) => {
     setSuggestions(getSuggestions(value))
-  };
+  }
 
   const onSuggestionsClearRequested = () => {
     setSuggestions([])
-  };
+  }
 
   const inputProps = {
     placeholder: 'Search for a Country or Territory',
     value,
     onChange,
-  };
+  }
 
-  return(
+  return (
     <div>
       <form onSubmit={handleSubmit}>
         <div style={{ maxWidth: 300, margin: '0 auto' }}>
@@ -117,15 +118,15 @@ export default function SearchBar({ handleSubmit }) {
             renderSuggestion={renderSuggestion}
             renderInputComponent={renderInputComponent}
             inputProps={inputProps}
-            theme = {theme}
+            theme={theme}
           />
-          <Button variant="contained" color="primary" type='submit'>Search</Button>
+          <Button variant="contained" color="primary" type="submit">Search</Button>
         </div>
       </form>
     </div>
   )
-};
+}
 
 SearchBar.propTypes = {
-  handleSubmit: func,
+  handleSubmit: func.isRequired,
 }

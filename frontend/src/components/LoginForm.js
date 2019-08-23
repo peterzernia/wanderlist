@@ -8,22 +8,27 @@ import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
 
 const LoginForm = ({ handleSubmit }) => (
-  <Card style={{ maxWidth: 400, margin: '0 auto'}}>
-    <CardHeader title="Login"/>
+  <Card style={{ maxWidth: 400, margin: '0 auto' }}>
+    <CardHeader title="Login" />
     <CardContent>
       <form onSubmit={handleSubmit}>
-        <TextField className="user-auth" type='text' name="username" label="Username" required/><br/>
-        <TextField className="user-auth" type='password' name="password" label="Password" required/><br/><br/>
+        <TextField className="user-auth" type="text" name="username" label="Username" required />
+        <br />
+        <TextField className="user-auth" type="password" name="password" label="Password" required />
+        <br />
+        <br />
         <Button variant="contained" color="primary" type="submit">Login</Button>
-        <Link to="/register"><Button>Register</Button></Link><br/><br/>
-        <Link style={{ textDecoration: 'none', color: 'black' }} to="/password-reset">Forgot Password?</Link>
+        <Link to="/register" href=""><Button>Register</Button></Link>
+        <br />
+        <br />
+        <Link style={{ textDecoration: 'none', color: 'black' }} to="/password-reset" href="">Forgot Password?</Link>
       </form>
     </CardContent>
   </Card>
-);
+)
 
-export default LoginForm;
+export default LoginForm
 
 LoginForm.propTypes = {
-  handleSubmit: func
+  handleSubmit: func.isRequired,
 }

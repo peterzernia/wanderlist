@@ -8,20 +8,22 @@ import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
 
 const ForgotPasswordForm = ({ handleSubmit }) => (
-  <Card style={{ maxWidth: 400, margin: '0 auto'}}>
-    <CardHeader title="Request Password Reset"/>
+  <Card style={{ maxWidth: 400, margin: '0 auto' }}>
+    <CardHeader title="Request Password Reset" />
     <CardContent>
       <form onSubmit={handleSubmit}>
-        <TextField className="user-auth" type='text' name="email" label="Email" required/><br/><br/>
+        <TextField className="user-auth" type="text" name="email" label="Email" required />
+        <br />
+        <br />
         <Button variant="contained" color="primary" type="submit">Submit</Button>
-        <Link to="/login"><Button>Cancel</Button></Link>
+        <Link to="/login" href=""><Button>Cancel</Button></Link>
       </form>
     </CardContent>
   </Card>
-);
+)
 
-export default ForgotPasswordForm;
+export default ForgotPasswordForm
 
 ForgotPasswordForm.propTypes = {
-  handleSubmit: func,
+  handleSubmit: func.isRequired,
 }

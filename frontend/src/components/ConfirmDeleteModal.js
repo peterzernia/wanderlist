@@ -1,5 +1,5 @@
 import React from 'react'
-import { func, bool, object } from 'prop-types'
+import { func, bool, shape } from 'prop-types'
 import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 
 const ConfirmDeleteModal = ({
- closeConfirmDeleteModal, showConfirmDeleteModal, deleteTripReport, modalPost 
+ closeConfirmDeleteModal, showConfirmDeleteModal, deleteTripReport, modalPost,
 }) => (
   <Dialog onClose={closeConfirmDeleteModal} open={showConfirmDeleteModal}>
     <DialogContent>
@@ -15,12 +15,12 @@ const ConfirmDeleteModal = ({
         Are you sure you want to delete this Trip Report?
       </DialogContentText>
       <DialogActions>
-        <Button onClick={() => { closeConfirmDeleteModal(); deleteTripReport(modalPost)}} color="primary" variant="contained">
+        <Button onClick={() => { closeConfirmDeleteModal(); deleteTripReport(modalPost) }} color="primary" variant="contained">
         Delete
-      </Button>
+        </Button>
         <Button onClick={() => closeConfirmDeleteModal()} color="secondary">
         Cancel
-      </Button>
+        </Button>
       </DialogActions>
     </DialogContent>
   </Dialog>
@@ -29,8 +29,8 @@ const ConfirmDeleteModal = ({
 export default ConfirmDeleteModal
 
 ConfirmDeleteModal.propTypes = {
-  closeConfirmDeleteModal: func,
-  showConfirmDeleteModal: bool,
-  deleteTripReport: func,
-  modalPost: object,
+  closeConfirmDeleteModal: func.isRequired,
+  showConfirmDeleteModal: bool.isRequired,
+  deleteTripReport: func.isRequired,
+  modalPost: shape({}).isRequired,
 }

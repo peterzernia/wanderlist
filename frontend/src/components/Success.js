@@ -8,14 +8,14 @@ const Success = ({ removeError, success }) => (
     <IconButton style={{ float: 'right', padding: '0 auto' }} onClick={removeError}>
       <Close />
     </IconButton>
-    <div style={{ width: 48, height: 48, float: 'left' }}/>
+    <div style={{ width: 48, height: 48, float: 'left' }} />
     {success && <p>{success}</p>}
   </div>
 )
 
-export default Success;
+export default Success
 
 Success.propTypes = {
-  removeError: func,
-  success: string,
+  removeError: func.isRequired,
+  success: string.isRequired,
 }

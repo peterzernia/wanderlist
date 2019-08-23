@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { shape, bool, func, arrayOf } from 'prop-types'
+import {
+ shape, bool, func, arrayOf,
+} from 'prop-types'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardMedia from '@material-ui/core/CardMedia'
@@ -19,22 +21,22 @@ export default function Results(props) {
     userCountries,
     openNotAuthModal,
     openCountryModal,
-    handleClick
+    handleClick,
   } = props
 
-  const handleOpen = e => {
+  const handleOpen = (e) => {
     setAnchorEl(e.currentTarget)
-  };
+  }
 
   const handleClose = () => {
     setAnchorEl(null)
-  };
+  }
 
-  return(
-    <Card style={{maxWidth: 400, margin: '0 auto'}}>
+  return (
+    <Card style={{ maxWidth: 400, margin: '0 auto' }}>
       <CardHeader
         style={{ marginLeft: 24 }}
-        action={
+        action={(
           <IconButton
             onClick={handleOpen}
             aria-owns={anchorEl ? 'simple-menu' : undefined}
@@ -42,8 +44,9 @@ export default function Results(props) {
           >
             <MoreVertIcon />
           </IconButton>
-        }
-        title={country.name} />
+)}
+        title={country.name}
+      />
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}
@@ -57,21 +60,29 @@ export default function Results(props) {
           Button. If no user is authenticated, neither button will show.
         */}
         {
-          (authenticated && ![...userCountries].map(country => country.name).includes(country.name))
+          (authenticated && ![...userCountries].map((cntry) => cntry.name).includes(country.name))
           && (
-            <Tooltip title='Add To My Map'>
-              <MenuItem onClick={(e) => {handleClose(); handleClick(e);}} value={country.name} id={country.id}>
-                <AddCircleIcon style={{margin: '0 auto'}}/>
+            <Tooltip title="Add To My Map">
+              <MenuItem
+                onClick={(e) => { handleClose(); handleClick(e) }}
+                value={country.name}
+                id={country.id}
+              >
+                <AddCircleIcon style={{ margin: '0 auto' }} />
               </MenuItem>
             </Tooltip>
           )
         }
         {
-          (authenticated && [...userCountries].map(country => country.name).includes(country.name))
+          (authenticated && [...userCountries].map((cntry) => cntry.name).includes(country.name))
           && (
-            <Tooltip title='Remove From My Map'>
-              <MenuItem onClick={(e) => {handleClose(); handleClick(e);}} value={country.name} id={country.id}>
-                <RemoveCircleIcon style={{margin: '0 auto'}}/>
+            <Tooltip title="Remove From My Map">
+              <MenuItem
+                onClick={(e) => { handleClose(); handleClick(e) }}
+                value={country.name}
+                id={country.id}
+              >
+                <RemoveCircleIcon style={{ margin: '0 auto' }} />
               </MenuItem>
             </Tooltip>
           )
@@ -83,25 +94,25 @@ export default function Results(props) {
         {
           !authenticated
           && (
-              <MenuItem onClick={() => openNotAuthModal()} value={country.name} id={country.id}>
-                <Tooltip title='Add To My Map'>
-                  <AddCircleIcon style={{margin: '0 auto'}}/>
-                </Tooltip>
-              </MenuItem>
+          <MenuItem onClick={() => openNotAuthModal()} value={country.name} id={country.id}>
+            <Tooltip title="Add To My Map">
+              <AddCircleIcon style={{ margin: '0 auto' }} />
+            </Tooltip>
+          </MenuItem>
           )
         }
-        <MenuItem onClick={() => {handleClose(); openCountryModal(country);}}>More Info</MenuItem>
+        <MenuItem onClick={() => { handleClose(); openCountryModal(country) }}>More Info</MenuItem>
       </Menu>
-      <CardMedia component='img' src={country.flag} alt="" width="400"/>
+      <CardMedia component="img" src={country.flag} alt="" width="400" />
     </Card>
   )
 }
 
 Results.propTypes = {
-  country: shape({}),
-  authenticated: bool,
-  userCountries: arrayOf(shape({})),
-  openNotAuthModal: func,
-  openCountryModal: func,
-  handleClick: func,
+  country: shape({}).isRequired,
+  authenticated: bool.isRequired,
+  userCountries: arrayOf(shape({})).isRequired,
+  openNotAuthModal: func.isRequired,
+  openCountryModal: func.isRequired,
+  handleClick: func.isRequired,
 }

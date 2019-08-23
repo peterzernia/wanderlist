@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { string, arrayOf, shape, func, number, bool } from 'prop-types'
+import {
+ string, arrayOf, shape, func, number, bool,
+} from 'prop-types'
 import { Link } from 'react-router-dom'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -35,28 +37,28 @@ export default function TripReportTruncated(props) {
 
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded)
-  };
+  }
 
     // Splits content into array of paragraphs.
     const paragraphs = content.split('\n')
 
-    const listCountries = [...countries].sort((a, b) => a.name > b.name).map(country =>(
-      <Button onClick={() => openCountryModal(country)} size='small' key={country.id}>
+    const listCountries = [...countries].sort((a, b) => a.name > b.name).map((country) => (
+      <Button onClick={() => openCountryModal(country)} size="small" key={country.id}>
         {country.name}
       </Button>
-    ));
+    ))
 
-  return(
+  return (
     <Card style={{ margin: '0 auto', width: '90%' }}>
       <CardHeader
         style={{ marginRight: 56 }}
         title={title}
-        subheader={
-          <Link style={{ textDecoration: 'none', color: 'gray' }} to={`/u/${author.username}/`} >
+        subheader={(
+          <Link href="" style={{ textDecoration: 'none', color: 'gray' }} to={`/u/${author.username}/`}>
             {author.username}
           </Link>
-        }
-        avatar={<Avatar src={author.home.flag}/>}
+)}
+        avatar={<Avatar src={author.home.flag} />}
       />
       <CardContent>
         <Typography component="p">
@@ -75,27 +77,35 @@ export default function TripReportTruncated(props) {
               text is already displayed.
             */}
             {
-              content.indexOf("\n") !== -1
-              && content.substring(content.indexOf("\n") + 2)
+              content.indexOf('\n') !== -1
+              && content.substring(content.indexOf('\n') + 2)
             }
           </Typography>
         </CardContent>
       </Collapse>
       <CardContent>
-        <hr/>
+        <hr />
         {listCountries}
       </CardContent>
       <CardActions style={{ display: 'flex' }} disableSpacing>
         {
           favoriters.includes(pk)
-          ? <IconButton onClick={handleClick} id={id} ><FavoriteIcon /></IconButton>
-          : <IconButton onClick={(e) => authenticated ? handleClick(e) : openNotAuthModal()} id={id} ><FavoriteBorderIcon /></IconButton>
+          ? <IconButton onClick={handleClick} id={id}><FavoriteIcon /></IconButton>
+          : (
+            <IconButton
+              onClick={(e) => (authenticated ? handleClick(e) : openNotAuthModal())}
+              id={id}
+            >
+              <FavoriteBorderIcon />
+            </IconButton>
+)
         }
         <IconButton onClick={() => openCopyLinkModal(slug)}><ShareIcon /></IconButton>
         {/* Button flips when expanded */}
         {
           isExpanded
-          ? <IconButton
+          ? (
+            <IconButton
               style={{ transform: 'rotate(180deg)', float: 'right', marginLeft: 'auto' }}
               onClick={handleExpandClick}
               aria-expanded={isExpanded}
@@ -103,7 +113,9 @@ export default function TripReportTruncated(props) {
             >
               <ExpandMoreIcon />
             </IconButton>
-          : <IconButton
+)
+          : (
+            <IconButton
               style={{ float: 'right', marginLeft: 'auto' }}
               onClick={handleExpandClick}
               aria-expanded={isExpanded}
@@ -111,24 +123,30 @@ export default function TripReportTruncated(props) {
             >
               <ExpandMoreIcon />
             </IconButton>
+)
         }
       </CardActions>
     </Card>
   )
-};
+}
 
 TripReportTruncated.propTypes = {
-  content: string,
-  countries: arrayOf(shape({})),
-  openCountryModal: func,
-  title: string,
-  author: shape({}),
-  favoriters: arrayOf(number),
+  content: string.isRequired,
+  countries: arrayOf(shape({})).isRequired,
+  openCountryModal: func.isRequired,
+  title: string.isRequired,
+  author: shape({}).isRequired,
+  favoriters: arrayOf(number).isRequired,
   pk: number,
-  handleClick: func,
-  authenticated: bool,
-  id: number,
+  handleClick: func.isRequired,
+  authenticated: bool.isRequired,
+  id: number.isRequired,
   openNotAuthModal: func,
-  openCopyLinkModal: func,
-  slug: string,
+  openCopyLinkModal: func.isRequired,
+  slug: string.isRequired,
+}
+
+TripReportTruncated.defaultProps = {
+  pk: null,
+  openNotAuthModal: null,
 }

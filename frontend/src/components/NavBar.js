@@ -10,36 +10,40 @@ import ListIcon from '@material-ui/icons/FormatListBulleted'
 import Tooltip from '@material-ui/core/Tooltip'
 
 const NavBar = ({ authenticated }) => (
-    <div style={{ backgroundColor: '#ffffff'}} >
-      <AppBar color='inherit' position="static">
-        <Toolbar style={{ padding: 0 }}>
-          <Button
-            style={{ flex: 1, justifyContent: 'left', minWidth: 90, backgroundColor: 'transparent' }}
-            component={Link} to='/'
-            color="inherit">
+  <div style={{ backgroundColor: '#ffffff' }}>
+    <AppBar color="inherit" position="static">
+      <Toolbar style={{ padding: 0 }}>
+        <Button
+          style={{
+            flex: 1, justifyContent: 'left', minWidth: 90, backgroundColor: 'transparent',
+          }}
+          component={Link}
+          to="/"
+          color="inherit"
+        >
             Wanderlist
-          </Button>
-          <Tooltip title='Trip Report Feed'>
-            <Button component={Link} to='/feed' color="inherit"><ListIcon /></Button>
-          </Tooltip>
-          <Tooltip title='Search for Countries'>
-            <Button component={Link} to='/search' color="inherit"><SearchIcon /></Button>
-          </Tooltip>
-          <Tooltip title='My Profile'>
-            <Button component={Link} to='/profile' color="inherit"><AccountCircleIcon /></Button>
-          </Tooltip>
-          {
+        </Button>
+        <Tooltip title="Trip Report Feed">
+          <Button component={Link} to="/feed" color="inherit"><ListIcon /></Button>
+        </Tooltip>
+        <Tooltip title="Search for Countries">
+          <Button component={Link} to="/search" color="inherit"><SearchIcon /></Button>
+        </Tooltip>
+        <Tooltip title="My Profile">
+          <Button component={Link} to="/profile" color="inherit"><AccountCircleIcon /></Button>
+        </Tooltip>
+        {
             authenticated
-            ? <Button component={Link} to='/logout' color="inherit">Logout</Button>
-            : <Button component={Link} to='/login' color="inherit">Login</Button>
+            ? <Button component={Link} to="/logout" color="inherit">Logout</Button>
+            : <Button component={Link} to="/login" color="inherit">Login</Button>
           }
-        </Toolbar>
-      </AppBar>
-    </div>
+      </Toolbar>
+    </AppBar>
+  </div>
   )
 
-export default NavBar;
+export default NavBar
 
 NavBar.propTypes = {
-  authenticated: bool,
+  authenticated: bool.isRequired,
 }

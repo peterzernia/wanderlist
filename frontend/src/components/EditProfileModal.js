@@ -1,22 +1,25 @@
 import React from 'react'
 import { func, bool } from 'prop-types'
-import EditProfileForm from './EditProfileForm'
 import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
+import EditProfileForm from './EditProfileForm'
 
-export default function EditProfileModal(props){
-  const { closeEditProfileModal, showEditProfileModal } = props
+export default function EditProfileModal(props) {
+  const {
+    closeEditProfileModal,
+    showEditProfileModal,
+  } = props
 
-  return (  
+  return (
     <Dialog onClose={closeEditProfileModal} open={showEditProfileModal}>
       <DialogContent>
-        <EditProfileForm {...props}/>
+        <EditProfileForm {...props} />
       </DialogContent>
     </Dialog>
   )
 }
 
-EditProfileForm.propTypes = {
-  closeEditProfileModal: func,
-  showEditProfileModal: bool,
+EditProfileModal.propTypes = {
+  closeEditProfileModal: func.isRequired,
+  showEditProfileModal: bool.isRequired,
 }
