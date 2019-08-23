@@ -1,4 +1,5 @@
 import React from 'react'
+import { bool, func, shape } from 'prop-types'
 import CountryModal from './CountryModal'
 import TripReportTruncated from './TripReportTruncated'
 import ReactModal from 'react-modal'
@@ -7,19 +8,25 @@ import IconButton from '@material-ui/core/IconButton'
 
 ReactModal.setAppElement('body');
 
-const TripReportModal = (props) => {
+export default function TripReportModal(props) {
+  const { showTripReportModal, closeTripReportModal, modalPost, handleClick } = props
 
   return (
-    <ReactModal isOpen={props.showTripReportModal}>
+    <ReactModal isOpen={showTripReportModal}>
       <CountryModal {...props} />
-      <IconButton style={{ float: 'right' }} onClick={props.closeTripReportModal}>
+      <IconButton style={{ float: 'right' }} onClick={closeTripReportModal}>
         <Close />
       </IconButton><br/>
       <div className='content'>
-        <TripReportTruncated {...props.modalPost} handleClick={props.handleClick} {...props} />
+        <TripReportTruncated {...modalPost} handleClick={handleClick} {...props} />
       </div>
     </ReactModal>
   )
 };
 
-export default TripReportModal;
+TripReportModal.propTypes = {
+  showTripReportModal: bool,
+  closeTripReportModal: func,
+  modalPost: shape({}),
+  handleClick: func,
+}

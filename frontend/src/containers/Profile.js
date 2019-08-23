@@ -279,7 +279,7 @@ Profile.propTypes = {
   fetchedTripReports: PropTypes.bool,
   tripReports: PropTypes.array,
   updatePostModal: PropTypes.bool,
-  modalPost: PropTypes.object,
+  modalPost: PropTypes.shape({}),
   showConfirmDeleteModal: PropTypes.bool,
   showTripReportModal: PropTypes.bool,
   showCopyLinkModal: PropTypes.bool,

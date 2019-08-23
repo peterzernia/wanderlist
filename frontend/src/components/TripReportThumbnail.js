@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
+import { shape, func } from 'prop-types'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardMedia from '@material-ui/core/CardMedia'
@@ -10,50 +11,55 @@ import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
 
-class TripReportThumbnail extends Component {
+export default function TripReportThumbnail(props) {
+  const [anchorEl, setAnchorEl] = useState(null)
+  const { 
+    tripReport, 
+    openTripReportModal, 
+    openUpdatePostModal, 
+    openConfirmDeleteModal, 
+    match,
+  } = props
 
-  state = {
-    anchorEl: null,
+  const handleClick = e => {
+    setAnchorEl(e.currentTarget)
   };
 
-  handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget });
+  const handleClose = () => {
+    setAnchorEl(null)
   };
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
-  render() {
-
-    const { anchorEl } = this.state;
-
-    return(
-      <Card style={{ width: 300, height: 300}}>
-        <CardHeader title={this.props.tripReport.title}
-          action={
-            <IconButton
-              onClick={this.handleClick}
-              aria-owns={anchorEl ? 'simple-menu' : undefined}
-              aria-haspopup="true"
-            >
-              <MoreVertIcon />
-            </IconButton>
-          }/>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={this.handleClose}
+  return(
+    <Card style={{ width: 300, height: 300}}>
+      <CardHeader title={tripReport.title}
+        action={
+          <IconButton
+            onClick={handleClick}
+            aria-owns={anchorEl ? 'simple-menu' : undefined}
+            aria-haspopup="true"
           >
-            <MenuItem onClick={() => {this.handleClose(); this.props.openTripReportModal(this.props.tripReport);}}><LibraryBooksIcon /></MenuItem>
-            {this.props.match.path === '/profile' && <MenuItem onClick={() => {this.handleClose(); this.props.openUpdatePostModal(this.props.tripReport);}}><EditIcon /></MenuItem>}
-            {this.props.match.path === '/profile' && <MenuItem onClick={() => {this.handleClose(); this.props.openConfirmDeleteModal(this.props.tripReport);}}><DeleteIcon /></MenuItem>}
-          </Menu>
-          <CardMedia component='img' src={[...this.props.tripReport.countries].sort((a, b) => a.name > b.name)[0].flag} alt="" />
-      </Card>
-    )
-  }
+            <MoreVertIcon />
+          </IconButton>
+        }/>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={() => {handleClose(); openTripReportModal(tripReport);}}><LibraryBooksIcon /></MenuItem>
+          {match.path === '/profile' && <MenuItem onClick={() => {handleClose(); openUpdatePostModal(tripReport);}}><EditIcon /></MenuItem>}
+          {match.path === '/profile' && <MenuItem onClick={() => {handleClose(); openConfirmDeleteModal(tripReport);}}><DeleteIcon /></MenuItem>}
+        </Menu>
+        <CardMedia component='img' src={[...tripReport.countries].sort((a, b) => a.name > b.name)[0].flag} alt="" />
+    </Card>
+  )
 };
 
-export default TripReportThumbnail;
+TripReportThumbnail.propTypes = {
+  tripReport: shape({}), 
+  openTripReportModal: func, 
+  openUpdatePostModal: func, 
+  openConfirmDeleteModal: func, 
+  match: shape({}),
+}
