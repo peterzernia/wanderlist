@@ -9,33 +9,33 @@ const defaultState = {
 
 describe('country Reducer', () => {
   it('has a default state', () => {
-    expect(country(undefined, { type: 'unexpected'} )).toEqual({
-      ...defaultState
+    expect(country(undefined, { type: 'unexpected' })).toEqual({
+      ...defaultState,
     })
-  });
+  })
   it('can handle FETCH_COUNTRY_PENDING', () => {
-    expect(country(undefined, { type: 'FETCH_COUNTRY_PENDING'} )).toEqual({
+    expect(country(undefined, { type: 'FETCH_COUNTRY_PENDING' })).toEqual({
       ...defaultState,
       fetching: true,
       fetched: false,
     })
-  });
+  })
   it('can handle FETCH_COUNTRY_FULFILLED', () => {
     expect(country(undefined, {
       type: 'FETCH_COUNTRY_FULFILLED',
-      country: countryObject
-    } )).toEqual({
+      country: countryObject,
+    })).toEqual({
       ...defaultState,
       fetching: false,
       fetched: true,
-      country: countryObject
+      country: countryObject,
     })
-  });
+  })
   it('can handle FETCH_COUNTRY_REJECTED', () => {
-    expect(country(undefined, { type: 'FETCH_COUNTRY_REJECTED' } )).toEqual({
+    expect(country(undefined, { type: 'FETCH_COUNTRY_REJECTED' })).toEqual({
       ...defaultState,
       fetching: false,
-      fetched: false
+      fetched: false,
     })
-  });
-});
+  })
+})
