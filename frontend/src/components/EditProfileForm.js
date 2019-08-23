@@ -15,11 +15,11 @@ export default function EditProfileForm(props) {
     closeEditProfileModal,
   } = props
 
-  const [state, setState] = useState({ country: user.home.id })
+  const [country, setCountry] = useState(user.home.id)
 
 
   const handleChange = event => {
-    setState({ ...state ,[event.target.name]: event.target.value })
+    setCountry(event.target.value)
   };
 
   /*
@@ -38,7 +38,7 @@ export default function EditProfileForm(props) {
       <TextField multiline className="user-auth" type='text' label='Biography' name="biography" defaultValue={user.biography}/><br/>
       <FormControl>
         <InputLabel htmlFor="countries">Home Country</InputLabel>
-        <Select style={{ textAlign: 'left'}} className="user-auth" name="country" onChange={handleChange} value={state.country}>
+        <Select style={{ textAlign: 'left'}} className="user-auth" name="country" onChange={handleChange} value={country}>
           {menuItems}
         </Select>
       </FormControl><br/>

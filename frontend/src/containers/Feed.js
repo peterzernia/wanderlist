@@ -30,7 +30,8 @@ export function Feed(props) {
   } = props
 
   const isBottom = (el) => {
-    return el.getBoundingClientRect().bottom <= window.innerHeight;
+    if (el) return el.getBoundingClientRect().bottom <= window.innerHeight
+    return false
   }
 
   // Infinite scrolling
