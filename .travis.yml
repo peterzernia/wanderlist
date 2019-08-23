@@ -33,7 +33,7 @@ matrix:
     - stage: Frontend tests
       language: node_js
       node_js:
-        - "10.12"
+        - "12.4"
       install:
         - cd frontend && npm install
       cache:

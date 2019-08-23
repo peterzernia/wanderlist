@@ -1,8 +1,8 @@
 build:
 	docker-compose build
 	cd frontend && docker-compose build
-	cd frontend && docker-compose run frontend npm install
-	cd frontend && docker-compose run frontend npm run build
+	cd frontend && docker-compose run frontend yarn install
+	cd frontend && docker-compose run frontend yarn run build
 
 init:
 	docker-compose run web python manage.py migrate --noinput
@@ -18,7 +18,7 @@ up:
 	cd frontend && docker-compose up
 
 test-js:
-	cd frontend && docker-compose run frontend npm test
+	cd frontend && docker-compose run frontend yarn test
 
 test-py:
 	docker-compose run web coverage run manage.py test

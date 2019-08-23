@@ -25,6 +25,9 @@ describe('<TripReportModal />', () => {
       closeCopyLinkModal: jest.fn(),
       authenticated: true,
       slug: '',
+      modalCountry: {},
+      showCountryModal: false,
+      closeCountryModal: jest.fn(),
     }
     wrapper = shallow(<TripReportModal {...props} />)
   })

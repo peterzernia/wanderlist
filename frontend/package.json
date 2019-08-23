@@ -41,8 +41,8 @@
     "lint": "./node_modules/.bin/eslint ."
   },
   "engines": {
-    "node": "10.12.0",
-    "npm": "6.4.1"
+    "node": "12.4.0",
+    "npm": "6.9.0"
   },
   "eslintConfig": {
     "extends": "react-app"
