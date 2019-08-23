@@ -1,38 +1,33 @@
 import React, { useEffect } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import { func } from 'prop-types'
 import { authLogout } from '../actions/authActions'
 
-export function Logout({ authLogout }) {
-
+export function Logout(props) {
   useEffect(() => {
     function logout() {
-      authLogout()
+      props.authLogout()
     }
     logout()
-  }, [authLogout])
+  }, [props, props.authLogout])
 
-    return(
+    return (
       <div className="content">
         You have been logged out.
       </div>
     )
 }
 
-const mapState = () => {
-  return {
-  }
-}
+const mapState = () => ({
+  })
 
-const mapDispatch = dispatch => {
-  return bindActionCreators({
+const mapDispatch = (dispatch) => bindActionCreators({
     authLogout,
   }, dispatch)
-}
 
-export default connect(mapState, mapDispatch)(Logout);
+export default connect(mapState, mapDispatch)(Logout)
 
 Logout.propTypes = {
-  authLogout: PropTypes.func.isRequired
-};
+  authLogout: func.isRequired,
+}

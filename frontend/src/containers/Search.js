@@ -1,11 +1,15 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import {
+ string, shape, arrayOf, bool, func,
+} from 'prop-types'
 
+import { DotLoader } from 'react-spinners'
 import { fetchCountry } from '../actions/countryActions'
-import { openCountryModal, closeCountryModal } from '../actions/modalActions'
-import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
+import {
+ openCountryModal, closeCountryModal, openNotAuthModal, closeNotAuthModal,
+} from '../actions/modalActions'
 import { putUserData } from '../actions/userActions'
 import { removeError } from '../actions/errorActions'
 
@@ -14,12 +18,9 @@ import NotAuthModal from '../components/NotAuthModal'
 import Results from '../components/Results'
 import SearchBar from '../components/SearchBar'
 
-import { DotLoader } from 'react-spinners'
 
 export function Search(props) {
   const {
-    fetchCountry,
-    putUserData,
     username,
     email,
     home,
@@ -31,8 +32,8 @@ export function Search(props) {
   } = props
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    fetchCountry(e.target[0].value);
+    e.preventDefault()
+    props.fetchCountry(e.target[0].value)
   }
 
   /*
@@ -40,65 +41,66 @@ export function Search(props) {
   the array to the Django backend.
   */
   const handleClick = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     // Resets newCountry to null at the beginning of every function call.
-    let newCountry = null;
-    let newCountryList;
-    let success;
-    let countryName = e.currentTarget.attributes.value.nodeValue;
-    newCountry =  Number(e.currentTarget.id)
+    let newCountry = null
+    let newCountryList
+    let success
+    const countryName = e.currentTarget.attributes.value.nodeValue
+    newCountry = Number(e.currentTarget.id)
     // If the userCountries array is empty, the new array just becomes the newCountry.
     if (userCountries.length === 0) {
       newCountryList = [newCountry]
     } else {
       // The newCountryList becomes the userCountries converted from object to just id.
-      newCountryList = userCountries;
-      newCountryList = newCountryList.map(country => country.id);
+      newCountryList = userCountries
+      newCountryList = newCountryList.map((country) => country.id)
       // If country is not in the userCountries, it gets added.
-      if (newCountryList.findIndex(country => country === newCountry) === -1) {
-        newCountryList = newCountryList.concat([newCountry]);
+      if (newCountryList.findIndex((country) => country === newCountry) === -1) {
+        newCountryList = newCountryList.concat([newCountry])
         success = `${countryName} has been added to your map.`
       // If country is in the userCountries, it gets deleted.
       } else {
-          let index = newCountryList.findIndex(country => country === newCountry);
+          const index = newCountryList.findIndex((country) => country === newCountry)
           // If the index === -1, it means the country is not in the array.
-          if (index !== -1){
-            newCountryList.splice(index, 1);
+          if (index !== -1) {
+            newCountryList.splice(index, 1)
           success = `${countryName} has been removed from your map.`
         }
       }
     }
 
     // Makes the PUT request.
-    putUserData(
+   props.putUserData(
       username,
       email,
       newCountryList,
       home.id,
       biography,
-      success
-    );
+      success,
+    )
   }
 
-  const listCountries = searchedCountry.map(country =>(
+  const listCountries = searchedCountry.map((country) => (
     <div style={{ marginTop: 20 }} key={country.id}>
-      <Results {...props} country={country} handleClick={handleClick}/>
+      <Results {...props} country={country} handleClick={handleClick} />
     </div>
-  ));
+  ))
 
   return (
-    <div className="content" style={{marginTop: 60}}>
+    <div className="content" style={{ marginTop: 60 }}>
       <NotAuthModal {...props} />
       {fetched && <CountryModal {...props} />}
-      <SearchBar handleSubmit={handleSubmit} /> <br/>
-      {fetching && <DotLoader size={50} color={'#2196f3'} className="content" />}
+      <SearchBar handleSubmit={handleSubmit} />
+      {' '}
+      <br />
+      {fetching && <DotLoader size={50} color="#2196f3" className="content" />}
       {fetched && <div>{listCountries}</div>}
     </div>
-  );
+  )
 }
 
-const mapState = state => {
-  return {
+const mapState = (state) => ({
     username: state.user.user.username,
     email: state.user.user.email,
     home: state.user.user.home,
@@ -111,11 +113,9 @@ const mapState = state => {
     showCountryModal: state.modal.showCountryModal,
     modalCountry: state.modal.modalCountry,
     showNotAuthModal: state.modal.showNotAuthModal,
-  };
-};
+  })
 
-const mapDispatch = dispatch => {
-  return bindActionCreators({
+const mapDispatch = (dispatch) => bindActionCreators({
     fetchCountry,
     putUserData,
     openCountryModal,
@@ -123,30 +123,36 @@ const mapDispatch = dispatch => {
     removeError,
     openNotAuthModal,
     closeNotAuthModal,
-  }, dispatch);
-};
+  }, dispatch)
 
-export default connect(mapState, mapDispatch)(Search);
+export default connect(mapState, mapDispatch)(Search)
 
 Search.propTypes = {
-  username: PropTypes.string,
-  email: PropTypes.string,
-  home: PropTypes.object,
-  biography: PropTypes.string,
-  userCountries: PropTypes.array,
-  authenticated: PropTypes.bool,
-  searchedCountry: PropTypes.array,
-  fetched: PropTypes.bool,
-  fetching: PropTypes.bool,
-  showCountryModal: PropTypes.bool,
-  modalCountry: PropTypes.object,
-  showNotAuthModal: PropTypes.bool,
+  username: string,
+  email: string,
+  home: shape({}),
+  biography: string,
+  userCountries: arrayOf(shape({})),
+  authenticated: bool.isRequired,
+  searchedCountry: arrayOf(shape({})).isRequired,
+  fetched: bool.isRequired,
+  fetching: bool.isRequired,
+  showCountryModal: bool.isRequired,
+  modalCountry: shape({}).isRequired,
+  showNotAuthModal: bool.isRequired,
+  fetchCountry: func.isRequired,
+  putUserData: func.isRequired,
+  openCountryModal: func.isRequired,
+  closeCountryModal: func.isRequired,
+  removeError: func.isRequired,
+  openNotAuthModal: func.isRequired,
+  closeNotAuthModal: func.isRequired,
+}
 
-  fetchCountry: PropTypes.func,
-  putUserData: PropTypes.func,
-  openCountryModal: PropTypes.func,
-  closeCountryModal: PropTypes.func,
-  removeError: PropTypes.func,
-  openNotAuthModal: PropTypes.func,
-  closeNotAuthModal: PropTypes.func,
-};
+Search.defaultProps = {
+  username: '',
+  email: '',
+  home: {},
+  biography: '',
+  userCountries: [],
+}

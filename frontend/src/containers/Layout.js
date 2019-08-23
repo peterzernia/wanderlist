@@ -1,62 +1,60 @@
-import React, { useEffect } from "react";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { useEffect } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import {
+ shape, string, bool, func,
+} from 'prop-types'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import { removeError } from "../actions/errorActions";
-import { fetchUser } from "../actions/userActions";
+import { DotLoader } from 'react-spinners'
+import { removeError } from '../actions/errorActions'
+import { fetchUser } from '../actions/userActions'
 import { authCheckState } from '../actions/authActions'
 import { fetchTripReports, fetchFeaturedTripReport, fetchUserTripReports } from '../actions/tripReportActions'
 
-import Error from "../components/Error";
-import NavBar from "../components/NavBar";
-import PrivateRoute from "../components/PrivateRoute";
-import Success from "../components/Success";
+import Error from '../components/Error'
+import NavBar from '../components/NavBar'
+import PrivateRoute from '../components/PrivateRoute'
+import Success from '../components/Success'
 
-import Profile from "./Profile";
-import Feed from "./Feed";
-import ForgotPassword from "./ForgotPassword";
-import Home from "./Home";
-import Login from "./Login";
-import Logout from "./Logout";
-import Post from "./Post";
-import Register from "./Register";
-import Search from "./Search";
+import Profile from './Profile'
+import Feed from './Feed'
+import ForgotPassword from './ForgotPassword'
+import Home from './Home'
+import Login from './Login'
+import Logout from './Logout'
+import Post from './Post'
+import Register from './Register'
+import Search from './Search'
 
-import { DotLoader } from "react-spinners";
 
 export function Layout(props) {
   const {
-    authCheckState, 
-    fetchTripReports, 
-    fetchFeaturedTripReport, 
-    fetchUserTripReports,
-    authenticated, 
-    fetchUser,
-    error, 
+    authenticated,
+    error,
     success,
     fetching,
   } = props
 
   useEffect(() => {
     async function fetchData() {
-      await authCheckState();
-      fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?ordering=-pk`);
-      fetchFeaturedTripReport('rr9IuTcYtL3E');
+      await props.authCheckState()
+      props.fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?ordering=-pk`)
+      props.fetchFeaturedTripReport('rr9IuTcYtL3E')
 
       const username = localStorage.getItem('username')
       if (username) {
-        fetchUserTripReports(username)
+        props.fetchUserTripReports(username)
       }
-  
+
       if (authenticated) {
-        fetchUser();
+        props.fetchUser()
       }
     }
 
     fetchData()
-  }, [authCheckState, authenticated, fetchFeaturedTripReport, fetchTripReports, fetchUser, fetchUserTripReports])
+    // eslint-disable-next-line
+  }, [props.authCheckState, authenticated, props.fetchFeaturedTripReport, props.fetchTripReports, props.fetchUser, props.fetchUserTripReports])
 
   return (
     <Router>
@@ -87,25 +85,22 @@ export function Layout(props) {
         </div>
       ) : (
         <div className="centered">
-          <DotLoader size={50} color={"#2196f3"} className="content" />
+          <DotLoader size={50} color="#2196f3" className="content" />
         </div>
       )}
     </Router>
-  );
+  )
 }
 
-const mapState = state => {
-  return {
+const mapState = (state) => ({
     error: state.error.error,
     success: state.error.success,
     authenticated: state.auth.authenticated,
     fetching: state.user.fetching,
-    fetched: state.user.fetched
-  };
-};
+    fetched: state.user.fetched,
+  })
 
-const mapDispatch = dispatch => {
-  return bindActionCreators(
+const mapDispatch = (dispatch) => bindActionCreators(
     {
       fetchUser,
       removeError,
@@ -114,25 +109,29 @@ const mapDispatch = dispatch => {
       fetchFeaturedTripReport,
       fetchUserTripReports,
     },
-    dispatch
-  );
-};
+    dispatch,
+  )
 
 export default connect(
   mapState,
-  mapDispatch
-)(Layout);
+  mapDispatch,
+)(Layout)
 
 Layout.propTypes = {
-  error: PropTypes.object,
-  success: PropTypes.string,
-  authenticated: PropTypes.bool,
-  fetching: PropTypes.bool,
-  fetched: PropTypes.bool,
-  fetchUser: PropTypes.func,
-  removeError: PropTypes.func,
-  authCheckState: PropTypes.func,
-  fetchTripReports: PropTypes.func,
-  fetchFeaturedTripReport: PropTypes.func,
-  fetchUserTripReports: PropTypes.func,
-};
+  error: shape({}),
+  success: string,
+  authenticated: bool.isRequired,
+  fetching: bool.isRequired,
+  fetched: bool.isRequired,
+  fetchUser: func.isRequired,
+  removeError: func.isRequired,
+  authCheckState: func.isRequired,
+  fetchTripReports: func.isRequired,
+  fetchFeaturedTripReport: func.isRequired,
+  fetchUserTripReports: func.isRequired,
+}
+
+Layout.defaultProps = {
+  error: {},
+  success: '',
+}

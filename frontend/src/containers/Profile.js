@@ -1,21 +1,39 @@
 import React, { useEffect, useCallback } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-
-import { openEditProfileModal, closeEditProfileModal } from '../actions/modalActions'
+import {
+  func, number, bool, shape, arrayOf, string,
+} from 'prop-types'
+import Button from '@material-ui/core/Button'
+import Avatar from '@material-ui/core/Avatar'
+import Typography from '@material-ui/core/Typography'
+import { DotLoader } from 'react-spinners'
+import IconButton from '@material-ui/core/IconButton'
+import Grid from '@material-ui/core/Grid'
+import Add from '@material-ui/icons/Add'
+import Tooltip from '@material-ui/core/Tooltip'
+import {
+  openCountryModal,
+  closeCountryModal,
+  openEditProfileModal,
+  closeEditProfileModal,
+  openPostModal,
+  closePostModal,
+  openUpdatePostModal,
+  openConfirmDeleteModal,
+  closeConfirmDeleteModal,
+  openTripReportModal,
+  closeTripReportModal,
+  openCopyLinkModal,
+  closeCopyLinkModal,
+} from '../actions/modalActions'
 import { putUserData } from '../actions/userActions'
 import { fetchCountry } from '../actions/countryActions'
-import { fetchNextUserTripReports } from '../actions/tripReportActions'
-import { postTripReport, deleteTripReport, updateTripReport } from '../actions/tripReportActions'
-import { openPostModal, closePostModal, openUpdatePostModal } from '../actions/modalActions'
-import { openCountryModal, closeCountryModal } from '../actions/modalActions'
-import { openConfirmDeleteModal, closeConfirmDeleteModal } from '../actions/modalActions'
-import { openTripReportModal, closeTripReportModal } from '../actions/modalActions'
-import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
+import {
+  fetchNextUserTripReports, postTripReport, deleteTripReport, updateTripReport,
+} from '../actions/tripReportActions'
 import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
-
 import OpenStreetMap from '../components/OpenStreetMap'
 import EditProfileModal from '../components/EditProfileModal'
 import TripReportThumbnail from '../components/TripReportThumbnail'
@@ -25,37 +43,20 @@ import CountryModal from '../components/CountryModal'
 import CopyLinkModal from '../components/CopyLinkModal'
 import PostModal from '../components/PostModal'
 
-import Button from '@material-ui/core/Button'
-import Avatar from '@material-ui/core/Avatar'
-import Typography from '@material-ui/core/Typography'
-import { DotLoader } from 'react-spinners'
-import IconButton from '@material-ui/core/IconButton'
-import Grid from '@material-ui/core/Grid'
-import Add from '@material-ui/icons/Add'
-import Tooltip from '@material-ui/core/Tooltip'
 
 export function Profile(props) {
   const {
     next,
     fetchingUserNext,
-    fetchNextUserTripReports,
-    postTripReport,
     user,
-    closePostModal,
-    updateTripReport,
     modalPost,
     userCountries,
-    putUserData,
-    closeEditProfileModal,
-    toggleFavorite,
     tripReports,
     location,
     fetched,
-    openEditProfileModal,
     posting,
     updating,
     fetchedTripReports,
-    openPostModal,
   } = props
 
   const isBottom = (el) => {
@@ -65,16 +66,17 @@ export function Profile(props) {
 
   // Infinite scrolling
   const handleScroll = useCallback(() => {
-    const el = document.getElementById('scroll');
+    const el = document.getElementById('scroll')
     if (isBottom(el) && next && !fetchingUserNext) {
-      fetchNextUserTripReports(next);
+      props.fetchNextUserTripReports(next)
     }
-  },[fetchNextUserTripReports, fetchingUserNext, next]);
+    // eslint-disable-next-line
+  }, [props.fetchNextUserTripReports, fetchingUserNext, next])
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [handleScroll])
 
   /*
   handlPostSubmit will create a new trip report and handleUpdateSubmit will
@@ -86,128 +88,139 @@ export function Profile(props) {
   display and the submit button will update the existing trip report.
   */
   const handlePostSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     // e.target.countries.value must be split at the comma and then strings
     // must be converted into numbers.
-    let countries;
+    let countries
     if (e.target.countries.value !== '') {
-      countries = e.target.countries.value.split(',').map(Number);
+      countries = e.target.countries.value.split(',').map(Number)
     }
-    postTripReport(
+    props.postTripReport(
       user.pk,
       e.target.title.value,
       e.target.content.value,
       countries,
-    );
-    closePostModal();
+    )
+    props.closePostModal()
   }
 
   const handleUpdateSubmit = (e) => {
-    e.preventDefault();
-    let countries;
+    e.preventDefault()
+    let countries
     if (e.target.countries.value !== '') {
-      countries = e.target.countries.value.split(',').map(Number);
+      countries = e.target.countries.value.split(',').map(Number)
     }
-    updateTripReport(
+    props.updateTripReport(
       modalPost.id,
       user.pk,
       e.target.title.value,
       e.target.content.value,
       countries,
-    );
-    closePostModal();
+    )
+    props.closePostModal()
   }
 
   /*
   This handle submit works with the edit profile modal.
   */
   const handleSubmit = (e) => {
-    e.preventDefault();
-    let userCountryList = userCountries.map(country => country.id);
-    putUserData(
+    e.preventDefault()
+    const userCountryList = userCountries.map((country) => country.id)
+    props.putUserData(
       e.target.username.value,
       e.target.email.value,
       userCountryList,
       Number(e.target.country.value),
       e.target.biography.value,
-      'Your profile has been updated.'
-    );
-    closeEditProfileModal();
+      'Your profile has been updated.',
+    )
+    props.closeEditProfileModal()
   }
 
   const handleClick = (e) => {
-    e.preventDefault();
-    toggleFavorite(e.currentTarget.id);
+    e.preventDefault()
+    props.toggleFavorite(e.currentTarget.id)
   }
 
-  const listTripReports = tripReports && tripReports.map(tripReport =>(
-      <Grid item key={tripReport.id}>
-        <TripReportThumbnail tripReport={tripReport} {...props} />
-      </Grid>
-    ));
+  const listTripReports = tripReports && tripReports.map((tripReport) => (
+    <Grid item key={tripReport.id}>
+      <TripReportThumbnail tripReport={tripReport} {...props} />
+    </Grid>
+    ))
 
   const isEdit = location.pathname === '/profile'
 
-  if (posting || updating) return <div><DotLoader size={50} color={'#2196f3'} className="content" /><br/></div>
+  if (posting || updating) {
+ return (
+   <div>
+     <DotLoader size={50} color="#2196f3" className="content" />
+     <br />
+   </div>
+)
+ }
 
-  return(
-    <div id='scroll' className='content'>
+  return (
+    <div id="scroll" className="content">
       <CopyLinkModal {...props} />
       {fetched && <CountryModal {...props} />}
       <EditProfileModal handleSubmit={handleSubmit} {...props} />
-      <PostModal {...props} handlePostSubmit={handlePostSubmit} handleUpdateSubmit={handleUpdateSubmit} />
+      <PostModal
+        {...props}
+        handlePostSubmit={handlePostSubmit}
+        handleUpdateSubmit={handleUpdateSubmit}
+      />
       <ConfirmDeleteModal {...props} />
       {modalPost.author && <TripReportModal handleClick={handleClick} {...props} />}
 
       {/* This section is the user avatar, username, biography, etc. */}
-      <div className='wrap' style={{ marginBottom: 60 }} >
-        <div className='left' style={{ width: '37%' }}>
-          {user.home && <Avatar style={{ width: 150, height: 150, margin: '0 auto' }} src={user.home.flag}/>}
+      <div className="wrap" style={{ marginBottom: 60 }}>
+        <div className="left" style={{ width: '37%' }}>
+          {user.home && <Avatar style={{ width: 150, height: 150, margin: '0 auto' }} src={user.home.flag} />}
         </div>
-        <div className='right' style={{textAlign: 'left', width: '63%', padding: 10 }}>
+        <div className="right" style={{ textAlign: 'left', width: '63%', padding: 10 }}>
           <div style={{ height: 40 }}>
-          <Typography variant="h4" gutterBottom>
-            {user.username}
-          </Typography>
-          </div><br/>
+            <Typography variant="h4" gutterBottom>
+              {user.username}
+            </Typography>
+          </div>
+          <br />
           {
             isEdit && (
               <div style={{ height: 40 }}>
-              <Button size='small' variant='outlined' onClick={() => openEditProfileModal(user)}>
+                <Button size="small" variant="outlined" onClick={() => props.openEditProfileModal(user)}>
                 Edit Profile
-              </Button>
-            </div>
+                </Button>
+              </div>
             )
           }
-          <br/>
+          <br />
           <div style={{ height: 40 }}>
             {user.biography}
           </div>
         </div>
       </div>
-      <hr style={{width: '85%', size: 1}}/>
+      <hr style={{ width: '85%', size: 1 }} />
 
       {/* This section is the user map */}
-      {fetched && <OpenStreetMap {...props}/>}
-      <hr style={{width: '85%', size: 1}}/>
+      {fetched && <OpenStreetMap {...props} />}
+      <hr style={{ width: '85%', size: 1 }} />
 
       {/* This section is the user posts */}
       <div>
         <Tooltip title="New Trip Report">
-          <IconButton variant="contained" aria-label="New Trip Report" onClick={openPostModal}>
+          <IconButton variant="contained" aria-label="New Trip Report" onClick={props.openPostModal}>
             <Add />
           </IconButton>
         </Tooltip>
-        {fetchedTripReports && <Grid container spacing={10} justify='center' >{listTripReports}</Grid>}
-        <div style={{ height: 15 }}/>
-        {fetchingUserNext && <DotLoader size={50} color={'#2196f3'} className="content" />}
+        {fetchedTripReports && <Grid container spacing={10} justify="center">{listTripReports}</Grid>}
+        <div style={{ height: 15 }} />
+        {fetchingUserNext && <DotLoader size={50} color="#2196f3" className="content" />}
       </div>
     </div>
-  );
+  )
 }
 
-const mapState = state => {
-  return {
+const mapState = (state) => ({
     pk: state.user.user.pk,
     authenticated: state.auth.authenticated,
     user: state.user.user,
@@ -231,11 +244,9 @@ const mapState = state => {
     modalLink: state.modal.modalLink,
     posting: state.tripReport.posting,
     updating: state.tripReport.updating,
-  };
-}
+  })
 
-const mapDispatch = dispatch => {
-  return bindActionCreators({
+const mapDispatch = (dispatch) => bindActionCreators({
     fetchCountry,
     putUserData,
     openEditProfileModal,
@@ -257,55 +268,60 @@ const mapDispatch = dispatch => {
     toggleFavorite,
     openCopyLinkModal,
     closeCopyLinkModal,
-  }, dispatch);
-}
+  }, dispatch)
 
-export default connect(mapState, mapDispatch)(Profile);
+export default connect(mapState, mapDispatch)(Profile)
 
 Profile.propTypes = {
-  pk: PropTypes.number,
-  authenticated: PropTypes.bool,
-  user: PropTypes.object,
-  next: PropTypes.string,
-  fetched: PropTypes.bool,
-  fetchingUserNext: PropTypes.bool,
-  searchedCountry: PropTypes.array,
-  showEditProfileModal: PropTypes.bool,
-  modalProfile: PropTypes.object,
-  userCountries: PropTypes.array,
-  showCountryModal: PropTypes.bool,
-  modalCountry: PropTypes.object,
-  showPostModal: PropTypes.bool,
-  fetchedTripReports: PropTypes.bool,
-  tripReports: PropTypes.array,
-  updatePostModal: PropTypes.bool,
-  modalPost: PropTypes.shape({}),
-  showConfirmDeleteModal: PropTypes.bool,
-  showTripReportModal: PropTypes.bool,
-  showCopyLinkModal: PropTypes.bool,
-  modalLink: PropTypes.string,
-  posting: PropTypes.bool,
-  updating: PropTypes.bool,
+  pk: number,
+  authenticated: bool.isRequired,
+  user: shape({}).isRequired,
+  next: string,
+  fetched: bool.isRequired,
+  fetchingUserNext: bool.isRequired,
+  searchedCountry: arrayOf(shape({})).isRequired,
+  showEditProfileModal: bool.isRequired,
+  modalProfile: shape({}).isRequired,
+  userCountries: arrayOf(shape({})).isRequired,
+  showCountryModal: bool.isRequired,
+  modalCountry: shape({}).isRequired,
+  showPostModal: bool.isRequired,
+  fetchedTripReports: bool.isRequired,
+  tripReports: arrayOf(shape({})).isRequired,
+  updatePostModal: bool.isRequired,
+  modalPost: shape({}).isRequired,
+  showConfirmDeleteModal: bool.isRequired,
+  showTripReportModal: bool.isRequired,
+  showCopyLinkModal: bool.isRequired,
+  modalLink: string,
+  posting: bool.isRequired,
+  updating: bool.isRequired,
+  fetchCountry: func.isRequired,
+  putUserData: func.isRequired,
+  openEditProfileModal: func.isRequired,
+  closeEditProfileModal: func.isRequired,
+  openCountryModal: func.isRequired,
+  closeCountryModal: func.isRequired,
+  removeError: func.isRequired,
+  postTripReport: func.isRequired,
+  deleteTripReport: func.isRequired,
+  updateTripReport: func.isRequired,
+  openPostModal: func.isRequired,
+  closePostModal: func.isRequired,
+  openUpdatePostModal: func.isRequired,
+  openConfirmDeleteModal: func.isRequired,
+  closeConfirmDeleteModal: func.isRequired,
+  openTripReportModal: func.isRequired,
+  closeTripReportModal: func.isRequired,
+  fetchNextUserTripReports: func.isRequired,
+  toggleFavorite: func.isRequired,
+  openCopyLinkModal: func.isRequired,
+  closeCopyLinkModal: func.isRequired,
+  location: shape({}).isRequired,
+}
 
-  fetchCountry: PropTypes.func,
-  putUserData: PropTypes.func,
-  openEditProfileModal: PropTypes.func,
-  closeEditProfileModal: PropTypes.func,
-  openCountryModal: PropTypes.func,
-  closeCountryModal: PropTypes.func,
-  removeError: PropTypes.func,
-  postTripReport: PropTypes.func,
-  deleteTripReport: PropTypes.func,
-  updateTripReport: PropTypes.func,
-  openPostModal: PropTypes.func,
-  closePostModal: PropTypes.func,
-  openUpdatePostModal: PropTypes.func,
-  openConfirmDeleteModal: PropTypes.func,
-  closeConfirmDeleteModal: PropTypes.func,
-  openTripReportModal: PropTypes.func,
-  closeTripReportModal: PropTypes.func,
-  fetchNextUserTripReports: PropTypes.func,
-  toggleFavorite: PropTypes.func,
-  openCopyLinkModal: PropTypes.func,
-  closeCopyLinkModal: PropTypes.func,
-};
+Profile.defaultProps = {
+  modalLink: '',
+  pk: null,
+  next: '',
+}

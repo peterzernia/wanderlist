@@ -1,12 +1,20 @@
 import React, { useEffect, useCallback } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { PropTypes } from 'prop-types'
+import {
+ number, bool, string, arrayOf, shape, func,
+} from 'prop-types'
 
-import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
+import { DotLoader } from 'react-spinners'
+import {
+ openCopyLinkModal,
+ closeCopyLinkModal,
+ openCountryModal,
+ closeCountryModal,
+ openNotAuthModal,
+ closeNotAuthModal,
+} from '../actions/modalActions'
 import { fetchTripReports, fetchNextTripReports } from '../actions/tripReportActions'
-import { openCountryModal, closeCountryModal } from '../actions/modalActions'
-import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 
@@ -16,15 +24,10 @@ import Filter from '../components/Filter'
 import NotAuthModal from '../components/NotAuthModal'
 import TripReportTruncated from '../components/TripReportTruncated'
 
-import { DotLoader } from 'react-spinners'
 
 export function Feed(props) {
   const {
     next,
-    fetchingNext,
-    fetchNextTripReports,
-    toggleFavorite,
-    fetchTripReports,
     tripReports,
     fetching,
   } = props
@@ -36,25 +39,25 @@ export function Feed(props) {
 
   // Infinite scrolling
   const handleScroll = useCallback(() => {
-    const el = document.getElementById('scroll');
-    if (isBottom(el) && next && !fetchingNext) {
-      fetchNextTripReports(next);
+    const el = document.getElementById('scroll')
+    if (isBottom(el) && next && !props.fetchingNext) {
+      fetchNextTripReports(next)
     }
-  },[fetchNextTripReports, fetchingNext, next]);
+  }, [next, props.fetchingNext])
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]); 
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [handleScroll])
 
   const handleClick = (e) => {
-    e.preventDefault();
-    toggleFavorite(e.currentTarget.id);
+    e.preventDefault()
+    toggleFavorite(e.currentTarget.id)
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?search=${e.target[0].value}`);
+    e.preventDefault()
+    fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/?search=${e.target[0].value}`)
   }
 
   const handleNewestClick = () => {
@@ -65,29 +68,39 @@ export function Feed(props) {
     fetchTripReports(`${process.env.REACT_APP_API_URL}/api/v1/reports/`)
   }
 
-  const listTripReports = tripReports && tripReports.map(tripReport =>(
-      <div key={tripReport.id} style={{ marginBottom: 20 }}>
-        <TripReportTruncated handleClick={handleClick} {...tripReport} {...props} />
-      </div>
-    ));
-  
-  if (fetching) return <div><DotLoader size={50} color={'#2196f3'} className="content" /><br/></div>
+  const listTripReports = tripReports && tripReports.map((tripReport) => (
+    <div key={tripReport.id} style={{ marginBottom: 20 }}>
+      <TripReportTruncated handleClick={handleClick} {...tripReport} {...props} />
+    </div>
+    ))
 
-  return(
-    <div id='scroll' className="content" style={{ marginTop: 0 }} >
+  if (fetching) {
+    return (
+      <div>
+        <DotLoader size={50} color="#2196f3" className="content" />
+        <br />
+      </div>
+    )
+ }
+
+  return (
+    <div id="scroll" className="content" style={{ marginTop: 0 }}>
       <CopyLinkModal {...props} />
       <NotAuthModal {...props} />
       <CountryModal {...props} />
-      <Filter handleSubmit={handleSubmit} handleNewestClick={handleNewestClick} handleTopClick={handleTopClick}/>
+      <Filter
+        handleSubmit={handleSubmit}
+        handleNewestClick={handleNewestClick}
+        handleTopClick={handleTopClick}
+      />
       <div>{listTripReports}</div>
-      <div style={{ height: 15 }}/>
-      {fetchingNext && <DotLoader size={50} color={'#2196f3'} className="content" />}
+      <div style={{ height: 15 }} />
+      {props.fetchingNext && <DotLoader size={50} color="#2196f3" className="content" />}
     </div>
-  );
+  )
 }
 
-const mapState = state => {
-  return {
+const mapState = (state) => ({
     pk: state.user.user.pk,
     authenticated: state.auth.authenticated,
     fetching: state.tripReport.fetching,
@@ -99,11 +112,9 @@ const mapState = state => {
     showNotAuthModal: state.modal.showNotAuthModal,
     showCopyLinkModal: state.modal.showCopyLinkModal,
     modalLink: state.modal.modalLink,
-  };
-}
+  })
 
-const mapDispatch = dispatch => {
-  return bindActionCreators({
+const mapDispatch = (dispatch) => bindActionCreators({
     openCountryModal,
     closeCountryModal,
     removeError,
@@ -114,31 +125,36 @@ const mapDispatch = dispatch => {
     closeNotAuthModal,
     openCopyLinkModal,
     closeCopyLinkModal,
-  }, dispatch);
-}
+  }, dispatch)
 
-export default connect(mapState, mapDispatch)(Feed);
+export default connect(mapState, mapDispatch)(Feed)
 
 Feed.propTypes = {
-  pk: PropTypes.number,
-  authenticated: PropTypes.bool,
-  fetching: PropTypes.bool,
-  next: PropTypes.string,
-  tripReports: PropTypes.array,
-  showCountryModal: PropTypes.bool,
-  modalCountry: PropTypes.object,
-  showNotAuthModal: PropTypes.bool,
-  showCopyLinkModal: PropTypes.bool,
-  modalLink: PropTypes.string,
+  pk: number,
+  authenticated: bool.isRequired,
+  fetching: bool.isRequired,
+  next: string,
+  tripReports: arrayOf(shape({})).isRequired,
+  showCountryModal: bool.isRequired,
+  modalCountry: shape({}).isRequired,
+  showNotAuthModal: bool.isRequired,
+  showCopyLinkModal: bool.isRequired,
+  modalLink: string,
+  fetchingNext: bool.isRequired,
+  openCountryModal: func.isRequired,
+  closeCountryModal: func.isRequired,
+  removeError: func.isRequired,
+  fetchNextTripReports: func.isRequired,
+  fetchTripReports: func.isRequired,
+  toggleFavorite: func.isRequired,
+  openNotAuthModal: func.isRequired,
+  closeNotAuthModal: func.isRequired,
+  openCopyLinkModal: func.isRequired,
+  closeCopyLinkModal: func.isRequired,
+}
 
-  openCountryModal: PropTypes.func,
-  closeCountryModal: PropTypes.func,
-  removeError: PropTypes.func,
-  fetchNextTripReports: PropTypes.func,
-  fetchTripReports: PropTypes.func,
-  toggleFavorite: PropTypes.func,
-  openNotAuthModal: PropTypes.func,
-  closeNotAuthModal: PropTypes.func,
-  openCopyLinkModal: PropTypes.func,
-  closeCopyLinkModal: PropTypes.func,
-};
+Feed.defaultProps = {
+  modalLink: '',
+  pk: null,
+  next: null,
+}

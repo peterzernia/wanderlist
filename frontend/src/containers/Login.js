@@ -1,7 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import { bool, func, shape } from 'prop-types'
 import { Redirect } from 'react-router-dom'
 
 import { authLogin } from '../actions/authActions'
@@ -9,42 +9,43 @@ import { removeError } from '../actions/errorActions'
 
 import LoginForm from '../components/LoginForm'
 
-export function Login({ authLogin, authenticated, location, ...rest }) {
+export function Login(props) {
   // Authenticates the user.
   const handleSubmit = (e) => {
-    e.preventDefault();
-    authLogin(e.target.username.value, e.target.password.value);
+    e.preventDefault()
+    props.authLogin(e.target.username.value, e.target.password.value)
   }
 
-  return(
+  return (
     <div className="content">
       {
-        !authenticated
-        ? <LoginForm handleSubmit={handleSubmit} {...rest} />
-        : <Redirect to={location.state ? location.state.from.pathname : '/'} />
+        !props.authenticated
+        ? <LoginForm handleSubmit={handleSubmit} {...props} />
+        : <Redirect to={props.location.state ? props.location.state.from.pathname : '/'} />
       }
     </div>
-  );
+  )
 }
 
-const mapState = state => {
-  return {
+const mapState = (state) => ({
     authenticating: state.auth.authenticating,
     authenticated: state.auth.authenticated,
-  };
-}
+  })
 
-const mapDispatch = dispatch => {
-  return bindActionCreators({
+const mapDispatch = (dispatch) => bindActionCreators({
     authLogin,
-    removeError
-  }, dispatch);
-}
+    removeError,
+  }, dispatch)
 
-export default connect(mapState, mapDispatch)(Login);
+export default connect(mapState, mapDispatch)(Login)
 
 Login.propTypes = {
-  authenticating: PropTypes.bool.isRequired,
-  authenticated: PropTypes.bool.isRequired,
-  authLogin: PropTypes.func.isRequired,
-};
+  authenticating: bool.isRequired,
+  authenticated: bool.isRequired,
+  authLogin: func.isRequired,
+  location: shape({}),
+}
+
+Login.defaultProps = {
+  location: {},
+}

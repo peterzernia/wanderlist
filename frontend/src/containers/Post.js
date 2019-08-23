@@ -1,12 +1,20 @@
 import React, { useEffect } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { PropTypes } from 'prop-types'
+import {
+ number, bool, func, arrayOf, shape, string,
+} from 'prop-types'
 
-import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
+import { DotLoader } from 'react-spinners'
+import {
+ openCopyLinkModal,
+ closeCopyLinkModal,
+ openCountryModal,
+ closeCountryModal,
+ openNotAuthModal,
+ closeNotAuthModal,
+} from '../actions/modalActions'
 import { fetchSlugTripReports } from '../actions/tripReportActions'
-import { openCountryModal, closeCountryModal } from '../actions/modalActions'
-import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
 import { removeError } from '../actions/errorActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 
@@ -15,13 +23,10 @@ import CopyLinkModal from '../components/CopyLinkModal'
 import NotAuthModal from '../components/NotAuthModal'
 import TripReportTruncated from '../components/TripReportTruncated'
 
-import { DotLoader } from 'react-spinners'
 
 export function Post(props) {
   const {
     match,
-    fetchSlugTripReports,
-    toggleFavorite,
     tripReports,
     fetching,
   } = props
@@ -29,37 +34,37 @@ export function Post(props) {
   useEffect(() => {
     async function fetchData() {
       const { slug } = match.params
-      fetchSlugTripReports(slug);
+      props.fetchSlugTripReports(slug)
     }
 
     fetchData()
-  }, [fetchSlugTripReports, match.params])
+    // eslint-disable-next-line
+  }, [props.fetchSlugTripReports, match.params])
 
   const handleClick = (e) => {
-    e.preventDefault();
-    toggleFavorite(e.currentTarget.id);
+    e.preventDefault()
+    props.toggleFavorite(e.currentTarget.id)
   }
 
-  let listTripReport = tripReports && tripReports.map(tripReport =>(
-      <div key={tripReport.id} style={{ marginBottom: 20 }}>
-        <TripReportTruncated handleClick={handleClick} {...tripReport} {...props} />
-      </div>
-    ));
+  const listTripReport = tripReports && tripReports.map((tripReport) => (
+    <div key={tripReport.id} style={{ marginBottom: 20 }}>
+      <TripReportTruncated handleClick={handleClick} {...tripReport} {...props} />
+    </div>
+    ))
 
-  if (fetching) return <div className='centered'><DotLoader size={50} color={'#2196f3'} className="content" /></div>
+  if (fetching) return <div className="centered"><DotLoader size={50} color="#2196f3" className="content" /></div>
 
-  return(
+  return (
     <div className="content">
       <NotAuthModal {...props} />
       <CopyLinkModal {...props} />
       <CountryModal {...props} />
       <div>{listTripReport}</div>
     </div>
-  );
+  )
 }
 
-const mapState = state => {
-  return {
+const mapState = (state) => ({
     pk: state.user.user.pk,
     authenticated: state.auth.authenticated,
     tripReports: state.tripReport.slugTripReports,
@@ -69,11 +74,9 @@ const mapState = state => {
     showNotAuthModal: state.modal.showNotAuthModal,
     showCopyLinkModal: state.modal.showCopyLinkModal,
     modalLink: state.modal.modalLink,
-  };
-}
+  })
 
-const mapDispatch = dispatch => {
-  return bindActionCreators({
+const mapDispatch = (dispatch) => bindActionCreators({
     fetchSlugTripReports,
     removeError,
     openCountryModal,
@@ -83,27 +86,33 @@ const mapDispatch = dispatch => {
     closeNotAuthModal,
     openCopyLinkModal,
     closeCopyLinkModal,
-  }, dispatch);
-}
+  }, dispatch)
 
-export default connect(mapState, mapDispatch)(Post);
+export default connect(mapState, mapDispatch)(Post)
 
 Post.propTypes = {
-  pk: PropTypes.number,
-  authenticated: PropTypes.bool,
-  tripReport: PropTypes.array,
-  showCountryModal: PropTypes.bool,
-  modalCountry: PropTypes.object,
-  showNotAuthModal: PropTypes.bool,
-  showCopyLinkModal: PropTypes.bool,
-  modalLink: PropTypes.string,
-  fetchSlugTripReports: PropTypes.func,
-  removeError: PropTypes.func,
-  openCountryModal: PropTypes.func,
-  closeCountryModal: PropTypes.func,
-  toggleFavorite: PropTypes.func,
-  openNotAuthModal: PropTypes.func,
-  closeNotAuthModal: PropTypes.func,
-  openCopyLinkModal: PropTypes.func,
-  closeCopyLinkModal: PropTypes.func,
-};
+  pk: number,
+  authenticated: bool.isRequired,
+  tripReports: arrayOf(shape({})).isRequired,
+  showCountryModal: bool.isRequired,
+  modalCountry: shape({}).isRequired,
+  showNotAuthModal: bool.isRequired,
+  showCopyLinkModal: bool.isRequired,
+  modalLink: string,
+  fetchSlugTripReports: func.isRequired,
+  removeError: func.isRequired,
+  openCountryModal: func.isRequired,
+  closeCountryModal: func.isRequired,
+  toggleFavorite: func.isRequired,
+  openNotAuthModal: func.isRequired,
+  closeNotAuthModal: func.isRequired,
+  openCopyLinkModal: func.isRequired,
+  closeCopyLinkModal: func.isRequired,
+  fetching: bool.isRequired,
+  match: shape({}).isRequired,
+}
+
+Post.defaultProps = {
+  pk: null,
+  modalLink: '',
+}

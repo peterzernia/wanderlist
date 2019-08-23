@@ -1,11 +1,20 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { PropTypes } from 'prop-types'
+import {
+ arrayOf, func, bool, string, number, shape,
+} from 'prop-types'
 
-import { openCopyLinkModal, closeCopyLinkModal } from '../actions/modalActions'
-import { openCountryModal, closeCountryModal } from '../actions/modalActions'
-import { openNotAuthModal, closeNotAuthModal } from '../actions/modalActions'
+import { DotLoader } from 'react-spinners'
+import Typography from '@material-ui/core/Typography'
+import {
+ openCopyLinkModal,
+ closeCopyLinkModal,
+ openCountryModal,
+ closeCountryModal,
+ openNotAuthModal,
+ closeNotAuthModal,
+} from '../actions/modalActions'
 import { toggleFavorite } from '../actions/favoriteActions'
 
 import CopyLinkModal from '../components/CopyLinkModal'
@@ -13,58 +22,55 @@ import CountryModal from '../components/CountryModal'
 import NotAuthModal from '../components/NotAuthModal'
 import TripReportTruncated from '../components/TripReportTruncated'
 
-import { DotLoader } from 'react-spinners'
-import Typography from '@material-ui/core/Typography'
 
 export function Home(props) {
-  const { tripReport, modalCountry, toggleFavorite } = props;
+  const { tripReport, modalCountry } = props
 
   const handleClick = (e) => {
-    e.preventDefault();
-    toggleFavorite(e.currentTarget.id);
+    e.preventDefault()
+    props.toggleFavorite(e.currentTarget.id)
   }
 
-  const featuredTripReport = tripReport && tripReport.map(tripReport =>(
-    <div key={tripReport.id} style={{ marginBottom: 20 }}>
-      <TripReportTruncated handleClick={handleClick} {...tripReport} {...props}/>
+  const featuredTripReport = tripReport && tripReport.map((report) => (
+    <div key={report.id} style={{ marginBottom: 20 }}>
+      <TripReportTruncated handleClick={handleClick} {...tripReport} {...props} />
     </div>
-  ));
+  ))
 
-  return(
-    <div >
+  return (
+    <div>
       <NotAuthModal {...props} />
       <CopyLinkModal {...props} />
       {modalCountry && <CountryModal {...props} />}
-      <div className='header-img'>
+      <div className="header-img">
         <Typography variant="h2" gutterBottom style={{ color: 'white', paddingTop: 200 }}>
           Connect, Learn, Share
         </Typography>
       </div>
       <div style={{ marginTop: 60, textAlign: 'center' }}>
         <h2>Search for Countries and Territories</h2>
-        <img style={{ margin: '0 auto' }} src='https://raw.githubusercontent.com/peterzernia/wanderlist/master/images/country.png' alt='' />
+        <img style={{ margin: '0 auto' }} src="https://raw.githubusercontent.com/peterzernia/wanderlist/master/images/country.png" alt="" />
       </div>
-      <div style={{marginTop: 60, textAlign: 'center' }}>
+      <div style={{ marginTop: 60, textAlign: 'center' }}>
         <h2>Add them to your personalized map</h2>
-        <img style={{ margin: '0 auto' }} src='https://raw.githubusercontent.com/peterzernia/wanderlist/master/images/map.png' alt='' />
+        <img style={{ margin: '0 auto' }} src="https://raw.githubusercontent.com/peterzernia/wanderlist/master/images/map.png" alt="" />
       </div>
-      <div className='content' style={{ margin: '0 auto', marginTop: 30 }}>
-        <h2>Post Trip Reports about journeys you've taken</h2>
+      <div className="content" style={{ margin: '0 auto', marginTop: 30 }}>
+        <h2>Post Trip Reports about journeys you&#39;ve taken</h2>
         <div style={{ textAlign: 'left', width: '90%', margin: '0 auto' }}>
           Featured Trip Report
         </div>
         {
           tripReport
           ? <div>{featuredTripReport}</div>
-          : <DotLoader size={50} color={'#2196f3'} className="content" />
+          : <DotLoader size={50} color="#2196f3" className="content" />
         }
       </div>
     </div>
-  );
+  )
 }
 
-const mapState = state => {
-  return {
+const mapState = (state) => ({
     tripReport: state.tripReport.featuredTripReport,
     showCountryModal: state.modal.showCountryModal,
     modalCountry: state.modal.modalCountry,
@@ -73,11 +79,9 @@ const mapState = state => {
     showNotAuthModal: state.modal.showNotAuthModal,
     showCopyLinkModal: state.modal.showCopyLinkModal,
     modalLink: state.modal.modalLink,
-  };
-}
+  })
 
-const mapDispatch = dispatch => {
-  return bindActionCreators({
+const mapDispatch = (dispatch) => bindActionCreators({
     toggleFavorite,
     openCountryModal,
     closeCountryModal,
@@ -85,22 +89,27 @@ const mapDispatch = dispatch => {
     closeNotAuthModal,
     openCopyLinkModal,
     closeCopyLinkModal,
-  }, dispatch);
-}
+  }, dispatch)
 
-export default connect(mapState, mapDispatch)(Home);
+export default connect(mapState, mapDispatch)(Home)
 
 Home.propTypes = {
-  tripReport: PropTypes.array,
-  showCountryModal: PropTypes.bool,
-  modalCountry: PropTypes.object,
-  pk: PropTypes.number,
-  authenticated: PropTypes.bool,
-  showNotAuthModal: PropTypes.bool,
-  showCopyLinkModal: PropTypes.bool,
-  modalLink: PropTypes.string,
-  openCountryModal: PropTypes.func,
-  closeCountryModal: PropTypes.func,
-  openCopyLinkModal: PropTypes.func,
-  closeCopyLinkModal: PropTypes.func,
-};
+  tripReport: arrayOf(shape({})).isRequired,
+  showCountryModal: bool.isRequired,
+  modalCountry: shape({}).isRequired,
+  pk: number,
+  authenticated: bool.isRequired,
+  showNotAuthModal: bool.isRequired,
+  showCopyLinkModal: bool.isRequired,
+  modalLink: string,
+  openCountryModal: func.isRequired,
+  closeCountryModal: func.isRequired,
+  openCopyLinkModal: func.isRequired,
+  closeCopyLinkModal: func.isRequired,
+  toggleFavorite: func.isRequired,
+}
+
+Home.defaultProps = {
+  modalLink: '',
+  pk: null,
+}

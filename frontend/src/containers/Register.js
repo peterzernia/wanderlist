@@ -1,8 +1,8 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import { Redirect } from 'react-router-dom';
+import { bool, func } from 'prop-types'
+import { Redirect } from 'react-router-dom'
 
 import { authRegister } from '../actions/authActions'
 import { removeError } from '../actions/errorActions'
@@ -10,53 +10,49 @@ import { removeError } from '../actions/errorActions'
 import RegistrationForm from '../components/RegistrationForm'
 
 export function Register(props) {
-  const { authRegister, authenticated } = props
+  const { authenticated } = props
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     const country = e.target.country.value && Number(e.target.country.value)
 
-    authRegister(
+    props.authRegister(
       e.target.username.value,
       e.target.email.value,
       e.target.password1.value,
       e.target.password2.value,
-      country
-    );
-    e.target.password1.value='';
-    e.target.password2.value='';
+      country,
+    )
+    e.target.password1.value = ''
+    e.target.password2.value = ''
   }
 
-  return(
+  return (
     <div className="content">
-    {
+      {
       !authenticated
-      ? <RegistrationForm handleSubmit={handleSubmit} {...props}/>
-      : <Redirect to={{pathname: "/",}} />
+      ? <RegistrationForm handleSubmit={handleSubmit} {...props} />
+      : <Redirect to={{ pathname: '/' }} />
     }
     </div>
-  );
+  )
 }
 
-const mapState = state => {
-  return {
+const mapState = (state) => ({
     authenticating: state.auth.authenticating,
     authenticated: state.auth.authenticated,
-  };
-}
+  })
 
-const mapDispatch = dispatch => {
-  return bindActionCreators({
+const mapDispatch = (dispatch) => bindActionCreators({
     authRegister,
-    removeError
-  }, dispatch);
-}
+    removeError,
+  }, dispatch)
 
-export default connect(mapState, mapDispatch)(Register);
+export default connect(mapState, mapDispatch)(Register)
 
 Register.propTypes = {
-  authenticating: PropTypes.bool.isRequired,
-  authenticated: PropTypes.bool.isRequired,
-  authRegister: PropTypes.func.isRequired,
-};
+  authenticating: bool.isRequired,
+  authenticated: bool.isRequired,
+  authRegister: func.isRequired,
+}

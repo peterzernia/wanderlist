@@ -26,5 +26,9 @@ export default CopyLinkModal
 CopyLinkModal.propTypes = {
   closeCopyLinkModal: func.isRequired,
   showCopyLinkModal: bool.isRequired,
-  modalLink: string.isRequired,
+  modalLink: string,
+}
+
+CopyLinkModal.defaultProps = {
+  modalLink: '',
 }
