@@ -105,6 +105,7 @@ describe('<TripReportTruncated />', () =>{
         openNotAuthModal={openNotAuthModal} content={content}
       />
     );
+    
     // Should display not favorited button.
     expect(wrapper.find(FavoriteIcon).length).toEqual(0);
     expect(wrapper.find(FavoriteBorderIcon).length).toEqual(1);
@@ -116,6 +117,7 @@ describe('<TripReportTruncated />', () =>{
     wrapper.find(IconButton).at(0).simulate('click');
     expect(openNotAuthModal).toHaveBeenCalledTimes(1);
   });
+
   it('opens CopyLinkModal', () => {
     const countries = [country];
     const author = { username: "Test", home: country };
@@ -130,8 +132,8 @@ describe('<TripReportTruncated />', () =>{
     );
     wrapper.find(IconButton).at(1).simulate('click');
     expect(openCopyLinkModal).toHaveBeenCalledTimes(1);
-
   });
+
   it('opens CountryModal', () => {
     const countries = [country];
     const author = { username: "Test", home: country };
@@ -153,29 +155,7 @@ describe('<TripReportTruncated />', () =>{
     wrapper.setProps({ countries: [country, country, country] })
     expect(wrapper.find(Button).length).toEqual(3);
   });
-  it('expands on button click', () => {
-    const countries = [country];
-    const author = { username: "Test", home: country };
-    const openCountryModal = jest.fn();
-    const favoriters = [];
-    const content = "Test content"
-    const wrapper = shallow(
-      <TripReportTruncated
-        author={author} favoriters={favoriters} countries={countries}
-        openCountryModal={openCountryModal} content={content}
-      />
-    );
-    expect(wrapper.state('expanded')).toEqual(false);
-    expect(wrapper.find(IconButton).at(2).prop('style')).toEqual({"float": "right", "marginLeft": "auto"})
-    // Clicking the button expands and flips the button.
-    wrapper.find(IconButton).at(2).simulate('click');
-    expect(wrapper.state('expanded')).toEqual(true);
-    expect(wrapper.find(IconButton).at(2).prop('style')).toEqual({"float": "right", "marginLeft": "auto", "transform": "rotate(180deg)"})
-    wrapper.find(IconButton).at(2).simulate('click');
-    // Clicking it again reverts it back.
-    expect(wrapper.state('expanded')).toEqual(false);
-    expect(wrapper.find(IconButton).at(2).prop('style')).toEqual({"float": "right", "marginLeft": "auto"})
-  });
+
   it('truncates text', () => {
     const countries = [country];
     const author = { username: "Test", home: country };
