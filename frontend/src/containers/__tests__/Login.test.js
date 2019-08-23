@@ -1,11 +1,11 @@
 import React from 'react'
 import { shallow } from 'enzyme'
+import { Redirect } from 'react-router-dom'
 import { Login } from '../Login'
 import LoginForm from '../../components/LoginForm'
-import { Redirect } from 'react-router-dom'
 
-describe('<Login />', () =>{
-  let wrapper;
+describe('<Login />', () => {
+  let wrapper
 
   const props = {
     authLogin: jest.fn(),
@@ -17,12 +17,12 @@ describe('<Login />', () =>{
 
   beforeEach(() => {
     wrapper = shallow(<Login {...props} />)
-  });
+  })
 
   it('displays loginform', () => {
-    expect(wrapper.find(LoginForm).length).toEqual(1);
+    expect(wrapper.find(LoginForm).length).toEqual(1)
     wrapper.setProps({ authenticated: true })
-    expect(wrapper.find(LoginForm).length).toEqual(0);
-    expect(wrapper.find(Redirect).length).toEqual(1);
-  });
-});
+    expect(wrapper.find(LoginForm).length).toEqual(0)
+    expect(wrapper.find(Redirect).length).toEqual(1)
+  })
+})

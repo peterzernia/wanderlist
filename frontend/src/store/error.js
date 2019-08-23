@@ -3,28 +3,28 @@ const initialState = {
   success: null,
 }
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
-    case "ADD_ERROR": {
+    case 'ADD_ERROR': {
       return {
         ...state,
-        error: action.error
+        error: action.error,
       }
     }
-    case "REMOVE_ERROR":{
+    case 'REMOVE_ERROR': {
       return {
         ...state,
         error: null,
-        success: null
+        success: null,
       }
     }
-    case "ADD_SUCCESS":{
+    case 'ADD_SUCCESS': {
       return {
         ...state,
-        success: action.success
+        success: action.success,
       }
     }
     default:
-      return state;
+      return state
   }
 }

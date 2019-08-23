@@ -6,23 +6,25 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 
-const ConfirmDeleteModal = ({ closeConfirmDeleteModal, showConfirmDeleteModal, deleteTripReport, modalPost }) => (
+const ConfirmDeleteModal = ({
+ closeConfirmDeleteModal, showConfirmDeleteModal, deleteTripReport, modalPost 
+}) => (
   <Dialog onClose={closeConfirmDeleteModal} open={showConfirmDeleteModal}>
     <DialogContent>
       <DialogContentText>
         Are you sure you want to delete this Trip Report?
       </DialogContentText>
       <DialogActions>
-      <Button onClick={() => {closeConfirmDeleteModal(); deleteTripReport(modalPost);}} color="primary" variant="contained">
+        <Button onClick={() => { closeConfirmDeleteModal(); deleteTripReport(modalPost)}} color="primary" variant="contained">
         Delete
       </Button>
-      <Button onClick={() => closeConfirmDeleteModal()} color="secondary">
+        <Button onClick={() => closeConfirmDeleteModal()} color="secondary">
         Cancel
       </Button>
-    </DialogActions>
+      </DialogActions>
     </DialogContent>
   </Dialog>
-);
+)
 
 export default ConfirmDeleteModal
 

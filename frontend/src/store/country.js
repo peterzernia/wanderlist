@@ -4,17 +4,17 @@ const initialState = {
   country: [],
 }
 
-/* Reducer Function*/
-export default function (state = initialState, action) {
+/* Reducer Function */
+export default function(state = initialState, action) {
   switch (action.type) {
-    case "FETCH_COUNTRY_PENDING": {
+    case 'FETCH_COUNTRY_PENDING': {
       return {
         ...state,
         fetching: true,
         fetched: false,
       }
     }
-    case "FETCH_COUNTRY_FULFILLED": {
+    case 'FETCH_COUNTRY_FULFILLED': {
       return {
         ...state,
         fetching: false,
@@ -22,7 +22,7 @@ export default function (state = initialState, action) {
         country: action.country,
       }
     }
-    case "FETCH_COUNTRY_REJECTED": {
+    case 'FETCH_COUNTRY_REJECTED': {
       return {
         ...state,
         fetching: false,

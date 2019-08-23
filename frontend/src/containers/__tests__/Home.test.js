@@ -1,31 +1,32 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { Home } from '../Home'
 import { DotLoader } from 'react-spinners'
+import { Home } from '../Home'
 import { tripReport } from '../../testVariables'
 import TripReportTruncated from '../../components/TripReportTruncated'
 
-describe('<Home />', () =>{
-  let wrapper;
-  const toggleFavorite = jest.fn();
+describe('<Home />', () => {
+  let wrapper
+  const toggleFavorite = jest.fn()
 
   beforeEach(() => {
     wrapper = shallow(
       <Home
-        tripReport={null} toggleFavorite={toggleFavorite}
-      />
+        tripReport={null}
+        toggleFavorite={toggleFavorite}
+      />,
     )
-  });
+  })
 
   it('displays loader', () => {
-    expect(wrapper.find(DotLoader).length).toEqual(1);
+    expect(wrapper.find(DotLoader).length).toEqual(1)
     wrapper.setProps({ tripReport: [tripReport] })
-    expect(wrapper.find(DotLoader).length).toEqual(0);
-  });
+    expect(wrapper.find(DotLoader).length).toEqual(0)
+  })
 
   it('displays featured tripReport', () => {
-    expect(wrapper.find(TripReportTruncated).length).toEqual(0);
+    expect(wrapper.find(TripReportTruncated).length).toEqual(0)
     wrapper.setProps({ tripReport: [tripReport] })
-    expect(wrapper.find(TripReportTruncated).length).toEqual(1);
-  });
-});
+    expect(wrapper.find(TripReportTruncated).length).toEqual(1)
+  })
+})

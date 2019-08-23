@@ -1,7 +1,7 @@
 import './App.css'
 import React from 'react'
-import Layout from './containers/Layout'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import Layout from './containers/Layout'
 
 export default function App() {
   const theme = createMuiTheme({
@@ -11,9 +11,9 @@ export default function App() {
     overides: {
       CardActions: {
         root: {
-          overflow: 'scroll'
-        }
-      }
+          overflow: 'scroll',
+        },
+      },
     },
     palette: {
       primary: {
@@ -21,13 +21,13 @@ export default function App() {
       },
       secondary: {
         main: '#000000',
-      }
-    }
-  });
+      },
+    },
+  })
 
   return (
     <MuiThemeProvider theme={theme}>
       <Layout />
     </MuiThemeProvider>
-  );
+  )
 }

@@ -4,16 +4,16 @@ const initialState = {
   authenticated: false,
 }
 
-/* Reducer Function*/
-export default function (state = initialState, action) {
+/* Reducer Function */
+export default function(state = initialState, action) {
   switch (action.type) {
-    case "AUTH_START": {
+    case 'AUTH_START': {
       return {
         ...state,
         authenticating: true,
       }
     }
-    case "AUTH_SUCCESS": {
+    case 'AUTH_SUCCESS': {
       return {
         ...state,
         authenticating: false,
@@ -21,14 +21,14 @@ export default function (state = initialState, action) {
         token: action.token,
       }
     }
-    case "AUTH_FAIL": {
+    case 'AUTH_FAIL': {
       return {
         ...state,
         authenticating: false,
         authenticated: false,
       }
     }
-    case "AUTH_LOGOUT": {
+    case 'AUTH_LOGOUT': {
       return {
         ...state,
         authenticating: false,

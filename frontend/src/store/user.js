@@ -7,24 +7,24 @@ const initialState = {
   singleUser: {},
 }
 
-/* Reducer Function*/
-export default function (state = initialState, action) {
+/* Reducer Function */
+export default function(state = initialState, action) {
   switch (action.type) {
-    case "FETCH_USER_PENDING": {
+    case 'FETCH_USER_PENDING': {
       return {
         ...state,
-        fetching: true
+        fetching: true,
       }
     }
-    case "FETCH_USER_FULFILLED": {
+    case 'FETCH_USER_FULFILLED': {
       return {
         ...state,
         fetching: false,
         fetched: true,
-        user: action.user
+        user: action.user,
       }
     }
-    case "FETCH_USER_REJECTED": {
+    case 'FETCH_USER_REJECTED': {
       return {
         ...state,
         fetching: false,
@@ -32,31 +32,31 @@ export default function (state = initialState, action) {
       }
     }
     // Axios put
-    case "PUT_USER_DATA_FULFILLED": {
+    case 'PUT_USER_DATA_FULFILLED': {
       return {
         ...state,
-        user: action.user
+        user: action.user,
       }
     }
-    case "FETCH_SINGLE_USER_PENDING": {
+    case 'FETCH_SINGLE_USER_PENDING': {
       return {
         ...state,
-        fetchingSingleUser: true
+        fetchingSingleUser: true,
       }
     }
     /*
     API search returns an array of 1 object, since the search parameter is an
     exact match.
     */
-    case "FETCH_SINGLE_USER_FULFILLED": {
+    case 'FETCH_SINGLE_USER_FULFILLED': {
       return {
         ...state,
         fetchingSingleUser: false,
         fetchedSingleUser: true,
-        singleUser: action.user[0]
+        singleUser: action.user[0],
       }
     }
-    case "FETCH_SINGLE_USER_REJECTED": {
+    case 'FETCH_SINGLE_USER_REJECTED': {
       return {
         ...state,
         fetchingSingleUser: false,
@@ -64,7 +64,7 @@ export default function (state = initialState, action) {
       }
     }
     // Reset authenticated user object on logout.
-    case "AUTH_LOGOUT": {
+    case 'AUTH_LOGOUT': {
       return {
         ...state,
         user: { countries: [] },

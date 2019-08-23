@@ -10,15 +10,19 @@ const Errors = (props) => {
   If there are details on the error, they are in the response of the error
   object, but if there are no details, the error is just the message.
   */
-  let errorDetails = null;
-  if (error.response) {
-    errorDetails = Object.keys(error.response.data).map(error => (
-      <p key={error}>
-        {error.charAt(0).toUpperCase() + error.slice(1)} - {error.response.data[error]}
+  let errorDetails = null
+  if (error.response && error.response.data && error.response.data.length) {
+    errorDetails = Object.keys(error.response.data).map((err) => (
+      <p key={err}>
+        {err.charAt(0).toUpperCase() + err.slice(1)}
+        {' '}
+-
+        {' '}
+        {err.response.data[error]}
       </p>
-    ));
+    ))
   } else {
-    errorDetails = error.message;
+    errorDetails = error.message
   }
 
   return (
@@ -26,15 +30,15 @@ const Errors = (props) => {
       <IconButton style={{ float: 'right' }} onClick={removeError}>
         <Close />
       </IconButton>
-      <div style={{ width: 48, height: 48, float: 'left' }}/>
+      <div style={{ width: 48, height: 48, float: 'left' }} />
       {errorDetails}
     </div>
   )
 }
 
-export default Errors;
+export default Errors
 
 Errors.propTypes = {
-  error: shape({}),
-  removeError: func,
+  error: shape({}).isRequired,
+  removeError: func.isRequired,
 }
