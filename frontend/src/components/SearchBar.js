@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
+import { func } from 'prop-types'
 import Button from '@material-ui/core/Button'
 import countries from '../country_data'
 import Autosuggest from 'react-autosuggest'
@@ -59,17 +60,15 @@ const getSuggestions = value => {
 
 const getSuggestionValue = suggestion => suggestion.name;
 
-function renderSuggestion(suggestion) {
-  return (
+const renderSuggestion = (suggestion) => (
     <MenuItem component="div">
       <div>
         {suggestion.name}
       </div>
     </MenuItem>
-  );
-}
+)
 
-function renderInputComponent(inputProps) {
+const renderInputComponent = (inputProps) => {
   const { inputRef = () => {}, ref, ...other } = inputProps;
   return (
     <TextField
@@ -84,63 +83,49 @@ function renderInputComponent(inputProps) {
   );
 }
 
-class SearchBar extends Component {
+export default function SearchBar({ handleSubmit }) {
+  const [value, setValue] = useState('')
+  const [suggestions, setSuggestions] = useState([])
 
-  constructor() {
-    super();
-    this.state = {
-      value: '',
-      suggestions: []
-    };
-  }
-
-  onChange = (event, { newValue }) => {
-    this.setState({
-      value: newValue
-    });
+  const onChange = (e, { newValue }) => {
+    setValue(newValue)
   };
 
-  onSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      suggestions: getSuggestions(value)
-    });
+  const onSuggestionsFetchRequested = ({ value }) => {
+    setSuggestions(getSuggestions(value))
   };
 
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: []
-    });
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([])
   };
 
-  render() {
-    const { value, suggestions } = this.state;
+  const inputProps = {
+    placeholder: 'Search for a Country or Territory',
+    value,
+    onChange,
+  };
 
-    const inputProps = {
-      placeholder: 'Search for a Country or Territory',
-      value,
-      onChange: this.onChange
-    };
-
-    return(
-      <div>
-        <form onSubmit={this.props.handleSubmit}>
-          <div style={{ maxWidth: 300, margin: '0 auto' }}>
-            <Autosuggest
-              suggestions={suggestions}
-              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-              getSuggestionValue={getSuggestionValue}
-              renderSuggestion={renderSuggestion}
-              renderInputComponent={renderInputComponent}
-              inputProps={inputProps}
-              theme = {theme}
-            />
-            <Button variant="contained" color="primary" type='submit'>Search</Button>
-          </div>
-        </form>
-      </div>
-    )
-  }
+  return(
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div style={{ maxWidth: 300, margin: '0 auto' }}>
+          <Autosuggest
+            suggestions={suggestions}
+            onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={onSuggestionsClearRequested}
+            getSuggestionValue={getSuggestionValue}
+            renderSuggestion={renderSuggestion}
+            renderInputComponent={renderInputComponent}
+            inputProps={inputProps}
+            theme = {theme}
+          />
+          <Button variant="contained" color="primary" type='submit'>Search</Button>
+        </div>
+      </form>
+    </div>
+  )
 };
 
-export default SearchBar;
+SearchBar.propTypes = {
+  handleSubmit: func,
+}

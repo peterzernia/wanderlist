@@ -1,9 +1,8 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { shallow } from 'enzyme'
 import TripReportTruncated from '../TripReportTruncated'
 import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
-import CardHeader from '@material-ui/core/CardHeader'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import Typography from '@material-ui/core/Typography'
@@ -105,7 +104,7 @@ describe('<TripReportTruncated />', () =>{
         openNotAuthModal={openNotAuthModal} content={content}
       />
     );
-    
+
     // Should display not favorited button.
     expect(wrapper.find(FavoriteIcon).length).toEqual(0);
     expect(wrapper.find(FavoriteBorderIcon).length).toEqual(1);
