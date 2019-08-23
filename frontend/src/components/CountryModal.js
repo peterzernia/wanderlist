@@ -1,11 +1,12 @@
 import React from 'react'
+import { shape, bool, func } from 'prop-types'
 import ReactModal from 'react-modal'
 import IconButton from '@material-ui/core/IconButton'
 import Close from '@material-ui/icons/Close'
 import { Map, TileLayer, Marker } from 'react-leaflet'
 import Typography from '@material-ui/core/Typography'
 
-ReactModal.setAppElement('body');
+ReactModal.setAppElement('body')
 
 export default function CountryModal(props) {
 
@@ -86,4 +87,10 @@ export default function CountryModal(props) {
       </div><br/>
     </ReactModal>
   )
-};
+}
+
+CountryModal.propTypes = {
+  modalCountry: shape({}).isRequired,
+  showCountryModal: bool.isRequired,
+  closeCountryModal: func.isRequired,
+}

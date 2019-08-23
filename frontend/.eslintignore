@@ -1,0 +1,3 @@
+build/*
+src/serviceWorker.js
+src/components/CountryModal.js

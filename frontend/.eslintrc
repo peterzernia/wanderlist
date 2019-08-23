@@ -1,6 +1,6 @@
 {
   "extends": ["react-app", "airbnb", "plugin:jsx-a11y/recommended"],
-  "plugins": ["jsx-a11y"],
+  "plugins": ["jsx-a11y", "cypress"],
   "rules": {
     "react/jsx-props-no-spreading": "ignore",
     "react/static-property-placement": 0,
@@ -44,5 +44,8 @@
     "react-hooks/exhaustive-deps": "warn",
     "template-curly-spacing": "off",
     "indent": "off"
+  },
+  "env": {
+    "cypress/globals": true
   }
 }

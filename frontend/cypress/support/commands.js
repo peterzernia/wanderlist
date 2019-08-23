@@ -5,8 +5,8 @@ Cypress.Commands.add('login', () => {
       body: {
         username: 'TestUser',
         password: 'testing1234',
-      }
-    }).then(res => {
+      },
+    }).then((res) => {
       window.localStorage.setItem('token', res.body.key)
     })
 })

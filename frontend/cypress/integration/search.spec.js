@@ -1,4 +1,4 @@
-describe("Profile page", () => {
+describe('Profile page', () => {
   it('searches for countries', () => {
     cy.login()
     cy.visit('/')
@@ -41,7 +41,7 @@ describe("Profile page", () => {
     cy.get('[d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"]')
       .click()
     cy.contains('More Info')
-      .click({force: true})
+      .click({ force: true })
 
     cy.contains('Geographic & Political Info')
 
