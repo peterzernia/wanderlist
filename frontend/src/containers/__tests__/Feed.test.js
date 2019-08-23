@@ -14,6 +14,19 @@ describe('<Feed />', () => {
     fetchTripReports: jest.fn(),
     fetching: true,
     fetchingNext: false,
+    authenticated: true,
+    tripReports: [],
+    showCountryModal: false,
+    modalCountry: {},
+    showNotAuthModal: false,
+    showCopyLinkModal: false,
+    openCountryModal: jest.fn(),
+    closeCountryModal: jest.fn(),
+    fetchNextTripReports: jest.fn(),
+    openNotAuthModal: jest.fn(),
+    closeNotAuthModal: jest.fn(),
+    openCopyLinkModal: jest.fn(),
+    closeCopyLinkModal: jest.fn(),
   }
 
   beforeEach(() => {

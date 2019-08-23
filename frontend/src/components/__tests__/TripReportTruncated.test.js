@@ -84,6 +84,12 @@ describe('<TripReportTruncated />', () => {
         pk={pk}
         handleClick={handleClick}
         content={content}
+        openCountryModal={jest.fn()}
+        title=""
+        authenticated
+        id={1}
+        openCopyLinkModal={jest.fn()}
+        slug="1234"
       />,
     )
     // Should display favorited button.
@@ -111,6 +117,11 @@ describe('<TripReportTruncated />', () => {
         authenticated
         openNotAuthModal={openNotAuthModal}
         content={content}
+        title=""
+        id={1}
+        openCopyLinkModal={jest.fn()}
+        slug="1234"
+        openCountryModal={jest.fn()}
       />,
     )
 
@@ -139,6 +150,12 @@ describe('<TripReportTruncated />', () => {
         countries={countries}
         openCopyLinkModal={openCopyLinkModal}
         content={content}
+        openCountryModal={jest.fn()}
+        title=""
+        authenticated
+        id={1}
+        slug="1234"
+        handleClick={jest.fn()}
       />,
     )
     wrapper.find(IconButton).at(1).simulate('click')
@@ -158,6 +175,12 @@ describe('<TripReportTruncated />', () => {
         countries={countries}
         openCountryModal={openCountryModal}
         content={content}
+        title=""
+        authenticated
+        id={1}
+        openCopyLinkModal={jest.fn()}
+        slug="1234"
+        handleClick={jest.fn()}
       />,
     )
     expect(wrapper.find(Button).length).toEqual(1)
@@ -183,6 +206,12 @@ describe('<TripReportTruncated />', () => {
         countries={countries}
         openCountryModal={openCountryModal}
         content={content}
+        title=""
+        authenticated
+        id={1}
+        openCopyLinkModal={jest.fn()}
+        slug="1234"
+        handleClick={jest.fn()}
       />,
     )
     expect(wrapper.find(Typography).at(0).children().text()).toEqual('Test')

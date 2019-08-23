@@ -7,7 +7,12 @@ import Filter from '../Filter'
 
 describe('<Filter />', () => {
   it('displays menu on click', () => {
-    const wrapper = mount(<Filter />)
+    const props = {
+      handleSubmit: jest.fn(),
+      handleNewestClick: jest.fn(),
+      handleTopClick: jest.fn(),
+    }
+    const wrapper = mount(<Filter {...props} />)
     // Clicking iconbutton opens menu
     wrapper.find(IconButton).simulate('click')
     expect(wrapper.find(Menu).length).toEqual(1)

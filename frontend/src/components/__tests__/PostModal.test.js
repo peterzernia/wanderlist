@@ -14,6 +14,9 @@ describe('<PostModal />', () => {
       closePostModal: jest.fn(),
       showPostModal: true,
       updatePostModal: false,
+      modalPost: {},
+      handleUpdateSubmit: jest.fn(),
+      handlePostSubmit: jest.fn(),
     }
     wrapper = shallow(<PostModal {...props} />)
   })

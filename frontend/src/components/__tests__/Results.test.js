@@ -73,6 +73,9 @@ describe('<Results />', () => {
         openNotAuthModal={openNotAuthModal}
         country={country}
         authenticated={false}
+        userCountries={[]}
+        openCountryModal={jest.fn()}
+        handleClick={jest.fn()}
       />,
     )
     // Clicking iconbutton opens menu
@@ -90,6 +93,8 @@ describe('<Results />', () => {
         openNotAuthModal={openNotAuthModal}
         country={country}
         authenticated={false}
+        userCountries={[]}
+        openCountryModal={jest.fn()}
       />,
     )
     wrapper.find(IconButton).simulate('click')

@@ -70,7 +70,13 @@ describe('<TripReportThumbnail />', () => {
     const tripReport = { title: 'Test', countries: [country] }
     const match = { path: '' }
     const wrapper = mount(
-      <TripReportThumbnail tripReport={tripReport} match={match} />,
+      <TripReportThumbnail
+        tripReport={tripReport}
+        match={match}
+        openTripReportModal={jest.fn()}
+        openConfirmDeleteModal={jest.fn()}
+        openUpdatePostModal={jest.fn()}
+      />,
     )
     wrapper.find(IconButton).simulate('click')
     expect(wrapper.find(Menu).length).toEqual(1)
@@ -81,7 +87,13 @@ describe('<TripReportThumbnail />', () => {
     const tripReport = { title: 'Test', countries: [country] }
     const match = { path: '/profile' }
     const wrapper = mount(
-      <TripReportThumbnail tripReport={tripReport} match={match} />,
+      <TripReportThumbnail
+        tripReport={tripReport}
+        match={match}
+        openTripReportModal={jest.fn()}
+        openConfirmDeleteModal={jest.fn()}
+        openUpdatePostModal={jest.fn()}
+      />,
     )
     wrapper.find(IconButton).simulate('click')
     expect(wrapper.find(Menu).length).toEqual(1)

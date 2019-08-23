@@ -14,6 +14,16 @@ describe('<Search />', () => {
     putUserData: jest.fn(),
     home: { id: 1 },
     searchedCountry: [],
+    authenticated: true,
+    fetched: false,
+    fetching: false,
+    showCountryModal: false,
+    modalCountry: {},
+    showNotAuthModal: false,
+    openCountryModal: jest.fn(),
+    closeCountryModal: jest.fn(),
+    openNotAuthModal: jest.fn(),
+    closeNotAuthModal: jest.fn(),
   }
 
   beforeEach(() => {

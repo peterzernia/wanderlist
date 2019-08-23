@@ -12,6 +12,7 @@ describe('<EditProfileModal />', () => {
         closeEditProfileModal={closeEditProfileModal}
         showEditProfileModal
         user={user}
+        handleSubmit={jest.fn()}
       />,
     )
     wrapper.find(Dialog).prop('onClose')(closeEditProfileModal)

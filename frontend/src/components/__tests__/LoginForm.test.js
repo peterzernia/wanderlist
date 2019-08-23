@@ -5,7 +5,7 @@ import LoginForm from '../LoginForm'
 
 describe('<LoginForm />', () => {
   it('renders component', () => {
-    const wrapper = shallow(<LoginForm showLoginForm />)
+    const wrapper = shallow(<LoginForm showLoginForm handleSubmit={jest.fn()} />)
     expect(wrapper.find(Card).length).toEqual(1)
   })
   it('handles submit', () => {

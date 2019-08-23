@@ -5,7 +5,7 @@ import ForgotPasswordForm from '../ForgotPasswordForm'
 
 describe('<ForgotPasswordForm />', () => {
   it('renders component', () => {
-    const wrapper = shallow(<ForgotPasswordForm showForgotPasswordForm />)
+    const wrapper = shallow(<ForgotPasswordForm showForgotPasswordForm handleSubmit={jest.fn()} />)
     expect(wrapper.find(Card).length).toEqual(1)
   })
   it('handles submit', () => {

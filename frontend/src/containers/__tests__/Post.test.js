@@ -15,6 +15,18 @@ describe('<Post />', () => {
     toggleFavorite: jest.fn(),
     fetching: true,
     match: { params: { slug: 'AO3TH39223S' } },
+    authenticated: true,
+    tripReports: [],
+    showCountryModal: false,
+    modalCountry: {},
+    showNotAuthModal: false,
+    showCopyLinkModal: false,
+    openCountryModal: jest.fn(),
+    closeCountryModal: jest.fn(),
+    openNotAuthModal: jest.fn(),
+    closeNotAuthModal: jest.fn(),
+    openCopyLinkModal: jest.fn(),
+    closeCopyLinkModal: jest.fn(),
   }
 
   beforeEach(() => {

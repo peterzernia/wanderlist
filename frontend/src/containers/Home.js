@@ -61,7 +61,7 @@ export function Home(props) {
           Featured Trip Report
         </div>
         {
-          tripReport
+          featuredTripReport
           ? <div>{featuredTripReport}</div>
           : <DotLoader size={50} color="#2196f3" className="content" />
         }
@@ -94,7 +94,7 @@ const mapDispatch = (dispatch) => bindActionCreators({
 export default connect(mapState, mapDispatch)(Home)
 
 Home.propTypes = {
-  tripReport: arrayOf(shape({})).isRequired,
+  tripReport: arrayOf(shape({})),
   showCountryModal: bool.isRequired,
   modalCountry: shape({}).isRequired,
   pk: number,
@@ -112,4 +112,5 @@ Home.propTypes = {
 Home.defaultProps = {
   modalLink: '',
   pk: null,
+  tripReport: null,
 }

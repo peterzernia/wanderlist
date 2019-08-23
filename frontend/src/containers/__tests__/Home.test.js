@@ -1,32 +1,34 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { DotLoader } from 'react-spinners'
 import { Home } from '../Home'
 import { tripReport } from '../../testVariables'
 import TripReportTruncated from '../../components/TripReportTruncated'
 
 describe('<Home />', () => {
   let wrapper
-  const toggleFavorite = jest.fn()
+  let props
 
   beforeEach(() => {
-    wrapper = shallow(
-      <Home
-        tripReport={null}
-        toggleFavorite={toggleFavorite}
-      />,
-    )
-  })
+    props = {
+      toggleFavorite: jest.fn(),
+      tripReport: [tripReport],
+      showCountryModal: false,
+      modalCountry: {},
+      authenticated: true,
+      showNotAuthModal: false,
+      showCopyLinkModal: false,
+      openCountryModal: jest.fn(),
+      closeCountryModal: jest.fn(),
+      openCopyLinkModal: jest.fn(),
+      closeCopyLinkModal: jest.fn(),
+      openNotAuthModal: jest.fn(),
+      closeNotAuthModal: jest.fn(),
+    }
 
-  it('displays loader', () => {
-    expect(wrapper.find(DotLoader).length).toEqual(1)
-    wrapper.setProps({ tripReport: [tripReport] })
-    expect(wrapper.find(DotLoader).length).toEqual(0)
+    wrapper = shallow(<Home {...props} />)
   })
 
   it('displays featured tripReport', () => {
-    expect(wrapper.find(TripReportTruncated).length).toEqual(0)
-    wrapper.setProps({ tripReport: [tripReport] })
     expect(wrapper.find(TripReportTruncated).length).toEqual(1)
   })
 })

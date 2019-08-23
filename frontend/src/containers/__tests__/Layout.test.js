@@ -21,6 +21,9 @@ describe('<Layout />', () => {
       fetchFeaturedTripReport: jest.fn(),
       fetchUser: jest.fn(),
       authenticated: false,
+      fetched: true,
+      removeError: jest.fn(),
+      fetchUserTripReports: jest.fn(),
     }
     wrapper = shallow(<Layout {...props} />)
   })

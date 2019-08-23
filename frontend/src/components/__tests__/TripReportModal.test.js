@@ -12,8 +12,21 @@ describe('<TripReportModal />', () => {
     props = {
       showTripReportModal: false,
       closeTripReportModal: jest.fn(),
+      modalPost: {},
+      handleClick: jest.fn(),
+      content: '',
+      countries: [],
+      openCountryModal: jest.fn(),
+      title: '',
+      author: {},
+      favoriters: [],
+      id: 1,
+      openCopyLinkModal: jest.fn(),
+      closeCopyLinkModal: jest.fn(),
+      authenticated: true,
+      slug: '',
     }
-    wrapper = shallow(<TripReportModal showTripReportModal />)
+    wrapper = shallow(<TripReportModal {...props} />)
   })
   it('renders modal', () => {
     expect(wrapper.find(ReactModal).length).toEqual(1)

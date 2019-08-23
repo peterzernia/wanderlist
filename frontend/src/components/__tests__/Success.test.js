@@ -6,13 +6,14 @@ import Success from '../Success'
 describe('<Success />', () => {
   it('removes success', () => {
     const removeError = jest.fn()
-    const wrapper = shallow(<Success removeError={removeError} />)
+    const wrapper = shallow(<Success removeError={removeError} success="" />)
     wrapper.find(IconButton).simulate('click')
     expect(removeError).toHaveBeenCalledTimes(1)
   })
 
   it('display success conditionally', () => {
-    const wrapper = shallow(<Success />)
+    const removeError = jest.fn()
+    const wrapper = shallow(<Success removeError={removeError} success="" />)
     expect(wrapper.find('p').length).toEqual(0)
     wrapper.setProps({ success: 'test' })
     expect(wrapper.find('p').length).toEqual(1)

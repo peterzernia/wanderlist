@@ -12,6 +12,7 @@ describe('<ConfirmDeleteModal />', () => {
         closeConfirmDeleteModal={closeConfirmDeleteModal}
         deleteTripReport={deleteTripReport}
         showConfirmDeleteModal
+        modalPost={{}}
       />,
     )
     wrapper.find(Button).at(0).simulate('click')
