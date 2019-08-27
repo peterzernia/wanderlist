@@ -33,7 +33,7 @@ export function Home(props) {
 
   const featuredTripReport = tripReport && tripReport.map((report) => (
     <div key={report.id} style={{ marginBottom: 20 }}>
-      <TripReportTruncated handleClick={handleClick} {...tripReport} {...props} />
+      <TripReportTruncated handleClick={handleClick} {...report} {...props} />
     </div>
   ))
 
