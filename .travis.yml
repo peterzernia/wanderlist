@@ -35,13 +35,13 @@ matrix:
       node_js:
         - "12.4"
       install:
-        - cd frontend && npm install
+        - cd frontend && yarn install
       cache:
         directories:
           - frontend/node_modules
       script:
-        - npm run lint
-        - npm test
+        - yarn run lint
+        - yarn test
     - stage: Deploy to production
       script: skip
       deploy: &heroku
