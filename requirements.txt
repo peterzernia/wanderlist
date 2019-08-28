@@ -17,5 +17,5 @@ python-dateutil==2.7.5
 python-mimeparse==1.6.0
 python3-openid==3.1.0
 pytz==2018.6
-requests-oauthlib==1.0.0
+requests-oauthlib==1.2.0
 whitenoise==3.3.1
