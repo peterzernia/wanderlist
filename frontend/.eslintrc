@@ -2,7 +2,7 @@
   "extends": ["react-app", "airbnb", "plugin:jsx-a11y/recommended"],
   "plugins": ["jsx-a11y", "cypress"],
   "rules": {
-    "react/jsx-props-no-spreading": "ignore",
+    "react/jsx-props-no-spreading": 0,
     "react/static-property-placement": 0,
     "react/state-in-constructor": "always",
     "react/jsx-curly-newline": "require",
