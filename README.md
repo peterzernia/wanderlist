@@ -52,7 +52,7 @@ make clean
 
 The API endpoints are available at /api/v1/. The token refers to the token returned from authentication.
 
-- GET countries/
+- GET countries/  
   Response:
   200 OK
 
@@ -135,7 +135,7 @@ The API endpoints are available at /api/v1/. The token refers to the token retur
   ]
   ```
 
-- GET reports/
+- GET reports/  
   Response:
   200 OK
 
@@ -150,7 +150,7 @@ The API endpoints are available at /api/v1/. The token refers to the token retur
   }
   ```
 
-- POST reports/
+- POST reports/  
   Request:
 
   ```
@@ -197,7 +197,7 @@ The API endpoints are available at /api/v1/. The token refers to the token retur
   }
   ```
 
-- PATCH reports/:id
+- PATCH reports/:id  
   Request:
 
   ```
@@ -229,7 +229,7 @@ The API endpoints are available at /api/v1/. The token refers to the token retur
   }
   ```
 
-- GET reports/:id/favorite/
+- GET reports/:id/favorite/  
   Request:
 
   ```
@@ -256,7 +256,7 @@ The API endpoints are available at /api/v1/. The token refers to the token retur
   }
   ```
 
-- GET users/?search=peterzernia
+- GET users/?search=peterzernia  
   Response:
   200 OK
 
