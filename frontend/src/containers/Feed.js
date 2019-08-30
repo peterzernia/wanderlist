@@ -41,9 +41,9 @@ export function Feed(props) {
   const handleScroll = useCallback(() => {
     const el = document.getElementById('scroll')
     if (isBottom(el) && next && !props.fetchingNext) {
-      fetchNextTripReports(next)
+      props.fetchNextTripReports(next)
     }
-  }, [next, props.fetchingNext])
+  }, [next, props])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
