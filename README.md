@@ -31,11 +31,13 @@ make up
 The Django dev server is now available at localhost:8000, and the React dev server is available at localhost:3000.
 
 Unit Test:
+
 ```
 make test
 ```
 
 Integration/E2E test:
+
 ```
 make cy-run
 ```
@@ -50,63 +52,477 @@ make clean
 
 The API endpoints are available at /api/v1/.
 
-- [Countries](https://www.wanderlist.dev/api/v1/countries/) - The
-  read-only API view for country objects. Only administrators can update this
-  data, but GET requests can be made with a search parameter of a country name or
-  language, e.g. /api/v1/countries/?search=Aland&Islands. This endpoint returns
-  case-insensitive, partial matches. A query of /api/v1/countries/?search=united
-  will return the countries United Republic of Tanzania, United Arab Emirites,
-  United Kingdom, and United States of America.
+- GET countries/
+  Response:
+  200 OK
 
-- [Trip Reports](https://www.wanderlist.dev/api/v1/reports/) - The
-  endpoint for the Trip Reports. Authenticated users can create, read, update and
-  delete Trip Reports from the React frontend. GET requests are
-  paginated to three trip reports and are ordered by favorite
-  count, but can also be ordered by primary key, i.e. /api/v1/reports/?ordering=pk.
-  The second page would be viewable at /api/v1/reports/?ordering=pk&page=2. Search
-  parameters for an exact match on a username, exact match on the trip report
-  slug, and case-insensitive partial match for countries of the trip report can
-  also be made, e.g. /api/v1/reports/?search=peterzernia. POST requests to this
-  endpont require the authentication token returned from the rest-auth endpoints
-  to be sent in the request header, i.e.
+  ```
+  [
+    {
+        "id": 1,
+        "currencies": [
+            {
+                "code": "AFN",
+                "name": "Afghan afghani",
+                "symbol": "Afs"
+            }
+        ],
+        "languages": [
+            {
+                "iso639_1": "ps",
+                "name": "Pashto",
+                "native_name": "پښتو"
+            },
+            {
+                "iso639_1": "tk",
+                "name": "Turkmen",
+                "native_name": "Türkmen, Түркмен"
+            },
+            {
+                "iso639_1": "uz",
+                "name": "Uzbek",
+                "native_name": "zbek, Ўзбек, أۇزبېك‎"
+            }
+        ],
+        "regional_blocs": [
+            {
+                "acronym": "SAARC",
+                "name": "South Asian Association for Regional Cooperation",
+                "other_acronyms": null,
+                "other_names": null
+            }
+        ],
+        "name": "Afghanistan",
+        "top_level_domain": [
+            ".af"
+        ],
+        "alpha2code": "AF",
+        "alpha3code": "AFG",
+        "calling_codes": [
+            "93"
+        ],
+        "capital": "Kabul",
+        "alt_spellings": [
+            "AF",
+            "Afġānistān"
+        ],
+        "region": "Asia",
+        "subregion": "Southern Asia",
+        "population": 27657145,
+        "latlng": [
+            33.0,
+            65.0
+        ],
+        "demonym": "Afghan",
+        "area": 652230.0,
+        "gini": 27.8,
+        "timezones": [
+            "UTC+04:30"
+        ],
+        "borders": [
+            "IRN",
+            "PAK",
+            "TKM",
+            "UZB",
+            "TJK",
+            "CHN"
+        ],
+        "native_name": "افغانستان",
+        "numeric_code": "004",
+        "flag": "https://raw.githubusercontent.com/peterzernia/flags/master/af.png",
+        "cioc": "AFG"
+    },...
+  ]
+  ```
 
-```
-axios.post(
-  `/api/v1/reports/`, data,{
-    headers: {
-      'Authorization': `Token ${token}`
-    }
+- GET reports/
+  Response:
+  200 OK
+
+  ```
+  {
+    "count": 12,
+    "next": "http://www.wanderlist.dev/api/v1/reports/?page=2",
+    "previous": null,
+    "results": [
+      ...
+    ]
   }
-)
-```
+  ```
 
-along with the required fields, title, content, authors, and countries. PUT, PATCH, and DELETE requests must be made to the
-specific trip report endpoint of /api/v1/reports/tripReport_pk/, e.g.
-/api/v1/reports/12/ and require the same headers as POST.
+- POST reports/
+  Request:
 
-- [Users](https://www.wanderlist.dev/api/v1/users/) - The read-only API
-  view for users. GET requests can be made with the exact match username, e.g.
-  /api/v1/users/?search=peterzernia.
+  ```
+  headers: {
+    'Authorization': `Token ${token}`
+  }
 
-- Rest-auth - These views allow authentication, registration and password reset
-  request via the django-rest-auth and django-allauth packages.
-  POST requests made to /api/v1/rest-auth/login/ return an authentication token. This
-  token is stored in the browsers localStorage, and used to check authentication, and
-  POST, PUT, and DELETE trip reports. POST requests to /login/ require the username
-  and password passed in as data. POST requests to /registration/ require username,
-  email, password, verified password, and home country pk to be passed in. GET
-  requests to /user/ returns the authenticated user object. POST requests to
-  /api/v1/rest-auth/password/reset/ will send an email to the email address that
-  was posted giving instructions on how to reset the password.
+  body: {
+    title: 'Trip Report',
+    content: 'Example Trip Report',
+    author: 1,
+    countries: 2,
+  }
+  ```
 
-- Favorite - /report/tripReport_pk/favorite/ - GET requests from authenticated
-  users to this custom API view toggle the users favorite status of a Trip Report.
-  GET requests returns the Trip Report object with the updated favoriters. For
-  example,if the favoriters of Trip Report number 12 is an array of the pks [2, 3]
-  and the user with pk number 1 makes a GET request to /report/12/favorite/, it
-  will return the same trip report object, but the favoriters array will now be
-  [1, 2, 3]. GET requests also must include the authentication token in the
-  headers.
+  Response:
+  201 Created
+
+  ```
+  {
+    "id": 39,
+    "author": {
+      "pk": 1,
+      "username": "peterzernia",
+      "email": "peter176@gmail.com",
+      "countries": [
+        {
+          "id": 4,
+          "currencies": [
+            {
+              "code": "DZD",
+              "name": "Algerian dinar",
+              "symbol": "\u062f.\u062c"
+            }
+          ],
+          "languages": [
+            {
+              "iso639_1": "ar",
+              "name": "Arabic",
+              "native_name": "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
+            }
+          ],
+          "regional_blocs": [
+            {
+              "acronym": "AU",
+              "name": "African Union",
+              "other_acronyms": null,
+              "other_names": null
+            },
+            {
+              "acronym": "AL",
+              "name": "Arab League",
+              "other_acronyms": null,
+              "other_names": [
+                "\u062c\u0627\u0645\u0639\u0629 \u0627\u0644\u062f\u0648\u0644 \u0627\u0644\u0639\u0631\u0628\u064a\u0629",
+                "J\u0101mi\u02bbat ad-Duwal al-\u02bbArab\u012byah",
+                "League of Arab States"
+              ]
+            }
+          ],
+          "name": "Algeria",
+          "top_level_domain": [
+            ".dz"
+          ],
+          "alpha2code": "DZ",
+          "alpha3code": "DZA",
+          "calling_codes": [
+            "213"
+          ],
+          "capital": "Algiers",
+          "alt_spellings": [
+            "DZ",
+            "Dzayer",
+            "Alg\u00e9rie"
+          ],
+          "region": "Africa",
+          "subregion": "Northern Africa",
+          "population": 40400000,
+          "latlng": [
+            28,
+            3
+          ],
+          "demonym": "Algerian",
+          "area": 2381741,
+          "gini": 35.3,
+          "timezones": [
+            "UTC+01:00"
+          ],
+          "borders": [
+            "TUN",
+            "LBY",
+            "NER",
+            "ESH",
+            "MRT",
+            "MLI",
+            "MAR"
+          ],
+          "native_name": "\u0627\u0644\u062c\u0632\u0627\u0626\u0631",
+          "numeric_code": "012",
+          "flag": "https:\/\/restcountries.eu\/data\/dza.svg",
+          "cioc": "ALG"
+        },
+        {
+          "id": 5,
+          "currencies": [
+            {
+              "code": "USD",
+              "name": "United States dollar",
+              "symbol": "US$"
+            }
+          ],
+          "languages": [
+            {
+              "iso639_1": "en",
+              "name": "English",
+              "native_name": "English"
+            },
+            {
+              "iso639_1": "sm",
+              "name": "Samoan",
+              "native_name": "gagana faa Samoa"
+            }
+          ],
+          "regional_blocs": [
+
+          ],
+          "name": "American Samoa",
+          "top_level_domain": [
+            ".as"
+          ],
+          "alpha2code": "AS",
+          "alpha3code": "ASM",
+          "calling_codes": [
+            "1684"
+          ],
+          "capital": "Pago Pago",
+          "alt_spellings": [
+            "AS",
+            "Amerika S\u0101moa",
+            "Amelika S\u0101moa",
+            "S\u0101moa Amelika"
+          ],
+          "region": "Oceania",
+          "subregion": "Polynesia",
+          "population": 57100,
+          "latlng": [
+            -14.33333333,
+            -170
+          ],
+          "demonym": "American Samoan",
+          "area": 199,
+          "gini": null,
+          "timezones": [
+            "UTC-11:00"
+          ],
+          "borders": [
+
+          ],
+          "native_name": "American Samoa",
+          "numeric_code": "016",
+          "flag": "https:\/\/restcountries.eu\/data\/asm.svg",
+          "cioc": "ASA"
+        },
+        {
+          "id": 213,
+          "currencies": [
+            {
+              "code": "EUR",
+              "name": "European Euro",
+              "symbol": "\u20ac"
+            }
+          ],
+          "languages": [
+            {
+              "iso639_1": "es",
+              "name": "Spanish",
+              "native_name": "espa\u00f1ol, castellano"
+            }
+          ],
+          "regional_blocs": [
+            {
+              "acronym": "EU",
+              "name": "European Union",
+              "other_acronyms": null,
+              "other_names": null
+            }
+          ],
+          "name": "Spain",
+          "top_level_domain": [
+            ".es"
+          ],
+          "alpha2code": "ES",
+          "alpha3code": "ESP",
+          "calling_codes": [
+            "34"
+          ],
+          "capital": "Madrid",
+          "alt_spellings": [
+            "ES",
+            "Kingdom of Spain",
+            "Reino de Espa\u00f1a"
+          ],
+          "region": "Europe",
+          "subregion": "Southern Europe",
+          "population": 46438422,
+          "latlng": [
+            40,
+            -4
+          ],
+          "demonym": "Spanish",
+          "area": 505992,
+          "gini": 34.7,
+          "timezones": [
+            "UTC",
+            "UTC+01:00"
+          ],
+          "borders": [
+            "AND",
+            "FRA",
+            "GIB",
+            "PRT",
+            "MAR"
+          ],
+          "native_name": "Espa\u00f1a",
+          "numeric_code": "724",
+          "flag": "https:\/\/restcountries.eu\/data\/esp.svg",
+          "cioc": "ESP"
+        }
+      ],
+      "home": {
+        "id": 6,
+        "currencies": [
+          {
+            "code": "EUR",
+            "name": "European Euro",
+            "symbol": "\u20ac"
+          }
+        ],
+        "languages": [
+          {
+            "iso639_1": "ca",
+            "name": "Catalan",
+            "native_name": "Catal\u00e0"
+          }
+        ],
+        "regional_blocs": [
+
+        ],
+        "name": "Andorra",
+        "top_level_domain": [
+          ".ad"
+        ],
+        "alpha2code": "AD",
+        "alpha3code": "AND",
+        "calling_codes": [
+          "376"
+        ],
+        "capital": "Andorra la Vella",
+        "alt_spellings": [
+          "AD",
+          "Principality of Andorra",
+          "Principat d'Andorra"
+        ],
+        "region": "Europe",
+        "subregion": "Southern Europe",
+        "population": 78014,
+        "latlng": [
+          42.5,
+          1.5
+        ],
+        "demonym": "Andorran",
+        "area": 468,
+        "gini": null,
+        "timezones": [
+          "UTC+01:00"
+        ],
+        "borders": [
+          "FRA",
+          "ESP"
+        ],
+        "native_name": "Andorra",
+        "numeric_code": "020",
+        "flag": "https:\/\/restcountries.eu\/data\/and.svg",
+        "cioc": "AND"
+      },
+      "biography": "Test"
+    },
+    "countries": [
+      ...
+    ],
+    "favoriters": [
+
+    ],
+    "title": "Trip Report",
+    "content": "Example Trip Report",
+    "date_posted": "2019-08-30T13:02:46.333552Z",
+    "slug": "wxLtMRirkBtS"
+  }
+  ```
+
+- PATCH reports/:id
+  Request:
+
+  ```
+  headers: {
+    'Authorization': `Token ${token}`
+  }
+
+  body: {
+    title: 'Trip Report Updated',
+  }
+  ```
+
+  Response:
+  200 OK
+
+  ```
+  {
+    "id": 39,
+    "author": {
+      "pk": 1,
+      "username": "peterzernia",
+      "email": "peter176@gmail.com",
+      "countries": [
+        ...
+      ]
+    ...
+  }
+  ```
+
+- GET reports/:id/favorite/
+  Request:
+
+  ```
+  headers: {
+    'Authorization': `Token ${token}`
+  }
+  ```
+
+  Response:
+  200 OK
+
+  ```
+  {
+    author: {
+      pk: 1,
+      username: "peterzernia",
+      email: "peter176@gmail.com"
+      ...
+    },
+    content: "Trip Report Example",
+    countries: [{…}],
+    date_posted: "2019-08-23T08:40:39Z",
+    favoriters: [1],
+  }
+  ```
+
+- GET users/?search=peterzernia
+  Response:
+  200 OK
+
+  ```
+  [
+    {
+        "pk": 1,
+        "username": "peterzernia",
+        ...
+    }
+  ]
+  ```
+
+- Authentication follows the [Django Rest Auth](https://github.com/Tivix/django-rest-auth) endpoints
 
 ## Built With
 
