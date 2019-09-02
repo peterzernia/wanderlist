@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.3.2",
     "@material-ui/icons": "^4.2.1",
+    "@sentry/browser": "^5.6.3",
     "axios": "^0.19.0",
     "downshift": "^3.1.5",
     "leaflet": "^1.5.1",
