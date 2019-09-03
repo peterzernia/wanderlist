@@ -8,7 +8,7 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 
 Sentry.init({
-  dsn: process.env.REACT_APP_SENTRY_HOST,
+  dsn: 'https://68ff1c6c1de146c28032e30632599ce0@sentry.io/1549105',
   environment: process.env.NODE_ENV,
 })
 
