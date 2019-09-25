@@ -1,38 +1,32 @@
 build:
 	docker-compose build
-	cd frontend && docker-compose build
-	cd frontend && docker-compose run frontend yarn install
-	cd frontend && docker-compose run frontend yarn run build
 
 init:
-	docker-compose run web python manage.py migrate --noinput
-	docker-compose run web python manage.py createsuperuser
-	docker-compose run web python manage.py loaddata database.json
+	docker-compose run wanderlist python manage.py migrate --noinput
+	docker-compose run wanderlist python manage.py createsuperuser
+	docker-compose run wanderlist python manage.py loaddata database.json
 
 migrate:
-	docker-compose run web python manage.py makemigrations
-	docker-compose run web python manage.py migrate
+	docker-compose run wanderlist python manage.py makemigrations
+	docker-compose run wanderlist python manage.py migrate
 
 up:
-	docker-compose up -d
-	cd frontend && docker-compose up
+	docker-compose up
 
 test-js:
-	cd frontend && docker-compose run frontend yarn test
+	docker-compose run frontend npm test
 
 test-py:
-	docker-compose run web coverage run manage.py test
+	docker-compose run wanderlist coverage run manage.py test
 
 test: test-py test-js
 
 cy-open:
-	cd frontend && docker-compose run frontend ./node_modules/.bin/cypress install && docker-compose run frontend ./node_modules/.bin/cypress open
+	docker-compose run frontend npm run cy-open
 
 cy-run:
-	cd frontend && docker-compose run frontend ./node_modules/.bin/cypress install && docker-compose run frontend ./node_modules/.bin/cypress run
+	docker-compose run frontend npm run cy-run
 
 clean:
 	docker-compose stop
 	docker-compose rm -fv
-	cd frontend && docker-compose stop
-	cd frontend && docker-compose rm -fv

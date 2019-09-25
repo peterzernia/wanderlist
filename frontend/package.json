@@ -39,7 +39,9 @@
     "test": "CI=true react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "postinstall": "npm run build",
-    "lint": "./node_modules/.bin/eslint ."
+    "lint": "./node_modules/.bin/eslint .",
+    "cy-open": "./node_modules/.bin/cypress open",
+    "cy-run": "./node_modules/.bin/cypress run"
   },
   "engines": {
     "node": "12.4.0",

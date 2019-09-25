@@ -1,8 +1,7 @@
 version: "3"
 
 services:
-  web:
-    container_name: wanderlist
+  wanderlist:
     command: python /code/manage.py runserver 0.0.0.0:8000
     build: .
     volumes:
@@ -11,8 +10,18 @@ services:
       - "8000:8000"
     links:
       - db
+  frontend:
+    build: ./frontend
+    command: npm start
+    env_file: ./frontend/.env
+    environment:
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
   db:
-    container_name: postgres
     hostname: db
     image: postgres:11
     volumes:
@@ -21,4 +30,5 @@ services:
       - "5432:5432"
 
 volumes:
+  node_modules:
   postgres_data:
