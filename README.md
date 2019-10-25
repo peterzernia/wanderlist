@@ -1,7 +1,8 @@
 # Wanderlist
+![](https://travis-ci.com/peterzernia/wanderlist.svg?branch=master)
 
-Wanderlist is a full-featured, single-page web application built on the Django
-framework with a Reactjs frontend.
+Wanderlist is a responsive, single-page travel web application built on the Django
+framework with a Reactjs frontend. Users can create a custom map of all the countries they have traveled to, as well as write Trip Reports about their travels.
 
 Now available on [Google Play](https://play.google.com/store/apps/details?id=dev.wanderlist.wanderlist)
 
@@ -34,12 +35,6 @@ Unit Test:
 
 ```
 make test
-```
-
-Integration/E2E test:
-
-```
-make cy-run
 ```
 
 Stop and remove the docker containers:
