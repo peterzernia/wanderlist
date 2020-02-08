@@ -1,12 +1,6 @@
 {
   "short_name": "Wanderlist",
-  "name": "Wanderlist Web App",
-  "icons": [
-    {
-      "src": "https://github.com/peterzernia/wanderlist/blob/master/images/favicon.svg",
-      "sizes": "24x24"
-    }
-  ],
+  "name": "Wanderlist",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
